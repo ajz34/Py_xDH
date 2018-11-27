@@ -1,0 +1,61 @@
+# Notes on how to initialize this sphinx repo
+
+## Install requirements
+
+For Python, we need to install these following packages based on anaconda via pip:
+* sphinx
+* nbsphinx
+* pyscf
+* nbstripout
+* sphinx_rtd_theme
+
+If `pyscf` package install faliure encountered, try install `setuptools` or upgrade anaconda, pip, et al.
+
+## Initialization
+
+* execute `sphinx-quickstart` in bash
+  * Separate source and build directories (y/n): `y`
+  * Project name: Py_xDH
+  * Project language [en]: zh_CN
+  * doctest: automatically test code snippets in doctest blocks (y/n) [n]: y
+  * mathjax: include math, rendered in the browser by MathJax (y/n) [n]: y
+  * viewcode: include links to the source code of documented Python objects (y/n) [n]: y
+* execute `nbstripout --install --attributes .gitattributes` in bash to ignore ipynb differences (in Windows)
+* create `environment.yml`
+* create `readthedocs.yml`
+* change `.gitignore`
+  *
+  ```
+  .ipynb_checkpoints
+  *.pyc
+  tmp*
+  ```
+* copy file in `source/_static`
+  
+## Configuration change
+
+*
+```
+exclude_patterns = [
+    '_build',
+    '**.ipynb_checkpoints',
+]
+```
+
+*
+```
+html_theme = 'sphinx_rtd_theme'
+```
+
+*
+```
+# -- Extension configuration -------------------------------------------------
+
+def setup(app):
+    # https://github.com/scipy/scipy-sphinx-theme/blob/master/_theme/scipy/static/js/copybutton.js
+    app.add_javascript('copybutton.js')
+
+nbsphinx_allow_errors = True
+```
+
+

@@ -1,3 +1,9 @@
+# ajz34
+.ipynb_checkpoints
+*.pyc
+tmp*
+source/temp
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
