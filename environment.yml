@@ -2,6 +2,7 @@ numpy
 jupyter
 matplotlib
 sphinx
-nbsphinx!=5.4
+nbsphinx
+nbconvert!=5.4
 pyscf
 sphinx_rtd_theme
