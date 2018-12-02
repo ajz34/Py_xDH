@@ -1,8 +1,7 @@
 numpy
 jupyter
-ipykernel
 matplotlib
 sphinx
-nbsphinx
+nbsphinx!=5.4
 pyscf
 sphinx_rtd_theme
