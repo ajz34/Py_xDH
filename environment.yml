@@ -1,5 +1,6 @@
 numpy
 jupyter
+ipykernel
 matplotlib
 sphinx
 nbsphinx
