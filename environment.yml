@@ -1,13 +1,7 @@
-channels:
-  - conda-forge
-
-dependencies:
-  - numpy
-  - jupyter
-  - matplotlib
-  - sphinx
-  - pip:
-    - nbsphinx
-    - pyscf
-    - sphinx_rtd_theme
-
+numpy
+jupyter
+matplotlib
+sphinx
+nbsphinx
+pyscf
+sphinx_rtd_theme

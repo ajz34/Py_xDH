@@ -17,6 +17,7 @@ xDH 在 Python 下实现的简易教程
    install
    numpy_quick
    mp2_energy
+   xyg3_energy
 
 
 Indices and tables
