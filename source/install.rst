@@ -61,6 +61,12 @@ PySCF 环境搭建
    .. code-block :: bash
 
       $ pip install pyscf
+	  
+在几何结构优化中，我们需要安装 `berny 库 <https://jan.hermann.name/pyberny/index.html>`_．该库的安装也只需执行下述语句：
+
+   .. code-block :: bash
+   
+      $ pip install pyberny
 
 
 Jupyter 服务器环境

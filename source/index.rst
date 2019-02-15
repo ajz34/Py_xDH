@@ -19,6 +19,7 @@ xDH 在 Python 下实现的简易教程
    mp2_energy
    xyg3_energy
    hf_elec_grad
+   hf_nuc_grad
 
 
 Indices and tables
