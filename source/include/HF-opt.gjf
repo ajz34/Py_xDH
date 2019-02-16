@@ -1,4 +1,4 @@
-#p HF/6-31G nosymm Force
+#p HF/6-31G nosymm opt(VeryTight)
 
 HF Grad of H2O
 
