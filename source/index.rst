@@ -20,6 +20,7 @@ xDH 在 Python 下实现的简易教程
    xyg3_energy
    hf_elec_grad
    hf_nuc_grad
+   hf_nuc_hess
 
 
 Indices and tables
