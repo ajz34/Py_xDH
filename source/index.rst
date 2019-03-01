@@ -21,6 +21,7 @@ xDH 在 Python 下实现的简易教程
    hf_elec_grad
    hf_nuc_grad
    hf_nuc_hess
+   dft_nuc_hess
 
 
 Indices and tables
