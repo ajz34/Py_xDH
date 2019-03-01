@@ -169,4 +169,4 @@ def setup(app):
     app.add_javascript('copybutton.js')
 
 nbsphinx_allow_errors = True
-nbsphinx_timeout = 360
+nbsphinx_timeout = 720
