@@ -11,11 +11,11 @@ setuptools.setup(
     description="xDH Functional Derivatives Enpowered by Python",
     long_description="",
     long_description_content_type="text/markdown",
-    url="https://github.com/ajz34/Python-xDH",
+    url="https://github.com/ajz34/Py_xDH",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: Currently Private",
+        "License :: GPL v3",
         "Operating System :: Linux",
     ],
 )

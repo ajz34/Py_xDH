@@ -10,7 +10,7 @@ cache: pip
 before_install:
     - export PYTHONPATH=$TRAVIS_BUILD_DIR/pyxdh:$PYTHONPATH
 #   - export CODECOV_TOKEN="26dd3c7d-3372-47f1-8ec4-addf2bb16706"
-    - cp $TRAVIS_BUILD_DIR/pyxdh/.pyscf_conf.py ~/.pyscf_conf.py
+    - cp $TRAVIS_BUILD_DIR/.pyscf_conf.py ~/.pyscf_conf.py
     - pip install -r requirements.yml
 
 matrix:
