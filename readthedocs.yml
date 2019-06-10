@@ -1,14 +1,19 @@
-name: Psi4_xDH
+version: 2
+
+name: Py_xDH
 type: sphinx
+
+sphinx:
+  configuration: docs/conf.py
 
 build:
   image: latest
 
 python:
-  version: 3.6
-  use_system_site_packages: true
+  version: 3.7
+  install:
+    - requirements: docs/environment.yml
+    - method: pip
+  system_packages: true
 
-requirements_file: environment.yml
-
-formats:
-  - htmlzip
+formats: [htmlzip]

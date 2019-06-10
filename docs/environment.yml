@@ -1,0 +1,7 @@
+numpy
+jupyter
+matplotlib
+sphinx
+nbsphinx
+nbconvert!=5.4
+sphinx_rtd_theme

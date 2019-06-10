@@ -1,9 +1,0 @@
-numpy
-jupyter
-matplotlib
-sphinx
-nbsphinx
-nbconvert!=5.4
-pyscf
-pyberny
-sphinx_rtd_theme

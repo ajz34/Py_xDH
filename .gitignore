@@ -3,6 +3,10 @@
 *.pyc
 tmp*
 source/temp
+release
+*.out
+*.bsub
+*.chk
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

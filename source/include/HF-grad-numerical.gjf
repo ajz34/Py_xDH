@@ -1,8 +1,0 @@
-#t HF/6-31G nosymm Force(EnOnly, StepSize=1) IOp(1/33=1)
-
-HF Grad of H2O
-
-0 1
-O  1.0  0.0  0.0
-H  1.0  1.0  0.0
-H  1.0  0.0  1.0

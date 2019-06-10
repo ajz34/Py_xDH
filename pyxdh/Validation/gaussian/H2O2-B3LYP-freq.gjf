@@ -1,0 +1,11 @@
+%chk=H2O2-B3LYP-freq
+#p RB3LYP/6-31G nosymm SCF(VeryTight) Freq Int(Grid=99590)
+
+H2O2 B3LYP Frequency
+
+0 1
+O  0.0  0.0  0.0
+O  0.0  0.0  1.5
+H  1.0  0.0  0.0
+H  0.0  0.7  1.0
+

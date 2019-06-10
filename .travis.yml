@@ -1,0 +1,34 @@
+language: python
+python:
+    - "3.7"
+
+os: linux
+dist: xenial
+
+cache: pip
+
+before_install:
+    - export PYTHONPATH=$TRAVIS_BUILD_DIR/pyxdh:$PYTHONPATH
+#   - export CODECOV_TOKEN="26dd3c7d-3372-47f1-8ec4-addf2bb16706"
+    - cp $TRAVIS_BUILD_DIR/script/.pyscf_conf.py ~/.pyscf_conf.py
+    - pip install -r requirements.txt
+
+matrix:
+  include:
+    - name: "pyxdh"
+      script:
+        - cd $TRAVIS_BUILD_DIR
+        - export LOGLEVEL=2
+        - pytest pyxdh --disable-warnings --cov=pyxdh --cov-config=.coveragerc
+    - name: "Deprecated pyxdh"
+      script:
+        - pytest --disable-warnings
+    - name: "Deprecated Document"
+      script:
+        - sudo apt-get install -y pandoc
+        - cd $TRAVIS_BUILD_DIR/docs
+        - make html
+
+after_success:
+    - coverage combine
+    - codecov # --token=$CODECOV_TOKEN
