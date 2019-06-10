@@ -32,6 +32,8 @@ Where
 
 Documentation is the main purpose of Python xDH project. It is currently written in Chinese.
 
+**Note: Documentation remains to be updated! Only `pyxdh` code can be used currently.**
+
 Published web page: https://py-xdh.readthedocs.io/zh_CN/latest/
 
 Prerequisite knowledge of chapter 3, 4, 10 of *A New Dimension to Quantum Chemistry: Analytic Derivative Methods in
