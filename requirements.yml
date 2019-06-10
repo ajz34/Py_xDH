@@ -1,0 +1,13 @@
+intel-numpy
+intel-scipy
+pyscf
+jupyter
+sphinx
+nbsphinx
+pyberny
+sphinx_rtd_theme
+sphinxcontrib-bibtex
+pandoc
+docopt
+codecov
+pytest-cov

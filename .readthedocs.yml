@@ -1,8 +1,5 @@
 version: 2
 
-name: Py_xDH
-type: sphinx
-
 sphinx:
   configuration: docs/source/conf.py
 
