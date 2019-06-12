@@ -8,7 +8,7 @@ dist: xenial
 cache: pip
 
 before_install:
-    - export PYTHONPATH=$TRAVIS_BUILD_DIR/pyxdh:$PYTHONPATH
+    - export PYTHONPATH=$TRAVIS_BUILD_DIR:$PYTHONPATH
     - cp $TRAVIS_BUILD_DIR/.pyscf_conf.py ~/.pyscf_conf.py
     - pip install -r requirements.txt
 

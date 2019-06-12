@@ -155,5 +155,6 @@ All tests may cost 5-20 minutes depending on computers or servers.
 - Thanks labmates for valuable discussions and suggestions.
 - Thanks supervisor and teachers in lab for project support and server support.
 - Thanks parents for project support.
-- Currently, the author does not know any funding grants supporting this project.
+- Currently, the author does not know any funding grants supporting this project. It should have some.
+  Project is almost personally driven at this stage.
 - Futher discussion is welcomed by raising issue or e-mail. Chinese is prefered; English is also okay.
