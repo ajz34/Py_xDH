@@ -14,15 +14,7 @@ xDH 在 Python 下实现的简易教程
    :numbered:
 
    motive
-   install
-   numpy_quick
-   mp2_energy
-   xyg3_energy
-   hf_elec_grad
-   hf_nuc_grad
-   hf_nuc_hess
-   dft_nuc_hess
-   nonconsistent_gga_grad
+   intro/intro
 
 
 Indices and tables
