@@ -108,7 +108,7 @@ Deficiencies can be:
   - 使用了多重继承 (菱形继承)；
   - 不支持所有 DFT 近似的计算；
   - 与 "pure function" 的思想背道而驰；
-  - 作者认为不可以信任一个修读化学的低年级学生的代码；并且这类代码相比与成熟的库，更像是高级 PhD 课程的大作业。
+  - 作者认为不可以指望一个修读化学的低年级学生的代码；并且这类代码相比与成熟的库，这更像是高级 PhD 课程的大作业。
 
 However, `pyxdh` code is intended to be:
 
@@ -142,7 +142,7 @@ Generally, following instructions in `.travis.yml` is okay.
 All tests may cost 5-20 minutes depending on computers or servers. 
 
 - 请先复制 `.pyscf_conf.py` 文件到 `$HOME` 文件夹；这通常会提高 CP-HF 方程精度，并因此会对矩阵梯度的正确性有至关重要的影响。
-- 请执行 `export PYTHONPATH=$Py_xDH/pyxdh:$PYTHONPATH`，或者直接安装该库；但后者没有经过测试。请尽量使用类似于 PyCharm 等集成开发环境来执行程序代码。
+- 请执行 `export PYTHONPATH=$Py_xDH:$PYTHONPATH`，或者直接安装该库；但后者没有经过测试。请尽量使用类似于 PyCharm 等集成开发环境来执行程序代码。
 - 代码中的测试样例也可以是代码的执行样例。这些代码可以作为参考。
 
 一般来说，按照 `.travis.yml` 文件的指示来运行程序也是可以的。一般来说，根据电脑或服务器的情况不同，运行所有测试需要 5-20 分钟。

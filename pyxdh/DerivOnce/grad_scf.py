@@ -230,19 +230,26 @@ class GradSCF(DerivOnceSCF):
         mol, natm = self.mol, self.natm
         D = self.D
         H_1_ao = self.H_1_ao
-        eri1_ao = self.eri1_ao
         S_1_mo = self.S_1_mo
         F_0_mo = self.F_0_mo
         grids = self.grids
         grdit_memory = self.grdit_memory
+        scf_grad = self.scf_grad
 
-        grad_total = (
-            + np.einsum("Auv, uv -> A", H_1_ao, D)
-            + 0.5 * np.einsum("Auvkl, uv, kl -> A", eri1_ao, D, D)
-            - 0.25 * cx * np.einsum("Aukvl, uv, kl -> A", eri1_ao, D, D)
-            - 2 * np.einsum("Aij, ij -> A", S_1_mo[:, so, so], F_0_mo[so, so])
-            + grad.rhf.grad_nuc(mol).reshape(-1)
+        grad_total = np.zeros(natm * 3)
+
+        # From memory consumption point, we use higher subroutines in PySCF to generate ERI contribution
+        jk_1 = (
+            + 2 * scf_grad.get_j(dm=D)
+            - cx * scf_grad.get_k(dm=D)
         )
+        for A in range(natm):
+            sA = self.mol_slice(A)
+            grad_total[3 * A: 3 * (A + 1)] += np.einsum("tuv, uv -> t", jk_1[:, sA], D[sA])
+
+        grad_total += np.einsum("Auv, uv -> A", H_1_ao, D)
+        grad_total -= 2 * np.einsum("Aij, ij -> A", S_1_mo[:, so, so], F_0_mo[so, so])
+        grad_total += grad.rhf.grad_nuc(mol).reshape(-1)
 
         # GGA part contiribution
         if self.xc_type == "GGA":
