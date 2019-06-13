@@ -136,6 +136,7 @@ but not the program ability (derivative properties calculation) itself.
   It can be crucial when evaluating molecular coefficient derivative matrix precisely.
 - `export PYTHONPATH=$Py_xDH/pyxdh:$PYTHONPATH`; or install package with pip manually.
   Latter approach has not been tested. IDE like PyCharm is recommended when working with python codes.
+- Python package dependencies is listed in `requirements.txt`. Simply `pip install -r requirements.txt` should work.
 - Testing classes in source code can be examples for running jobs. Hacking these code is appreciated.
 
 Generally, following instructions in `.travis.yml` is okay.
@@ -143,9 +144,10 @@ All tests may cost 5-20 minutes depending on computers or servers.
 
 - 请先复制 `.pyscf_conf.py` 文件到 `$HOME` 文件夹；这通常会提高 CP-HF 方程精度，并因此会对矩阵梯度的正确性有至关重要的影响。
 - 请执行 `export PYTHONPATH=$Py_xDH:$PYTHONPATH`，或者直接安装该库；但后者没有经过测试。请尽量使用类似于 PyCharm 等集成开发环境来执行程序代码。
+- Python 库函数依赖关系列举在 `requirements.txt` 中。执行 `pip install -r requirements.txt` 应当可以安装这部分依赖关系。
 - 代码中的测试样例也可以是代码的执行样例。这些代码可以作为参考。
 
-一般来说，按照 `.travis.yml` 文件的指示来运行程序也是可以的。一般来说，根据电脑或服务器的情况不同，运行所有测试需要 5-20 分钟。
+一般来说，按照 `.travis.yml` 文件的指示来安装与运行程序也是可以的。一般来说，根据电脑或服务器的情况不同，运行所有测试需要 5-20 分钟。
 
 ## Acknowledge
 
