@@ -91,22 +91,24 @@ Currently it is not distrubuted to PyPI.
 
 Deficiencies can be:
 
+  - Support restricted reference, no-forzen-core, no-density-fitting methods currently; no symmetry is utilized;
   - Numerical behavior in big molecule is not tested;
   - Huge time cost when evaluating B2PLYP-type functional hessian;
   - Huge memory cost O(N^4) for MP2 properties, as well as no density fitting is utilized;
   - Complicated multiple inheritance (diamond inheritance);
-  - Does not support all kind of DFT approximations;
+  - Does not support all kind of DFT approximations (especially LDA, meta-GGA, NLC);
   - Code strongly disagree with "pure function" philosophy;
   - The author believe code from a junior chemistry student major in chemistry should not be believed in any way;
     this kind of code is somehow like homework projects of advanced PhD courses.
 
 这个库目前的缺陷有
 
+  - 现在只支持闭壳层参考态，并且不支持冻核近似，以及 Density Fitting 方法；不使用对称性质进行计算上的简化；
   - 缺少对于大分子的数值测评；
   - 对于 B2PLYP 型泛函，Hessian 计算的时间消耗过于严重；
   - 所有 MP2 方法不使用 Density Fitting，并且会有 O(N^4) 的内存消耗；
   - 使用了多重继承 (菱形继承)；
-  - 不支持所有 DFT 近似的计算；
+  - 不支持所有 DFT 近似的计算 (譬如 LDA、meta-GGA、NLC)；
   - 与 "pure function" 的思想背道而驰；
   - 作者认为不可以指望一个修读化学的低年级学生的代码；并且这类代码相比与成熟的库，这更像是高级 PhD 课程的大作业。
 
