@@ -14,7 +14,8 @@ xDH 在 Python 下实现的简易教程
    :numbered:
 
    motive
-   intro/intro
+   intro/index
+   pyscf/index
 
 
 Indices and tables
