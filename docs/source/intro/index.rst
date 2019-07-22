@@ -10,4 +10,5 @@
    build_environment
    intro_python
    intro_numpy
+   intro_pyxdh
 

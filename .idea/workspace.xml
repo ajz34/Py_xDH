@@ -1,0 +1,1060 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Py_xDH.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Py_xDH.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/intro/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/intro/index.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/intro/intro_numpy.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/intro/intro_numpy.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/intro/intro_python.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/intro/intro_python.ipynb" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pyxdh/Utilities/test_molecules.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="25" selection-start-column="25" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_mp2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pyxdh/DerivOnce/grad_mp2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="483">
+              <caret line="27" column="12" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/.PyCharm2019.1/system/remote_sources/-1053058360/-328480603/pyscf/gto/__init__.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/.PyCharm2019.1/system/remote_sources/-1053058360/-328480603/pyscf/gto/mole.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="66507">
+              <caret line="3191" selection-start-line="3191" selection-end-line="3191" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>eri1_ao</find>
+      <find>Jcontrib</find>
+      <find>F_1_ao</find>
+      <find>super</find>
+      <find>_basis</find>
+      <find>Mole</find>
+      <find>energy_nuc</find>
+      <find>RPA</find>
+      <find>npgto_</find>
+      <find>get_ab</find>
+      <find>internal</find>
+      <find>cartesian</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/pyxdhalpha/DerivTwice/polar_scf.py" />
+        <option value="$PROJECT_DIR$/pyxdhalpha/DerivTwice/hess_scf.py" />
+        <option value="$PROJECT_DIR$/pyxdhalpha/DerivTwice/deriv_twice_scf.py" />
+        <option value="$PROJECT_DIR$/pyxdhalpha/DerivTwice/polar_mp2.py" />
+        <option value="$PROJECT_DIR$/pyxdhalpha/DerivTwice/hess_mp2.py" />
+        <option value="$PROJECT_DIR$/pyxdhalpha/DerivTwice/deriv_twice_mp2.py" />
+        <option value="$PROJECT_DIR$/pyxdhalpha/DerivTwice/__init__.py" />
+        <option value="$PROJECT_DIR$/pyxdh/DerivOnce/dipole_mp2.py" />
+        <option value="$PROJECT_DIR$/.coveragerc" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/pyxdh/.pyscf_conf.py" />
+        <option value="$PROJECT_DIR$/readthedocs.yml" />
+        <option value="$PROJECT_DIR$/.readthedocs.yml" />
+        <option value="$PROJECT_DIR$/requirements.yml" />
+        <option value="$PROJECT_DIR$/setup.py" />
+        <option value="$PROJECT_DIR$/pyxdh/__init__.py" />
+        <option value="$PROJECT_DIR$/docs/source/intro/intro_test.rst" />
+        <option value="$PROJECT_DIR$/.travis.yml" />
+        <option value="$PROJECT_DIR$/pyxdh/DerivOnce/grad_scf.py" />
+        <option value="$PROJECT_DIR$/docs/source/intro/intro.rst" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/.lgtm.yml" />
+        <option value="$PROJECT_DIR$/docs/source/index.rst" />
+        <option value="$PROJECT_DIR$/docs/source/pyscf/index.rst" />
+        <option value="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_scf.py" />
+        <option value="$PROJECT_DIR$/pyxdh/DerivOnce/grad_mp2.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="952" />
+    <option name="y" value="50" />
+    <option name="width" value="977" />
+    <option name="height" value="1038" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Py_xDH" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Py_xDH" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Py_xDH" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Py_xDH" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Py_xDH" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Py_xDH" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Py_xDH" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Py_xDH" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
+              <item name="intro" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Py_xDH" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Py_xDH" type="462c0819:PsiDirectoryNode" />
+              <item name="pyxdh" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Py_xDH" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Py_xDH" type="462c0819:PsiDirectoryNode" />
+              <item name="pyxdh" type="462c0819:PsiDirectoryNode" />
+              <item name="DerivOnce" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Py_xDH" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Py_xDH" type="462c0819:PsiDirectoryNode" />
+              <item name="pyxdh" type="462c0819:PsiDirectoryNode" />
+              <item name="Utilities" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Py_xDH" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Py_xDH" type="462c0819:PsiDirectoryNode" />
+              <item name="pyxdh" type="462c0819:PsiDirectoryNode" />
+              <item name="Validation" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Py_xDH" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Py_xDH" type="462c0819:PsiDirectoryNode" />
+              <item name="pyxdh" type="462c0819:PsiDirectoryNode" />
+              <item name="Validation" type="462c0819:PsiDirectoryNode" />
+              <item name="numerical_deriv" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="last_opened_file_path" value="E:/Documents-Miscel/2019-06-03-Alchemy_Contest/Others_Work/nmp_qc" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="reference.idesettings.debugger.python" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Git-Repo\Py_xDH" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Git-Repo\Py_xDH" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python tests.pytest for pyxdh.DerivOnce.dipole_mp2.Test_DipoleMP2">
+    <configuration name="pytest for pyxdh.DerivOnce.dipole_mp2.Test_DipoleMP2" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="Py_xDH" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pyxdh/DerivOnce" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;pyxdh.DerivOnce.dipole_mp2.Test_DipoleMP2&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for pyxdh.DerivOnce.dipole_mp2.Test_DipoleMP2.test_MP2_dipole" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="Py_xDH" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pyxdh/DerivOnce" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;pyxdh.DerivOnce.dipole_mp2.Test_DipoleMP2.test_MP2_dipole&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python tests.pytest for pyxdh.DerivOnce.dipole_mp2.Test_DipoleMP2" />
+        <item itemvalue="Python tests.pytest for pyxdh.DerivOnce.dipole_mp2.Test_DipoleMP2.test_MP2_dipole" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\ajz34\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="" />
+      <created>1560170783387</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1560170783387</updated>
+      <workItem from="1560170786111" duration="14802000" />
+      <workItem from="1560335573066" duration="14874000" />
+      <workItem from="1560403688875" duration="2030000" />
+      <workItem from="1560474167905" duration="217000" />
+      <workItem from="1560489896975" duration="591000" />
+      <workItem from="1560494652774" duration="7000" />
+      <workItem from="1560494687276" duration="6099000" />
+      <workItem from="1560680092997" duration="3087000" />
+      <workItem from="1560734558888" duration="1282000" />
+      <workItem from="1560842420844" duration="1811000" />
+      <workItem from="1560855126835" duration="599000" />
+      <workItem from="1560999924626" duration="6577000" />
+      <workItem from="1561047310560" duration="1020000" />
+      <workItem from="1561083184602" duration="3118000" />
+      <workItem from="1561543632291" duration="790000" />
+      <workItem from="1561601440609" duration="288000" />
+      <workItem from="1561861157443" duration="2659000" />
+      <workItem from="1561882827298" duration="842000" />
+      <workItem from="1562466277772" duration="4613000" />
+      <workItem from="1562850465836" duration="153000" />
+      <workItem from="1562850643034" duration="2707000" />
+      <workItem from="1563193807360" duration="670000" />
+      <workItem from="1563675834792" duration="1928000" />
+      <workItem from="1563762992313" duration="1829000" />
+      <workItem from="1563791353300" duration="600000" />
+    </task>
+    <task id="LOCAL-00001" summary="BIG CHANGE: pyxdh code from private repo Python-xDH/pyxdhalpha; and change the whole structure of directory">
+      <created>1560175360560</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1560175360560</updated>
+    </task>
+    <task id="LOCAL-00002" summary="configure: add pyscf_conf; change readthedocs setting of requirements">
+      <created>1560175810800</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1560175810800</updated>
+    </task>
+    <task id="LOCAL-00003" summary="configure: some problems on path when building in readthedocs and travis-ci">
+      <created>1560175963016</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1560175963016</updated>
+    </task>
+    <task id="LOCAL-00004" summary="configure: some problems on path when building in readthedocs and travis-ci">
+      <created>1560176270813</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1560176270813</updated>
+    </task>
+    <task id="LOCAL-00005" summary="configure: some problems on path when building in readthedocs and travis-ci">
+      <created>1560176397758</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1560176397758</updated>
+    </task>
+    <task id="LOCAL-00006" summary="configure: well, intel-* possibly not found in travis-ci?">
+      <created>1560176695232</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1560176695232</updated>
+    </task>
+    <task id="LOCAL-00007" summary="configure: move .pyscf_conf.py out of pyxdh source code">
+      <created>1560177059765</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1560177059765</updated>
+    </task>
+    <task id="LOCAL-00008" summary="configure: Changed readme">
+      <created>1560185591434</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1560185591435</updated>
+    </task>
+    <task id="LOCAL-00009" summary="readme: added warning message">
+      <created>1560185791511</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1560185791511</updated>
+    </task>
+    <task id="LOCAL-00010" summary="readme: added warning message">
+      <created>1560339463684</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1560339463684</updated>
+    </task>
+    <task id="LOCAL-00011" summary="travis: change pythonpath, I don't know how pythonpath work in jupyter">
+      <created>1560350924299</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1560350924299</updated>
+    </task>
+    <task id="LOCAL-00012" summary="pyxdh: change grad_scf: O(N^4) eri1_ao to O(N^2) on-the-fly integral storage powered by pyscf">
+      <created>1560355956665</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1560355956665</updated>
+    </task>
+    <task id="LOCAL-00013" summary="document: removed old documents, added build_environment">
+      <created>1560356004208</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1560356004208</updated>
+    </task>
+    <task id="LOCAL-00014" summary="document: remove include, that should be replaced by pyxdh.Validation">
+      <created>1560356775915</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1560356775915</updated>
+    </task>
+    <task id="LOCAL-00015" summary="document: simply add dependencies instruction to readme">
+      <created>1560404359447</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1560404359448</updated>
+    </task>
+    <task id="LOCAL-00016" summary="document: initialize intro_python">
+      <created>1560434789818</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1560434789818</updated>
+    </task>
+    <task id="LOCAL-00017" summary="document: initialize intro_python">
+      <created>1560434823502</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1560434823502</updated>
+    </task>
+    <task id="LOCAL-00018" summary="readme: emphasis pyscf should be installed by pip">
+      <created>1560501918070</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1560501918070</updated>
+    </task>
+    <task id="LOCAL-00019" summary="intro: I think I should stop talking about python itself; there's too much to talk...">
+      <created>1560502031468</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1560502031468</updated>
+    </task>
+    <task id="LOCAL-00020" summary="intro: intro_python revoked, removed easy contents">
+      <created>1560688024416</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1560688024416</updated>
+    </task>
+    <task id="LOCAL-00021" summary="lgtm: try code quality scoring">
+      <created>1561015834736</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1561015834736</updated>
+    </task>
+    <task id="LOCAL-00022" summary="pyscf: added basis_integral">
+      <created>1561883025238</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1561883025238</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="pytest_for_dipole_mp2_Test_DipoleMP2_test_MP2_dipole - 2019.06.10 at 21h 02m 16s.xml">
+      <configuration name="pytest for dipole_mp2.Test_DipoleMP2.test_MP2_dipole" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_for_dipole_mp2_Test_DipoleMP2 - 2019.06.10 at 21h 04m 07s.xml">
+      <configuration name="pytest for dipole_mp2.Test_DipoleMP2" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_for_dipole_mp2_Test_DipoleMP2 - 2019.06.10 at 21h 04m 41s.xml">
+      <configuration name="pytest for dipole_mp2.Test_DipoleMP2" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_for_dipole_mp2_Test_DipoleMP2 - 2019.06.10 at 21h 11m 10s.xml">
+      <configuration name="pytest for dipole_mp2.Test_DipoleMP2" configurationId="tests" />
+    </history-entry>
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="73193000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="33" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16756032" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.71954674" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3385269" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.3281471" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.28470254" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.3286119" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Remote Host" order="3" />
+      <window_info anchor="right" id="SciView" order="4" />
+      <window_info anchor="right" id="Database" order="5" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="BIG CHANGE: pyxdh code from private repo Python-xDH/pyxdhalpha; and change the whole structure of directory" />
+    <MESSAGE value="configure: add pyscf_conf; change readthedocs setting of requirements" />
+    <MESSAGE value="configure: some problems on path when building in readthedocs and travis-ci" />
+    <MESSAGE value="configure: well, intel-* possibly not found in travis-ci?" />
+    <MESSAGE value="configure: move .pyscf_conf.py out of pyxdh source code" />
+    <MESSAGE value="configure: Changed readme" />
+    <MESSAGE value="readme: added chinese translation and added acknowledge" />
+    <MESSAGE value="travis: change pythonpath, I don't know how pythonpath work in jupyter" />
+    <MESSAGE value="pyxdh: change grad_scf: O(N^4) eri1_ao to O(N^2) on-the-fly integral storage powered by pyscf" />
+    <MESSAGE value="document: removed old documents, added build_environment" />
+    <MESSAGE value="document: remove include, that should be replaced by pyxdh.Validation" />
+    <MESSAGE value="document: simply add dependencies instruction to readme" />
+    <MESSAGE value="document: initialize intro_python" />
+    <MESSAGE value="readme: emphasis pyscf should be installed by pip" />
+    <MESSAGE value="intro: I think I should stop talking about python itself; there's too much to talk..." />
+    <MESSAGE value="intro: intro_python revoked, removed easy contents" />
+    <MESSAGE value="lgtm: try code quality scoring" />
+    <MESSAGE value="pyscf: added basis_integral" />
+    <option name="LAST_COMMIT_MESSAGE" value="pyscf: added basis_integral" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipole_mp2_Test_DipoleMP2.coverage" NAME="pytest for dipole_mp2.Test_DipoleMP2 Coverage Results" MODIFIED="1560172191691" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdhalpha/DerivOnce" />
+    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipole_mp2_Test_DipoleMP2_test_MP2_dipole.coverage" NAME="pytest for dipole_mp2.Test_DipoleMP2.test_MP2_dipole Coverage Results" MODIFIED="1560171734840" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdhalpha/DerivOnce" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/pyxdh/DerivTwice/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="58" selection-start-column="58" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.coveragerc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="1" column="12" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Temp1_gauopen_v2.zip/pyquante2-interface.py" />
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Temp1_gauopen_v2.zip/domp2.py" />
+    <entry file="file://$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_mp2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyxdh/DerivTwice/hess_mp2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="47" selection-start-line="2" selection-start-column="47" selection-end-line="2" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyxdh/DerivTwice/hess_scf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7988">
+          <caret line="6" column="42" lean-forward="true" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyxdh/DerivTwice/polar_mp2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="47" selection-start-line="4" selection-start-column="47" selection-end-line="4" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyxdh/DerivTwice/polar_scf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="42" lean-forward="true" selection-start-line="4" selection-start-column="42" selection-end-line="4" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.readthedocs.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="8" column="5" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyxdh/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.pyscf_conf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" column="38" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/intro/intro_test.rst" />
+    <entry file="file://$PROJECT_DIR$/docs/source/motive.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyxdh/DerivOnce/dipole_scf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="10" column="42" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://Python/pyxdh.DerivOnce.deriv_once_mp2.DerivOnceXDH">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>Python</ID>
+          <OriginalElement>pyxdh.DerivOnce.deriv_once_mp2.DerivOnceXDH</OriginalElement>
+          <nodes>
+            <node x="" y="">abc.ABC</node>
+            <node x="" y="">pyxdh.DerivOnce.deriv_once_scf.DerivOnceNCDFT</node>
+            <node x="" y="">object</node>
+            <node x="" y="">pyxdh.DerivOnce.deriv_once_mp2.DerivOnceMP2</node>
+            <node x="" y="">pyxdh.DerivOnce.deriv_once_scf.DerivOnceSCF</node>
+            <node x="" y="">pyxdh.DerivOnce.deriv_once_mp2.DerivOnceXDH</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="396.0" y="178.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_scf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="438">
+          <caret line="389" column="24" lean-forward="true" selection-start-line="389" selection-start-column="24" selection-end-line="389" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyxdh/Utilities/grid_iterator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="518">
+          <caret line="44" column="19" selection-start-line="44" selection-start-column="19" selection-end-line="44" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2019.1/system/remote_sources/-726557114/903585577/pyscf/lib/misc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="512" column="28" selection-start-line="512" selection-start-column="28" selection-end-line="512" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2019.1/system/remote_sources/-726557114/903585577/pyscf/scf/hf_symm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7772">
+          <caret line="489" selection-start-line="489" selection-end-line="489" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2019.1/system/remote_sources/-726557114/903585577/pyscf/scf/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="142" column="25" selection-start-line="142" selection-start-column="25" selection-end-line="142" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2019.1/system/remote_sources/-726557114/903585577/pyscf/scf/hf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29673">
+          <caret line="1465" column="8" selection-start-line="1465" selection-start-column="8" selection-end-line="1465" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.travis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="10" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="2205">
+            <caret line="105" column="64" selection-start-line="105" selection-start-column="64" selection-end-line="105" selection-end-column="64" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/intro/index.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.lgtm.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="1" column="18" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2019.1/system/remote_sources/-726557114/903585577/pyscf/gto/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" column="41" selection-start-line="5" selection-start-column="41" selection-end-line="5" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2019.1/system/remote_sources/-726557114/903585577/pyscf/gto/pp_int.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2019.1/system/remote_sources/-726557114/903585577/pyscf/tddft/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="15" column="14" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2019.1/system/remote_sources/-726557114/903585577/pyscf/tdscf/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="22" column="19" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2019.1/system/remote_sources/-726557114/903585577/pyscf/tdscf/rks.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2310">
+          <caret line="120" column="27" selection-start-line="120" selection-start-column="27" selection-end-line="120" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2019.1/system/remote_sources/-726557114/903585577/pyscf/tdscf/rhf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="115" column="25" selection-start-line="115" selection-start-column="25" selection-end-line="115" selection-end-column="25" />
+          <folding>
+            <element signature="e#753#781#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/requirements.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="6" selection-start-line="6" selection-end-line="6" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="8" selection-start-line="8" selection-end-line="8" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyxdh/DerivOnce/dipole_mp2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1585">
+          <caret line="1" selection-start-line="1" selection-end-line="1" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2019.1/system/remote_sources/-726557114/903585577/pyscf/gto/mole.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="1540" column="4" selection-start-line="1540" selection-start-column="4" selection-end-line="1540" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyxdh/Validation/numerical_deriv/mp2_hessian_b2plyp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="23" column="28" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyxdh/Utilities/deriv_numerical.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1232">
+          <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/pyscf/index.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/index.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_scf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-546">
+          <caret line="19" selection-start-line="19" selection-end-line="19" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyxdh/DerivOnce/grad_scf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="16" column="22" lean-forward="true" selection-start-line="16" selection-end-line="16" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://Python/pyxdh.DerivOnce.grad_mp2.GradXDH">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>Python</ID>
+          <OriginalElement>pyxdh.DerivOnce.grad_mp2.GradXDH</OriginalElement>
+          <nodes>
+            <node x="791.2619047619047" y="324.0">pyxdh.DerivOnce.deriv_once_mp2.DerivOnceXDH</node>
+            <node x="0.0" y="243.0">pyxdh.DerivOnce.grad_scf.GradSCF</node>
+            <node x="731.8630952380952" y="81.0">abc.ABC</node>
+            <node x="390.11309523809524" y="324.0">pyxdh.DerivOnce.grad_mp2.GradMP2</node>
+            <node x="384.720238095238" y="405.0">pyxdh.DerivOnce.grad_mp2.GradXDH</node>
+            <node x="9.071428571428555" y="324.0">pyxdh.DerivOnce.grad_scf.GradNCDFT</node>
+            <node x="100.08333333333326" y="162.0">pyxdh.DerivOnce.deriv_once_scf.DerivOnceSCF</node>
+            <node x="729.7202380952381" y="243.0">pyxdh.DerivOnce.deriv_once_mp2.DerivOnceMP2</node>
+            <node x="735.8630952380952" y="0.0">object</node>
+            <node x="321.7202380952381" y="243.0">pyxdh.DerivOnce.deriv_once_scf.DerivOnceNCDFT</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="abc.ABC" target="object">
+              <point x="0.0" y="-15.5" />
+              <point x="0.0" y="15.5" />
+            </edge>
+            <edge source="pyxdh.DerivOnce.deriv_once_scf.DerivOnceSCF" target="abc.ABC">
+              <point x="0.0" y="-15.5" />
+              <point x="286.08333333333326" y="132.0" />
+              <point x="742.3630952380952" y="132.0" />
+              <point x="-31.5" y="15.5" />
+            </edge>
+            <edge source="pyxdh.DerivOnce.deriv_once_mp2.DerivOnceXDH" target="pyxdh.DerivOnce.deriv_once_scf.DerivOnceNCDFT">
+              <point x="-124.0" y="-15.5" />
+              <point x="853.2619047619047" y="294.0" />
+              <point x="612.7202380952381" y="294.0" />
+              <point x="97.0" y="15.5" />
+            </edge>
+            <edge source="pyxdh.DerivOnce.grad_mp2.GradXDH" target="pyxdh.DerivOnce.grad_scf.GradNCDFT">
+              <point x="-94.66666666666669" y="-15.5" />
+              <point x="432.05357142857133" y="380.0" />
+              <point x="159.07142857142856" y="380.0" />
+              <point x="0.0" y="15.5" />
+            </edge>
+            <edge source="pyxdh.DerivOnce.grad_mp2.GradXDH" target="pyxdh.DerivOnce.grad_mp2.GradMP2">
+              <point x="0.0" y="-15.5" />
+              <point x="526.7202380952381" y="380.0" />
+              <point x="532.1130952380952" y="380.0" />
+              <point x="0.0" y="15.5" />
+            </edge>
+            <edge source="pyxdh.DerivOnce.deriv_once_mp2.DerivOnceXDH" target="abc.ABC">
+              <point x="124.0" y="-15.5" />
+              <point x="1101.2619047619046" y="304.0" />
+              <point x="1112.220238095238" y="304.0" />
+              <point x="1112.220238095238" y="132.0" />
+              <point x="805.3630952380952" y="132.0" />
+              <point x="31.500000000000014" y="15.5" />
+            </edge>
+            <edge source="pyxdh.DerivOnce.deriv_once_scf.DerivOnceNCDFT" target="pyxdh.DerivOnce.deriv_once_scf.DerivOnceSCF">
+              <point x="-97.0" y="-15.5" />
+              <point x="418.7202380952381" y="223.0" />
+              <point x="286.08333333333326" y="223.0" />
+              <point x="0.0" y="15.5" />
+            </edge>
+            <edge source="pyxdh.DerivOnce.deriv_once_scf.DerivOnceNCDFT" target="abc.ABC">
+              <point x="97.0" y="-15.5" />
+              <point x="612.7202380952381" y="142.0" />
+              <point x="763.3630952380952" y="142.0" />
+              <point x="-10.5" y="15.5" />
+            </edge>
+            <edge source="pyxdh.DerivOnce.grad_scf.GradNCDFT" target="pyxdh.DerivOnce.deriv_once_scf.DerivOnceNCDFT">
+              <point x="75.0" y="-15.5" />
+              <point x="234.07142857142856" y="304.0" />
+              <point x="418.7202380952381" y="304.0" />
+              <point x="-97.0" y="15.5" />
+            </edge>
+            <edge source="pyxdh.DerivOnce.grad_mp2.GradMP2" target="pyxdh.DerivOnce.grad_scf.GradSCF">
+              <point x="-71.0" y="-15.5" />
+              <point x="461.11309523809524" y="294.0" />
+              <point x="212.9999999999999" y="294.0" />
+              <point x="70.99999999999989" y="15.5" />
+            </edge>
+            <edge source="pyxdh.DerivOnce.deriv_once_mp2.DerivOnceXDH" target="pyxdh.DerivOnce.deriv_once_mp2.DerivOnceMP2">
+              <point x="0.0" y="-15.5" />
+              <point x="977.2619047619047" y="304.0" />
+              <point x="1008.7202380952381" y="304.0" />
+              <point x="93.0" y="15.5" />
+            </edge>
+            <edge source="pyxdh.DerivOnce.deriv_once_mp2.DerivOnceMP2" target="pyxdh.DerivOnce.deriv_once_scf.DerivOnceSCF">
+              <point x="-93.0" y="-15.5" />
+              <point x="822.7202380952381" y="213.0" />
+              <point x="410.08333333333326" y="213.0" />
+              <point x="124.0" y="15.5" />
+            </edge>
+            <edge source="pyxdh.DerivOnce.grad_scf.GradNCDFT" target="pyxdh.DerivOnce.grad_scf.GradSCF">
+              <point x="-75.0" y="-15.5" />
+              <point x="84.07142857142856" y="304.0" />
+              <point x="71.0" y="304.0" />
+              <point x="-71.0" y="15.5" />
+            </edge>
+            <edge source="pyxdh.DerivOnce.grad_mp2.GradXDH" target="pyxdh.DerivOnce.deriv_once_mp2.DerivOnceXDH">
+              <point x="94.66666666666663" y="-15.5" />
+              <point x="621.3869047619046" y="380.0" />
+              <point x="977.2619047619047" y="380.0" />
+              <point x="0.0" y="15.5" />
+            </edge>
+            <edge source="pyxdh.DerivOnce.deriv_once_mp2.DerivOnceMP2" target="abc.ABC">
+              <point x="93.0" y="-15.5" />
+              <point x="1008.7202380952381" y="142.0" />
+              <point x="784.3630952380952" y="142.0" />
+              <point x="10.5" y="15.5" />
+            </edge>
+            <edge source="pyxdh.DerivOnce.grad_scf.GradSCF" target="pyxdh.DerivOnce.deriv_once_scf.DerivOnceSCF">
+              <point x="-1.1368683772161603E-13" y="-15.5" />
+              <point x="141.9999999999999" y="223.0" />
+              <point x="162.08333333333326" y="223.0" />
+              <point x="-124.0" y="15.5" />
+            </edge>
+            <edge source="pyxdh.DerivOnce.grad_mp2.GradMP2" target="pyxdh.DerivOnce.deriv_once_mp2.DerivOnceMP2">
+              <point x="71.0" y="-15.5" />
+              <point x="603.1130952380952" y="304.0" />
+              <point x="822.7202380952381" y="304.0" />
+              <point x="-93.0" y="15.5" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="1.0" x="610.0" y="299.0" />
+          <SelectedNodes>
+            <node>pyxdh.DerivOnce.grad_mp2.GradXDH</node>
+          </SelectedNodes>
+          <Categories />
+          <SCOPE>All</SCOPE>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyxdh/Utilities/test_molecules.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="25" selection-start-column="25" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyxdh/DerivOnce/grad_mp2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="27" column="12" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2019.1/system/remote_sources/-1053058360/-328480603/pyscf/gto/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2019.1/system/remote_sources/-1053058360/-328480603/pyscf/gto/mole.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66507">
+          <caret line="3191" selection-start-line="3191" selection-end-line="3191" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_mp2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
