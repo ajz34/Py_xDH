@@ -6,9 +6,11 @@
 在这里，我们会回顾一些不太常用的话题；或者说在一个《数据结构与算法》课程编程中，一般不会遇到的问题。这些问题很可能会穿插在以后的笔记中，或者在 :code:`pyxdh` 的项目中。
 
 .. toctree::
+   :maxdepth: 2
 
    build_environment
    intro_python
    intro_numpy
+   adv_numpy
    intro_pyxdh
 
