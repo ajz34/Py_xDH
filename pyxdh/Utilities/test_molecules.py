@@ -48,10 +48,7 @@ class Mol_H2O2:
         if self._gga_eng is not NotImplemented:
             return self._gga_eng
 
-        grids = dft.Grids(self.mol)
-        grids.atom_grid = (99, 590)
-        grids.becke_scheme = dft.gen_grid.stratmann
-        grids.build()
+        grids = self.gen_grids()
 
         gga_eng = scf.RKS(self.mol)
         gga_eng.grids = grids
@@ -72,3 +69,10 @@ class Mol_H2O2:
         gga_grad = grad.RKS(self.gga_eng)
         self._gga_grad = gga_grad
         return self._gga_grad
+
+    def gen_grids(self, rad_points=99, sph_points=590):
+        grids = dft.Grids(self.mol)
+        grids.atom_grid = (rad_points, sph_points)
+        grids.becke_scheme = dft.gen_grid.stratmann
+        grids.build()
+        return grids

@@ -15,11 +15,11 @@ xDH 在 Python 下实现的简易教程
 
    motive
    intro/index
-   pyscf/index
+   qcbasic/index
 
 
-Indices and tables
-==================
+索引
+====
 
 * :ref:`genindex`
 * :ref:`modindex`
