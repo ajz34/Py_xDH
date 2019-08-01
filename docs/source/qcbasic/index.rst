@@ -8,3 +8,4 @@
 
    basis_integral
    basic_rhf
+   basic_mp2
