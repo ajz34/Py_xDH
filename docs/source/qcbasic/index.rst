@@ -9,3 +9,4 @@
    basis_integral
    basic_rhf
    basic_mp2
+   basic_grid
