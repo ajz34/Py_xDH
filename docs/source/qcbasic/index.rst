@@ -10,3 +10,4 @@
    basic_rhf
    basic_mp2
    basic_grid
+   basic_lda

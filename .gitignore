@@ -2,11 +2,14 @@
 .ipynb_checkpoints
 *.pyc
 tmp*
+temp*
 source/temp
 release
 *.out
 *.bsub
 *.chk
+*.bak
+*.sav
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
