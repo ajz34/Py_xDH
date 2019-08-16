@@ -11,3 +11,4 @@
    basic_mp2
    basic_grid
    basic_lda
+   basic_gga
