@@ -4,6 +4,10 @@
 [![codecov](https://codecov.io/gh/ajz34/Py_xDH/branch/master/graph/badge.svg)](https://codecov.io/gh/ajz34/Py_xDH)
 [![Documentation Status](https://readthedocs.org/projects/py-xdh/badge/?version=latest)](https://py-xdh.readthedocs.io/zh_CN/latest/?badge=latest)
 
+![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/ajz34/pyxdh)
+![Docker Pulls](https://img.shields.io/docker/pulls/ajz34/pyxdh)
+[![](https://images.microbadger.com/badges/image/ajz34/pyxdh.svg)](https://microbadger.com/images/ajz34/pyxdh "Get your own image badge on microbadger.com")
+
 This project is mainly documentation or notes of some basic quantum chemistry derivative implementations
 (including GGA, MP2, non-consistent GGA, xDH).
 **Documentation is written in Chinese for the current moment.**
@@ -152,6 +156,25 @@ All tests may cost 5-20 minutes depending on computers or servers.
 - 代码中的测试样例也可以是代码的执行样例。这些代码可以作为参考。
 
 一般来说，按照 `.travis.yml` 文件的指示来安装与运行程序也是可以的。一般来说，根据电脑或服务器的情况不同，运行所有测试需要 5-20 分钟。
+
+### Docker Image
+
+Docker provides another way to use pyxdh package in any system (Linux, Windows, Mac, ...), as well as running documents in jupyter environment.
+
+To use docker image, one can run the following code when connected to internet (provided that 8888 port is available):
+
+Docker 提供了另一种可以在 Linux、Windows、Mac 使用 pyxdh 库的方式；它同时还允许我们直接使用 jupyter 笔记本环境。
+
+若要用 Docker 运行 pyxdh，请在保证网路连通、端口 8888 没有被占用的情况下执行下述代码：
+
+```bash
+$ docker run -it -p 8888:8888 ajz34/pyxdh
+```
+
+If above code is successful, jupyter notebook should have been run in docker container.
+Simply follow the instructions from terminal should work. 
+
+如果上述代码运行顺利，jupyter 笔记本环境应当已经在 Docker 容器里配置完毕并运行了。按照终端所给出的指示打开 Jupyter 笔记本就可以了。
 
 ## Acknowledge
 

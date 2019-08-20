@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/requirements.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/requirements.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -53,10 +53,10 @@
     <property name="settings.editor.selected.configurable" value="Docker" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Git-Repo\Py_xDH" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Git-Repo\Py_xDH" />
     </key>
   </component>
@@ -124,13 +124,9 @@
   <component name="ServiceViewManager">
     <option name="allServicesViewState">
       <serviceView>
+        <option name="contentProportion" value="0.20641562" />
         <treeState>
-          <expand>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@672f2e27" type="9fbbdea:ServiceModel$ServiceNode" />
-            </path>
-          </expand>
+          <expand />
           <select />
         </treeState>
       </serviceView>
@@ -184,7 +180,8 @@
       <workItem from="1566007104299" duration="4786000" />
       <workItem from="1566028272189" duration="72000" />
       <workItem from="1566194756442" duration="222000" />
-      <workItem from="1566217035805" duration="4531000" />
+      <workItem from="1566217035805" duration="5199000" />
+      <workItem from="1566267042551" duration="9569000" />
     </task>
     <task id="LOCAL-00001" summary="BIG CHANGE: pyxdh code from private repo Python-xDH/pyxdhalpha; and change the whole structure of directory">
       <created>1560175360560</created>
@@ -375,7 +372,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566028129678</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="docker: first try">
+      <created>1566221601738</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1566221601739</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -449,7 +453,8 @@
     <MESSAGE value="document: update basic_lda, modified basic_grid" />
     <MESSAGE value="document: update basic_gga" />
     <MESSAGE value="document: update basic_b2plyp and basic_ncgga" />
-    <option name="LAST_COMMIT_MESSAGE" value="document: update basic_b2plyp and basic_ncgga" />
+    <MESSAGE value="docker: first try" />
+    <option name="LAST_COMMIT_MESSAGE" value="docker: first try" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipole_mp2_Test_DipoleMP2.coverage" NAME="pytest for dipole_mp2.Test_DipoleMP2 Coverage Results" MODIFIED="1560172191691" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdhalpha/DerivOnce" />
