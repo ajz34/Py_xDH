@@ -2,7 +2,7 @@ import numpy as np
 from functools import partial
 import os
 
-from pyxdh.DerivTwice import DerivTwiceSCF
+from pyxdh.DerivTwice import DerivTwiceSCF, DerivTwiceNCDFT
 
 MAXMEM = float(os.getenv("MAXMEM", 2))
 np.einsum = partial(np.einsum, optimize=["greedy", 1024 ** 3 * MAXMEM / 8])
@@ -39,6 +39,17 @@ class PolarSCF(DerivTwiceSCF):
 
     def _get_E_2(self):
         return self._get_E_2_U()
+
+
+class PolarNCDFT(DerivTwiceNCDFT, PolarSCF):
+
+    def _get_E_2_U(self):
+        A, B = self.A, self.B
+        so, sv = self.so, self.sv
+        E_2_U = 4 * np.einsum("Bpi, Api -> AB", B.U_1[:, :, so], A.nc_deriv.F_1_mo[:, :, so])
+        E_2_U += 4 * np.einsum("Aai, Bai -> AB", A.U_1[:, sv, so], self.RHS_B)
+        E_2_U += 4 * np.einsum("ABai, ai -> AB", self.pdB_F_A_mo[:, :, sv, so], self.Z)
+        return E_2_U
 
 
 class Test_PolarSCF:
@@ -94,5 +105,35 @@ class Test_PolarSCF:
 
         assert(np.allclose(
             - E_2, formchk.polarizability(),
+            atol=1e-6, rtol=1e-4
+        ))
+
+    def test_HF_B3LYP_polar(self):
+
+        from pkg_resources import resource_filename
+        from pyxdh.Utilities.test_molecules import Mol_H2O2
+        from pyxdh.DerivOnce import DipoleNCDFT
+        import pickle
+
+        H2O2 = Mol_H2O2()
+        config = {
+            "scf_eng": H2O2.hf_eng,
+            "nc_eng": H2O2.gga_eng
+        }
+        dip_helper = DipoleNCDFT(config)
+        config = {
+            "deriv_A": dip_helper,
+            "deriv_B": dip_helper,
+        }
+
+        helper = PolarNCDFT(config)
+        E_2 = helper.E_2
+
+        with open(resource_filename("pyxdh", "Validation/numerical_deriv/ncdft_polarizability_hf_b3lyp.dat"),
+                  "rb") as f:
+            ref_polar = pickle.load(f)["polarizability"]
+
+        assert(np.allclose(
+            - E_2, ref_polar,
             atol=1e-6, rtol=1e-4
         ))

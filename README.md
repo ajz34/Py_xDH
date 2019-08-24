@@ -31,13 +31,12 @@ basis processing, DFT grid engine and CP-HF algorithm is based on python quantum
 | Energy          | +   | +   | +       | +       |
 | Gradient        | +   | +   | +       | +       |
 | Dipole          | +   | +   | +       | +       |
-| Hessian         | +   | +   | -       | -       |
+| Hessian         | +   | +   | +       | +       |
 | Dipole Gradient |     |     |         |         |
-| Polarizability  | +   | +   | -       | -       |
+| Polarizability  | +   | +   | +       | +       |
 
 Where
   - "+": Implemented in this repository;
-  - "-": Implemented in a private repository;
   - "GGA": SCF process with GGA kernel or naive HF; note that LDA, meta-GGA or NLC is not supported in these code;
   - "MP2": PT2 with SCF reference; can be naive MP2 with HF reference or B2PLYP-type Double Hybrid functional (DH);
   - "GGA-GGA": Non-Consistent GGA, e.g. B3LYP energy take HF density as reference;
@@ -45,7 +44,6 @@ Where
   
 其中，
   - "+"：在这份代码库中已经实现；
-  - "-"：在另一份私有代码库中已经实现；
   - "GGA"：以 GGA 为基础的 SCF，包括 HF；但 LDA、meta-GGA、NLC 现不支持；
   - "MP2"：以 SCF 为参考态的二阶微扰；这包括普通的 MP2 和 B2PLYP 型双杂化泛函；
   - "GGA-GGA"：非自洽 GGA，譬如以 HF 为参考态获得的 B3LYP 能量的泛函；

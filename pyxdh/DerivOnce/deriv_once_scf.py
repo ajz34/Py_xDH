@@ -6,7 +6,6 @@ import warnings
 import copy
 
 from pyscf import gto, dft, grad, hessian, lib
-import pyscf.dft.numint
 from pyscf.scf import cphf
 
 from pyxdh.Utilities import timing, GridIterator, KernelHelper

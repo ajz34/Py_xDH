@@ -4,7 +4,7 @@ import os
 
 from pyscf.scf import _vhf
 
-from pyxdh.DerivTwice import DerivTwiceSCF
+from pyxdh.DerivTwice import DerivTwiceSCF, DerivTwiceNCDFT
 from pyxdh.Utilities import timing, GridIterator, KernelHelper
 
 MAXMEM = float(os.getenv("MAXMEM", 2))
@@ -395,6 +395,20 @@ class HessSCF(DerivTwiceSCF):
         return self.E_2_Skeleton + self.E_2_U + self.A.scf_hess.hess_nuc().swapaxes(1, 2).reshape((dhess, dhess))
 
 
+class HessNCDFT(DerivTwiceNCDFT, HessSCF):
+
+    def _get_E_2_Skeleton(self, grids=None, xc=None, cx=None, xc_type=None):
+        if grids is None:
+            grids = self.A.nc_deriv.grids
+        if xc is None:
+            xc = self.A.nc_deriv.xc
+        if cx is None:
+            cx = self.A.nc_deriv.cx
+        if xc_type is None:
+            xc_type = self.A.nc_deriv.xc_type
+        return HessSCF._get_E_2_Skeleton(self, grids, xc, cx, xc_type)
+
+
 class Test_HessSCF:
 
     def test_HF_hess(self):
@@ -449,4 +463,34 @@ class Test_HessSCF:
         assert(np.allclose(
             E_2, formchk.hessian(),
             atol=1e-5, rtol=1e-4
+        ))
+
+    def test_HF_B3LYP_hess(self):
+
+        from pkg_resources import resource_filename
+        from pyxdh.Utilities.test_molecules import Mol_H2O2
+        from pyxdh.DerivOnce import GradNCDFT
+        import pickle
+
+        H2O2 = Mol_H2O2()
+        config = {
+            "scf_eng": H2O2.hf_eng,
+            "nc_eng": H2O2.gga_eng,
+            "rotation": True,
+        }
+        grad_helper = GradNCDFT(config)
+
+        config = {
+            "deriv_A": grad_helper,
+            "deriv_B": grad_helper,
+        }
+        helper = HessNCDFT(config)
+        E_2 = helper.E_2
+
+        with open(resource_filename("pyxdh", "Validation/numerical_deriv/ncdft_hessian_hf_b3lyp.dat"), "rb") as f:
+            ref_hess = pickle.load(f)["hess"]
+
+        assert (np.allclose(
+            E_2, ref_hess,
+            atol=1e-6, rtol=1e-4
         ))

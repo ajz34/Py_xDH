@@ -4,6 +4,15 @@
     <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_scf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_mp2.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_mp2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_scf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/hess_mp2.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/hess_mp2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/hess_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/hess_scf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/polar_mp2.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/polar_mp2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/polar_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/polar_scf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/__init__.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,6 +42,11 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1PdvxE2OLkdI9OtIDBmBIK41jZA" />
@@ -70,13 +84,51 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Docker.Dockerfile">
+  <component name="RunManager" selected="Python tests.pytest for pyxdh">
     <configuration name="Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
       <deployment type="dockerfile">
         <settings>
+          <option name="buildCliOptions" value="" />
+          <option name="command" value="" />
+          <option name="containerName" value="" />
+          <option name="entrypoint" value="" />
+          <option name="imageTag" value="" />
+          <option name="commandLineOptions" value="" />
           <option name="sourceFilePath" value="Dockerfile" />
         </settings>
       </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for DerivTwice.hess_scf.Test_HessSCF.test_HF_B3LYP_hess" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="Py_xDH" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="wsl://UBUNTU/home/a/miniconda3/bin/python" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;test_HF_B3LYP_hess&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;DerivTwice.hess_scf.Test_HessSCF.test_HF_B3LYP_hess&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for pyxdh" type="tests" factoryName="py.test" nameIsGenerated="true">
+      <module name="Py_xDH" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="wsl://UBUNTU/home/a/miniconda3/bin/python" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;pyxdh&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <configuration name="pytest for pyxdh.DerivOnce.dipole_mp2.Test_DipoleMP2" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
@@ -111,8 +163,16 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Docker.Dockerfile" />
+      <item itemvalue="Python tests.pytest for pyxdh" />
+      <item itemvalue="Python tests.pytest for pyxdh.DerivOnce.dipole_mp2.Test_DipoleMP2" />
+      <item itemvalue="Python tests.pytest for pyxdh.DerivOnce.dipole_mp2.Test_DipoleMP2.test_MP2_dipole" />
+      <item itemvalue="Python tests.pytest for DerivTwice.hess_scf.Test_HessSCF.test_HF_B3LYP_hess" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.pytest for DerivTwice.hess_scf.Test_HessSCF.test_HF_B3LYP_hess" />
         <item itemvalue="Docker.Dockerfile" />
         <item itemvalue="Python tests.pytest for pyxdh.DerivOnce.dipole_mp2.Test_DipoleMP2" />
         <item itemvalue="Python tests.pytest for pyxdh.DerivOnce.dipole_mp2.Test_DipoleMP2.test_MP2_dipole" />
@@ -182,7 +242,7 @@
       <workItem from="1566267042551" duration="13686000" />
       <workItem from="1566301659479" duration="948000" />
       <workItem from="1566302637572" duration="686000" />
-      <workItem from="1566644529316" duration="364000" />
+      <workItem from="1566644529316" duration="3330000" />
     </task>
     <task id="LOCAL-00001" summary="BIG CHANGE: pyxdh code from private repo Python-xDH/pyxdhalpha; and change the whole structure of directory">
       <created>1560175360560</created>
@@ -387,7 +447,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566276809767</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="readme: update badges">
+      <created>1566644922190</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1566644922190</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -421,7 +488,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="BIG CHANGE: pyxdh code from private repo Python-xDH/pyxdhalpha; and change the whole structure of directory" />
     <MESSAGE value="configure: add pyscf_conf; change readthedocs setting of requirements" />
     <MESSAGE value="configure: some problems on path when building in readthedocs and travis-ci" />
     <MESSAGE value="configure: well, intel-* possibly not found in travis-ci?" />
@@ -446,11 +512,14 @@
     <MESSAGE value="document: update basic_b2plyp and basic_ncgga" />
     <MESSAGE value="docker: first try" />
     <MESSAGE value="docker: Add docker subsection to readme.md; docker size should be smaller than the previous one" />
-    <option name="LAST_COMMIT_MESSAGE" value="docker: Add docker subsection to readme.md; docker size should be smaller than the previous one" />
+    <MESSAGE value="readme: update badges" />
+    <option name="LAST_COMMIT_MESSAGE" value="readme: update badges" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipole_mp2_Test_DipoleMP2.coverage" NAME="pytest for dipole_mp2.Test_DipoleMP2 Coverage Results" MODIFIED="1560172191691" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdhalpha/DerivOnce" />
+    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_pyxdh.coverage" NAME="pytest for pyxdh Coverage Results" MODIFIED="1566647490187" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipole_mp2_Test_DipoleMP2_test_MP2_dipole.coverage" NAME="pytest for dipole_mp2.Test_DipoleMP2.test_MP2_dipole Coverage Results" MODIFIED="1560171734840" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdhalpha/DerivOnce" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_pyxdh_DerivOnce_dipole_mp2_Test_DipoleMP2.coverage" NAME="pytest for pyxdh.DerivOnce.dipole_mp2.Test_DipoleMP2 Coverage Results" MODIFIED="1566028289586" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
+    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_DerivTwice_hess_scf_Test_HessSCF_test_HF_B3LYP_hess.coverage" NAME="pytest for DerivTwice.hess_scf.Test_HessSCF.test_HF_B3LYP_hess Coverage Results" MODIFIED="1566647091781" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

@@ -3,8 +3,8 @@ from abc import ABC
 from functools import partial
 import os
 
-from pyxdh.DerivTwice import DerivTwiceSCF
-from pyxdh.DerivOnce import DerivOnceMP2
+from pyxdh.DerivTwice import DerivTwiceSCF, DerivTwiceNCDFT
+from pyxdh.DerivOnce import DerivOnceMP2, DerivOnceXDH
 
 MAXMEM = float(os.getenv("MAXMEM", 2))
 np.einsum = partial(np.einsum, optimize=["greedy", 1024 ** 3 * MAXMEM / 8])
@@ -150,3 +150,27 @@ class DerivTwiceMP2(DerivTwiceSCF, ABC):
         return super(DerivTwiceMP2, self)._get_E_2() + self._get_E_2_MP2_Contrib()
 
     # endregion
+
+
+class DerivTwiceXDH(DerivTwiceMP2, DerivTwiceNCDFT, ABC):
+
+    def __init__(self, config):
+        super(DerivTwiceXDH, self).__init__(config)
+        # Only make IDE know these two instances are DerivOnceXDH classes
+        self.A = config["deriv_A"]  # type: DerivOnceXDH
+        self.B = config["deriv_B"]  # type: DerivOnceXDH
+        assert(isinstance(self.A, DerivOnceXDH))
+        assert(isinstance(self.B, DerivOnceXDH))
+
+    def _get_RHS_B(self):
+        RHS_B = DerivTwiceMP2._get_RHS_B(self)
+        RHS_B += 4 * self.B.pdA_nc_F_0_mo[:, self.sv, self.so]
+        return RHS_B
+
+    def _get_E_2_U(self):
+        A, B = self.A, self.B
+        so, sv, sa = self.so, self.sv, self.sa
+        E_2_U = 4 * np.einsum("Bpi, Api -> AB", B.U_1[:, :, so], A.nc_deriv.F_1_mo[:, :, so])
+        E_2_U -= 2 * np.einsum("Aki, Bki -> AB", A.S_1_mo[:, so, so], B.pdA_nc_F_0_mo[:, so, so])
+        E_2_U -= 2 * np.einsum("ABki, ki -> AB", self.pdB_S_A_mo[:, :, so, so], A.nc_deriv.F_0_mo[so, so])
+        return E_2_U
