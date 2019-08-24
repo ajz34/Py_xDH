@@ -24,6 +24,20 @@ basis processing, DFT grid engine and CP-HF algorithm is based on python quantum
 这项工程也包含实现这些梯度性质计算的 Python 库 `pyxdh`。该库的电子积分、基组处理、DFT 格点积分引擎与 CP-HF 方程算法基于
 [PySCF](https://github.com/pyscf/pyscf) 的量子化学库。
 
+> **Warning**
+> 
+> `pyxdh` has not been fully and rigorously tested, nor peer reviewed.
+> Please use other quantum chemistry software instead anyway if one is preparing papers or making industrial implementation.
+> 
+> This package is virtually only for learning coding techniques for double hybrid secondary derivative properties.
+> Efficiency could be extremely terrible and is not the gist of this package.
+> 
+> `pyxdh` 没有经过严格的测评，目前也没有任何同行评议。
+> 在这份警告撤销之前，请不要在正式发表的论文中使用此处的做法作为 XYG3 及其导数性质的计算方法。
+> 对于其它方法，譬如 MP2、双杂化泛函等性质，也请在生产环境或正式发表论文中使用成熟的量化软件。
+> 
+> 这个库仅仅是对二阶梯度初步实现的技术讨论。程序效率会比较糟糕且并不是这个库关心的核心问题。
+
 ## Abilities
 
 |                 | GGA | MP2 | GGA-GGA | GGA xDH |

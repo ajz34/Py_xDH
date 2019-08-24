@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="readme: update badges">
+    <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="readme: update Read">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/intro/intro_pyxdh.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/intro/intro_pyxdh.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -156,10 +156,10 @@
     </configuration>
     <list>
       <item itemvalue="Docker.Dockerfile" />
-      <item itemvalue="Python tests.pytest for DerivTwice.hess_scf.Test_HessSCF.test_HF_B3LYP_hess" />
       <item itemvalue="Python tests.pytest for pyxdh" />
       <item itemvalue="Python tests.pytest for pyxdh.DerivOnce.dipole_mp2.Test_DipoleMP2" />
       <item itemvalue="Python tests.pytest for pyxdh.DerivOnce.dipole_mp2.Test_DipoleMP2.test_MP2_dipole" />
+      <item itemvalue="Python tests.pytest for DerivTwice.hess_scf.Test_HessSCF.test_HF_B3LYP_hess" />
     </list>
     <recent_temporary>
       <list>
@@ -445,7 +445,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566644922190</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="document: update XYG3 polar to intro_pyxdh document">
+      <created>1566650902295</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1566650902295</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -479,7 +486,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="configure: add pyscf_conf; change readthedocs setting of requirements" />
     <MESSAGE value="configure: some problems on path when building in readthedocs and travis-ci" />
     <MESSAGE value="configure: well, intel-* possibly not found in travis-ci?" />
     <MESSAGE value="configure: move .pyscf_conf.py out of pyxdh source code" />
@@ -504,7 +510,8 @@
     <MESSAGE value="docker: first try" />
     <MESSAGE value="docker: Add docker subsection to readme.md; docker size should be smaller than the previous one" />
     <MESSAGE value="readme: update badges" />
-    <option name="LAST_COMMIT_MESSAGE" value="readme: update badges" />
+    <MESSAGE value="document: update XYG3 polar to intro_pyxdh document" />
+    <option name="LAST_COMMIT_MESSAGE" value="document: update XYG3 polar to intro_pyxdh document" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipole_mp2_Test_DipoleMP2.coverage" NAME="pytest for dipole_mp2.Test_DipoleMP2 Coverage Results" MODIFIED="1560172191691" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdhalpha/DerivOnce" />
