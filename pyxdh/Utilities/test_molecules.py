@@ -24,7 +24,7 @@ class Mol_H2O2:
         self._hf_grad = NotImplemented
         self._gga_eng = NotImplemented
         self._gga_grad = NotImplemented
-        
+
     @property
     def hf_eng(self):
         if self._hf_eng is not NotImplemented:
@@ -32,7 +32,7 @@ class Mol_H2O2:
         hf_eng = scf.RHF(self.mol)
         self._hf_eng = hf_eng
         return self._hf_eng
-    
+
     @property
     def hf_grad(self):
         if self._hf_grad is not NotImplemented:

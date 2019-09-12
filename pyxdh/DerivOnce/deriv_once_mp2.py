@@ -71,7 +71,7 @@ class DerivOnceMP2(DerivOnceSCF, ABC):
         if self._D_iajb is NotImplemented:
             self._D_iajb = self._get_D_iajb()
         return self._D_iajb
-    
+
     @property
     def pdA_eri0_mo(self):
         if self._pdA_eri0_mo is NotImplemented:
@@ -129,7 +129,7 @@ class DerivOnceMP2(DerivOnceSCF, ABC):
     def _get_D_r(self):
         L = self.L
         D_r = self._D_r
-        so, sv, sa = self.so, self.sv, self.sa
+        so, sv = self.so, self.sv
         Ax0_Core = self.Ax0_Core
         e, mo_occ = self.e, self.mo_occ
         D_r[sv, so] = cphf.solve(Ax0_Core(sv, so, sv, so), e, mo_occ, L, max_cycle=100, tol=1e-15)[0]
@@ -162,7 +162,7 @@ class DerivOnceMP2(DerivOnceSCF, ABC):
             + self.eo[None, None, :, None]
             - self.ev[None, None, None, :]
         )
-    
+
     def _get_pdA_eri0_mo(self):
         eri0_mo = self.eri0_mo
         U_1 = self.U_1

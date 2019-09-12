@@ -61,7 +61,7 @@ class Test_GradMP2:
 
         # B2PLYP
         H2O2 = Mol_H2O2(xc="0.53*HF + 0.47*B88, 0.73*LYP")
-        config = {"scf_eng": H2O2.gga_eng, "cc" : 0.27}
+        config = {"scf_eng": H2O2.gga_eng, "cc": 0.27}
         helper = GradMP2(config)
         self.valid_resource(helper, "Validation/gaussian/H2O2-B2PLYP-freq.fchk")
 

@@ -16,8 +16,8 @@ class DipoleSCF(DerivOnceSCF):
     def Ax1_Core(self, si, sj, sk, sl, reshape=True):
 
         C, Co = self.C, self.Co
-        natm, nao, nmo, nocc = self.natm, self.nao, self.nmo, self.nocc
-        so, sv = self.so, self.sv
+        nao = self.nao
+        so = self.so
 
         dmU = C @ self.U_1[:, :, so] @ Co.T
         dmU += dmU.swapaxes(-1, -2)
@@ -133,7 +133,7 @@ class DipoleNCDFT(DerivOnceNCDFT, DipoleSCF):
         return DipoleSCF
 
     def _get_E_1(self):
-        so, sv, sa = self.so, self.sv, self.sa
+        so, sv = self.so, self.sv
         B_1 = self.B_1
         Z = self.Z
         E_1 = 4 * np.einsum("ai, Aai -> A", Z, B_1[:, sv, so])

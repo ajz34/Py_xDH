@@ -19,10 +19,10 @@ class GradSCF(DerivOnceSCF):
     def Ax1_Core(self, si, sj, sk, sl, reshape=True):
 
         C, Co = self.C, self.Co
-        natm, nao, nmo, nocc = self.natm, self.nao, self.nmo, self.nocc
+        natm, nao = self.natm, self.nao
         mol = self.mol
         cx = self.cx
-        so, sv = self.so, self.sv
+        so = self.so
 
         dmU = C @ self.U_1[:, :, so] @ Co.T
         dmU += dmU.swapaxes(-1, -2)
@@ -223,10 +223,10 @@ class GradSCF(DerivOnceSCF):
             eri1_ao[A, :, :, :, sA, :] -= int2e_ip1[:, sA].transpose(0, 3, 4, 1, 2)
             eri1_ao[A, :, :, :, :, sA] -= int2e_ip1[:, sA].transpose(0, 3, 4, 2, 1)
         return eri1_ao.reshape((-1, self.nao, self.nao, self.nao, self.nao))
-    
+
     def _get_E_1(self):
         cx, xc = self.cx, self.xc
-        so, sv = self.so, self.sv
+        so = self.so
         mol, natm = self.mol, self.natm
         D = self.D
         H_1_ao = self.H_1_ao
@@ -273,7 +273,7 @@ class GradNCDFT(DerivOnceNCDFT, GradSCF):
 
     def _get_E_1(self):
         natm = self.natm
-        so, sv, sa = self.so, self.sv, self.sa
+        so, sv = self.so, self.sv
         B_1 = self.B_1
         Z = self.Z
         E_1 = 4 * np.einsum("ai, Aai -> A", Z, B_1[:, sv, so]).reshape((natm, 3))

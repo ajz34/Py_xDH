@@ -311,7 +311,7 @@ class DerivTwiceSCF(ABC):
         B = self.B
         Ax0_Core = A.Ax0_Core  # Ax0_Core should be the same for A and B derivative
 
-        sa, so, sv = self.sa, self.so, self.sv
+        sa, so = self.sa, self.so
         e = self.e
 
         B_2 = (
@@ -353,7 +353,7 @@ class DerivTwiceSCF(ABC):
 
     def _get_pdB_F_A_mo(self):
         A, B = self.A, self.B
-        so, sv, sa = self.so, self.sv, self.sa
+        so, sa = self.so, self.sa
         pdB_F_A_mo = (
             + self.F_2_mo
             + np.einsum("Apm, Bmq -> ABpq", A.F_1_mo, B.U_1)
@@ -373,7 +373,7 @@ class DerivTwiceSCF(ABC):
 
     def _get_pdB_B_A(self):
         A, B = self.A, self.B
-        so, sv, sa = self.so, self.sv, self.sa
+        so, sa = self.so, self.sa
         Ax0_Core = A.Ax0_Core
         pdB_B_A = (
             + self.pdB_F_A_mo
@@ -449,7 +449,7 @@ class DerivTwiceNCDFT(DerivTwiceSCF, ABC):
 
     def _get_E_2_U(self):
         A, B = self.A, self.B
-        so, sv, sa = self.so, self.sv, self.sa
+        so, sv = self.so, self.sv
         E_2_U = 4 * np.einsum("Bpi, Api -> AB", B.U_1[:, :, so], A.nc_deriv.F_1_mo[:, :, so])
         E_2_U += 4 * np.einsum("Aai, Bai -> AB", A.U_1[:, sv, so], self.RHS_B)
         E_2_U += 4 * np.einsum("ABai, ai -> AB", self.pdB_B_A[:, :, sv, so], self.Z)

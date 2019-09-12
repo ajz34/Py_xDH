@@ -498,7 +498,7 @@ class DerivOnceSCF(ABC):
         so = self.so
 
         B_1 = self.F_1_mo.copy()
-        if self.S_1_mo is not 0:
+        if isinstance(self.S_1_mo, np.ndarray):
             B_1 += (
                 - self.S_1_mo * self.e
                 - 0.5 * self.Ax0_Core(sa, sa, so, so)(self.S_1_mo[:, so, so])
@@ -566,7 +566,7 @@ class DerivOnceSCF(ABC):
         U_1 = self.U_1
         e = self.e
         Ax0_Core = self.Ax0_Core
-        so, sv, sa = self.so, self.sv, self.sa
+        so, sa = self.so, self.sa
 
         pdA_F_0_mo = (
             + F_1_mo
@@ -611,7 +611,7 @@ class DerivOnceNCDFT(DerivOnceSCF, ABC):
         return self._pdA_nc_F_0_mo
 
     def _get_Z(self):
-        so, sv, sa = self.so, self.sv, self.sa
+        so, sv = self.so, self.sv
         Ax0_Core = self.Ax0_Core
         e, mo_occ = self.e, self.mo_occ
         F_0_mo = self.nc_deriv.F_0_mo
@@ -623,7 +623,7 @@ class DerivOnceNCDFT(DerivOnceSCF, ABC):
         nc_F_1_mo = self.nc_deriv.F_1_mo
         U_1 = self.U_1
         Ax0_Core = self.nc_deriv.Ax0_Core
-        so, sv, sa = self.so, self.sv, self.sa
+        so, sa = self.so, self.sa
 
         pdA_nc_F_0_mo = (
             + nc_F_1_mo

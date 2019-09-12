@@ -193,7 +193,8 @@ class HessSCF(DerivTwiceSCF):
         Kcontrib += Kcontrib.transpose((1, 0, 3, 2, 4, 5))
 
         dhess = natm * 3
-        return Jcontrib.swapaxes(1, 2).reshape((dhess, dhess, nao, nao)), Kcontrib.swapaxes(1, 2).reshape((dhess, dhess, nao, nao))
+        return (Jcontrib.swapaxes(1, 2).reshape((dhess, dhess, nao, nao)),
+                Kcontrib.swapaxes(1, 2).reshape((dhess, dhess, nao, nao)))
 
     @timing
     def _get_F_2_ao_GGAcontrib(self):
