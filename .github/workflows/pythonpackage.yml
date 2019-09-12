@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Set up Python
       uses: actions/setup-python@v1
       with:
         python-version: ${{ matrix.python-version }}
@@ -31,7 +31,7 @@ jobs:
     - name: Test with pytest
       run: |
         pip install pytest
-        pytest pyxdh --disable-warnings --cov=./ --cov-config=./coveragerc --cov-report=xml
+        pytest pyxdh --disable-warnings --cov=./ --cov-config=./.coveragerc --cov-report=xml
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1.0.2
       with:
