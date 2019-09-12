@@ -27,65 +27,32 @@ class DipoleXDH(DerivOnceXDH, DipoleMP2, DipoleNCDFT):
 
 class Test_DipoleMP2:
 
-    def test_MP2_dipole(self):
-
+    @staticmethod
+    def valid_assert(helper, resource_path):
         from pkg_resources import resource_filename
-        from pyxdh.Utilities.test_molecules import Mol_H2O2
         from pyxdh.Utilities import FormchkInterface
+        formchk = FormchkInterface(resource_filename("pyxdh", resource_path))
+        assert(np.allclose(helper.E_1, formchk.dipole(), atol=1e-6, rtol=1e-4))
 
+    def test_5th_functional_dipole(self):
+
+        from pyxdh.Utilities.test_molecules import Mol_H2O2
+
+        # MP2
         H2O2 = Mol_H2O2()
-        config = {
-            "scf_eng": H2O2.hf_eng
-        }
+        config = {"scf_eng": H2O2.hf_eng}
         helper = DipoleMP2(config)
+        self.valid_assert(helper, "Validation/gaussian/H2O2-MP2-freq.fchk")
 
-        formchk = FormchkInterface(resource_filename("pyxdh", "Validation/gaussian/H2O2-MP2-freq.fchk"))
-
-        assert(np.allclose(
-            helper.E_1, formchk.dipole(),
-            atol=1e-6, rtol=1e-4
-        ))
-
-    def test_B2PLYP_dipole(self):
-
-        from pkg_resources import resource_filename
-        from pyxdh.Utilities.test_molecules import Mol_H2O2
-        from pyxdh.Utilities import FormchkInterface
-
+        # B2PLYP
         H2O2 = Mol_H2O2(xc="0.53*HF + 0.47*B88, 0.73*LYP")
-        config = {
-            "scf_eng": H2O2.gga_eng,
-            "cc": 0.27
-        }
+        config = {"scf_eng": H2O2.gga_eng, "cc": 0.27}
         helper = DipoleMP2(config)
+        self.valid_assert(helper, "Validation/gaussian/H2O2-B2PLYP-freq.fchk")
 
-        formchk = FormchkInterface(resource_filename("pyxdh", "Validation/gaussian/H2O2-B2PLYP-freq.fchk"))
-
-        assert(np.allclose(
-            helper.E_1, formchk.dipole(),
-            atol=1e-6, rtol=1e-4
-        ))
-
-    def test_XYG3_dipole(self):
-
-        from pkg_resources import resource_filename
-        from pyxdh.Utilities.test_molecules import Mol_H2O2
-        from pyxdh.Utilities import FormchkInterface
-
+        # XYG3
         H2O2_sc = Mol_H2O2(xc="B3LYPg")
         H2O2_nc = Mol_H2O2(xc="0.8033*HF - 0.0140*LDA + 0.2107*B88, 0.6789*LYP")
-
-        config = {
-            "scf_eng": H2O2_sc.gga_eng,
-            "nc_eng": H2O2_nc.gga_eng,
-            "cc": 0.3211
-        }
-
-        dmh = DipoleXDH(config)
-
-        formchk = FormchkInterface(resource_filename("pyxdh", "Validation/gaussian/H2O2-XYG3-force.fchk"))
-
-        assert(np.allclose(
-            dmh.E_1, formchk.dipole(),
-            atol=1e-6, rtol=1e-4
-        ))
+        config = {"scf_eng": H2O2_sc.gga_eng, "nc_eng": H2O2_nc.gga_eng, "cc": 0.3211}
+        helper = DipoleXDH(config)
+        self.valid_assert(helper, "Validation/gaussian/H2O2-XYG3-force.fchk")

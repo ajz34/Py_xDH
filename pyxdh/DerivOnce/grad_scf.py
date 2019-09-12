@@ -283,56 +283,21 @@ class GradNCDFT(DerivOnceNCDFT, GradSCF):
 
 class Test_GradSCF:
 
+    @staticmethod
+    def valid_assert(config, resource_path):
+        from pkg_resources import resource_filename
+        from pyxdh.Utilities import FormchkInterface
+        helper = GradSCF(config)
+        formchk = FormchkInterface(resource_filename("pyxdh", resource_path))
+        assert(np.allclose(helper.E_1, formchk.grad(), atol=1e-5, rtol=1e-4))
+
     def test_HF_grad(self):
 
-        from pkg_resources import resource_filename
         from pyxdh.Utilities.test_molecules import Mol_H2O2
-        from pyxdh.Utilities import FormchkInterface
 
         H2O2 = Mol_H2O2()
-        config = {
-            "scf_eng": H2O2.hf_eng
-        }
-        helper = GradSCF(config)
-        hf_grad = helper.scf_grad
-
-        assert(np.allclose(
-            helper.E_1, hf_grad.grad(),
-            atol=1e-6, rtol=1e-4
-        ))
-
-        formchk = FormchkInterface(resource_filename("pyxdh", "Validation/gaussian/H2O2-HF-freq.fchk"))
-
-        assert(np.allclose(
-            helper.E_1, formchk.grad(),
-            atol=1e-6, rtol=1e-4
-        ))
-
-    def test_B3LYP_grad(self):
-
-        from pkg_resources import resource_filename
-        from pyxdh.Utilities.test_molecules import Mol_H2O2
-        from pyxdh.Utilities import FormchkInterface
-
-        H2O2 = Mol_H2O2()
-        config = {
-            "scf_eng": H2O2.gga_eng
-        }
-        helper = GradSCF(config)
-        gga_grad = helper.scf_grad
-
-        assert(np.allclose(
-            helper.E_1, gga_grad.grad(),
-            atol=1e-6, rtol=1e-4
-        ))
-
-        formchk = FormchkInterface(resource_filename("pyxdh", "Validation/gaussian/H2O2-B3LYP-freq.fchk"))
-
-        # TODO: This is a weaker compare! Try to modulize that someday.
-        assert(np.allclose(
-            helper.E_1, formchk.grad(),
-            atol=1e-5, rtol=1e-4
-        ))
+        self.valid_assert({"scf_eng": H2O2.hf_eng}, "Validation/gaussian/H2O2-HF-freq.fchk")
+        self.valid_assert({"scf_eng": H2O2.gga_eng}, "Validation/gaussian/H2O2-B3LYP-freq.fchk")
 
     def test_HF_B3LYP_grad(self):
 
@@ -341,17 +306,8 @@ class Test_GradSCF:
         from pyxdh.Utilities.test_molecules import Mol_H2O2
 
         H2O2 = Mol_H2O2()
-        config = {
-            "scf_eng": H2O2.hf_eng,
-            "nc_eng": H2O2.gga_eng
-        }
+        config = {"scf_eng": H2O2.hf_eng, "nc_eng": H2O2.gga_eng}
         helper = GradNCDFT(config)
-
-        with open(resource_filename("pyxdh", "Validation/numerical_deriv/ncdft_derivonce_hf_b3lyp.dat"),
-                  "rb") as f:
+        with open(resource_filename("pyxdh", "Validation/numerical_deriv/ncdft_derivonce_hf_b3lyp.dat"), "rb") as f:
             ref_grad = pickle.load(f)["grad"].reshape(-1, 3)
-
-        assert (np.allclose(
-            helper.E_1, ref_grad,
-            atol=1e-6, rtol=1e-4
-        ))
+        assert (np.allclose(helper.E_1, ref_grad, atol=1e-6, rtol=1e-4))

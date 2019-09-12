@@ -433,12 +433,6 @@ class DerivTwiceNCDFT(DerivTwiceSCF, ABC):
         # For non-consistent calculation
         self._RHS_B = NotImplemented
 
-    @property
-    def RHS_B(self):
-        if self._RHS_B is NotImplemented:
-            self._RHS_B = self._get_RHS_B()
-        return self._RHS_B
-
     def _get_RHS_B(self):
         B = self.B
         U_1, Z = B.U_1, B.Z

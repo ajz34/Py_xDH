@@ -47,12 +47,6 @@ class DerivTwiceMP2(DerivTwiceSCF, ABC):
         return self._pdB_D_r_oovv
 
     @property
-    def RHS_B(self):
-        if self._RHS_B is NotImplemented:
-            self._RHS_B = self._get_RHS_B()
-        return self._RHS_B
-
-    @property
     def pdB_W_I(self):
         if self._pdB_W_I is NotImplemented:
             self._pdB_W_I = self._get_pdB_W_I()

@@ -54,59 +54,25 @@ class PolarNCDFT(DerivTwiceNCDFT, PolarSCF):
 
 class Test_PolarSCF:
 
+    @staticmethod
+    def valid_assert(dip_config, resource_path):
+        from pkg_resources import resource_filename
+        from pyxdh.Utilities import FormchkInterface
+        from pyxdh.DerivOnce import DipoleSCF
+        dip_helper = DipoleSCF(dip_config)
+        polar_config = {"deriv_A": dip_helper, "deriv_B": dip_helper}
+        helper = PolarSCF(polar_config)
+        E_2 = helper.E_2
+        formchk = FormchkInterface(resource_filename("pyxdh", resource_path))
+        assert (np.allclose(- E_2, formchk.polarizability(), atol=1e-6, rtol=1e-4))
+
     def test_HF_polar(self):
 
-        from pkg_resources import resource_filename
         from pyxdh.Utilities.test_molecules import Mol_H2O2
-        from pyxdh.Utilities import FormchkInterface
-        from pyxdh.DerivOnce import DipoleSCF
 
         H2O2 = Mol_H2O2()
-        config = {
-            "scf_eng": H2O2.hf_eng
-        }
-        dip_helper = DipoleSCF(config)
-        config = {
-            "deriv_A": dip_helper,
-            "deriv_B": dip_helper,
-        }
-
-        helper = PolarSCF(config)
-        E_2 = helper.E_2
-
-        formchk = FormchkInterface(resource_filename("pyxdh", "Validation/gaussian/H2O2-HF-freq.fchk"))
-
-        assert(np.allclose(
-            - E_2, formchk.polarizability(),
-            atol=1e-6, rtol=1e-4
-        ))
-
-    def test_B3LYP_polar(self):
-
-        from pkg_resources import resource_filename
-        from pyxdh.Utilities.test_molecules import Mol_H2O2
-        from pyxdh.Utilities import FormchkInterface
-        from pyxdh.DerivOnce import DipoleSCF
-
-        H2O2 = Mol_H2O2()
-        config = {
-            "scf_eng": H2O2.gga_eng
-        }
-        dip_helper = DipoleSCF(config)
-        config = {
-            "deriv_A": dip_helper,
-            "deriv_B": dip_helper,
-        }
-
-        helper = PolarSCF(config)
-        E_2 = helper.E_2
-
-        formchk = FormchkInterface(resource_filename("pyxdh", "Validation/gaussian/H2O2-B3LYP-freq.fchk"))
-
-        assert(np.allclose(
-            - E_2, formchk.polarizability(),
-            atol=1e-6, rtol=1e-4
-        ))
+        self.valid_assert({"scf_eng": H2O2.hf_eng}, "Validation/gaussian/H2O2-HF-freq.fchk")
+        self.valid_assert({"scf_eng": H2O2.gga_eng}, "Validation/gaussian/H2O2-B3LYP-freq.fchk")
 
     def test_HF_B3LYP_polar(self):
 
@@ -116,24 +82,14 @@ class Test_PolarSCF:
         import pickle
 
         H2O2 = Mol_H2O2()
-        config = {
-            "scf_eng": H2O2.hf_eng,
-            "nc_eng": H2O2.gga_eng
-        }
+        config = {"scf_eng": H2O2.hf_eng, "nc_eng": H2O2.gga_eng}
         dip_helper = DipoleNCDFT(config)
-        config = {
-            "deriv_A": dip_helper,
-            "deriv_B": dip_helper,
-        }
+        config = {"deriv_A": dip_helper, "deriv_B": dip_helper}
 
         helper = PolarNCDFT(config)
         E_2 = helper.E_2
 
-        with open(resource_filename("pyxdh", "Validation/numerical_deriv/ncdft_polarizability_hf_b3lyp.dat"),
-                  "rb") as f:
+        with open(resource_filename("pyxdh", "Validation/numerical_deriv/ncdft_polarizability_hf_b3lyp.dat"), "rb") as f:
             ref_polar = pickle.load(f)["polarizability"]
 
-        assert(np.allclose(
-            - E_2, ref_polar,
-            atol=1e-6, rtol=1e-4
-        ))
+        assert(np.allclose(- E_2, ref_polar, atol=1e-6, rtol=1e-4))

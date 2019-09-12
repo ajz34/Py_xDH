@@ -41,83 +41,33 @@ class GradXDH(DerivOnceXDH, GradMP2, GradNCDFT):
 
 class Test_GradMP2:
 
-    def test_MP2_grad(self):
-
+    @staticmethod
+    def valid_resource(helper, resource_path):
         from pkg_resources import resource_filename
-        from pyxdh.Utilities.test_molecules import Mol_H2O2
         from pyxdh.Utilities import FormchkInterface
+        formchk = FormchkInterface(resource_filename("pyxdh", resource_path))
+        assert (np.allclose(helper.eng, formchk.total_energy()))
+        assert (np.allclose(helper.E_1, formchk.grad(), atol=1e-5, rtol=1e-4))
 
-        from pyscf import mp, grad
+    def test_5th_functional_grad(self):
 
+        from pyxdh.Utilities.test_molecules import Mol_H2O2
+
+        # MP2
         H2O2 = Mol_H2O2()
-        config = {
-            "scf_eng": H2O2.hf_eng
-        }
-        gmh = GradMP2(config)
+        config = {"scf_eng": H2O2.hf_eng}
+        helper = GradMP2(config)
+        self.valid_resource(helper, "Validation/gaussian/H2O2-MP2-freq.fchk")
 
-        mp2_eng = mp.MP2(gmh.scf_eng)
-        mp2_eng.kernel()
-        mp2_grad = grad.mp2.Gradients(mp2_eng)
-        mp2_grad.kernel()
-
-        assert(np.allclose(
-            gmh.E_1, mp2_grad.de,
-            atol=1e-6, rtol=1e-4
-        ))
-
-        formchk = FormchkInterface(resource_filename("pyxdh", "Validation/gaussian/H2O2-MP2-freq.fchk"))
-
-        assert(np.allclose(
-            gmh.E_1, formchk.grad(),
-            atol=1e-6, rtol=1e-4
-        ))
-
-    def test_B2PLYP_grad(self):
-
-        from pkg_resources import resource_filename
-        from pyxdh.Utilities.test_molecules import Mol_H2O2
-        from pyxdh.Utilities import FormchkInterface
-
+        # B2PLYP
         H2O2 = Mol_H2O2(xc="0.53*HF + 0.47*B88, 0.73*LYP")
-        config = {
-            "scf_eng": H2O2.gga_eng,
-            "cc": 0.27
-        }
-        gmh = GradMP2(config)
+        config = {"scf_eng": H2O2.gga_eng, "cc" : 0.27}
+        helper = GradMP2(config)
+        self.valid_resource(helper, "Validation/gaussian/H2O2-B2PLYP-freq.fchk")
 
-        formchk = FormchkInterface(resource_filename("pyxdh", "Validation/gaussian/H2O2-B2PLYP-freq.fchk"))
-
-        assert(np.allclose(
-            gmh.eng,
-            formchk.total_energy()
-        ))
-        assert(np.allclose(
-            gmh.E_1, formchk.grad(),
-            atol=1e-5, rtol=1e-4
-        ))
-
-    def test_XYG3_grad(self):
-
-        from pkg_resources import resource_filename
-        from pyxdh.Utilities.test_molecules import Mol_H2O2
-        from pyxdh.Utilities import FormchkInterface
-
+        # XYG3
         H2O2_sc = Mol_H2O2(xc="B3LYPg")
         H2O2_nc = Mol_H2O2(xc="0.8033*HF - 0.0140*LDA + 0.2107*B88, 0.6789*LYP")
-        config = {
-            "scf_eng": H2O2_sc.gga_eng,
-            "nc_eng": H2O2_nc.gga_eng,
-            "cc": 0.3211
-        }
-        gmh = GradXDH(config)
-
-        formchk = FormchkInterface(resource_filename("pyxdh", "Validation/gaussian/H2O2-XYG3-force.fchk"))
-
-        assert(np.allclose(
-            gmh.eng,
-            formchk.total_energy()
-        ))
-        assert(np.allclose(
-            gmh.E_1, formchk.grad(),
-            atol=1e-5, rtol=1e-4
-        ))
+        config = {"scf_eng": H2O2_sc.gga_eng, "nc_eng": H2O2_nc.gga_eng, "cc": 0.3211}
+        helper = GradXDH(config)
+        self.valid_resource(helper, "Validation/gaussian/H2O2-XYG3-force.fchk")

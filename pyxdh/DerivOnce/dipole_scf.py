@@ -143,53 +143,22 @@ class DipoleNCDFT(DerivOnceNCDFT, DipoleSCF):
 
 class Test_DipoleSCF:
 
-    def test_HF_dipole(self):
-
+    @staticmethod
+    def valid_assert(config, resource_path):
         from pkg_resources import resource_filename
-        from pyxdh.Utilities.test_molecules import Mol_H2O2
         from pyxdh.Utilities import FormchkInterface
+        helper = DipoleSCF(config)
+        assert (np.allclose(helper.E_1, helper.scf_eng.dip_moment(unit="A.U."), atol=1e-6, rtol=1e-4))
+        formchk = FormchkInterface(resource_filename("pyxdh", resource_path))
+        assert (np.allclose(helper.E_1, formchk.dipole(), atol=1e-6, rtol=1e-4))
+
+    def test_SCF_dipole(self):
+
+        from pyxdh.Utilities.test_molecules import Mol_H2O2
 
         H2O2 = Mol_H2O2()
-        config = {
-            "scf_eng": H2O2.hf_eng
-        }
-        helper = DipoleSCF(config)
-
-        assert(np.allclose(
-            helper.E_1, helper.scf_eng.dip_moment(unit="A.U."),
-            atol=1e-6, rtol=1e-4
-        ))
-
-        formchk = FormchkInterface(resource_filename("pyxdh", "Validation/gaussian/H2O2-HF-freq.fchk"))
-
-        assert(np.allclose(
-            helper.E_1, formchk.dipole(),
-            atol=1e-6, rtol=1e-4
-        ))
-
-    def test_B3LYP_dipole(self):
-
-        from pkg_resources import resource_filename
-        from pyxdh.Utilities.test_molecules import Mol_H2O2
-        from pyxdh.Utilities import FormchkInterface
-
-        H2O2 = Mol_H2O2()
-        config = {
-            "scf_eng": H2O2.gga_eng
-        }
-        helper = DipoleSCF(config)
-
-        assert(np.allclose(
-            helper.E_1, helper.scf_eng.dip_moment(unit="A.U."),
-            atol=1e-6, rtol=1e-4
-        ))
-
-        formchk = FormchkInterface(resource_filename("pyxdh", "Validation/gaussian/H2O2-B3LYP-freq.fchk"))
-
-        assert(np.allclose(
-            helper.E_1, formchk.dipole(),
-            atol=1e-6, rtol=1e-4
-        ))
+        self.valid_assert({"scf_eng": H2O2.hf_eng}, "Validation/gaussian/H2O2-HF-freq.fchk")
+        self.valid_assert({"scf_eng": H2O2.gga_eng}, "Validation/gaussian/H2O2-B3LYP-freq.fchk")
 
     def test_HF_B3LYP_dipole(self):
 
@@ -198,17 +167,9 @@ class Test_DipoleSCF:
         from pyxdh.Utilities.test_molecules import Mol_H2O2
 
         H2O2 = Mol_H2O2()
-        config = {
-            "scf_eng": H2O2.hf_eng,
-            "nc_eng": H2O2.gga_eng
-        }
+        config = {"scf_eng": H2O2.hf_eng, "nc_eng": H2O2.gga_eng}
         helper = DipoleNCDFT(config)
 
-        with open(resource_filename("pyxdh", "Validation/numerical_deriv/ncdft_derivonce_hf_b3lyp.dat"),
-                  "rb") as f:
+        with open(resource_filename("pyxdh", "Validation/numerical_deriv/ncdft_derivonce_hf_b3lyp.dat"), "rb") as f:
             ref_dipole = pickle.load(f)["dipole"]
-
-        assert (np.allclose(
-            helper.E_1, ref_dipole,
-            atol=1e-6, rtol=1e-4
-        ))
+        assert (np.allclose(helper.E_1, ref_dipole, atol=1e-6, rtol=1e-4))

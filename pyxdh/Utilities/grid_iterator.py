@@ -1,5 +1,4 @@
 from pyscf import dft, gto
-import pyscf.dft.numint
 from pyscf.dft import xcfun
 import numpy as np
 from functools import partial

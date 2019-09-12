@@ -66,7 +66,8 @@ Where
 ## Example: Calculate XYG3 Polarizability
 
 Example is explained in [Documentation](https://py-xdh.readthedocs.io/zh_CN/latest/intro/intro_pyxdh.html)
-or in [jupyter page](https://github.com/ajz34/Py_xDH/blob/master/docs/source/intro/intro_pyxdh.ipynb)
+or in [jupyter page](https://github.com/ajz34/Py_xDH/blob/master/docs/source/intro/intro_pyxdh.ipynb).
+
 Following is the almost the same code demo extracted from these documents.
 
 ```python
