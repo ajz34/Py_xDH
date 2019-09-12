@@ -489,7 +489,7 @@ class DerivOnceSCF(ABC):
 
     @timing
     def _get_eri1_mo(self):
-        if not isinstance(self.eri0_ao, np.ndarray):
+        if not isinstance(self.eri1_ao, np.ndarray):
             return 0
         return np.einsum("Auvkl, up, vq, kr, ls -> Apqrs", self.eri1_ao, self.C, self.C, self.C, self.C)
 
