@@ -40,9 +40,7 @@ release = ''
 # ones.
 extensions = [
     'nbsphinx',
-    'sphinx.ext.doctest',
     'sphinx.ext.mathjax',
-    'sphinx.ext.viewcode',
     'sphinxcontrib.bibtex'
 ]
 
@@ -82,7 +80,7 @@ pygments_style = 'sphinx'
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'sphinx_rtd_theme'
+html_theme = 'nature'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -165,9 +163,9 @@ texinfo_documents = [
 
 # -- Extension configuration -------------------------------------------------
 
-def setup(app):
-    # https://github.com/scipy/scipy-sphinx-theme/blob/master/_theme/scipy/static/js/copybutton.js
-    app.add_javascript('copybutton.js')
+# def setup(app):
+#     # https://github.com/scipy/scipy-sphinx-theme/blob/master/_theme/scipy/static/js/copybutton.js
+#     app.add_javascript('copybutton.js')
 
 nbsphinx_allow_errors = True
 nbsphinx_timeout = 720

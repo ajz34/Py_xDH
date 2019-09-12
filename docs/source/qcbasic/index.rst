@@ -12,3 +12,5 @@
    basic_grid
    basic_lda
    basic_gga
+   basic_ncgga
+   basic_b2plyp
