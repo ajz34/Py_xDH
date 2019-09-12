@@ -14,3 +14,5 @@
    basic_gga
    basic_ncgga
    basic_b2plyp
+   basic_xyg3
+   proj_xyg3

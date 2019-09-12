@@ -32,7 +32,7 @@ class DipoleSCF(DerivOnceSCF):
             if self.xc_type == "HF":
                 return 0
 
-            if X_ is 0:
+            if not isinstance(X_, np.ndarray):
                 return 0
             X = X_.copy()  # type: np.ndarray
             shape1 = list(X.shape)

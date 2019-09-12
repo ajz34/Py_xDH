@@ -7,8 +7,7 @@
       <change beforePath="$PROJECT_DIR$/docs/source/qcbasic/basic_rhf.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/qcbasic/basic_rhf.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/source/qcbasic/basic_xyg3.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/qcbasic/basic_xyg3.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/source/qcbasic/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/qcbasic/index.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_scf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/grad_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/grad_scf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/dipole_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/dipole_scf.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -164,12 +163,12 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python tests.pytest for pyxdh" />
-      <item itemvalue="Python tests.pytest for dipole_scf.Test_DipoleSCF.test_SCF_dipole" />
       <item itemvalue="Python tests.pytest for dipole_mp2.Test_DipoleMP2.test_5th_functional_dipole" />
-      <item itemvalue="Python tests.pytest for polar_scf.Test_PolarSCF.test_HF_polar" />
+      <item itemvalue="Python tests.pytest for dipole_scf.Test_DipoleSCF.test_SCF_dipole" />
       <item itemvalue="Python tests.pytest for grad_mp2.Test_GradMP2.test_5th_functional_grad" />
       <item itemvalue="Python tests.pytest for grad_scf.Test_GradSCF.test_HF_grad" />
+      <item itemvalue="Python tests.pytest for polar_scf.Test_PolarSCF.test_HF_polar" />
+      <item itemvalue="Python tests.pytest for pyxdh" />
     </list>
     <recent_temporary>
       <list>
@@ -250,7 +249,7 @@
       <workItem from="1568028794967" duration="1171000" />
       <workItem from="1568165645021" duration="601000" />
       <workItem from="1568255314132" duration="7312000" />
-      <workItem from="1568287887761" duration="4601000" />
+      <workItem from="1568287887761" duration="4890000" />
     </task>
     <task id="LOCAL-00001" summary="BIG CHANGE: pyxdh code from private repo Python-xDH/pyxdhalpha; and change the whole structure of directory">
       <created>1560175360560</created>
@@ -518,7 +517,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568290721045</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="action: remove warning of F632 in flake8 lint">
+      <created>1568292524639</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1568292524639</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -552,7 +558,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="document: removed old documents, added build_environment" />
     <MESSAGE value="document: remove include, that should be replaced by pyxdh.Validation" />
     <MESSAGE value="document: simply add dependencies instruction to readme" />
     <MESSAGE value="document: initialize intro_python" />
@@ -577,7 +582,8 @@
     <MESSAGE value="readme: add minimal working example illustrating functionality of pyxdh" />
     <MESSAGE value="doc: update xyg3" />
     <MESSAGE value="lgtm: try to remove lgtm's warning on RHS_B and pytest replication" />
-    <option name="LAST_COMMIT_MESSAGE" value="lgtm: try to remove lgtm's warning on RHS_B and pytest replication" />
+    <MESSAGE value="action: remove warning of F632 in flake8 lint" />
+    <option name="LAST_COMMIT_MESSAGE" value="action: remove warning of F632 in flake8 lint" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipole_mp2_Test_DipoleMP2.coverage" NAME="pytest for dipole_mp2.Test_DipoleMP2 Coverage Results" MODIFIED="1560172191691" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdhalpha/DerivOnce" />
