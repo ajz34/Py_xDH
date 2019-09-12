@@ -7,9 +7,9 @@ jobs:
 
     runs-on: ubuntu-latest
     strategy:
-      max-parallel: 3
+      max-parallel: 2
       matrix:
-        python-version: [3.5, 3.6, 3.7]
+        python-version: [3.6, 3.7]
 
     steps:
     - uses: actions/checkout@v1
@@ -31,4 +31,9 @@ jobs:
     - name: Test with pytest
       run: |
         pip install pytest
-        pytest pyxdh --disable-warnings
+        pytest pyxdh --disable-warnings --cov=./ --cov-config=./coveragerc --cov-report=xml
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1.0.2
+      with:
+        token: ${{secrets.CODECOV_TOKEN}}
+        file: ./coverage.xml

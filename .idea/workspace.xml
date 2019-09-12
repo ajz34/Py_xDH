@@ -4,6 +4,7 @@
     <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.github/workflows/pythonpackage.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/pythonpackage.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -245,7 +246,7 @@
       <workItem from="1568028794967" duration="1171000" />
       <workItem from="1568165645021" duration="601000" />
       <workItem from="1568255314132" duration="7312000" />
-      <workItem from="1568287887761" duration="8223000" />
+      <workItem from="1568287887761" duration="9695000" />
     </task>
     <task id="LOCAL-00001" summary="BIG CHANGE: pyxdh code from private repo Python-xDH/pyxdhalpha; and change the whole structure of directory">
       <created>1560175360560</created>
@@ -541,7 +542,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568295709739</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="action: remove python 2.7 support">
+      <created>1568296209978</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1568296209978</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -575,7 +583,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="document: initialize intro_python" />
     <MESSAGE value="readme: emphasis pyscf should be installed by pip" />
     <MESSAGE value="intro: I think I should stop talking about python itself; there's too much to talk..." />
     <MESSAGE value="intro: intro_python revoked, removed easy contents" />
@@ -600,7 +607,8 @@
     <MESSAGE value="action: remove warning of F632 in flake8 lint" />
     <MESSAGE value="action: remove warning in flake8 lint (except complex functions)" />
     <MESSAGE value="action: change pytest command, change wrong code in deriv_once_scf" />
-    <option name="LAST_COMMIT_MESSAGE" value="action: change pytest command, change wrong code in deriv_once_scf" />
+    <MESSAGE value="action: remove python 2.7 support" />
+    <option name="LAST_COMMIT_MESSAGE" value="action: remove python 2.7 support" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipole_mp2_Test_DipoleMP2.coverage" NAME="pytest for dipole_mp2.Test_DipoleMP2 Coverage Results" MODIFIED="1560172191691" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdhalpha/DerivOnce" />

@@ -20,6 +20,7 @@ matrix:
         - export LOGLEVEL=2
         - pytest pyxdh --disable-warnings --cov=pyxdh --cov-config=.coveragerc
 
-after_success:
-    - coverage combine
-    - codecov
+# Try to move code-cov to github action
+# after_success:
+#     - coverage combine
+#     - codecov
