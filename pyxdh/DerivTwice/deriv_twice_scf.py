@@ -251,6 +251,12 @@ class DerivTwiceSCF(ABC):
             self._pdB_B_A = self._get_pdB_B_A()
         return self._pdB_B_A
 
+    @property
+    def RHS_B(self):
+        if self._RHS_B is NotImplemented:
+            self._RHS_B = self._get_RHS_B()
+        return self._RHS_B
+
     # endregion
 
     # region Getters
@@ -380,6 +386,9 @@ class DerivTwiceSCF(ABC):
             - 0.5 * np.einsum("Bmq, Amp -> ABpq", B.U_1, Ax0_Core(sa, sa, so, so)(A.S_1_mo[:, so, so]))
         )
         return pdB_B_A
+
+    def _get_RHS_B(self):
+        return "In SCF there should be no need to use RHS_B!"
 
     @abstractmethod
     def _get_E_2_Skeleton(self):
