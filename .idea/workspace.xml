@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="readme: update warning info">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/_static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/_static/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/conf.py" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/conf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/qcbasic/basic_ncgga.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/qcbasic/basic_ncgga.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/qcbasic/basic_rhf.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/qcbasic/basic_rhf.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/qcbasic/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/qcbasic/index.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/qcbasic/basic_b2plyp.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/qcbasic/basic_b2plyp.ipynb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -222,7 +217,7 @@
       <workItem from="1567232585308" duration="2031000" />
       <workItem from="1568028794967" duration="1171000" />
       <workItem from="1568165645021" duration="601000" />
-      <workItem from="1568255314132" duration="2001000" />
+      <workItem from="1568255314132" duration="5217000" />
     </task>
     <task id="LOCAL-00001" summary="BIG CHANGE: pyxdh code from private repo Python-xDH/pyxdhalpha; and change the whole structure of directory">
       <created>1560175360560</created>
@@ -462,7 +457,21 @@
       <option name="project" value="LOCAL" />
       <updated>1568256326395</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="doc: change to nature theme, typos">
+      <created>1568257354378</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1568257354378</updated>
+    </task>
+    <task id="LOCAL-00036" summary="readme: add minimal working example illustrating functionality of pyxdh">
+      <created>1568265503449</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1568265503449</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -496,8 +505,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="configure: Changed readme" />
-    <MESSAGE value="readme: added chinese translation and added acknowledge" />
     <MESSAGE value="travis: change pythonpath, I don't know how pythonpath work in jupyter" />
     <MESSAGE value="pyxdh: change grad_scf: O(N^4) eri1_ao to O(N^2) on-the-fly integral storage powered by pyscf" />
     <MESSAGE value="document: removed old documents, added build_environment" />
@@ -521,7 +528,9 @@
     <MESSAGE value="readme: update warning info" />
     <MESSAGE value="document: minor edit" />
     <MESSAGE value="pyxdh: remove lgtm warning on RHS_B" />
-    <option name="LAST_COMMIT_MESSAGE" value="pyxdh: remove lgtm warning on RHS_B" />
+    <MESSAGE value="doc: change to nature theme, typos" />
+    <MESSAGE value="readme: add minimal working example illustrating functionality of pyxdh" />
+    <option name="LAST_COMMIT_MESSAGE" value="readme: add minimal working example illustrating functionality of pyxdh" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipole_mp2_Test_DipoleMP2.coverage" NAME="pytest for dipole_mp2.Test_DipoleMP2 Coverage Results" MODIFIED="1560172191691" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdhalpha/DerivOnce" />
