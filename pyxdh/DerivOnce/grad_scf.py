@@ -33,7 +33,7 @@ class GradSCF(DerivOnceSCF):
 
         @timing
         def fx(X_):
-            if X_ is 0:
+            if not isinstance(X_, np.ndarray):
                 return 0
             X = X_.copy()  # type: np.ndarray
             shape1 = list(X.shape)

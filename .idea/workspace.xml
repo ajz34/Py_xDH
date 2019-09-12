@@ -4,24 +4,24 @@
     <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/docs/source/qcbasic/proj_xyg3.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/source/qcbasic/basic_rhf.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/qcbasic/basic_rhf.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/source/qcbasic/basic_xyg3.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/qcbasic/basic_xyg3.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/source/qcbasic/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/qcbasic/index.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/dipole_mp2.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/dipole_mp2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/dipole_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/dipole_scf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/grad_mp2.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/grad_mp2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_scf.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/grad_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/grad_scf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_mp2.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_mp2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_scf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/polar_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/polar_scf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/Utilities/grid_iterator.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Utilities/grid_iterator.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -250,7 +250,7 @@
       <workItem from="1568028794967" duration="1171000" />
       <workItem from="1568165645021" duration="601000" />
       <workItem from="1568255314132" duration="7312000" />
-      <workItem from="1568287887761" duration="2539000" />
+      <workItem from="1568287887761" duration="4601000" />
     </task>
     <task id="LOCAL-00001" summary="BIG CHANGE: pyxdh code from private repo Python-xDH/pyxdhalpha; and change the whole structure of directory">
       <created>1560175360560</created>
@@ -511,7 +511,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568265784020</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="lgtm: try to remove lgtm's warning on RHS_B and pytest replication">
+      <created>1568290721045</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1568290721045</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -545,7 +552,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pyxdh: change grad_scf: O(N^4) eri1_ao to O(N^2) on-the-fly integral storage powered by pyscf" />
     <MESSAGE value="document: removed old documents, added build_environment" />
     <MESSAGE value="document: remove include, that should be replaced by pyxdh.Validation" />
     <MESSAGE value="document: simply add dependencies instruction to readme" />
@@ -570,7 +576,8 @@
     <MESSAGE value="doc: change to nature theme, typos" />
     <MESSAGE value="readme: add minimal working example illustrating functionality of pyxdh" />
     <MESSAGE value="doc: update xyg3" />
-    <option name="LAST_COMMIT_MESSAGE" value="doc: update xyg3" />
+    <MESSAGE value="lgtm: try to remove lgtm's warning on RHS_B and pytest replication" />
+    <option name="LAST_COMMIT_MESSAGE" value="lgtm: try to remove lgtm's warning on RHS_B and pytest replication" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipole_mp2_Test_DipoleMP2.coverage" NAME="pytest for dipole_mp2.Test_DipoleMP2 Coverage Results" MODIFIED="1560172191691" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdhalpha/DerivOnce" />

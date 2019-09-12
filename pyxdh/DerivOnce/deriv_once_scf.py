@@ -371,7 +371,7 @@ class DerivOnceSCF(ABC):
 
         @timing
         def fx(X_):
-            if X_ is 0:
+            if not isinstance(X_, np.ndarray):
                 return 0
             X = X_.copy()  # type: np.ndarray
             shape1 = list(X.shape)
@@ -461,7 +461,7 @@ class DerivOnceSCF(ABC):
         pass
 
     def _get_H_1_mo(self):
-        if self.H_1_ao is 0:
+        if not isinstance(self.H_1_ao, np.ndarray):
             return 0
         return np.einsum("Auv, up, vq -> Apq", self.H_1_ao, self.C, self.C)
 
@@ -470,7 +470,7 @@ class DerivOnceSCF(ABC):
         pass
 
     def _get_F_1_mo(self):
-        if self.F_1_ao is 0:
+        if not isinstance(self.F_1_ao, np.ndarray):
             return 0
         return np.einsum("Auv, up, vq -> Apq", self.F_1_ao, self.C, self.C)
 
@@ -479,7 +479,7 @@ class DerivOnceSCF(ABC):
         pass
 
     def _get_S_1_mo(self):
-        if self.S_1_ao is 0:
+        if not isinstance(self.S_1_ao, np.ndarray):
             return 0
         return np.einsum("Auv, up, vq -> Apq", self.S_1_ao, self.C, self.C)
 
@@ -489,7 +489,7 @@ class DerivOnceSCF(ABC):
 
     @timing
     def _get_eri1_mo(self):
-        if self.eri1_ao is 0:
+        if not isinstance(self.eri0_ao, np.ndarray):
             return 0
         return np.einsum("Auvkl, up, vq, kr, ls -> Apqrs", self.eri1_ao, self.C, self.C, self.C, self.C)
 
@@ -508,7 +508,7 @@ class DerivOnceSCF(ABC):
     def _get_U_1(self):
         B_1 = self.B_1
         S_1_mo = self.S_1_mo
-        if S_1_mo is 0:
+        if not isinstance(S_1_mo, np.ndarray):
             S_1_mo = np.zeros_like(B_1)
         Ax0_Core = self.Ax0_Core
         sv = self.sv
