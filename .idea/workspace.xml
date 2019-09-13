@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/qcbasic/basic_xyg3.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/qcbasic/basic_xyg3.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/qcbasic/proj_xyg3.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/qcbasic/proj_xyg3.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/_static/style.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -247,7 +246,7 @@
       <workItem from="1568165645021" duration="601000" />
       <workItem from="1568255314132" duration="7312000" />
       <workItem from="1568287887761" duration="11065000" />
-      <workItem from="1568338202668" duration="6196000" />
+      <workItem from="1568338202668" duration="6930000" />
     </task>
     <task id="LOCAL-00001" summary="BIG CHANGE: pyxdh code from private repo Python-xDH/pyxdhalpha; and change the whole structure of directory">
       <created>1560175360560</created>
@@ -564,7 +563,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568298836544</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="doc: XYG3 proj completed, qc basic part finished">
+      <created>1568361947532</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1568361947532</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -598,7 +604,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="intro: intro_python revoked, removed easy contents" />
     <MESSAGE value="lgtm: try code quality scoring" />
     <MESSAGE value="pyscf: added basis_integral" />
     <MESSAGE value="document: update basic_mp2" />
@@ -623,7 +628,8 @@
     <MESSAGE value="action: remove python 2.7 support" />
     <MESSAGE value="action: try move codecov to github action based instead of travis-ci based" />
     <MESSAGE value="action: just change coveragerc to .coveragerc ... my fault ..." />
-    <option name="LAST_COMMIT_MESSAGE" value="action: just change coveragerc to .coveragerc ... my fault ..." />
+    <MESSAGE value="doc: XYG3 proj completed, qc basic part finished" />
+    <option name="LAST_COMMIT_MESSAGE" value="doc: XYG3 proj completed, qc basic part finished" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipole_mp2_Test_DipoleMP2.coverage" NAME="pytest for dipole_mp2.Test_DipoleMP2 Coverage Results" MODIFIED="1560172191691" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdhalpha/DerivOnce" />
