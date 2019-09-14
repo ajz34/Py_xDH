@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv/ncdft_dipderiv_hf_b3lyp.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv/xdh_dipderiv_xyg3.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/dipderiv_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/dipderiv_scf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/polar_mp2.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/polar_mp2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/dipderiv_mp2.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/dipderiv_mp2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv/ncdft_dipderiv_hf_b3lyp.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv/ncdft_dipderiv_hf_b3lyp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv/xdh_hessian_xyg3.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv/xdh_hessian_xyg3.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -63,7 +65,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.pytest for dipderiv_scf.Test_DipDerivSCF.test_HF_B3LYP_dipderiv">
+  <component name="RunManager" selected="Python tests.pytest for dipderiv_mp2.Test_DipDerivMP2.test_XYG3_polar">
     <configuration name="ncdft_dipderiv_hf_b3lyp" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Py_xDH" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -78,6 +80,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv/ncdft_dipderiv_hf_b3lyp.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="xdh_dipderiv_xyg3" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Py_xDH" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv/xdh_dipderiv_xyg3.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -102,7 +126,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for dipderiv_mp2.Test_DipDerivMP2.test_MP2_dipderiv" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for dipderiv_mp2.Test_DipDerivMP2.test_XYG3_polar" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="Py_xDH" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -114,7 +138,7 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;dipderiv_mp2.Test_DipDerivMP2.test_MP2_dipderiv&quot;" />
+      <option name="_new_target" value="&quot;dipderiv_mp2.Test_DipDerivMP2.test_XYG3_polar&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -131,22 +155,6 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;dipderiv_scf.Test_DipDerivSCF.test_HF_B3LYP_dipderiv&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pytest for dipderiv_scf.Test_DipDerivSCF.test_HF_polar" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="Py_xDH" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pyxdh/DerivTwice" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;dipderiv_scf.Test_DipDerivSCF.test_HF_polar&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -168,19 +176,19 @@
     </configuration>
     <list>
       <item itemvalue="Python tests.pytest for pyxdh" />
-      <item itemvalue="Python tests.pytest for dipderiv_scf.Test_DipDerivSCF.test_HF_polar" />
-      <item itemvalue="Python tests.pytest for dipderiv_mp2.Test_DipDerivMP2.test_MP2_dipderiv" />
       <item itemvalue="Python tests.pytest for dipderiv_mp2.Test_DipDerivMP2.test_B2PLYP_polar" />
       <item itemvalue="Python.ncdft_dipderiv_hf_b3lyp" />
       <item itemvalue="Python tests.pytest for dipderiv_scf.Test_DipDerivSCF.test_HF_B3LYP_dipderiv" />
+      <item itemvalue="Python.xdh_dipderiv_xyg3" />
+      <item itemvalue="Python tests.pytest for dipderiv_mp2.Test_DipDerivMP2.test_XYG3_polar" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.pytest for dipderiv_mp2.Test_DipDerivMP2.test_XYG3_polar" />
+        <item itemvalue="Python.xdh_dipderiv_xyg3" />
         <item itemvalue="Python tests.pytest for dipderiv_scf.Test_DipDerivSCF.test_HF_B3LYP_dipderiv" />
         <item itemvalue="Python.ncdft_dipderiv_hf_b3lyp" />
         <item itemvalue="Python tests.pytest for dipderiv_mp2.Test_DipDerivMP2.test_B2PLYP_polar" />
-        <item itemvalue="Python tests.pytest for dipderiv_mp2.Test_DipDerivMP2.test_MP2_dipderiv" />
-        <item itemvalue="Python tests.pytest for dipderiv_scf.Test_DipDerivSCF.test_HF_polar" />
       </list>
     </recent_temporary>
   </component>
@@ -256,14 +264,7 @@
       <workItem from="1568287887761" duration="11065000" />
       <workItem from="1568338202668" duration="7622000" />
       <workItem from="1568368832251" duration="1884000" />
-      <workItem from="1568421520374" duration="13320000" />
-    </task>
-    <task id="LOCAL-00001" summary="BIG CHANGE: pyxdh code from private repo Python-xDH/pyxdhalpha; and change the whole structure of directory">
-      <created>1560175360560</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1560175360560</updated>
+      <workItem from="1568421520374" duration="14866000" />
     </task>
     <task id="LOCAL-00002" summary="configure: add pyscf_conf; change readthedocs setting of requirements">
       <created>1560175810800</created>
@@ -601,7 +602,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568439282821</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="pyxdh: add NCDFT(HF-B3LYP) dipole derivative">
+      <created>1568440162701</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1568440162702</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -635,7 +643,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="document: update basic_grid" />
     <MESSAGE value="document: update basic_lda, modified basic_grid" />
     <MESSAGE value="document: update basic_gga" />
     <MESSAGE value="document: update basic_b2plyp and basic_ncgga" />
@@ -660,7 +667,8 @@
     <MESSAGE value="doc: change slidebar width from 230 pt to 300 pt" />
     <MESSAGE value="pyxdh: add SCF dipole derivative" />
     <MESSAGE value="pyxdh: add MP2/B2PLYP dipole derivative" />
-    <option name="LAST_COMMIT_MESSAGE" value="pyxdh: add MP2/B2PLYP dipole derivative" />
+    <MESSAGE value="pyxdh: add NCDFT(HF-B3LYP) dipole derivative" />
+    <option name="LAST_COMMIT_MESSAGE" value="pyxdh: add NCDFT(HF-B3LYP) dipole derivative" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Py_xDH$ncdft_dipderiv_hf_b3lyp.coverage" NAME="ncdft_dipderiv_hf_b3lyp Coverage Results" MODIFIED="1568439622154" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv" />
@@ -672,7 +680,9 @@
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipderiv_mp2_Test_DipDerivMP2_test_B2PLYP_polar.coverage" NAME="pytest for dipderiv_mp2.Test_DipDerivMP2.test_B2PLYP_polar Coverage Results" MODIFIED="1568439067444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_pyxdh_DerivOnce_dipole_mp2_Test_DipoleMP2.coverage" NAME="pytest for pyxdh.DerivOnce.dipole_mp2.Test_DipoleMP2 Coverage Results" MODIFIED="1566028289586" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_grad_scf_Test_GradSCF.coverage" NAME="pytest for grad_scf.Test_GradSCF Coverage Results" MODIFIED="1568294038419" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
+    <SUITE FILE_PATH="coverage/Py_xDH$xdh_dipderiv_xyg3.coverage" NAME="xdh_dipderiv_xyg3 Coverage Results" MODIFIED="1568440638895" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_polar_mp2_Test_PolarMP2_test_MP2_polar.coverage" NAME="pytest for polar_mp2.Test_PolarMP2.test_MP2_polar Coverage Results" MODIFIED="1568295595324" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
+    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipderiv_mp2_Test_DipDerivMP2_test_XYG3_polar.coverage" NAME="pytest for dipderiv_mp2.Test_DipDerivMP2.test_XYG3_polar Coverage Results" MODIFIED="1568441636327" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_grad_scf_Test_GradSCF_test_HF_grad.coverage" NAME="pytest for grad_scf.Test_GradSCF.test_HF_grad Coverage Results" MODIFIED="1568290482556" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipderiv_mp2_Test_DipDerivMP2_test_MP2_dipderiv.coverage" NAME="pytest for dipderiv_mp2.Test_DipDerivMP2.test_MP2_dipderiv Coverage Results" MODIFIED="1568438915170" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_DerivTwice_hess_scf_Test_HessSCF_test_HF_B3LYP_hess.coverage" NAME="pytest for DerivTwice.hess_scf.Test_HessSCF.test_HF_B3LYP_hess Coverage Results" MODIFIED="1566647091781" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />

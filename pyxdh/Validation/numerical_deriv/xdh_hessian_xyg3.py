@@ -1,5 +1,4 @@
 import pickle
-
 from pyxdh.Utilities.test_molecules import Mol_H2O2
 from pyxdh.Utilities import NumericDiff, NucCoordDerivGenerator
 from pyxdh.DerivOnce import GradXDH

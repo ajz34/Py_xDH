@@ -1,18 +1,19 @@
 import pickle
-
 from pyxdh.Utilities.test_molecules import Mol_H2O2
 from pyxdh.Utilities import NumericDiff, NucCoordDerivGenerator
-from pyxdh.DerivOnce import DipoleNCDFT
+from pyxdh.DerivOnce import DipoleXDH
 
 
 def mol_to_dip_helper(mol):
-    H2O2 = Mol_H2O2(mol=mol)
-    H2O2.hf_eng.kernel()
+    print("Processing...")
+    H2O2_sc = Mol_H2O2(mol=mol, xc="B3LYPg")
+    H2O2_nc = Mol_H2O2(mol=mol, xc="0.8033*HF - 0.0140*LDA + 0.2107*B88, 0.6789*LYP")
     config = {
-        "scf_eng": H2O2.hf_eng,
-        "nc_eng": H2O2.gga_eng
+        "scf_eng": H2O2_sc.gga_eng,
+        "nc_eng": H2O2_nc.gga_eng,
+        "cc": 0.3211
     }
-    helper = DipoleNCDFT(config)
+    helper = DipoleXDH(config)
     return helper
 
 
@@ -25,5 +26,5 @@ if __name__ == '__main__':
     num_dif = NumericDiff(num_obj, lambda helper: helper.E_1)
     result_dict["dipderiv"] = num_dif.derivative
 
-    with open("ncdft_dipderiv_hf_b3lyp.dat", "wb") as f:
+    with open("xdh_dipderiv_xyg3.dat", "wb") as f:
         pickle.dump(result_dict, f, pickle.HIGHEST_PROTOCOL)
