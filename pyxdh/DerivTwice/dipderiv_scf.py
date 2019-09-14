@@ -65,7 +65,7 @@ class Test_DipDerivSCF:
         formchk = FormchkInterface(resource_filename("pyxdh", resource_path))
         assert (np.allclose(E_2.T, formchk.dipolederiv(), atol=1e-6, rtol=1e-4))
 
-    def test_HF_polar(self):
+    def test_SCF_dipderiv(self):
         from pyxdh.Utilities.test_molecules import Mol_H2O2
         from pyxdh.DerivOnce import DipoleSCF, GradSCF
 
