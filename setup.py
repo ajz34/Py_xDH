@@ -18,4 +18,7 @@ setuptools.setup(
         "License :: GPL v3",
         "Operating System :: Linux",
     ],
+    # https://stackoverflow.com/questions/1612733/including-non-python-files-with-setup-py
+    package_data={'': ['Validation/*']},
+    include_package_data=True,
 )

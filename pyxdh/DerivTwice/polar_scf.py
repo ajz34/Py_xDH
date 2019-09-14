@@ -66,7 +66,7 @@ class Test_PolarSCF:
         formchk = FormchkInterface(resource_filename("pyxdh", resource_path))
         assert (np.allclose(- E_2, formchk.polarizability(), atol=1e-6, rtol=1e-4))
 
-    def test_HF_polar(self):
+    def test_SCF_polar(self):
 
         from pyxdh.Utilities.test_molecules import Mol_H2O2
 
