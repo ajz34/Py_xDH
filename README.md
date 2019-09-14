@@ -46,7 +46,7 @@ basis processing, DFT grid engine and CP-HF algorithm is based on python quantum
 | Gradient        | +   | +   | +       | +       |
 | Dipole          | +   | +   | +       | +       |
 | Hessian         | +   | +   | +       | +       |
-| Dipole Gradient |     |     |         |         |
+| Dipole Gradient | +   | +   | +       | +       |
 | Polarizability  | +   | +   | +       | +       |
 
 Where
