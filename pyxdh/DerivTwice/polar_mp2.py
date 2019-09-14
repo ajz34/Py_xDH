@@ -88,8 +88,7 @@ class Test_PolarMP2:
         helper = PolarXDH(config)
         E_2 = helper.E_2
 
-        with open(resource_filename("pyxdh", "Validation/numerical_deriv/xdh_polarizability_xyg3.dat"),
-                  "rb") as f:
+        with open(resource_filename("pyxdh", "Validation/numerical_deriv/xdh_polarizability_xyg3.dat"), "rb") as f:
             ref_polar = pickle.load(f)["polarizability"]
 
         assert(np.allclose(
