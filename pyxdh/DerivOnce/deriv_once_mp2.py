@@ -18,9 +18,9 @@ class DerivOnceMP2(DerivOnceSCF, ABC):
 
     def __init__(self, config):
         super(DerivOnceMP2, self).__init__(config)
-        self.cc = 1.0
-        if "cc" in config:
-            self.cc = config["cc"]
+        self.cc = config.get("cc", 1.)
+        self.os = config.get("os", 1.)
+        self.ss = config.get("ss", 1.)
 
         self._t_iajb = NotImplemented
         self._T_iajb = NotImplemented
@@ -104,7 +104,7 @@ class DerivOnceMP2(DerivOnceSCF, ABC):
         return self.eri0_mo[so, sv, so, sv] / self.D_iajb
 
     def _get_T_iajb(self):
-        return self.cc * (2 * self.t_iajb - self.t_iajb.swapaxes(-1, -3))
+        return self.cc * ((self.os + self.ss) * self.t_iajb - self.ss * self.t_iajb.swapaxes(-1, -3))
 
     def _get_L(self):
         nvir, nocc, nmo = self.nvir, self.nocc, self.nmo
@@ -194,7 +194,7 @@ class DerivOnceMP2(DerivOnceSCF, ABC):
         return pdA_t_iajb
 
     def _get_pdA_T_iajb(self):
-        return self.cc * (2 * self.pdA_t_iajb - self.pdA_t_iajb.swapaxes(-1, -3))
+        return self.cc * ((self.os + self.ss) * self.pdA_t_iajb - self.ss * self.pdA_t_iajb.swapaxes(-1, -3))
 
     # endregion
 
