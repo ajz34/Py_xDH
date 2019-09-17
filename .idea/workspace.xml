@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,9 +18,15 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="0.0.0" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -262,13 +267,7 @@
       <workItem from="1568368832251" duration="1884000" />
       <workItem from="1568421520374" duration="17620000" />
       <workItem from="1568597406319" duration="627000" />
-    </task>
-    <task id="LOCAL-00004" summary="configure: some problems on path when building in readthedocs and travis-ci">
-      <created>1560176270813</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1560176270813</updated>
+      <workItem from="1568687150189" duration="1121000" />
     </task>
     <task id="LOCAL-00005" summary="configure: some problems on path when building in readthedocs and travis-ci">
       <created>1560176397758</created>
@@ -606,11 +605,28 @@
       <option name="project" value="LOCAL" />
       <updated>1568441941086</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="deployment: try to publish to pypi">
+      <created>1568687433899</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1568687433899</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -640,7 +656,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="document: update basic_b2plyp and basic_ncgga" />
     <MESSAGE value="docker: first try" />
     <MESSAGE value="docker: Add docker subsection to readme.md; docker size should be smaller than the previous one" />
     <MESSAGE value="readme: update badges" />
@@ -665,7 +680,8 @@
     <MESSAGE value="pyxdh: add NCDFT(HF-B3LYP) dipole derivative" />
     <MESSAGE value="pyxdh: add XDH (XYG3) dipole derivative" />
     <MESSAGE value="pyxdh: so I believe dipole derivative is finally finished" />
-    <option name="LAST_COMMIT_MESSAGE" value="pyxdh: so I believe dipole derivative is finally finished" />
+    <MESSAGE value="deployment: try to publish to pypi" />
+    <option name="LAST_COMMIT_MESSAGE" value="deployment: try to publish to pypi" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Py_xDH$ncdft_dipderiv_hf_b3lyp.coverage" NAME="ncdft_dipderiv_hf_b3lyp Coverage Results" MODIFIED="1568439622154" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv" />
