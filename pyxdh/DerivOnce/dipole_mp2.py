@@ -34,25 +34,32 @@ class Test_DipoleMP2:
         formchk = FormchkInterface(resource_filename("pyxdh", resource_path))
         assert(np.allclose(helper.E_1, formchk.dipole(), atol=1e-6, rtol=1e-4))
 
-    def test_5th_functional_dipole(self):
-
+    def test_dipole_mp2(self):
         from pyxdh.Utilities.test_molecules import Mol_H2O2
-
-        # MP2
         H2O2 = Mol_H2O2()
         config = {"scf_eng": H2O2.hf_eng}
         helper = DipoleMP2(config)
         self.valid_assert(helper, "Validation/gaussian/H2O2-MP2-freq.fchk")
 
-        # B2PLYP
+    def test_dipole_b2plyp(self):
+        from pyxdh.Utilities.test_molecules import Mol_H2O2
         H2O2 = Mol_H2O2(xc="0.53*HF + 0.47*B88, 0.73*LYP")
         config = {"scf_eng": H2O2.gga_eng, "cc": 0.27}
         helper = DipoleMP2(config)
         self.valid_assert(helper, "Validation/gaussian/H2O2-B2PLYP-freq.fchk")
 
-        # XYG3
+    def test_dipole_xyg3(self):
+        from pyxdh.Utilities.test_molecules import Mol_H2O2
         H2O2_sc = Mol_H2O2(xc="B3LYPg")
         H2O2_nc = Mol_H2O2(xc="0.8033*HF - 0.0140*LDA + 0.2107*B88, 0.6789*LYP")
         config = {"scf_eng": H2O2_sc.gga_eng, "nc_eng": H2O2_nc.gga_eng, "cc": 0.3211}
         helper = DipoleXDH(config)
         self.valid_assert(helper, "Validation/gaussian/H2O2-XYG3-force.fchk")
+
+    def test_dipole_xygjos(self):
+        from pyxdh.Utilities.test_molecules import Mol_H2O2
+        H2O2_sc = Mol_H2O2(xc="B3LYPg")
+        H2O2_nc = Mol_H2O2(xc="0.7731*HF + 0.2269*LDA, 0.2309*VWN3 + 0.2754*LYP")
+        config = {"scf_eng": H2O2_sc.gga_eng, "nc_eng": H2O2_nc.gga_eng, "cc": 0.4364, "ss": 0.}
+        helper = DipoleXDH(config)
+        self.valid_assert(helper, "Validation/gaussian/H2O2-XYGJOS-force.fchk")
