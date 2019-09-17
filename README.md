@@ -1,15 +1,10 @@
 # Python xDH Project
 
-[![Build Status](https://travis-ci.com/ajz34/Py_xDH.svg?branch=master)](https://travis-ci.com/ajz34/Py_xDH)
-[![Documentation Status](https://readthedocs.org/projects/py-xdh/badge/?version=latest)](https://py-xdh.readthedocs.io/zh_CN/latest/?badge=latest)
-![GitHub](https://img.shields.io/github/license/ajz34/py_xdh)
-
-[![codecov](https://codecov.io/gh/ajz34/Py_xDH/branch/master/graph/badge.svg)](https://codecov.io/gh/ajz34/Py_xDH)
-[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/ajz34/Py_xDH.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/ajz34/Py_xDH/context:python)
-
-![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/ajz34/pyxdh)
-![Docker Pulls](https://img.shields.io/docker/pulls/ajz34/pyxdh)
-[![](https://images.microbadger.com/badges/image/ajz34/pyxdh.svg)](https://microbadger.com/images/ajz34/pyxdh "Get your own image badge on microbadger.com")
+|         | Badges   |
+| :------ | :------- |
+| **Builds** | [![Build Status](https://travis-ci.com/ajz34/Py_xDH.svg?branch=master)](https://travis-ci.com/ajz34/Py_xDH) [![Documentation Status](https://readthedocs.org/projects/py-xdh/badge/?version=latest)](https://py-xdh.readthedocs.io/zh_CN/latest/?badge=latest) ![GitHub](https://img.shields.io/github/license/ajz34/py_xdh) |
+| **Code Quality** | [![codecov](https://codecov.io/gh/ajz34/Py_xDH/branch/master/graph/badge.svg)](https://codecov.io/gh/ajz34/Py_xDH) [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/ajz34/Py_xDH.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/ajz34/Py_xDH/context:python) |
+| **Docker** | ![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/ajz34/pyxdh) [![](https://images.microbadger.com/badges/image/ajz34/pyxdh.svg)](https://microbadger.com/images/ajz34/pyxdh "Get your own image badge on microbadger.com") |
 
 This project is mainly documentation or notes of some basic quantum chemistry derivative implementations
 (including GGA, MP2, non-consistent GGA, xDH).

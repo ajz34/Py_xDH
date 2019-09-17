@@ -14,13 +14,16 @@ before_install:
 
 matrix:
   include:
-    - name: "pyxdh"
+    - name: pyxdh
       script:
         - cd $TRAVIS_BUILD_DIR
         - export LOGLEVEL=2
         - pytest pyxdh --disable-warnings --cov=pyxdh --cov-config=.coveragerc
 
-# Try to move code-cov to github action
-# after_success:
-#     - coverage combine
-#     - codecov
+deploy:
+  provider: pypi
+  user: ajz34
+  password:
+    secure: 030DX4G1j5wBa+k9OsWlEOmXicOVt7DkUbZc7huHSRBk3RxcVL2GH2OqKL+01MGISOeuU6GlgH3PhssBQAowtnRko7UydFz6ipY7h8zG2VnGPpKpywEun6o74q+2L9zSp+DZl2LyB9QXh+w2DaK5gMYUsTlkIAoRfYyWUsVKxXIWUT3zgRVj7+ltLmLK4NIPtK9ofbvZJWt3h3vJouMiErIDiH8tusU9n+ZeSZ5AslC+FZg0mzjoeWRi23dTeZioGUyTxid/7LAhtVyK6whpNCDrr/i/SdUmnOunwovO1nGOVpRbLXyXDcIl/DiFEYfUyrlIu/394zI0df4Ivy12NGN0X5PPz6s3EGdtOYj5XfBcblFr4Z+n5dtF+9TX1j+NWyFzk7O7/tQBIs0VEopyvWE3FRglhPP/5UU0L7jr3BKe4rjiQhin9r1AFLnkrMLp3uzI9BqxOvxwaWCISsExyVYfHWJEdeqADvyUbDkelK5rTPkfpVCBiSZHEeMZqL54bm09SbnRJafvJ0er1f8Q1dQWjpKaZYgIO1O0GOKII9s2zzgLpNj2ZsSgdlyFiLpTUcZRjzIwpF+QXUwr3KG5YszClba/UUnD7OSR1ZLMwMqLjkhD2lSWcfbSMeGtXNxG7lUkV1QOG2h/xPiKiTTZs5XbspkErcjk7SHIgeouEy8=
+  on:
+    tags: true

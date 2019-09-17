@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -41,10 +42,10 @@
     <property name="settings.editor.selected.configurable" value="preferences.externalTools" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Git-Repo\Py_xDH" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Git-Repo\Py_xDH" />
     </key>
   </component>
@@ -170,11 +171,11 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.ncdft_dipderiv_hf_b3lyp" />
+      <item itemvalue="Python.xdh_dipderiv_xyg3" />
       <item itemvalue="Python tests.pytest for pyxdh" />
       <item itemvalue="Python tests.pytest for dipderiv_mp2.Test_DipDerivMP2.test_B2PLYP_polar" />
-      <item itemvalue="Python.ncdft_dipderiv_hf_b3lyp" />
       <item itemvalue="Python tests.pytest for dipderiv_scf.Test_DipDerivSCF.test_HF_B3LYP_dipderiv" />
-      <item itemvalue="Python.xdh_dipderiv_xyg3" />
       <item itemvalue="Python tests.pytest for dipderiv_mp2.Test_DipDerivMP2.test_XYG3_polar" />
     </list>
     <recent_temporary>
@@ -259,14 +260,8 @@
       <workItem from="1568287887761" duration="11065000" />
       <workItem from="1568338202668" duration="7622000" />
       <workItem from="1568368832251" duration="1884000" />
-      <workItem from="1568421520374" duration="15110000" />
-    </task>
-    <task id="LOCAL-00003" summary="configure: some problems on path when building in readthedocs and travis-ci">
-      <created>1560175963016</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1560175963016</updated>
+      <workItem from="1568421520374" duration="17620000" />
+      <workItem from="1568597406319" duration="627000" />
     </task>
     <task id="LOCAL-00004" summary="configure: some problems on path when building in readthedocs and travis-ci">
       <created>1560176270813</created>
@@ -604,7 +599,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568441857365</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="pyxdh: so I believe dipole derivative is finally finished">
+      <created>1568441941086</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1568441941086</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -638,7 +640,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="document: update basic_gga" />
     <MESSAGE value="document: update basic_b2plyp and basic_ncgga" />
     <MESSAGE value="docker: first try" />
     <MESSAGE value="docker: Add docker subsection to readme.md; docker size should be smaller than the previous one" />
@@ -663,7 +664,8 @@
     <MESSAGE value="pyxdh: add MP2/B2PLYP dipole derivative" />
     <MESSAGE value="pyxdh: add NCDFT(HF-B3LYP) dipole derivative" />
     <MESSAGE value="pyxdh: add XDH (XYG3) dipole derivative" />
-    <option name="LAST_COMMIT_MESSAGE" value="pyxdh: add XDH (XYG3) dipole derivative" />
+    <MESSAGE value="pyxdh: so I believe dipole derivative is finally finished" />
+    <option name="LAST_COMMIT_MESSAGE" value="pyxdh: so I believe dipole derivative is finally finished" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Py_xDH$ncdft_dipderiv_hf_b3lyp.coverage" NAME="ncdft_dipderiv_hf_b3lyp Coverage Results" MODIFIED="1568439622154" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv" />
