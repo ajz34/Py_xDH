@@ -4,6 +4,7 @@ from functools import partial
 import os
 import warnings
 import copy
+from pyscf.soscf.newton_ah import _gen_rhf_response
 
 from pyscf import gto, dft, grad, hessian, lib
 from pyscf.scf import cphf
@@ -361,12 +362,19 @@ class DerivOnceSCF(ABC):
         fx : function which pass matrix, then return Ax @ X.
         """
         C = self.C
-        cx = self.cx
         nao = self.nao
         grids = self.cphf_grids if in_cphf else self.grids
 
         sij_none = si is None and sj is None
         skl_none = sk is None and sl is None
+
+        if self.xc_type == "GGA":
+            mf = dft.RKS(self.mol)
+            mf.grids = grids
+            mf.xc = self.xc
+        else:
+            mf = self.scf_eng
+        resp = _gen_rhf_response(mf, mo_coeff=self.C, mo_occ=self.mo_occ, hermi=1, max_memory=self.grdit_memory)
 
         @timing
         def fx(X_):
@@ -382,37 +390,41 @@ class DerivOnceSCF(ABC):
             else:
                 dm = C[:, sk] @ X @ C[:, sl].T
             dm += dm.transpose((0, 2, 1))
+
+            ax_ao = resp(dm) * 2
+
+            # Old Code (maybe not suitable for parallel Aaibj Ubj ......)
             # Use PySCF higher functions to avoid explicit eri0_ao storage
-            ax_ao = np.empty((dm.shape[0], nao, nao))
-            for idx, dmX in enumerate(dm):
-                ax_ao[idx] = (
-                    + 1 * self.scf_eng.get_j(dm=dmX)
-                    - 0.5 * cx * self.scf_eng.get_k(dm=dmX)
-                )
-            # GGA part
-            if self.xc_type == "GGA":
-                grdit = GridIterator(self.mol, grids, self.D, deriv=2, memory=self.grdit_memory)
-                for grdh in grdit:
-                    kerh = KernelHelper(grdh, self.xc)
-                    for idx, dmX in enumerate(dm):
-                        tmp_K = np.einsum("kl, gl -> gk", dmX, grdh.ao_0)
-                        rho_X_0 = np.einsum("gk, gk -> g", grdh.ao_0, tmp_K)
-                        rho_X_1 = 2 * np.einsum("rgk, gk -> rg", grdh.ao_1, tmp_K)
-                        gamma_XD = np.einsum("rg, rg -> g", rho_X_1, grdh.rho_1)
-                        tmp_M = np.empty((4, grdh.ngrid))
-                        tmp_M[0] = (
-                                np.einsum("g, g -> g", rho_X_0, kerh.frr)
-                                + 2 * np.einsum("g, g -> g", gamma_XD, kerh.frg)
-                        )
-                        tmp_M[1:4] = (
-                                + 4 * np.einsum("g, g, rg -> rg", rho_X_0, kerh.frg, grdh.rho_1)
-                                + 8 * np.einsum("g, g, rg -> rg", gamma_XD, kerh.fgg, grdh.rho_1)
-                                + 4 * np.einsum("rg, g -> rg", rho_X_1, kerh.fg)
-                        )
-                        ax_ao[idx] += (
-                            + np.einsum("rg, rgu, gv -> uv", tmp_M, grdh.ao[:4], grdh.ao_0)
-                        )
-            ax_ao += ax_ao.swapaxes(-1, -2)
+            # ax_ao = np.empty((dm.shape[0], nao, nao))
+            # for idx, dmX in enumerate(dm):
+            #     ax_ao[idx] = (
+            #         + 1 * self.scf_eng.get_j(dm=dmX)
+            #         - 0.5 * cx * self.scf_eng.get_k(dm=dmX)
+            #     )
+            # # GGA part
+            # if self.xc_type == "GGA":
+            #     grdit = GridIterator(self.mol, grids, self.D, deriv=2, memory=self.grdit_memory)
+            #     for grdh in grdit:
+            #         kerh = KernelHelper(grdh, self.xc)
+            #         for idx, dmX in enumerate(dm):
+            #             tmp_K = np.einsum("kl, gl -> gk", dmX, grdh.ao_0)
+            #             rho_X_0 = np.einsum("gk, gk -> g", grdh.ao_0, tmp_K)
+            #             rho_X_1 = 2 * np.einsum("rgk, gk -> rg", grdh.ao_1, tmp_K)
+            #             gamma_XD = np.einsum("rg, rg -> g", rho_X_1, grdh.rho_1)
+            #             tmp_M = np.empty((4, grdh.ngrid))
+            #             tmp_M[0] = (
+            #                     np.einsum("g, g -> g", rho_X_0, kerh.frr)
+            #                     + 2 * np.einsum("g, g -> g", gamma_XD, kerh.frg)
+            #             )
+            #             tmp_M[1:4] = (
+            #                     + 4 * np.einsum("g, g, rg -> rg", rho_X_0, kerh.frg, grdh.rho_1)
+            #                     + 8 * np.einsum("g, g, rg -> rg", gamma_XD, kerh.fgg, grdh.rho_1)
+            #                     + 4 * np.einsum("rg, g -> rg", rho_X_1, kerh.fg)
+            #             )
+            #             ax_ao[idx] += (
+            #                 + np.einsum("rg, rgu, gv -> uv", tmp_M, grdh.ao[:4], grdh.ao_0)
+            #             )
+            # ax_ao += ax_ao.swapaxes(-1, -2)
 
             if not sij_none:
                 ax_ao = np.einsum("Auv, ui, vj -> Aij", ax_ao, C[:, si], C[:, sj])
