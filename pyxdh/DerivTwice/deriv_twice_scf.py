@@ -428,10 +428,16 @@ class DerivTwiceNCDFT(DerivTwiceSCF, ABC):
 
         # For simplicity, these values are not set to be properties
         # However, these values should not be changed or redefined
-        self.Z = self.A.Z
+        self._Z = NotImplemented
 
         # For non-consistent calculation
         self._RHS_B = NotImplemented
+
+    @property
+    def Z(self):
+        if self._Z is NotImplemented:
+            self._Z = self.A.Z
+        return self._Z
 
     def _get_RHS_B(self):
         B = self.B

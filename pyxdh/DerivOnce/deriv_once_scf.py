@@ -23,15 +23,10 @@ class DerivOnceSCF(ABC):
         # From configuration file, with default values
         self.config = config  # type: dict
         self.scf_eng = config["scf_eng"]  # type: dft.rks.RKS
-        self.rotation = True
-        self.grdit_memory = 2000
-        self.init_scf = True
-        if "rotation" in config:
-            self.rotation = config["rotation"]
-        if "grdit_memory" in config:
-            self.grdit_memory = config["grdit_memory"]
-        if "init_scf" in config:
-            self.init_scf = config["init_scf"]
+        self.rotation = config.get("rotation", True)
+        self.grdit_memory = config.get("grdit_memory", 2000)
+        self.init_scf = config.get("init_scf", True)
+        self.cphf_tol = config.get("cphf_tol", 1e-13)
 
         # Basic settings
         self.mol = self.scf_eng.mol  # type: gto.Mole
@@ -83,6 +78,7 @@ class DerivOnceSCF(ABC):
 
         # Initializer
         self.initialization()
+        self.cphf_grids = config.get("cphf_grids", self.grids)
 
         return
 
@@ -343,7 +339,7 @@ class DerivOnceSCF(ABC):
         _, _, p0, p1 = self.mol.aoslice_by_atom()[atm_id]
         return slice(p0, p1)
 
-    def Ax0_Core(self, si, sj, sk, sl, reshape=True):
+    def Ax0_Core(self, si, sj, sk, sl, reshape=True, in_cphf=False):
         """
 
         Parameters
@@ -357,6 +353,8 @@ class DerivOnceSCF(ABC):
             ``sk`` and ``sk`` should be all slice or all None. If chosen None, then `X` that passed in is assumed to
             be a density matrix.
         reshape : bool
+        in_cphf : bool
+            if ``in_cphf``, use ``self.cphf_grids`` instead of usual grid.
 
         Returns
         -------
@@ -365,6 +363,7 @@ class DerivOnceSCF(ABC):
         C = self.C
         cx = self.cx
         nao = self.nao
+        grids = self.cphf_grids if in_cphf else self.grids
 
         sij_none = si is None and sj is None
         skl_none = sk is None and sl is None
@@ -392,7 +391,7 @@ class DerivOnceSCF(ABC):
                 )
             # GGA part
             if self.xc_type == "GGA":
-                grdit = GridIterator(self.mol, self.grids, self.D, deriv=2, memory=self.grdit_memory)
+                grdit = GridIterator(self.mol, grids, self.D, deriv=2, memory=self.grdit_memory)
                 for grdh in grdit:
                     kerh = KernelHelper(grdh, self.xc)
                     for idx, dmX in enumerate(dm):
@@ -516,12 +515,12 @@ class DerivOnceSCF(ABC):
 
         # Generate v-o block of U
         U_1_ai = cphf.solve(
-            self.Ax0_Core(sv, so, sv, so),
+            self.Ax0_Core(sv, so, sv, so, in_cphf=True),
             self.e,
             self.scf_eng.mo_occ,
             B_1[:, sv, so],
             max_cycle=100,
-            tol=1e-13,
+            tol=self.cphf_tol,
             hermi=False
         )[0]
         U_1_ai.shape = (B_1.shape[0], self.nvir, self.nocc)
@@ -615,7 +614,7 @@ class DerivOnceNCDFT(DerivOnceSCF, ABC):
         Ax0_Core = self.Ax0_Core
         e, mo_occ = self.e, self.mo_occ
         F_0_mo = self.nc_deriv.F_0_mo
-        Z = cphf.solve(Ax0_Core(sv, so, sv, so), e, mo_occ, F_0_mo[sv, so], max_cycle=100, tol=1e-15)[0]
+        Z = cphf.solve(Ax0_Core(sv, so, sv, so, in_cphf=True), e, mo_occ, F_0_mo[sv, so], max_cycle=100, tol=self.cphf_tol)[0]
         return Z
 
     def _get_pdA_nc_F_0_mo(self):

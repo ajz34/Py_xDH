@@ -132,7 +132,7 @@ class DerivOnceMP2(DerivOnceSCF, ABC):
         so, sv = self.so, self.sv
         Ax0_Core = self.Ax0_Core
         e, mo_occ = self.e, self.mo_occ
-        D_r[sv, so] = cphf.solve(Ax0_Core(sv, so, sv, so), e, mo_occ, L, max_cycle=100, tol=1e-15)[0]
+        D_r[sv, so] = cphf.solve(Ax0_Core(sv, so, sv, so, in_cphf=True), e, mo_occ, L, max_cycle=100, tol=self.cphf_tol)[0]
 
         conv = (
             + D_r[sv, so] * (self.ev[:, None] - self.eo[None, :])
