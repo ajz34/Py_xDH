@@ -6,7 +6,7 @@ import warnings
 import copy
 from pyscf.soscf.newton_ah import _gen_rhf_response
 
-from pyscf import gto, dft, grad, hessian, lib
+from pyscf import gto, dft, grad, hessian
 from pyscf.scf import cphf
 
 from pyxdh.Utilities import timing
@@ -553,7 +553,7 @@ class DerivOnceSCF(ABC):
 
         # Test whether converged
         conv = (
-            + U_1_ai * lib.direct_sum("a - i", self.ev, self.eo)
+            + U_1_ai * (self.ev[:, None] - self.eo[None, :])
             + self.Ax0_Core(sv, so, sv, so)(U_1_ai)
             + self.B_1[:, sv, so]
         )
@@ -568,7 +568,7 @@ class DerivOnceSCF(ABC):
             U_1_pq[:, so, sv] = - S_1_mo[:, so, sv] - U_1_pq[:, sv, so].swapaxes(-1, -2)
         else:
             # Generate total U
-            D_pq = - lib.direct_sum("p - q -> pq", self.e, self.e) + 1e-300
+            D_pq = - (self.e[:, None] - self.e[None, :]) + 1e-300
             U_1_pq = np.zeros((B_1.shape[0], self.nmo, self.nmo))
             U_1_pq[:, sv, so] = U_1_ai
             U_1_pq[:, so, sv] = - S_1_mo[:, so, sv] - U_1_pq[:, sv, so].swapaxes(-1, -2)

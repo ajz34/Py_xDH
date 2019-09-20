@@ -1,2 +1,4 @@
 [run]
-omit = pyxdh/Validation/*
+omit =
+    pyxdh/Validation/*
+    setup.py

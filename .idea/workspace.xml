@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.coveragerc" beforeDir="false" afterPath="$PROJECT_DIR$/.coveragerc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.lgtm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.lgtm.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_scf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/dipole_mp2.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/dipole_mp2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/polar_mp2.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/polar_mp2.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -70,36 +72,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.pytest for pyxdh">
-    <configuration name="H06" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Py_xDH" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-        <env name="USE_NPROC" value="4" />
-        <env name="OMP_NUM_THREADS" value="4" />
-        <env name="OPENBLAS_NUM_THREADS" value="4" />
-        <env name="MKL_NUM_THREADS" value="4" />
-        <env name="VECLIB_MAXIMUM_THREADS" value="4" />
-        <env name="NUMEXPR_NUM_THREADS" value="4" />
-        <env name="LOGLEVEL" value="2" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pyxdh/tmp_dft_speed" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pyxdh/tmp_dft_speed/H06.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python tests.pytest for polar_mp2.Test_PolarMP2.test_XYG3_polar">
     <configuration name="MP2_Hess" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Py_xDH" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -142,6 +115,22 @@
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for dipole_mp2.Test_DipoleMP2.test_dipole_xyg3_rotate" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="Py_xDH" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pyxdh/DerivOnce" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;dipole_mp2.Test_DipoleMP2.test_dipole_xyg3_rotate&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <configuration name="pytest for hess_mp2.Test_HessMP2.test_B2PLYP_hess" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
@@ -193,20 +182,20 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.H06" />
       <item itemvalue="Python.MP2_Hess" />
       <item itemvalue="Python.XYG3_Polar" />
       <item itemvalue="Python tests.pytest for pyxdh" />
       <item itemvalue="Python tests.pytest for hess_mp2.Test_HessMP2.test_B2PLYP_hess" />
       <item itemvalue="Python tests.pytest for polar_mp2.Test_PolarMP2.test_XYG3_polar" />
+      <item itemvalue="Python tests.pytest for dipole_mp2.Test_DipoleMP2.test_dipole_xyg3_rotate" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.pytest for polar_mp2.Test_PolarMP2.test_XYG3_polar" />
+        <item itemvalue="Python tests.pytest for dipole_mp2.Test_DipoleMP2.test_dipole_xyg3_rotate" />
         <item itemvalue="Python.MP2_Hess" />
         <item itemvalue="Python tests.pytest for hess_mp2.Test_HessMP2.test_B2PLYP_hess" />
         <item itemvalue="Python.XYG3_Polar" />
-        <item itemvalue="Python tests.pytest for polar_mp2.Test_PolarMP2.test_XYG3_polar" />
-        <item itemvalue="Python.H06" />
       </list>
     </recent_temporary>
   </component>
@@ -293,14 +282,7 @@
       <workItem from="1568793924476" duration="1669000" />
       <workItem from="1568862793144" duration="24794000" />
       <workItem from="1568902650290" duration="8108000" />
-      <workItem from="1568956253949" duration="10983000" />
-    </task>
-    <task id="LOCAL-00016" summary="document: initialize intro_python">
-      <created>1560434789818</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1560434789818</updated>
+      <workItem from="1568956253949" duration="12964000" />
     </task>
     <task id="LOCAL-00017" summary="document: initialize intro_python">
       <created>1560434823502</created>
@@ -638,7 +620,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568976409777</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="pyxdh: possibly pass lgtm's alert">
+      <created>1568976883607</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1568976883607</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -682,7 +671,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="action: remove warning of F632 in flake8 lint" />
     <MESSAGE value="action: remove warning in flake8 lint (except complex functions)" />
     <MESSAGE value="action: change pytest command, change wrong code in deriv_once_scf" />
     <MESSAGE value="action: remove python 2.7 support" />
@@ -707,7 +695,8 @@
     <MESSAGE value="pyxdh: make hessian quicker" />
     <MESSAGE value="pyxdh: change all grid setting in cphf to (50, 190), add U_1 not rotated example" />
     <MESSAGE value="pyxdh: mute gen_B_2 since no actual function actually use it" />
-    <option name="LAST_COMMIT_MESSAGE" value="pyxdh: mute gen_B_2 since no actual function actually use it" />
+    <MESSAGE value="pyxdh: possibly pass lgtm's alert" />
+    <option name="LAST_COMMIT_MESSAGE" value="pyxdh: possibly pass lgtm's alert" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -717,11 +706,17 @@
           <line>321</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_scf.py</url>
+          <line>570</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_pyxdh.coverage" NAME="pytest for pyxdh Coverage Results" MODIFIED="1568976272908" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_pyxdh.coverage" NAME="pytest for pyxdh Coverage Results" MODIFIED="1568977572020" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipole_mp2_Test_DipoleMP2_test_dipole_xyg3_rotate.coverage" NAME="pytest for dipole_mp2.Test_DipoleMP2.test_dipole_xyg3_rotate Coverage Results" MODIFIED="1568978318816" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipderiv_mp2_Test_DipDerivMP2_test_B2PLYP_polar.coverage" NAME="pytest for dipderiv_mp2.Test_DipDerivMP2.test_B2PLYP_polar Coverage Results" MODIFIED="1568439067444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_pyxdh_DerivOnce_dipole_mp2_Test_DipoleMP2.coverage" NAME="pytest for pyxdh.DerivOnce.dipole_mp2.Test_DipoleMP2 Coverage Results" MODIFIED="1566028289586" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_grad_scf_Test_GradSCF.coverage" NAME="pytest for grad_scf.Test_GradSCF Coverage Results" MODIFIED="1568294038419" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
@@ -735,7 +730,7 @@
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipole_scf_Test_DipoleSCF_test_SCF_dipole.coverage" NAME="pytest for dipole_scf.Test_DipoleSCF.test_SCF_dipole Coverage Results" MODIFIED="1568288757649" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
     <SUITE FILE_PATH="coverage/Py_xDH$ncdft_dipderiv_hf_b3lyp.coverage" NAME="ncdft_dipderiv_hf_b3lyp Coverage Results" MODIFIED="1568439622154" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipole_mp2_Test_DipoleMP2.coverage" NAME="pytest for dipole_mp2.Test_DipoleMP2 Coverage Results" MODIFIED="1560172191691" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdhalpha/DerivOnce" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_polar_mp2_Test_PolarMP2_test_XYG3_polar.coverage" NAME="pytest for polar_mp2.Test_PolarMP2.test_XYG3_polar Coverage Results" MODIFIED="1568716590155" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
+    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_polar_mp2_Test_PolarMP2_test_XYG3_polar.coverage" NAME="pytest for polar_mp2.Test_PolarMP2.test_XYG3_polar Coverage Results" MODIFIED="1568978895071" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipole_mp2_Test_DipoleMP2_test_MP2_dipole.coverage" NAME="pytest for dipole_mp2.Test_DipoleMP2.test_MP2_dipole Coverage Results" MODIFIED="1560171734840" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdhalpha/DerivOnce" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_polar_scf_Test_PolarSCF_test_HF_polar.coverage" NAME="pytest for polar_scf.Test_PolarSCF.test_HF_polar Coverage Results" MODIFIED="1568289711492" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_grad_mp2_Test_GradMP2_test_5th_functional_grad.coverage" NAME="pytest for grad_mp2.Test_GradMP2.test_5th_functional_grad Coverage Results" MODIFIED="1568727641255" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />

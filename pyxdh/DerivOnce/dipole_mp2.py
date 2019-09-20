@@ -58,15 +58,6 @@ class Test_DipoleMP2:
         helper = DipoleXDH(config)
         self.valid_assert(helper, "Validation/gaussian/H2O2-XYG3-force.fchk")
 
-    def test_dipole_xyg3_rotate(self):
-        from pyxdh.Utilities.test_molecules import Mol_H2O2
-        H2O2_sc = Mol_H2O2(xc="B3LYPg")
-        H2O2_nc = Mol_H2O2(xc="0.8033*HF - 0.0140*LDA + 0.2107*B88, 0.6789*LYP")
-        grids_cphf = H2O2_sc.gen_grids(50, 194)
-        config = {"scf_eng": H2O2_sc.gga_eng, "nc_eng": H2O2_nc.gga_eng, "cc": 0.3211, "cphf_grids": grids_cphf, "rotation": False}
-        helper = DipoleXDH(config)
-        self.valid_assert(helper, "Validation/gaussian/H2O2-XYG3-force.fchk")
-
     def test_dipole_xygjos(self):
         from pyxdh.Utilities.test_molecules import Mol_H2O2
         H2O2_sc = Mol_H2O2(xc="B3LYPg")

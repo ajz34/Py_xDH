@@ -73,28 +73,26 @@ class Test_PolarMP2:
         from pyxdh.DerivOnce import DipoleXDH
         import pickle
 
+        with open(resource_filename("pyxdh", "Validation/numerical_deriv/xdh_polarizability_xyg3.dat"), "rb") as f:
+            ref_polar = pickle.load(f)["polarizability"]
+
         H2O2_sc = Mol_H2O2(xc="B3LYPg")
         H2O2_nc = Mol_H2O2(xc="0.8033*HF - 0.0140*LDA + 0.2107*B88, 0.6789*LYP")
         grids_cphf = H2O2_sc.gen_grids(50, 194)
-        config = {
+        dip_config = {
             "scf_eng": H2O2_sc.gga_eng,
             "nc_eng": H2O2_nc.gga_eng,
             "cc": 0.3211,
             "cphf_grids": grids_cphf
         }
-        dip_helper = DipoleXDH(config)
-        config = {
-            "deriv_A": dip_helper,
-            "deriv_B": dip_helper,
-        }
-
-        helper = PolarXDH(config)
-        E_2 = helper.E_2
-
-        with open(resource_filename("pyxdh", "Validation/numerical_deriv/xdh_polarizability_xyg3.dat"), "rb") as f:
-            ref_polar = pickle.load(f)["polarizability"]
-
-        assert(np.allclose(
-            - E_2, ref_polar,
-            atol=1e-6, rtol=1e-4
-        ))
+        # With rotation
+        dip_helper = DipoleXDH(dip_config)
+        polar_config = {"deriv_A": dip_helper, "deriv_B": dip_helper}
+        helper = PolarXDH(polar_config)
+        assert(np.allclose(- helper.E_2, ref_polar, atol=1e-6, rtol=1e-4))
+        # No rotation
+        dip_config["rotation"] = False
+        dip_helper = DipoleXDH(dip_config)
+        polar_config = {"deriv_A": dip_helper, "deriv_B": dip_helper}
+        helper = PolarXDH(polar_config)
+        assert(np.allclose(- helper.E_2, ref_polar, atol=1e-6, rtol=1e-4))
