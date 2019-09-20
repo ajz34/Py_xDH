@@ -49,132 +49,136 @@ class GradSCF(DerivOnceSCF):
             ax_ao = np.empty((natm, 3, dm.shape[0], nao, nao))
 
             # Actual calculation
-            for B in range(dm.shape[0]):
-                dmX = dm[B]
-                # (ut v | k l), (ut k | v l)
-                j_1, k_1 = _vhf.direct_mapdm(
+            # (ut v | k l), (ut k | v l)
+            j_1, k_1 = _vhf.direct_mapdm(
+                mol._add_suffix('int2e_ip1'), "s2kl",
+                ("lk->s1ij", "jk->s1il"),
+                dm, 3,
+                mol._atm, mol._bas, mol._env
+            )
+            if dm.shape[0] == 1:  # dm shape is 1 * nao * nao, then j_1, k_1 do not retain dimension of dm.shape[0]
+                j_1, k_1 = j_1[None, :], k_1[None, :]
+            j_1, k_1 = j_1.swapaxes(0, 1), k_1.swapaxes(0, 1)
+
+            # HF Part
+            for A in range(natm):
+                ax = np.zeros((3, dm.shape[0], nao, nao))
+                shl0, shl1, p0, p1 = mol.aoslice_by_atom()[A]
+                sA = slice(p0, p1)  # equivalent to mol_slice(A)
+                ax[:, :, sA, :] -= 2 * j_1[:, :, sA, :]
+                ax[:, :, :, sA] -= 2 * j_1[:, :, sA, :].swapaxes(-1, -2)
+                ax[:, :, sA, :] += cx * k_1[:, :, sA, :]
+                ax[:, :, :, sA] += cx * k_1[:, :, sA, :].swapaxes(-1, -2)
+                # (kt l | u v), (kt u | l v)
+                j_1A, k_1A = _vhf.direct_mapdm(
                     mol._add_suffix('int2e_ip1'), "s2kl",
-                    ("lk->s1ij", "jk->s1il"),
-                    dmX, 3,
-                    mol._atm, mol._bas, mol._env
+                    ("ji->s1kl", "li->s1kj"),
+                    dm[:, :, p0:p1], 3,
+                    mol._atm, mol._bas, mol._env,
+                    shls_slice=((shl0, shl1) + (0, mol.nbas) * 3)
                 )
+                if dm.shape[0] == 1:  # dm shape is 1 * nao * nao, then j_1A, k_1A do not retain dimension of dm.shape[0]
+                    j_1A, k_1A = j_1A[None, :], k_1A[None, :]
+                j_1A, k_1A = j_1A.swapaxes(0, 1), k_1A.swapaxes(0, 1)
+                ax -= 4 * j_1A
+                ax += cx * (k_1A + k_1A.swapaxes(-1, -2))
 
-                # HF Part
-                for A in range(natm):
-                    ax = np.zeros((3, nao, nao))
-                    shl0, shl1, p0, p1 = mol.aoslice_by_atom()[A]
-                    sA = slice(p0, p1)  # equivalent to mol_slice(A)
-                    ax[:, sA, :] -= 2 * j_1[:, sA, :]
-                    ax[:, :, sA] -= 2 * j_1[:, sA, :].swapaxes(-1, -2)
-                    ax[:, sA, :] += cx * k_1[:, sA, :]
-                    ax[:, :, sA] += cx * k_1[:, sA, :].swapaxes(-1, -2)
-                    # (kt l | u v), (kt u | l v)
-                    j_1A, k_1A = _vhf.direct_mapdm(
-                        mol._add_suffix('int2e_ip1'), "s2kl",
-                        ("ji->s1kl", "li->s1kj"),
-                        dmX[:, p0:p1], 3,
-                        mol._atm, mol._bas, mol._env,
-                        shls_slice=((shl0, shl1) + (0, mol.nbas) * 3)
+                ax_ao[A] = ax
+
+            # GGA Part
+            if self.xc_type == "GGA":
+                grdit = GridIterator(self.mol, self.grids, self.D, deriv=3, memory=self.grdit_memory)
+                for grdh in grdit:
+                    kerh = KernelHelper(grdh, self.xc, deriv=3)
+                    # Define some kernel and density derivative alias
+                    pd_frr = kerh.frrr * grdh.A_rho_1 + kerh.frrg * grdh.A_gamma_1
+                    pd_frg = kerh.frrg * grdh.A_rho_1 + kerh.frgg * grdh.A_gamma_1
+                    pd_fgg = kerh.frgg * grdh.A_rho_1 + kerh.fggg * grdh.A_gamma_1
+                    pd_fg = kerh.frg * grdh.A_rho_1 + kerh.fgg * grdh.A_gamma_1
+                    pd_rho_1 = grdh.A_rho_2
+
+                    # Form dmX density grid
+                    rho_X_0 = np.array([grdh.get_rho_0(dmX) for dmX in dm])
+                    rho_X_1 = np.array([grdh.get_rho_1(dmX) for dmX in dm])
+                    pd_rho_X_0 = np.array([grdh.get_A_rho_1(dmX) for dmX in dm]).transpose((1, 2, 0, 3))
+                    pd_rho_X_1 = np.array([grdh.get_A_rho_2(dmX) for dmX in dm]).transpose((1, 2, 0, 3, 4))
+
+                    # Define temporary intermediates
+                    tmp_M_0 = (
+                            + np.einsum("g, Bg -> Bg", kerh.frr, rho_X_0)
+                            + 2 * np.einsum("g, wg, Bwg -> Bg", kerh.frg, grdh.rho_1, rho_X_1)
                     )
-                    ax -= 4 * j_1A
-                    ax += cx * (k_1A + k_1A.swapaxes(-1, -2))
+                    tmp_M_1 = (
+                            + 4 * np.einsum("g, Bg, rg -> Brg", kerh.frg, rho_X_0, grdh.rho_1)
+                            + 8 * np.einsum("g, wg, Bwg, rg -> Brg", kerh.fgg, grdh.rho_1, rho_X_1, grdh.rho_1)
+                            + 4 * np.einsum("g, Brg -> Brg", kerh.fg, rho_X_1)
+                    )
+                    pd_tmp_M_0 = (
+                            + np.einsum("Atg, Bg -> AtBg", pd_frr, rho_X_0)
+                            + np.einsum("g, AtBg -> AtBg", kerh.frr, pd_rho_X_0)
+                            + 2 * np.einsum("Atg, wg, Bwg -> AtBg", pd_frg, grdh.rho_1, rho_X_1)
+                            + 2 * np.einsum("g, Atwg, Bwg -> AtBg", kerh.frg, pd_rho_1, rho_X_1)
+                            + 2 * np.einsum("g, wg, AtBwg -> AtBg", kerh.frg, grdh.rho_1, pd_rho_X_1)
+                    )
+                    pd_tmp_M_1 = (
+                            + 4 * np.einsum("Atg, Bg, rg -> AtBrg", pd_frg, rho_X_0, grdh.rho_1)
+                            + 4 * np.einsum("g, Bg, Atrg -> AtBrg", kerh.frg, rho_X_0, pd_rho_1)
+                            + 4 * np.einsum("g, AtBg, rg -> AtBrg", kerh.frg, pd_rho_X_0, grdh.rho_1)
+                            + 8 * np.einsum("Atg, wg, Bwg, rg -> AtBrg", pd_fgg, grdh.rho_1, rho_X_1, grdh.rho_1)
+                            + 8 * np.einsum("g, Atwg, Bwg, rg -> AtBrg", kerh.fgg, pd_rho_1, rho_X_1, grdh.rho_1)
+                            + 8 * np.einsum("g, wg, Bwg, Atrg -> AtBrg", kerh.fgg, grdh.rho_1, rho_X_1, pd_rho_1)
+                            + 8 * np.einsum("g, wg, AtBwg, rg -> AtBrg", kerh.fgg, grdh.rho_1, pd_rho_X_1, grdh.rho_1)
+                            + 4 * np.einsum("Atg, Brg -> AtBrg", pd_fg, rho_X_1)
+                            + 4 * np.einsum("g, AtBrg -> AtBrg", kerh.fg, pd_rho_X_1)
+                    )
 
-                    ax_ao[A, :, B] = ax
+                    contrib1 = np.zeros((natm, 3, dm.shape[0], nao, nao))
+                    contrib1 += np.einsum("AtBg, gu, gv -> AtBuv", pd_tmp_M_0, grdh.ao_0, grdh.ao_0)
+                    contrib1 += np.einsum("AtBrg, rgu, gv -> AtBuv", pd_tmp_M_1, grdh.ao_1, grdh.ao_0)
+                    contrib1 += contrib1.swapaxes(-1, -2)
 
-                # GGA Part
-                if self.xc_type == "GGA":
-                    grdit = GridIterator(self.mol, self.grids, self.D, deriv=3, memory=self.grdit_memory)
-                    for grdh in grdit:
-                        kerh = KernelHelper(grdh, self.xc, deriv=3)
-                        # Define some kernel and density derivative alias
-                        pd_frr = kerh.frrr * grdh.A_rho_1 + kerh.frrg * grdh.A_gamma_1
-                        pd_frg = kerh.frrg * grdh.A_rho_1 + kerh.frgg * grdh.A_gamma_1
-                        pd_fgg = kerh.frgg * grdh.A_rho_1 + kerh.fggg * grdh.A_gamma_1
-                        pd_fg = kerh.frg * grdh.A_rho_1 + kerh.fgg * grdh.A_gamma_1
-                        pd_rho_1 = grdh.A_rho_2
+                    tmp_contrib = (
+                            - 2 * np.einsum("Bg, tgu, gv -> tBuv", tmp_M_0, grdh.ao_1, grdh.ao_0)
+                            - np.einsum("Brg, trgu, gv -> tBuv", tmp_M_1, grdh.ao_2, grdh.ao_0)
+                            - np.einsum("Brg, tgu, rgv -> tBuv", tmp_M_1, grdh.ao_1, grdh.ao_1)
+                    )
 
-                        # Form dmX density grid
-                        rho_X_0 = grdh.get_rho_0(dmX)
-                        rho_X_1 = grdh.get_rho_1(dmX)
-                        pd_rho_X_0 = grdh.get_A_rho_1(dmX)
-                        pd_rho_X_1 = grdh.get_A_rho_2(dmX)
+                    contrib2 = np.zeros((natm, 3, dm.shape[0], nao, nao))
+                    for A in range(natm):
+                        sA = self.mol_slice(A)
+                        contrib2[A, :, :, sA] += tmp_contrib[:, :, sA]
 
-                        # Define temporary intermediates
-                        tmp_M_0 = (
-                                + np.einsum("g, g -> g", kerh.frr, rho_X_0)
-                                + 2 * np.einsum("g, wg, wg -> g", kerh.frg, grdh.rho_1, rho_X_1)
-                        )
-                        tmp_M_1 = (
-                                + 4 * np.einsum("g, g, rg -> rg", kerh.frg, rho_X_0, grdh.rho_1)
-                                + 8 * np.einsum("g, wg, wg, rg -> rg", kerh.fgg, grdh.rho_1, rho_X_1, grdh.rho_1)
-                                + 4 * np.einsum("g, rg -> rg", kerh.fg, rho_X_1)
-                        )
-                        pd_tmp_M_0 = (
-                                + np.einsum("Atg, g -> Atg", pd_frr, rho_X_0)
-                                + np.einsum("g, Atg -> Atg", kerh.frr, pd_rho_X_0)
-                                + 2 * np.einsum("Atg, wg, wg -> Atg", pd_frg, grdh.rho_1, rho_X_1)
-                                + 2 * np.einsum("g, Atwg, wg -> Atg", kerh.frg, pd_rho_1, rho_X_1)
-                                + 2 * np.einsum("g, wg, Atwg -> Atg", kerh.frg, grdh.rho_1, pd_rho_X_1)
-                        )
-                        pd_tmp_M_1 = (
-                                + 4 * np.einsum("Atg, g, rg -> Atrg", pd_frg, rho_X_0, grdh.rho_1)
-                                + 4 * np.einsum("g, g, Atrg -> Atrg", kerh.frg, rho_X_0, pd_rho_1)
-                                + 4 * np.einsum("g, Atg, rg -> Atrg", kerh.frg, pd_rho_X_0, grdh.rho_1)
-                                + 8 * np.einsum("Atg, wg, wg, rg -> Atrg", pd_fgg, grdh.rho_1, rho_X_1, grdh.rho_1)
-                                + 8 * np.einsum("g, Atwg, wg, rg -> Atrg", kerh.fgg, pd_rho_1, rho_X_1, grdh.rho_1)
-                                + 8 * np.einsum("g, wg, wg, Atrg -> Atrg", kerh.fgg, grdh.rho_1, rho_X_1, pd_rho_1)
-                                + 8 * np.einsum("g, wg, Atwg, rg -> Atrg", kerh.fgg, grdh.rho_1, pd_rho_X_1, grdh.rho_1)
-                                + 4 * np.einsum("Atg, rg -> Atrg", pd_fg, rho_X_1)
-                                + 4 * np.einsum("g, Atrg -> Atrg", kerh.fg, pd_rho_X_1)
-                        )
+                    contrib2 += contrib2.swapaxes(-1, -2)
 
-                        contrib1 = np.zeros((natm, 3, nao, nao))
-                        contrib1 += np.einsum("Atg, gu, gv -> Atuv", pd_tmp_M_0, grdh.ao_0, grdh.ao_0)
-                        contrib1 += np.einsum("Atrg, rgu, gv -> Atuv", pd_tmp_M_1, grdh.ao_1, grdh.ao_0)
-                        contrib1 += contrib1.swapaxes(-1, -2)
+                    # U contribution to \partial_{A_t} A
+                    rho_U_0 = np.einsum("Atuv, gu, gv -> Atg", dmU, grdh.ao_0, grdh.ao_0)
+                    rho_U_1 = 2 * np.einsum("Atuv, rgu, gv -> Atrg", dmU, grdh.ao_1, grdh.ao_0)
+                    gamma_U_0 = 2 * np.einsum("rg, Atrg -> Atg", grdh.rho_1, rho_U_1)
+                    pdU_frr = kerh.frrr * rho_U_0 + kerh.frrg * gamma_U_0
+                    pdU_frg = kerh.frrg * rho_U_0 + kerh.frgg * gamma_U_0
+                    pdU_fgg = kerh.frgg * rho_U_0 + kerh.fggg * gamma_U_0
+                    pdU_fg = kerh.frg * rho_U_0 + kerh.fgg * gamma_U_0
+                    pdU_rho_1 = rho_U_1
+                    pdU_tmp_M_0 = (
+                            + np.einsum("Atg, Bg -> AtBg", pdU_frr, rho_X_0)
+                            + 2 * np.einsum("Atg, wg, Bwg -> AtBg", pdU_frg, grdh.rho_1, rho_X_1)
+                            + 2 * np.einsum("g, Atwg, Bwg -> AtBg", kerh.frg, pdU_rho_1, rho_X_1)
+                    )
+                    pdU_tmp_M_1 = (
+                            + 4 * np.einsum("Atg, Bg, rg -> AtBrg", pdU_frg, rho_X_0, grdh.rho_1)
+                            + 4 * np.einsum("g, Bg, Atrg -> AtBrg", kerh.frg, rho_X_0, pdU_rho_1)
+                            + 8 * np.einsum("Atg, wg, Bwg, rg -> AtBrg", pdU_fgg, grdh.rho_1, rho_X_1, grdh.rho_1)
+                            + 8 * np.einsum("g, Atwg, Bwg, rg -> AtBrg", kerh.fgg, pdU_rho_1, rho_X_1, grdh.rho_1)
+                            + 8 * np.einsum("g, wg, Bwg, Atrg -> AtBrg", kerh.fgg, grdh.rho_1, rho_X_1, pdU_rho_1)
+                            + 4 * np.einsum("Atg, Brg -> AtBrg", pdU_fg, rho_X_1)
+                    )
 
-                        tmp_contrib = (
-                                - 2 * np.einsum("g, tgu, gv -> tuv", tmp_M_0, grdh.ao_1, grdh.ao_0)
-                                - np.einsum("rg, trgu, gv -> tuv", tmp_M_1, grdh.ao_2, grdh.ao_0)
-                                - np.einsum("rg, tgu, rgv -> tuv", tmp_M_1, grdh.ao_1, grdh.ao_1)
-                        )
+                    contrib3 = np.zeros((natm, 3, dm.shape[0], nao, nao))
+                    contrib3 += np.einsum("AtBg, gu, gv -> AtBuv", pdU_tmp_M_0, grdh.ao_0, grdh.ao_0)
+                    contrib3 += np.einsum("AtBrg, rgu, gv -> AtBuv", pdU_tmp_M_1, grdh.ao_1, grdh.ao_0)
+                    contrib3 += contrib3.swapaxes(-1, -2)
 
-                        contrib2 = np.zeros((natm, 3, nao, nao))
-                        for A in range(natm):
-                            sA = self.mol_slice(A)
-                            contrib2[A, :, sA] += tmp_contrib[:, sA]
-
-                        contrib2 += contrib2.swapaxes(-1, -2)
-
-                        # U contribution to \partial_{A_t} A
-                        rho_U_0 = np.einsum("Atuv, gu, gv -> Atg", dmU, grdh.ao_0, grdh.ao_0)
-                        rho_U_1 = 2 * np.einsum("Atuv, rgu, gv -> Atrg", dmU, grdh.ao_1, grdh.ao_0)
-                        gamma_U_0 = 2 * np.einsum("rg, Atrg -> Atg", grdh.rho_1, rho_U_1)
-                        pdU_frr = kerh.frrr * rho_U_0 + kerh.frrg * gamma_U_0
-                        pdU_frg = kerh.frrg * rho_U_0 + kerh.frgg * gamma_U_0
-                        pdU_fgg = kerh.frgg * rho_U_0 + kerh.fggg * gamma_U_0
-                        pdU_fg = kerh.frg * rho_U_0 + kerh.fgg * gamma_U_0
-                        pdU_rho_1 = rho_U_1
-                        pdU_tmp_M_0 = (
-                                + np.einsum("Atg, g -> Atg", pdU_frr, rho_X_0)
-                                + 2 * np.einsum("Atg, wg, wg -> Atg", pdU_frg, grdh.rho_1, rho_X_1)
-                                + 2 * np.einsum("g, Atwg, wg -> Atg", kerh.frg, pdU_rho_1, rho_X_1)
-                        )
-                        pdU_tmp_M_1 = (
-                                + 4 * np.einsum("Atg, g, rg -> Atrg", pdU_frg, rho_X_0, grdh.rho_1)
-                                + 4 * np.einsum("g, g, Atrg -> Atrg", kerh.frg, rho_X_0, pdU_rho_1)
-                                + 8 * np.einsum("Atg, wg, wg, rg -> Atrg", pdU_fgg, grdh.rho_1, rho_X_1, grdh.rho_1)
-                                + 8 * np.einsum("g, Atwg, wg, rg -> Atrg", kerh.fgg, pdU_rho_1, rho_X_1, grdh.rho_1)
-                                + 8 * np.einsum("g, wg, wg, Atrg -> Atrg", kerh.fgg, grdh.rho_1, rho_X_1, pdU_rho_1)
-                                + 4 * np.einsum("Atg, rg -> Atrg", pdU_fg, rho_X_1)
-                        )
-
-                        contrib3 = np.zeros((natm, 3, nao, nao))
-                        contrib3 += np.einsum("Atg, gu, gv -> Atuv", pdU_tmp_M_0, grdh.ao_0, grdh.ao_0)
-                        contrib3 += np.einsum("Atrg, rgu, gv -> Atuv", pdU_tmp_M_1, grdh.ao_1, grdh.ao_0)
-                        contrib3 += contrib3.swapaxes(-1, -2)
-
-                        ax_ao[:, :, B] += contrib1 + contrib2 + contrib3
+                    ax_ao += contrib1 + contrib2 + contrib3
 
             ax_ao.shape = (natm * 3, dm.shape[0], nao, nao)
 

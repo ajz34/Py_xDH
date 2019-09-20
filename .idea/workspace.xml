@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="pyxdh: flexibility to make cphf more coarse">
+    <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Py_xDH.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Py_xDH.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_scf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/dipole_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/dipole_scf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/grad_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/grad_scf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_scf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/hess_mp2.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/hess_mp2.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,6 +18,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExportTestResults" outputFolder="$PROJECT_DIR$/tmp_snapshots" userTempatePath="" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -37,7 +44,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="last_opened_file_path" value="E:/Documents-Group/2019-09-17-xDH_Benchmark/SecPolar_Try" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pyxdh/tmp_dft_speed" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -46,13 +53,14 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="web.server" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Git-Repo\Py_xDH" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Git-Repo\Py_xDH\pyxdh\tmp_dft_speed" />
       <recent name="E:\Git-Repo\Py_xDH" />
     </key>
   </component>
@@ -68,12 +76,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.H06">
+  <component name="RunManager" selected="Python.MP2_Hess">
     <configuration name="H06" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Py_xDH" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
         <env name="USE_NPROC" value="4" />
         <env name="OMP_NUM_THREADS" value="4" />
         <env name="OPENBLAS_NUM_THREADS" value="4" />
@@ -97,39 +106,51 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for dipole_mp2.Test_DipoleMP2.test_dipole_xygjos" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="MP2_Hess" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Py_xDH" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pyxdh/DerivOnce" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pyxdh/tmp_dft_speed" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;dipole_mp2.Test_DipoleMP2.test_dipole_xygjos&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pyxdh/tmp_dft_speed/MP2_Hess.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for grad_mp2.Test_GradMP2.test_grad_xyg3" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="XYG3_Polar" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Py_xDH" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pyxdh/DerivOnce" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pyxdh/tmp_dft_speed" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;grad_mp2.Test_GradMP2.test_grad_xyg3&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pyxdh/tmp_dft_speed/XYG3_Polar.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for hess_scf.Test_HessSCF.test_B3LYP_hess" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for hess_mp2.Test_HessMP2.test_B2PLYP_hess" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="Py_xDH" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -141,11 +162,11 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;hess_scf.Test_HessSCF.test_B3LYP_hess&quot;" />
+      <option name="_new_target" value="&quot;hess_mp2.Test_HessMP2.test_B2PLYP_hess&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for hess_scf.Test_HessSCF.test_HF_hess" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for polar_mp2.Test_PolarMP2.test_XYG3_polar" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="Py_xDH" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -157,7 +178,7 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;hess_scf.Test_HessSCF.test_HF_hess&quot;" />
+      <option name="_new_target" value="&quot;polar_mp2.Test_PolarMP2.test_XYG3_polar&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -179,19 +200,19 @@
     </configuration>
     <list>
       <item itemvalue="Python.H06" />
+      <item itemvalue="Python.MP2_Hess" />
+      <item itemvalue="Python.XYG3_Polar" />
       <item itemvalue="Python tests.pytest for pyxdh" />
-      <item itemvalue="Python tests.pytest for grad_mp2.Test_GradMP2.test_grad_xyg3" />
-      <item itemvalue="Python tests.pytest for dipole_mp2.Test_DipoleMP2.test_dipole_xygjos" />
-      <item itemvalue="Python tests.pytest for hess_scf.Test_HessSCF.test_HF_hess" />
-      <item itemvalue="Python tests.pytest for hess_scf.Test_HessSCF.test_B3LYP_hess" />
+      <item itemvalue="Python tests.pytest for hess_mp2.Test_HessMP2.test_B2PLYP_hess" />
+      <item itemvalue="Python tests.pytest for polar_mp2.Test_PolarMP2.test_XYG3_polar" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.MP2_Hess" />
+        <item itemvalue="Python tests.pytest for hess_mp2.Test_HessMP2.test_B2PLYP_hess" />
+        <item itemvalue="Python.XYG3_Polar" />
+        <item itemvalue="Python tests.pytest for polar_mp2.Test_PolarMP2.test_XYG3_polar" />
         <item itemvalue="Python.H06" />
-        <item itemvalue="Python tests.pytest for hess_scf.Test_HessSCF.test_B3LYP_hess" />
-        <item itemvalue="Python tests.pytest for hess_scf.Test_HessSCF.test_HF_hess" />
-        <item itemvalue="Python tests.pytest for dipole_mp2.Test_DipoleMP2.test_dipole_xygjos" />
-        <item itemvalue="Python tests.pytest for grad_mp2.Test_GradMP2.test_grad_xyg3" />
       </list>
     </recent_temporary>
   </component>
@@ -276,14 +297,9 @@
       <workItem from="1568775842351" duration="1237000" />
       <workItem from="1568778157905" duration="1783000" />
       <workItem from="1568793924476" duration="1669000" />
-      <workItem from="1568862793144" duration="22692000" />
-    </task>
-    <task id="LOCAL-00012" summary="pyxdh: change grad_scf: O(N^4) eri1_ao to O(N^2) on-the-fly integral storage powered by pyscf">
-      <created>1560355956665</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1560355956665</updated>
+      <workItem from="1568862793144" duration="24794000" />
+      <workItem from="1568902650290" duration="8108000" />
+      <workItem from="1568956253949" duration="8133000" />
     </task>
     <task id="LOCAL-00013" summary="document: removed old documents, added build_environment">
       <created>1560356004208</created>
@@ -621,7 +637,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568881741154</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="pyxdh: Ax0_Core use PySCF's _gen_rhf_response instead, for efficiency reason">
+      <created>1568898108606</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1568898108606</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -665,7 +688,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="doc: change to nature theme, typos" />
     <MESSAGE value="readme: add minimal working example illustrating functionality of pyxdh" />
     <MESSAGE value="doc: update xyg3" />
     <MESSAGE value="lgtm: try to remove lgtm's warning on RHS_B and pytest replication" />
@@ -690,7 +712,8 @@
     <MESSAGE value="pyxdh: add xygj-os dipole check" />
     <MESSAGE value="pyxdh: add requirements to setup.py" />
     <MESSAGE value="pyxdh: flexibility to make cphf more coarse" />
-    <option name="LAST_COMMIT_MESSAGE" value="pyxdh: flexibility to make cphf more coarse" />
+    <MESSAGE value="pyxdh: Ax0_Core use PySCF's _gen_rhf_response instead, for efficiency reason" />
+    <option name="LAST_COMMIT_MESSAGE" value="pyxdh: Ax0_Core use PySCF's _gen_rhf_response instead, for efficiency reason" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -704,7 +727,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_pyxdh.coverage" NAME="pytest for pyxdh Coverage Results" MODIFIED="1566647490187" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_pyxdh.coverage" NAME="pytest for pyxdh Coverage Results" MODIFIED="1568898668829" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipderiv_mp2_Test_DipDerivMP2_test_B2PLYP_polar.coverage" NAME="pytest for dipderiv_mp2.Test_DipDerivMP2.test_B2PLYP_polar Coverage Results" MODIFIED="1568439067444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_pyxdh_DerivOnce_dipole_mp2_Test_DipoleMP2.coverage" NAME="pytest for pyxdh.DerivOnce.dipole_mp2.Test_DipoleMP2 Coverage Results" MODIFIED="1566028289586" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_grad_scf_Test_GradSCF.coverage" NAME="pytest for grad_scf.Test_GradSCF Coverage Results" MODIFIED="1568294038419" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
@@ -722,12 +745,14 @@
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipole_mp2_Test_DipoleMP2_test_MP2_dipole.coverage" NAME="pytest for dipole_mp2.Test_DipoleMP2.test_MP2_dipole Coverage Results" MODIFIED="1560171734840" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdhalpha/DerivOnce" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_polar_scf_Test_PolarSCF_test_HF_polar.coverage" NAME="pytest for polar_scf.Test_PolarSCF.test_HF_polar Coverage Results" MODIFIED="1568289711492" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_grad_mp2_Test_GradMP2_test_5th_functional_grad.coverage" NAME="pytest for grad_mp2.Test_GradMP2.test_5th_functional_grad Coverage Results" MODIFIED="1568727641255" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
-    <SUITE FILE_PATH="coverage/Py_xDH$H06.coverage" NAME="H06 Coverage Results" MODIFIED="1568897889272" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/tmp_dft_speed" />
+    <SUITE FILE_PATH="coverage/Py_xDH$H06.coverage" NAME="H06 Coverage Results" MODIFIED="1568898208563" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/tmp_dft_speed" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_polar_mp2_Test_PolarMP2_test_MP2_polar.coverage" NAME="pytest for polar_mp2.Test_PolarMP2.test_MP2_polar Coverage Results" MODIFIED="1568295595324" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_grad_scf_Test_GradSCF_test_HF_grad.coverage" NAME="pytest for grad_scf.Test_GradSCF.test_HF_grad Coverage Results" MODIFIED="1568290482556" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipderiv_mp2_Test_DipDerivMP2_test_MP2_dipderiv.coverage" NAME="pytest for dipderiv_mp2.Test_DipDerivMP2.test_MP2_dipderiv Coverage Results" MODIFIED="1568438915170" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
+    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_hess_mp2_Test_HessMP2_test_B2PLYP_hess.coverage" NAME="pytest for hess_mp2.Test_HessMP2.test_B2PLYP_hess Coverage Results" MODIFIED="1568961952384" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_grad_mp2_Test_GradMP2_test_grad_xyg3.coverage" NAME="pytest for grad_mp2.Test_GradMP2.test_grad_xyg3 Coverage Results" MODIFIED="1568727867529" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipderiv_scf_Test_DipDerivSCF_test_HF_B3LYP_dipderiv.coverage" NAME="pytest for dipderiv_scf.Test_DipDerivSCF.test_HF_B3LYP_dipderiv Coverage Results" MODIFIED="1568440090601" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
+    <SUITE FILE_PATH="coverage/Py_xDH$MP2_Hess.coverage" NAME="MP2_Hess Coverage Results" MODIFIED="1568970900542" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/tmp_dft_speed" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipderiv_scf_Test_DipDerivSCF_test_HF_polar.coverage" NAME="pytest for dipderiv_scf.Test_DipDerivSCF.test_HF_polar Coverage Results" MODIFIED="1568438347666" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipole_mp2_Test_DipoleMP2_test_5th_functional_dipole.coverage" NAME="pytest for dipole_mp2.Test_DipoleMP2.test_5th_functional_dipole Coverage Results" MODIFIED="1568289194473" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
   </component>

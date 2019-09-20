@@ -74,6 +74,10 @@ class DerivOnceSCF(ABC):
         self._eri1_ao = NotImplemented
         self._eri1_mo = NotImplemented
 
+        # Response generator
+        self._resp = NotImplemented
+        self._resp_cphf = NotImplemented
+
         # E1
         self._E_1 = NotImplemented
 
@@ -332,6 +336,24 @@ class DerivOnceSCF(ABC):
             self._pdA_F_0_mo = self._get_pdA_F_0_mo()
         return self._pdA_F_0_mo
 
+    @property
+    def resp(self):
+        if self._resp is NotImplemented:
+            self._resp = _gen_rhf_response(self.scf_eng, mo_coeff=self.C, mo_occ=self.mo_occ, hermi=1, max_memory=self.grdit_memory)
+        return self._resp
+
+    @property
+    def resp_cphf(self):
+        if self._resp_cphf is NotImplemented:
+            if self.xc_type == "HF":
+                self._resp_cphf = self.resp
+            else:
+                mf = dft.RKS(self.mol)
+                mf.xc = self.scf_eng.xc
+                mf.grids = self.cphf_grids
+                self._resp_cphf = _gen_rhf_response(mf, mo_coeff=self.C, mo_occ=self.mo_occ, hermi=1, max_memory=self.grdit_memory)
+        return self._resp_cphf
+
     # endregion
 
     # region Utility functions
@@ -363,18 +385,10 @@ class DerivOnceSCF(ABC):
         """
         C = self.C
         nao = self.nao
-        grids = self.cphf_grids if in_cphf else self.grids
+        resp = self.resp_cphf if in_cphf else self.resp
 
         sij_none = si is None and sj is None
         skl_none = sk is None and sl is None
-
-        if self.xc_type == "GGA":
-            mf = dft.RKS(self.mol)
-            mf.grids = grids
-            mf.xc = self.xc
-        else:
-            mf = self.scf_eng
-        resp = _gen_rhf_response(mf, mo_coeff=self.C, mo_occ=self.mo_occ, hermi=1, max_memory=self.grdit_memory)
 
         @timing
         def fx(X_):

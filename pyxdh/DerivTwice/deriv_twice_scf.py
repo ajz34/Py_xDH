@@ -23,6 +23,8 @@ class DerivTwiceSCF(ABC):
         if "grdit_memory" in config:
             self.grdit_memory = config["grdit_memory"]
 
+        self._same_deriv = True  # This is only an indication to use symmetry to eliminate computation cost
+
         # Make assertion on coefficient idential of deriv_A and deriv_B instances
         # for some molecules which have degenerate orbital energies,
         # two instances of DerivOnce have different coefficients can be fatal

@@ -53,9 +53,12 @@ class Test_HessMP2:
         import pickle
 
         H2O2 = Mol_H2O2(xc="0.53*HF + 0.47*B88, 0.73*LYP")
+        grids_cphf = H2O2.gen_grids(50, 194)
         config = {
             "scf_eng": H2O2.gga_eng,
-            "cc": 0.27
+            "cc": 0.27,
+            "cphf_tol": 1e-6,
+            "cphf_grids": grids_cphf
         }
         grad_helper = GradMP2(config)
 
