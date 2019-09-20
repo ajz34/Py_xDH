@@ -7,3 +7,4 @@ extraction:
       version: 3
       requirements_files: requirements.txt
       setup_py: setup.py
+      exclude: pyxdh/Validation

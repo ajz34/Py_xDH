@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="pyxdh: make hessian quicker">
+    <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.lgtm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.lgtm.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_scf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/dipole_mp2.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/dipole_mp2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/dipole_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/dipole_scf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/grad_mp2.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/grad_mp2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/grad_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/grad_scf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/dipderiv_mp2.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/dipderiv_mp2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/dipderiv_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/dipderiv_scf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/hess_mp2.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/hess_mp2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/hess_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/hess_scf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/polar_mp2.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/polar_mp2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/polar_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/polar_scf.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -302,21 +293,7 @@
       <workItem from="1568793924476" duration="1669000" />
       <workItem from="1568862793144" duration="24794000" />
       <workItem from="1568902650290" duration="8108000" />
-      <workItem from="1568956253949" duration="10434000" />
-    </task>
-    <task id="LOCAL-00014" summary="document: remove include, that should be replaced by pyxdh.Validation">
-      <created>1560356775915</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1560356775915</updated>
-    </task>
-    <task id="LOCAL-00015" summary="document: simply add dependencies instruction to readme">
-      <created>1560404359447</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1560404359448</updated>
+      <workItem from="1568956253949" duration="10983000" />
     </task>
     <task id="LOCAL-00016" summary="document: initialize intro_python">
       <created>1560434789818</created>
@@ -647,7 +624,21 @@
       <option name="project" value="LOCAL" />
       <updated>1568971349442</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="pyxdh: change all grid setting in cphf to (50, 190), add U_1 not rotated example">
+      <created>1568976359566</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1568976359566</updated>
+    </task>
+    <task id="LOCAL-00064" summary="pyxdh: mute gen_B_2 since no actual function actually use it">
+      <created>1568976409777</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1568976409777</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -691,8 +682,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="doc: update xyg3" />
-    <MESSAGE value="lgtm: try to remove lgtm's warning on RHS_B and pytest replication" />
     <MESSAGE value="action: remove warning of F632 in flake8 lint" />
     <MESSAGE value="action: remove warning in flake8 lint (except complex functions)" />
     <MESSAGE value="action: change pytest command, change wrong code in deriv_once_scf" />
@@ -716,7 +705,9 @@
     <MESSAGE value="pyxdh: flexibility to make cphf more coarse" />
     <MESSAGE value="pyxdh: Ax0_Core use PySCF's _gen_rhf_response instead, for efficiency reason" />
     <MESSAGE value="pyxdh: make hessian quicker" />
-    <option name="LAST_COMMIT_MESSAGE" value="pyxdh: make hessian quicker" />
+    <MESSAGE value="pyxdh: change all grid setting in cphf to (50, 190), add U_1 not rotated example" />
+    <MESSAGE value="pyxdh: mute gen_B_2 since no actual function actually use it" />
+    <option name="LAST_COMMIT_MESSAGE" value="pyxdh: mute gen_B_2 since no actual function actually use it" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

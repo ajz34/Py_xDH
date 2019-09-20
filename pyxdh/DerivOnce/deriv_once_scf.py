@@ -9,7 +9,7 @@ from pyscf.soscf.newton_ah import _gen_rhf_response
 from pyscf import gto, dft, grad, hessian, lib
 from pyscf.scf import cphf
 
-from pyxdh.Utilities import timing, GridIterator, KernelHelper
+from pyxdh.Utilities import timing
 
 MAXMEM = float(os.getenv("MAXMEM", 2))
 np.einsum = partial(np.einsum, optimize=["greedy", 1024 ** 3 * MAXMEM / 8])
