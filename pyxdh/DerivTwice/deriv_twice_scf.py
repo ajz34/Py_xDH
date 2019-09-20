@@ -199,11 +199,11 @@ class DerivTwiceSCF(ABC):
             self._Xi_2 = self._get_Xi_2()
         return self._Xi_2
 
-    @property
-    def B_2(self):
-        if self._B_2 is NotImplemented:
-            self._B_2 = self._get_B_2()
-        return self._B_2
+    # @property
+    # def B_2(self):
+    #     if self._B_2 is NotImplemented:
+    #         self._B_2 = self._get_B_2()
+    #     return self._B_2
 
     @property
     def eri2_ao(self):
@@ -308,43 +308,43 @@ class DerivTwiceSCF(ABC):
         )
         return Xi_2
 
-    def _get_B_2(self):
-        A = self.A
-        B = self.B
-        Ax0_Core = A.Ax0_Core  # Ax0_Core should be the same for A and B derivative
-
-        sa, so = self.sa, self.so
-        e = self.e
-
-        B_2 = (
-            # line 1
-            + self.F_2_mo
-            - np.einsum("ABai, i -> ABai", self.Xi_2, e)
-            - 0.5 * Ax0_Core(sa, sa, so, so)(self.Xi_2[:, :, :, :, so, so])
-            # line 2
-            + np.einsum("Apa, Bpi -> ABai", A.U_1, B.F_1_mo)
-            + np.einsum("Api, Bpa -> ABai", A.U_1, B.F_1_mo)
-            + np.einsum("Bpa, Bpi -> ABai", B.U_1, A.F_1_mo)
-            + np.einsum("Bpi, Bpa -> ABai", B.U_1, A.F_1_mo)
-            # line 3
-            + np.einsum("Apa, Bpi, p -> ABai", A.U_1, B.U_1, e)
-            + np.einsum("Bpa, Api, p -> ABai", B.U_1, A.U_1, e)
-            # line 4
-            + 0.5 * Ax0_Core(sa, sa, sa, sa)(
-                + np.einsum("Akm, Blm -> ABkl", A.U_1[:, :, :, so], B.U_1[:, :, :, so])
-                + np.einsum("Bkm, Alm -> ABkl", B.U_1[:, :, :, so], A.U_1[:, :, :, so])
-            )
-            # line 5
-            + np.einsum("Apa, Bpi -> ABai", A.U_1, Ax0_Core(sa, sa, sa, so)(B.U_1[:, :, :, so]))
-            + np.einsum("Bpa, Api -> ABai", B.U_1, Ax0_Core(sa, sa, sa, so)(A.U_1[:, :, :, so]))
-            # line 6
-            + np.einsum("Api, Bpa -> ABai", A.U_1, Ax0_Core(sa, sa, sa, so)(B.U_1[:, :, :, so]))
-            + np.einsum("Bpi, Apa -> ABai", B.U_1, Ax0_Core(sa, sa, sa, so)(A.U_1[:, :, :, so]))
-            # line 7
-            + A.Ax1_Core(sa, sa, sa, so)(B.U_1[:, :, :, so])
-            + B.Ax1_Core(sa, sa, sa, so)(A.U_1[:, :, :, so]).swapaxes(0, 1)
-        )
-        return B_2
+    # def _get_B_2(self):
+    #     A = self.A
+    #     B = self.B
+    #     Ax0_Core = A.Ax0_Core  # Ax0_Core should be the same for A and B derivative
+    #
+    #     sa, so = self.sa, self.so
+    #     e = self.e
+    #
+    #     B_2 = (
+    #         # line 1
+    #         + self.F_2_mo
+    #         - np.einsum("ABai, i -> ABai", self.Xi_2, e)
+    #         - 0.5 * Ax0_Core(sa, sa, so, so)(self.Xi_2[:, :, :, :, so, so])
+    #         # line 2
+    #         + np.einsum("Apa, Bpi -> ABai", A.U_1, B.F_1_mo)
+    #         + np.einsum("Api, Bpa -> ABai", A.U_1, B.F_1_mo)
+    #         + np.einsum("Bpa, Bpi -> ABai", B.U_1, A.F_1_mo)
+    #         + np.einsum("Bpi, Bpa -> ABai", B.U_1, A.F_1_mo)
+    #         # line 3
+    #         + np.einsum("Apa, Bpi, p -> ABai", A.U_1, B.U_1, e)
+    #         + np.einsum("Bpa, Api, p -> ABai", B.U_1, A.U_1, e)
+    #         # line 4
+    #         + 0.5 * Ax0_Core(sa, sa, sa, sa)(
+    #             + np.einsum("Akm, Blm -> ABkl", A.U_1[:, :, :, so], B.U_1[:, :, :, so])
+    #             + np.einsum("Bkm, Alm -> ABkl", B.U_1[:, :, :, so], A.U_1[:, :, :, so])
+    #         )
+    #         # line 5
+    #         + np.einsum("Apa, Bpi -> ABai", A.U_1, Ax0_Core(sa, sa, sa, so)(B.U_1[:, :, :, so]))
+    #         + np.einsum("Bpa, Api -> ABai", B.U_1, Ax0_Core(sa, sa, sa, so)(A.U_1[:, :, :, so]))
+    #         # line 6
+    #         + np.einsum("Api, Bpa -> ABai", A.U_1, Ax0_Core(sa, sa, sa, so)(B.U_1[:, :, :, so]))
+    #         + np.einsum("Bpi, Apa -> ABai", B.U_1, Ax0_Core(sa, sa, sa, so)(A.U_1[:, :, :, so]))
+    #         # line 7
+    #         + A.Ax1_Core(sa, sa, sa, so)(B.U_1[:, :, :, so])
+    #         + B.Ax1_Core(sa, sa, sa, so)(A.U_1[:, :, :, so]).swapaxes(0, 1)
+    #     )
+    #     return B_2
 
     @abstractmethod
     def _get_eri2_ao(self):
