@@ -300,8 +300,9 @@ class Test_GradSCF:
         from pyxdh.Utilities.test_molecules import Mol_H2O2
 
         H2O2 = Mol_H2O2()
+        grids_cphf = H2O2.gen_grids(50, 194)
         self.valid_assert({"scf_eng": H2O2.hf_eng}, "Validation/gaussian/H2O2-HF-freq.fchk")
-        self.valid_assert({"scf_eng": H2O2.gga_eng}, "Validation/gaussian/H2O2-B3LYP-freq.fchk")
+        self.valid_assert({"scf_eng": H2O2.gga_eng, "cphf_grids": grids_cphf}, "Validation/gaussian/H2O2-B3LYP-freq.fchk")
 
     def test_HF_B3LYP_grad(self):
 

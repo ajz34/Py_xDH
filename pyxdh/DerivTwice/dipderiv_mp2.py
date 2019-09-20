@@ -39,7 +39,7 @@ class Test_DipDerivMP2:
         from pyxdh.DerivOnce import DipoleMP2, GradMP2
 
         H2O2 = Mol_H2O2()
-        config = {"scf_eng": H2O2.hf_eng}
+        config = {"scf_eng": H2O2.hf_eng, "cphf_tol": 1e-10}
         dip_helper = DipoleMP2(config)
         grad_helper = GradMP2(config)
         config = {"deriv_A": dip_helper, "deriv_B": grad_helper}
@@ -57,7 +57,8 @@ class Test_DipDerivMP2:
         from pyxdh.DerivOnce import DipoleMP2, GradMP2
 
         H2O2 = Mol_H2O2(xc="0.53*HF + 0.47*B88, 0.73*LYP")
-        config = {"scf_eng": H2O2.gga_eng, "cc": 0.27}
+        grids_cphf = H2O2.gen_grids(50, 194)
+        config = {"scf_eng": H2O2.gga_eng, "cc": 0.27, "cphf_grids": grids_cphf}
         dip_helper = DipoleMP2(config)
         grad_helper = GradMP2(config)
         config = {"deriv_A": dip_helper, "deriv_B": grad_helper}
@@ -76,10 +77,12 @@ class Test_DipDerivMP2:
 
         H2O2_sc = Mol_H2O2(xc="B3LYPg")
         H2O2_nc = Mol_H2O2(xc="0.8033*HF - 0.0140*LDA + 0.2107*B88, 0.6789*LYP")
+        grids_cphf = H2O2_sc.gen_grids(50, 194)
         config = {
             "scf_eng": H2O2_sc.gga_eng,
             "nc_eng": H2O2_nc.gga_eng,
             "cc": 0.3211,
+            "cphf_grids": grids_cphf
         }
         dip_helper = DipoleXDH(config)
         grad_helper = GradXDH(config)

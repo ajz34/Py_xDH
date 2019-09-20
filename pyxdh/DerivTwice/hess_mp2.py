@@ -57,7 +57,6 @@ class Test_HessMP2:
         config = {
             "scf_eng": H2O2.gga_eng,
             "cc": 0.27,
-            "cphf_tol": 1e-6,
             "cphf_grids": grids_cphf
         }
         grad_helper = GradMP2(config)
@@ -95,10 +94,12 @@ class Test_HessMP2:
 
         H2O2_sc = Mol_H2O2(xc="B3LYPg")
         H2O2_nc = Mol_H2O2(xc="0.8033*HF - 0.0140*LDA + 0.2107*B88, 0.6789*LYP")
+        grids_cphf = H2O2_sc.gen_grids(50, 194)
         config = {
             "scf_eng": H2O2_sc.gga_eng,
             "nc_eng": H2O2_nc.gga_eng,
             "cc": 0.3211,
+            "cphf_grids": grids_cphf
         }
         grad_helper = GradXDH(config)
 

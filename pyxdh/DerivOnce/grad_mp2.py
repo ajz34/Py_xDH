@@ -59,7 +59,8 @@ class Test_GradMP2:
     def test_grad_b2plyp(self):
         from pyxdh.Utilities.test_molecules import Mol_H2O2
         H2O2 = Mol_H2O2(xc="0.53*HF + 0.47*B88, 0.73*LYP")
-        config = {"scf_eng": H2O2.gga_eng, "cc": 0.27}
+        grids_cphf = H2O2.gen_grids(50, 194)
+        config = {"scf_eng": H2O2.gga_eng, "cc": 0.27, "cphf_grids": grids_cphf}
         helper = GradMP2(config)
         self.valid_resource(helper, "Validation/gaussian/H2O2-B2PLYP-freq.fchk")
 
@@ -67,7 +68,8 @@ class Test_GradMP2:
         from pyxdh.Utilities.test_molecules import Mol_H2O2
         H2O2_sc = Mol_H2O2(xc="B3LYPg")
         H2O2_nc = Mol_H2O2(xc="0.8033*HF - 0.0140*LDA + 0.2107*B88, 0.6789*LYP")
-        config = {"scf_eng": H2O2_sc.gga_eng, "nc_eng": H2O2_nc.gga_eng, "cc": 0.3211}
+        grids_cphf = H2O2_sc.gen_grids(50, 194)
+        config = {"scf_eng": H2O2_sc.gga_eng, "nc_eng": H2O2_nc.gga_eng, "cc": 0.3211, "cphf_grids": grids_cphf}
         helper = GradXDH(config)
         self.valid_resource(helper, "Validation/gaussian/H2O2-XYG3-force.fchk")
 
@@ -75,7 +77,8 @@ class Test_GradMP2:
         from pyxdh.Utilities.test_molecules import Mol_H2O2
         H2O2_sc = Mol_H2O2(xc="B3LYPg")
         H2O2_nc = Mol_H2O2(xc="0.7731*HF + 0.2269*LDA, 0.2309*VWN3 + 0.2754*LYP")
-        config = {"scf_eng": H2O2_sc.gga_eng, "nc_eng": H2O2_nc.gga_eng, "cc": 0.4364, "ss": 0.}
+        grids_cphf = H2O2_sc.gen_grids(50, 194)
+        config = {"scf_eng": H2O2_sc.gga_eng, "nc_eng": H2O2_nc.gga_eng, "cc": 0.4364, "ss": 0., "cphf_grids": grids_cphf}
         helper = GradXDH(config)
         self.valid_resource(helper, "Validation/gaussian/H2O2-XYGJOS-force.fchk")
 

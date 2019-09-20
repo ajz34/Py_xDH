@@ -447,6 +447,7 @@ class Test_HessSCF:
         from pyxdh.DerivOnce import GradSCF
 
         H2O2 = Mol_H2O2()
+        grids_cphf = H2O2.gen_grids(50, 194)
         config = {
             "scf_eng": H2O2.gga_eng
         }
@@ -454,6 +455,7 @@ class Test_HessSCF:
         config = {
             "deriv_A": grad_helper,
             "deriv_B": grad_helper,
+            "cphf_grids": grids_cphf
         }
 
         helper = HessSCF(config)

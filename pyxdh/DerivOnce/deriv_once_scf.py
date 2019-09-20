@@ -27,7 +27,7 @@ class DerivOnceSCF(ABC):
         self.rotation = config.get("rotation", True)
         self.grdit_memory = config.get("grdit_memory", 2000)
         self.init_scf = config.get("init_scf", True)
-        self.cphf_tol = config.get("cphf_tol", 1e-13)
+        self.cphf_tol = config.get("cphf_tol", 1e-6)
 
         # Basic settings
         self.mol = self.scf_eng.mol  # type: gto.Mole

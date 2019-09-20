@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Py_xDH.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Py_xDH.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="pyxdh: make hessian quicker">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_scf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/dipole_mp2.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/dipole_mp2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/dipole_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/dipole_scf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/grad_mp2.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/grad_mp2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/grad_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/grad_scf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_scf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/dipderiv_mp2.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/dipderiv_mp2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/dipderiv_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/dipderiv_scf.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/hess_mp2.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/hess_mp2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/hess_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/hess_scf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/polar_mp2.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/polar_mp2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/polar_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/polar_scf.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -76,7 +79,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.MP2_Hess">
+  <component name="RunManager" selected="Python tests.pytest for pyxdh">
     <configuration name="H06" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Py_xDH" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -299,14 +302,7 @@
       <workItem from="1568793924476" duration="1669000" />
       <workItem from="1568862793144" duration="24794000" />
       <workItem from="1568902650290" duration="8108000" />
-      <workItem from="1568956253949" duration="8133000" />
-    </task>
-    <task id="LOCAL-00013" summary="document: removed old documents, added build_environment">
-      <created>1560356004208</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1560356004208</updated>
+      <workItem from="1568956253949" duration="10434000" />
     </task>
     <task id="LOCAL-00014" summary="document: remove include, that should be replaced by pyxdh.Validation">
       <created>1560356775915</created>
@@ -644,7 +640,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568898108606</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="pyxdh: make hessian quicker">
+      <created>1568971349441</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1568971349442</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -688,7 +691,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="readme: add minimal working example illustrating functionality of pyxdh" />
     <MESSAGE value="doc: update xyg3" />
     <MESSAGE value="lgtm: try to remove lgtm's warning on RHS_B and pytest replication" />
     <MESSAGE value="action: remove warning of F632 in flake8 lint" />
@@ -713,7 +715,8 @@
     <MESSAGE value="pyxdh: add requirements to setup.py" />
     <MESSAGE value="pyxdh: flexibility to make cphf more coarse" />
     <MESSAGE value="pyxdh: Ax0_Core use PySCF's _gen_rhf_response instead, for efficiency reason" />
-    <option name="LAST_COMMIT_MESSAGE" value="pyxdh: Ax0_Core use PySCF's _gen_rhf_response instead, for efficiency reason" />
+    <MESSAGE value="pyxdh: make hessian quicker" />
+    <option name="LAST_COMMIT_MESSAGE" value="pyxdh: make hessian quicker" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -727,7 +730,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_pyxdh.coverage" NAME="pytest for pyxdh Coverage Results" MODIFIED="1568898668829" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_pyxdh.coverage" NAME="pytest for pyxdh Coverage Results" MODIFIED="1568976272908" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipderiv_mp2_Test_DipDerivMP2_test_B2PLYP_polar.coverage" NAME="pytest for dipderiv_mp2.Test_DipDerivMP2.test_B2PLYP_polar Coverage Results" MODIFIED="1568439067444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_pyxdh_DerivOnce_dipole_mp2_Test_DipoleMP2.coverage" NAME="pytest for pyxdh.DerivOnce.dipole_mp2.Test_DipoleMP2 Coverage Results" MODIFIED="1566028289586" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_grad_scf_Test_GradSCF.coverage" NAME="pytest for grad_scf.Test_GradSCF Coverage Results" MODIFIED="1568294038419" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />

@@ -82,14 +82,15 @@ class Test_DipDerivSCF:
 
         # HF
         H2O2 = Mol_H2O2()
-        dip_deriv = DipoleSCF({"scf_eng": H2O2.hf_eng})
-        grad_deriv = GradSCF({"scf_eng": H2O2.hf_eng})
+        dip_deriv = DipoleSCF({"scf_eng": H2O2.hf_eng, "cphf_tol": 1e-10})
+        grad_deriv = GradSCF({"scf_eng": H2O2.hf_eng, "cphf_tol": 1e-10})
         self.valid_assert(dip_deriv, grad_deriv, "Validation/gaussian/H2O2-HF-freq.fchk")
 
         # B3LYP
         H2O2 = Mol_H2O2()
-        dip_deriv = DipoleSCF({"scf_eng": H2O2.gga_eng})
-        grad_deriv = GradSCF({"scf_eng": H2O2.gga_eng})
+        grids_cphf = H2O2.gen_grids(50, 194)
+        dip_deriv = DipoleSCF({"scf_eng": H2O2.gga_eng, "cphf_grids": grids_cphf, "cphf_tol": 1e-10})
+        grad_deriv = GradSCF({"scf_eng": H2O2.gga_eng, "cphf_grids": grids_cphf, "cphf_tol": 1e-10})
         self.valid_assert(dip_deriv, grad_deriv, "Validation/gaussian/H2O2-B3LYP-freq.fchk")
 
     def test_HF_B3LYP_dipderiv(self):
