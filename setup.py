@@ -9,10 +9,10 @@ with open("requirements.txt", "r") as rq:
 
 setuptools.setup(
     name="pyxdh",
-    version="v0.0.1",
+    version="v0.0.2",
     author="ajz34",
     author_email="17110220038@fudan.edu.cn",
-    description="xDH Functional Derivatives Enpowered by Python",
+    description="Document and code of python and PySCF approach XYG3 type of density functional realization",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/ajz34/Py_xDH",
