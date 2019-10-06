@@ -45,8 +45,8 @@ class DipDerivSCF(DerivTwiceSCF):
 
     def _get_E_2(self):
         mol = self.mol
-        dipderiv_nuc = np.zeros((3, 4, 3))
         natm = mol.natm
+        dipderiv_nuc = np.zeros((3, natm, 3))
         for A in range(natm):
             dipderiv_nuc[:, A, :] = np.eye(3) * mol.atom_charge(A)
         dipderiv_nuc.shape = (3, 3 * natm)

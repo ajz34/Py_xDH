@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -283,14 +282,7 @@
       <workItem from="1569030569267" duration="5591000" />
       <workItem from="1569311549304" duration="2494000" />
       <workItem from="1569315438123" duration="1542000" />
-      <workItem from="1570327194233" duration="225000" />
-    </task>
-    <task id="LOCAL-00018" summary="readme: emphasis pyscf should be installed by pip">
-      <created>1560501918070</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1560501918070</updated>
+      <workItem from="1570327194233" duration="2531000" />
     </task>
     <task id="LOCAL-00019" summary="intro: I think I should stop talking about python itself; there's too much to talk...">
       <created>1560502031468</created>
@@ -628,7 +620,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568978976109</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="pyxdh: tag v0.0.2">
+      <created>1570327559746</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1570327559747</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -672,7 +671,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="action: change pytest command, change wrong code in deriv_once_scf" />
     <MESSAGE value="action: remove python 2.7 support" />
     <MESSAGE value="action: try move codecov to github action based instead of travis-ci based" />
     <MESSAGE value="action: just change coveragerc to .coveragerc ... my fault ..." />
@@ -697,7 +695,8 @@
     <MESSAGE value="pyxdh: mute gen_B_2 since no actual function actually use it" />
     <MESSAGE value="pyxdh: possibly pass lgtm's alert" />
     <MESSAGE value="pyxdh: move test of not rotated U_1 to polarizability, since dipole xDH does not need U_1" />
-    <option name="LAST_COMMIT_MESSAGE" value="pyxdh: move test of not rotated U_1 to polarizability, since dipole xDH does not need U_1" />
+    <MESSAGE value="pyxdh: tag v0.0.2" />
+    <option name="LAST_COMMIT_MESSAGE" value="pyxdh: tag v0.0.2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
