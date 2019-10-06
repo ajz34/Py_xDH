@@ -9,7 +9,7 @@ with open("requirements.txt", "r") as rq:
 
 setuptools.setup(
     name="pyxdh",
-    version="v0.0.2",
+    version="v0.0.3",
     author="ajz34",
     author_email="17110220038@fudan.edu.cn",
     description="Document and code of python and PySCF approach XYG3 type of density functional realization",
@@ -24,6 +24,4 @@ setuptools.setup(
         "Operating System :: POSIX :: Linux",
     ],
     # https://stackoverflow.com/questions/1612733/including-non-python-files-with-setup-py
-    package_data={'': ['Validation/*']},
-    include_package_data=True,
 )

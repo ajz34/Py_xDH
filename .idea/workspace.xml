@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="">
+    <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="pyxdh: only one bug fixed,">
+      <change afterPath="$PROJECT_DIR$/MANIFEST.in" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -283,13 +286,7 @@
       <workItem from="1569311549304" duration="2494000" />
       <workItem from="1569315438123" duration="1542000" />
       <workItem from="1570327194233" duration="2531000" />
-    </task>
-    <task id="LOCAL-00019" summary="intro: I think I should stop talking about python itself; there's too much to talk...">
-      <created>1560502031468</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1560502031468</updated>
+      <workItem from="1570339984157" duration="5323000" />
     </task>
     <task id="LOCAL-00020" summary="intro: intro_python revoked, removed easy contents">
       <created>1560688024416</created>
@@ -627,7 +624,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570327559747</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="pyxdh: correct bug in dipderiv">
+      <created>1570340125031</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1570340125032</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -671,7 +675,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="action: remove python 2.7 support" />
     <MESSAGE value="action: try move codecov to github action based instead of travis-ci based" />
     <MESSAGE value="action: just change coveragerc to .coveragerc ... my fault ..." />
     <MESSAGE value="doc: XYG3 proj completed, qc basic part finished" />
@@ -696,7 +699,8 @@
     <MESSAGE value="pyxdh: possibly pass lgtm's alert" />
     <MESSAGE value="pyxdh: move test of not rotated U_1 to polarizability, since dipole xDH does not need U_1" />
     <MESSAGE value="pyxdh: tag v0.0.2" />
-    <option name="LAST_COMMIT_MESSAGE" value="pyxdh: tag v0.0.2" />
+    <MESSAGE value="pyxdh: correct bug in dipderiv" />
+    <option name="LAST_COMMIT_MESSAGE" value="pyxdh: correct bug in dipderiv" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
