@@ -8,12 +8,14 @@ from pyscf.soscf.newton_ah import _gen_rhf_response
 
 from pyscf import gto, dft, grad, hessian
 from pyscf.scf import cphf
+from pyscf.dft import xcfun
 
 from pyxdh.Utilities import timing
 
 MAXMEM = float(os.getenv("MAXMEM", 2))
 np.einsum = partial(np.einsum, optimize=["greedy", 1024 ** 3 * MAXMEM / 8])
 np.set_printoptions(8, linewidth=1000, suppress=True)
+dft.numint.libxc = xcfun
 
 
 # Cubic Inheritance: A1

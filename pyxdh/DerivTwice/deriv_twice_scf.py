@@ -1,6 +1,8 @@
 import numpy as np
+from pyscf.scf import cphf
 from abc import ABC, abstractmethod
 from functools import partial
+import warnings
 import os
 
 from pyxdh.DerivOnce import DerivOnceSCF, DerivOnceNCDFT
@@ -56,6 +58,7 @@ class DerivTwiceSCF(ABC):
         self._F_2_mo = NotImplemented
         self._Xi_2 = NotImplemented
         self._B_2 = NotImplemented
+        self._U_2 = NotImplemented
         self._eri2_ao = NotImplemented
         self._eri2_mo = NotImplemented
 
@@ -199,11 +202,17 @@ class DerivTwiceSCF(ABC):
             self._Xi_2 = self._get_Xi_2()
         return self._Xi_2
 
-    # @property
-    # def B_2(self):
-    #     if self._B_2 is NotImplemented:
-    #         self._B_2 = self._get_B_2()
-    #     return self._B_2
+    @property
+    def B_2(self):
+        if self._B_2 is NotImplemented:
+            self._B_2 = self._get_B_2()
+        return self._B_2
+
+    @property
+    def U_2(self):
+        if self._U_2 is NotImplemented:
+            self._U_2 = self._get_U_2()
+        return self._U_2
 
     @property
     def eri2_ao(self):
@@ -279,6 +288,8 @@ class DerivTwiceSCF(ABC):
         pass
 
     def _get_S_2_mo(self):
+        if self.S_2_ao is 0:
+            return 0
         return self.C.T @ self.S_2_ao @ self.C
 
     @abstractmethod
@@ -303,48 +314,98 @@ class DerivTwiceSCF(ABC):
             self.S_2_mo
             + np.einsum("Apm, Bqm -> ABpq", A.U_1, B.U_1)
             + np.einsum("Bpm, Aqm -> ABpq", B.U_1, A.U_1)
-            - np.einsum("Apm, Bqm -> ABpq", A.S_1_mo, B.S_1_mo)
-            - np.einsum("Bpm, Aqm -> ABpq", B.S_1_mo, A.S_1_mo)
+            # - np.einsum("Apm, Bqm -> ABpq", A.S_1_mo, B.S_1_mo)
+            # - np.einsum("Bpm, Aqm -> ABpq", B.S_1_mo, A.S_1_mo)
         )
+        if A.S_1_mo is not 0 and B.S_1_mo is not 0:
+            Xi_2 -= np.einsum("Apm, Bqm -> ABpq", A.S_1_mo, B.S_1_mo)
+            Xi_2 -= np.einsum("Bpm, Aqm -> ABpq", B.S_1_mo, A.S_1_mo)
         return Xi_2
 
-    # def _get_B_2(self):
-    #     A = self.A
-    #     B = self.B
-    #     Ax0_Core = A.Ax0_Core  # Ax0_Core should be the same for A and B derivative
-    #
-    #     sa, so = self.sa, self.so
-    #     e = self.e
-    #
-    #     B_2 = (
-    #         # line 1
-    #         + self.F_2_mo
-    #         - np.einsum("ABai, i -> ABai", self.Xi_2, e)
-    #         - 0.5 * Ax0_Core(sa, sa, so, so)(self.Xi_2[:, :, :, :, so, so])
-    #         # line 2
-    #         + np.einsum("Apa, Bpi -> ABai", A.U_1, B.F_1_mo)
-    #         + np.einsum("Api, Bpa -> ABai", A.U_1, B.F_1_mo)
-    #         + np.einsum("Bpa, Bpi -> ABai", B.U_1, A.F_1_mo)
-    #         + np.einsum("Bpi, Bpa -> ABai", B.U_1, A.F_1_mo)
-    #         # line 3
-    #         + np.einsum("Apa, Bpi, p -> ABai", A.U_1, B.U_1, e)
-    #         + np.einsum("Bpa, Api, p -> ABai", B.U_1, A.U_1, e)
-    #         # line 4
-    #         + 0.5 * Ax0_Core(sa, sa, sa, sa)(
-    #             + np.einsum("Akm, Blm -> ABkl", A.U_1[:, :, :, so], B.U_1[:, :, :, so])
-    #             + np.einsum("Bkm, Alm -> ABkl", B.U_1[:, :, :, so], A.U_1[:, :, :, so])
-    #         )
-    #         # line 5
-    #         + np.einsum("Apa, Bpi -> ABai", A.U_1, Ax0_Core(sa, sa, sa, so)(B.U_1[:, :, :, so]))
-    #         + np.einsum("Bpa, Api -> ABai", B.U_1, Ax0_Core(sa, sa, sa, so)(A.U_1[:, :, :, so]))
-    #         # line 6
-    #         + np.einsum("Api, Bpa -> ABai", A.U_1, Ax0_Core(sa, sa, sa, so)(B.U_1[:, :, :, so]))
-    #         + np.einsum("Bpi, Apa -> ABai", B.U_1, Ax0_Core(sa, sa, sa, so)(A.U_1[:, :, :, so]))
-    #         # line 7
-    #         + A.Ax1_Core(sa, sa, sa, so)(B.U_1[:, :, :, so])
-    #         + B.Ax1_Core(sa, sa, sa, so)(A.U_1[:, :, :, so]).swapaxes(0, 1)
-    #     )
-    #     return B_2
+    def _get_B_2(self):
+        A = self.A
+        B = self.B
+        Ax0_Core = A.Ax0_Core  # Ax0_Core should be the same for A and B derivative
+
+        sa, so = self.sa, self.so
+        e = self.e
+
+        B_2 = (
+            # line 1
+            + self.F_2_mo
+            - np.einsum("ABai, i -> ABai", self.Xi_2, e)
+            - 0.5 * Ax0_Core(sa, sa, so, so)(self.Xi_2[:, :, so, so])
+            # line 2
+            + np.einsum("Apa, Bpi -> ABai", A.U_1, B.F_1_mo)
+            + np.einsum("Api, Bpa -> ABai", A.U_1, B.F_1_mo)
+            + np.einsum("Bpa, Api -> ABai", B.U_1, A.F_1_mo)
+            + np.einsum("Bpi, Apa -> ABai", B.U_1, A.F_1_mo)
+            # line 3
+            + np.einsum("Apa, Bpi, p -> ABai", A.U_1, B.U_1, e)
+            + np.einsum("Bpa, Api, p -> ABai", B.U_1, A.U_1, e)
+            # line 4
+            + 0.5 * Ax0_Core(sa, sa, sa, sa)(
+                + np.einsum("Akm, Blm -> ABkl", A.U_1[:, :, so], B.U_1[:, :, so])
+                + np.einsum("Bkm, Alm -> ABkl", B.U_1[:, :, so], A.U_1[:, :, so])
+            )
+            # line 5
+            + np.einsum("Apa, Bpi -> ABai", A.U_1, Ax0_Core(sa, sa, sa, so)(B.U_1[:, :, so]))
+            + np.einsum("Bpa, Api -> ABai", B.U_1, Ax0_Core(sa, sa, sa, so)(A.U_1[:, :, so]))
+            # line 6
+            + np.einsum("Api, Bpa -> ABai", A.U_1, Ax0_Core(sa, sa, sa, so)(B.U_1[:, :, so]))
+            + np.einsum("Bpi, Apa -> ABai", B.U_1, Ax0_Core(sa, sa, sa, so)(A.U_1[:, :, so]))
+        )
+        if self.xc_type != "HF":
+            B_2 += (
+                # line 7
+                + A.Ax1_Core(sa, sa, sa, so)(B.U_1[:, :, so])
+                + B.Ax1_Core(sa, sa, sa, so)(A.U_1[:, :, so]).swapaxes(0, 1)
+            )
+        return B_2
+
+    def _get_U_2(self):
+        B_2 = self.B_2
+        Xi_2 = self.Xi_2
+        Ax0_Core = self.A.Ax0_Core
+        sv, so = self.sv, self.so
+        nvir, nocc = self.nvir, self.nocc
+
+        # Generate v-o block of U
+        U_2_ai = cphf.solve(
+            Ax0_Core(sv, so, sv, so, in_cphf=True),
+            self.e,
+            self.A.scf_eng.mo_occ,
+            B_2[:, :, sv, so].reshape(-1, nvir, nocc),
+            max_cycle=100,
+            tol=self.A.cphf_tol,
+            hermi=False
+        )[0]
+        U_2_ai.shape = (B_2.shape[0], B_2.shape[1], self.nvir, self.nocc)
+
+        # Test whether converged
+        conv = (
+            + U_2_ai * (self.ev[:, None] - self.eo[None, :])
+            + Ax0_Core(sv, so, sv, so)(U_2_ai)
+            + self.B_2[:, :, sv, so]
+        )
+        if abs(conv).max() > 1e-8:
+            msg = "\nget_U_2: CP-HF not converged well!\nMaximum deviation: " + str(abs(conv).max())
+            warnings.warn(msg)
+
+        # Only generate total U
+        D_pq = - (self.e[:, None] - self.e[None, :]) + 1e-300
+        U_2_pq = np.zeros((B_2.shape[0], B_2.shape[1], self.nmo, self.nmo))
+        U_2_pq[:, :, sv, so] = U_2_ai
+        U_2_pq[:, :, so, sv] = - Xi_2[:, :, so, sv] - U_2_pq[:, :, sv, so].swapaxes(-1, -2)
+        U_2_pq[:, :, so, so] = (Ax0_Core(so, so, sv, so)(U_2_ai) + B_2[:, :, so, so]) / D_pq[so, so]
+        U_2_pq[:, :, sv, sv] = (Ax0_Core(sv, sv, sv, so)(U_2_ai) + B_2[:, :, sv, sv]) / D_pq[sv, sv]
+        for p in range(self.nmo):
+            U_2_pq[:, :, p, p] = - Xi_2[:, :, p, p] / 2
+        U_2_pq -= (U_2_pq + U_2_pq.swapaxes(-1, -2) + Xi_2) / 2
+        U_2_pq -= (U_2_pq + U_2_pq.swapaxes(-1, -2) + Xi_2) / 2
+
+        self._U_2 = U_2_pq
+        return self._U_2
 
     @abstractmethod
     def _get_eri2_ao(self):
