@@ -21,6 +21,7 @@ class DerivTwiceSCF(ABC):
         self.config = config  # type: dict
         self.A = config["deriv_A"]  # type: DerivOnceSCF
         self.B = config["deriv_B"]  # type: DerivOnceSCF
+        self.rotation = config.get("rotation", True)
         self.grdit_memory = 2000
         if "grdit_memory" in config:
             self.grdit_memory = config["grdit_memory"]
@@ -392,17 +393,23 @@ class DerivTwiceSCF(ABC):
             msg = "\nget_U_2: CP-HF not converged well!\nMaximum deviation: " + str(abs(conv).max())
             warnings.warn(msg)
 
-        # Only generate total U
-        D_pq = - (self.e[:, None] - self.e[None, :]) + 1e-300
-        U_2_pq = np.zeros((B_2.shape[0], B_2.shape[1], self.nmo, self.nmo))
-        U_2_pq[:, :, sv, so] = U_2_ai
-        U_2_pq[:, :, so, sv] = - Xi_2[:, :, so, sv] - U_2_pq[:, :, sv, so].swapaxes(-1, -2)
-        U_2_pq[:, :, so, so] = (Ax0_Core(so, so, sv, so)(U_2_ai) + B_2[:, :, so, so]) / D_pq[so, so]
-        U_2_pq[:, :, sv, sv] = (Ax0_Core(sv, sv, sv, so)(U_2_ai) + B_2[:, :, sv, sv]) / D_pq[sv, sv]
-        for p in range(self.nmo):
-            U_2_pq[:, :, p, p] = - Xi_2[:, :, p, p] / 2
-        U_2_pq -= (U_2_pq + U_2_pq.swapaxes(-1, -2) + Xi_2) / 2
-        U_2_pq -= (U_2_pq + U_2_pq.swapaxes(-1, -2) + Xi_2) / 2
+        if self.rotation:
+            # Generate rotated U
+            U_2_pq = - 0.5 * Xi_2
+            U_2_pq[:, :, sv, so] = U_2_ai
+            U_2_pq[:, :, so, sv] = - Xi_2[:, :, so, sv] - U_2_pq[:, :, sv, so].swapaxes(-1, -2)
+        else:
+            # Generate total U
+            D_pq = - (self.e[:, None] - self.e[None, :]) + 1e-300
+            U_2_pq = np.zeros((B_2.shape[0], B_2.shape[1], self.nmo, self.nmo))
+            U_2_pq[:, :, sv, so] = U_2_ai
+            U_2_pq[:, :, so, sv] = - Xi_2[:, :, so, sv] - U_2_pq[:, :, sv, so].swapaxes(-1, -2)
+            U_2_pq[:, :, so, so] = (Ax0_Core(so, so, sv, so)(U_2_ai) + B_2[:, :, so, so]) / D_pq[so, so]
+            U_2_pq[:, :, sv, sv] = (Ax0_Core(sv, sv, sv, so)(U_2_ai) + B_2[:, :, sv, sv]) / D_pq[sv, sv]
+            for p in range(self.nmo):
+                U_2_pq[:, :, p, p] = - Xi_2[:, :, p, p] / 2
+            U_2_pq -= (U_2_pq + U_2_pq.swapaxes(-1, -2) + Xi_2) / 2
+            U_2_pq -= (U_2_pq + U_2_pq.swapaxes(-1, -2) + Xi_2) / 2
 
         self._U_2 = U_2_pq
         return self._U_2

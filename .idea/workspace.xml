@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_scf.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_scf.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -202,8 +201,8 @@
       <item itemvalue="Python.dfscf" />
       <item itemvalue="Python.soscf" />
       <item itemvalue="Python.MP2_Polar" />
-      <item itemvalue="Python tests.pytest for pyxdh" />
       <item itemvalue="Python.test_U_2" />
+      <item itemvalue="Python tests.pytest for pyxdh" />
     </list>
     <recent_temporary>
       <list>
@@ -319,14 +318,8 @@
       <workItem from="1572538042740" duration="767000" />
       <workItem from="1572851236132" duration="1515000" />
       <workItem from="1572926397883" duration="4589000" />
-      <workItem from="1573008684928" duration="6930000" />
-    </task>
-    <task id="LOCAL-00021" summary="lgtm: try code quality scoring">
-      <created>1561015834736</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1561015834736</updated>
+      <workItem from="1573008684928" duration="10268000" />
+      <workItem from="1573103636196" duration="4904000" />
     </task>
     <task id="LOCAL-00022" summary="pyscf: added basis_integral">
       <created>1561883025238</created>
@@ -664,7 +657,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570369739580</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="DerivTwice: add U_2 entry">
+      <created>1573022528108</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1573022528109</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -708,7 +708,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="action: just change coveragerc to .coveragerc ... my fault ..." />
     <MESSAGE value="doc: XYG3 proj completed, qc basic part finished" />
     <MESSAGE value="doc: change slidebar width from 230 pt to 300 pt" />
     <MESSAGE value="pyxdh: add SCF dipole derivative" />
@@ -733,7 +732,8 @@
     <MESSAGE value="pyxdh: tag v0.0.2" />
     <MESSAGE value="pyxdh: correct bug in dipderiv" />
     <MESSAGE value="pypi: only one bug fixed, modified packaging to make pip correctly work" />
-    <option name="LAST_COMMIT_MESSAGE" value="pypi: only one bug fixed, modified packaging to make pip correctly work" />
+    <MESSAGE value="DerivTwice: add U_2 entry" />
+    <option name="LAST_COMMIT_MESSAGE" value="DerivTwice: add U_2 entry" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -750,7 +750,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_scf.py</url>
-          <line>330</line>
+          <line>331</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
