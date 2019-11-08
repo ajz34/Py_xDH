@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/dipole_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/dipole_scf.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_scf.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -322,14 +321,7 @@
       <workItem from="1573008684928" duration="10268000" />
       <workItem from="1573103636196" duration="4904000" />
       <workItem from="1573132847829" duration="1968000" />
-      <workItem from="1573189936205" duration="6197000" />
-    </task>
-    <task id="LOCAL-00023" summary="document: update basic_mp2">
-      <created>1564668337434</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1564668337434</updated>
+      <workItem from="1573189936205" duration="7261000" />
     </task>
     <task id="LOCAL-00024" summary="document: update basic_grid">
       <created>1565514429207</created>
@@ -667,7 +659,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573132939950</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="PolarSCF: add polar option to select certain electric field components">
+      <created>1573215161007</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1573215161008</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -711,7 +710,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="doc: change slidebar width from 230 pt to 300 pt" />
     <MESSAGE value="pyxdh: add SCF dipole derivative" />
     <MESSAGE value="pyxdh: add MP2/B2PLYP dipole derivative" />
     <MESSAGE value="pyxdh: add NCDFT(HF-B3LYP) dipole derivative" />
@@ -736,7 +734,8 @@
     <MESSAGE value="pypi: only one bug fixed, modified packaging to make pip correctly work" />
     <MESSAGE value="DerivTwice: add U_2 entry" />
     <MESSAGE value="DerivTwice: add U_2 rotation" />
-    <option name="LAST_COMMIT_MESSAGE" value="DerivTwice: add U_2 rotation" />
+    <MESSAGE value="PolarSCF: add polar option to select certain electric field components" />
+    <option name="LAST_COMMIT_MESSAGE" value="PolarSCF: add polar option to select certain electric field components" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -750,11 +749,6 @@
           <url>file://$PROJECT_DIR$/pyxdh/tmp_dft_speed/dfscf.py</url>
           <line>6</line>
           <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_scf.py</url>
-          <line>331</line>
-          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
