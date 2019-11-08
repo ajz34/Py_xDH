@@ -13,15 +13,20 @@ np.set_printoptions(8, linewidth=1000, suppress=True)
 
 class DipoleSCF(DerivOnceSCF):
 
+    def __init__(self, config):
+        super(DipoleSCF, self).__init__(config)
+        self.components = (config.get("components", (0, 1, 2)), )
+
     def Ax1_Core(self, si, sj, sk, sl, reshape=True):
 
         C, Co = self.C, self.Co
         nao = self.nao
         so = self.so
+        num_components = len(self.components[0])
 
         dmU = C @ self.U_1[:, :, so] @ Co.T
         dmU += dmU.swapaxes(-1, -2)
-        dmU.shape = (3, nao, nao)
+        dmU.shape = (num_components, nao, nao)
 
         sij_none = si is None and sj is None
         skl_none = sk is None and sl is None
@@ -45,7 +50,7 @@ class DipoleSCF(DerivOnceSCF):
                 dm = C[:, sk] @ X @ C[:, sl].T
             dm += dm.transpose((0, 2, 1))
 
-            ax_ao = np.zeros((3, dm.shape[0], nao, nao))
+            ax_ao = np.zeros((num_components, dm.shape[0], nao, nao))
 
             # Actual calculation
 
@@ -80,7 +85,7 @@ class DipoleSCF(DerivOnceSCF):
                         + 4 * np.einsum("Ag, Brg -> ABrg", pdU_fg, rho_X_1)
                 )
 
-                contrib3 = np.zeros((3, dm.shape[0], nao, nao))
+                contrib3 = np.zeros((num_components, dm.shape[0], nao, nao))
                 contrib3 += np.einsum("ABg, gu, gv -> ABuv", pdU_tmp_M_0, grdh.ao_0, grdh.ao_0)
                 contrib3 += np.einsum("ABrg, rgu, gv -> ABuv", pdU_tmp_M_1, grdh.ao_1, grdh.ao_0)
                 contrib3 += contrib3.swapaxes(-1, -2)
@@ -102,7 +107,7 @@ class DipoleSCF(DerivOnceSCF):
         return fx
 
     def _get_H_1_ao(self):
-        return - self.mol.intor("int1e_r")
+        return - self.mol.intor("int1e_r")[self.components]
 
     def _get_F_1_ao(self):
         return self.H_1_ao

@@ -289,7 +289,7 @@ class DerivTwiceSCF(ABC):
         pass
 
     def _get_S_2_mo(self):
-        if self.S_2_ao is 0:
+        if self.S_2_ao == 0:
             return 0
         return self.C.T @ self.S_2_ao @ self.C
 
@@ -318,7 +318,7 @@ class DerivTwiceSCF(ABC):
             # - np.einsum("Apm, Bqm -> ABpq", A.S_1_mo, B.S_1_mo)
             # - np.einsum("Bpm, Aqm -> ABpq", B.S_1_mo, A.S_1_mo)
         )
-        if A.S_1_mo is not 0 and B.S_1_mo is not 0:
+        if A.S_1_mo != 0 and B.S_1_mo != 0:
             Xi_2 -= np.einsum("Apm, Bqm -> ABpq", A.S_1_mo, B.S_1_mo)
             Xi_2 -= np.einsum("Bpm, Aqm -> ABpq", B.S_1_mo, A.S_1_mo)
         return Xi_2

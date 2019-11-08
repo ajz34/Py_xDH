@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/dipole_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/dipole_scf.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_scf.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -320,13 +321,8 @@
       <workItem from="1572926397883" duration="4589000" />
       <workItem from="1573008684928" duration="10268000" />
       <workItem from="1573103636196" duration="4904000" />
-    </task>
-    <task id="LOCAL-00022" summary="pyscf: added basis_integral">
-      <created>1561883025238</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1561883025238</updated>
+      <workItem from="1573132847829" duration="1968000" />
+      <workItem from="1573189936205" duration="6197000" />
     </task>
     <task id="LOCAL-00023" summary="document: update basic_mp2">
       <created>1564668337434</created>
@@ -664,7 +660,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573022528109</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="DerivTwice: add U_2 rotation">
+      <created>1573132939949</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1573132939950</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -708,7 +711,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="doc: XYG3 proj completed, qc basic part finished" />
     <MESSAGE value="doc: change slidebar width from 230 pt to 300 pt" />
     <MESSAGE value="pyxdh: add SCF dipole derivative" />
     <MESSAGE value="pyxdh: add MP2/B2PLYP dipole derivative" />
@@ -733,7 +735,8 @@
     <MESSAGE value="pyxdh: correct bug in dipderiv" />
     <MESSAGE value="pypi: only one bug fixed, modified packaging to make pip correctly work" />
     <MESSAGE value="DerivTwice: add U_2 entry" />
-    <option name="LAST_COMMIT_MESSAGE" value="DerivTwice: add U_2 entry" />
+    <MESSAGE value="DerivTwice: add U_2 rotation" />
+    <option name="LAST_COMMIT_MESSAGE" value="DerivTwice: add U_2 rotation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
