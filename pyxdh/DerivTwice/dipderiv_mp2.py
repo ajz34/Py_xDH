@@ -49,7 +49,7 @@ class Test_DipDerivMP2:
         formchk = FormchkInterface(resource_filename("pyxdh", "Validation/gaussian/H2O2-MP2-freq.fchk"))
         assert(np.allclose(E_2.T, formchk.dipolederiv(), atol=1e-6, rtol=1e-4))
 
-    def test_B2PLYP_polar(self):
+    def test_B2PLYP_dipderiv(self):
 
         from pkg_resources import resource_filename
         from pyxdh.Utilities.test_molecules import Mol_H2O2
@@ -68,7 +68,7 @@ class Test_DipDerivMP2:
         formchk = FormchkInterface(resource_filename("pyxdh", "Validation/gaussian/H2O2-B2PLYP-freq.fchk"))
         assert(np.allclose(E_2.T, formchk.dipolederiv(), atol=1e-6, rtol=1e-4))
 
-    def test_XYG3_polar(self):
+    def test_XYG3_dipderiv(self):
 
         from pkg_resources import resource_filename
         from pyxdh.Utilities.test_molecules import Mol_H2O2

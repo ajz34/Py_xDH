@@ -1,5 +1,6 @@
 from pyscf import dft
 import pyscf.dft.numint
+from pyscf.dft import xcfun
 import numpy as np
 from functools import partial
 import os
@@ -10,7 +11,6 @@ from pyxdh.Utilities.grid_iterator import GridIterator
 MAXMEM = float(os.getenv("MAXMEM", 2))
 np.einsum = partial(np.einsum, optimize=["greedy", 1024 ** 3 * MAXMEM / 8])
 np.set_printoptions(8, linewidth=1000, suppress=True)
-dft.numint.libxc = dft.xcfun
 
 
 class GridHelper:
@@ -26,6 +26,7 @@ class GridHelper:
         # Calculation
         nao = mol.nao
         ni = dft.numint.NumInt()
+        ni.libxc = xcfun
         ngrid = grids.weights.size
         grid_weight = grids.weights
         grid_ao = np.empty((20, ngrid, nao))  # 20 at first dimension is related to 3rd derivative of orbital

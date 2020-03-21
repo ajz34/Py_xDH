@@ -33,6 +33,12 @@ basis processing, DFT grid engine and CP-HF algorithm is based on python quantum
 > 
 > 这个库仅仅是对二阶梯度初步实现的技术讨论。程序效率会比较糟糕且并不是这个库关心的核心问题。
 
+## Version Information
+
+Current version of pyxdh is 0.0.4. This version should work with pyscf==1.7.1.
+
+Previous version 0.0.3 should work with pyscf==1.6.4.
+
 ## Abilities
 
 |                 | GGA | MP2 | GGA-GGA | GGA xDH |

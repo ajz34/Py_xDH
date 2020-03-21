@@ -1,4 +1,5 @@
 from pyscf import dft, gto
+import pyscf.dft.numint
 from pyscf.dft import xcfun
 import numpy as np
 from functools import partial
@@ -7,7 +8,6 @@ import os
 MAXMEM = float(os.getenv("MAXMEM", 2))
 np.einsum = partial(np.einsum, optimize=["greedy", 1024 ** 3 * MAXMEM / 8])
 np.set_printoptions(8, linewidth=1000, suppress=True)
-dft.numint.libxc = xcfun
 
 
 class GridIterator:
@@ -18,6 +18,7 @@ class GridIterator:
         self.grids = grids  # type: dft.Grids
         self.D = D
         self.ni = dft.numint.NumInt()
+        self.ni.libxc = xcfun
         self.batch = self.ni.block_loop(mol, grids, mol.nao, deriv, memory)
 
         self._ao = None

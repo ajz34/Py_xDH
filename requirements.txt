@@ -1,6 +1,6 @@
+pyscf>=1.7.1
 numpy!=1.16
 scipy
-pyscf
 jupyter
 sphinx
 nbsphinx

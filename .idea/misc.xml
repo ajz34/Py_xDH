@@ -6,5 +6,5 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="3.7 @ WSLDistribution{myDescriptor=WslDistributionDescriptor{id='UBUNTU', msId='Ubuntu'}}" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="3.8 @ Ubuntu" project-jdk-type="Python SDK" />
 </project>
