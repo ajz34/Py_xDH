@@ -1,11 +1,3 @@
-div.body {
+.wy-nav-content {
     max-width: none;
-}
-
-div.sphinxsidebar {
-    width: 300px;
-}
-
-div.bodywrapper {
-    margin: 0 0 0 300px;
 }

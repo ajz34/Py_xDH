@@ -19,16 +19,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="pyxdh: should solve testing failed due to 0 != np.ndarray">
-      <change beforePath="$PROJECT_DIR$/.idea/Py_xDH.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Py_xDH.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="pyxdh: change version info">
+      <change afterPath="$PROJECT_DIR$/docs/source/derivonce/index.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/source/numdiff/basic_num.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/source/numdiff/index.rst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_scf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/dipderiv_mp2.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/dipderiv_mp2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/Utilities/grid_helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Utilities/grid_helper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/Utilities/grid_iterator.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Utilities/grid_iterator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/_static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/_static/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/conf.py" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/conf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/index.rst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +78,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="vcs.Perforce" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -353,21 +351,12 @@
       <workItem from="1584712388793" duration="323000" />
       <workItem from="1584717397932" duration="777000" />
       <workItem from="1584756596060" duration="3778000" />
-      <workItem from="1584761143960" duration="2049000" />
-    </task>
-    <task id="LOCAL-00025" summary="document: update basic_lda, modified basic_grid">
-      <created>1565788448576</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1565788448576</updated>
-    </task>
-    <task id="LOCAL-00026" summary="document: update basic_gga">
-      <created>1565947654310</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1565947654311</updated>
+      <workItem from="1584761143960" duration="15332000" />
+      <workItem from="1584926692991" duration="4993000" />
+      <workItem from="1585018871364" duration="8743000" />
+      <workItem from="1585107971474" duration="9651000" />
+      <workItem from="1585193816496" duration="6334000" />
+      <workItem from="1585274794072" duration="2083000" />
     </task>
     <task id="LOCAL-00027" summary="document: update basic_b2plyp and basic_ncgga">
       <created>1566028129678</created>
@@ -698,7 +687,21 @@
       <option name="project" value="LOCAL" />
       <updated>1573217109545</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="pyxdh: update to pyscf-1.7.1">
+      <created>1584763210677</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1584763210677</updated>
+    </task>
+    <task id="LOCAL-00075" summary="pyxdh: change version info">
+      <created>1584763396447</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1584763396448</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -741,8 +744,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pyxdh: add MP2/B2PLYP dipole derivative" />
-    <MESSAGE value="pyxdh: add NCDFT(HF-B3LYP) dipole derivative" />
     <MESSAGE value="pyxdh: add XDH (XYG3) dipole derivative" />
     <MESSAGE value="pyxdh: so I believe dipole derivative is finally finished" />
     <MESSAGE value="deployment: try to publish to pypi" />
@@ -766,7 +767,9 @@
     <MESSAGE value="DerivTwice: add U_2 rotation" />
     <MESSAGE value="PolarSCF: add polar option to select certain electric field components" />
     <MESSAGE value="pyxdh: should solve testing failed due to 0 != np.ndarray" />
-    <option name="LAST_COMMIT_MESSAGE" value="pyxdh: should solve testing failed due to 0 != np.ndarray" />
+    <MESSAGE value="pyxdh: update to pyscf-1.7.1" />
+    <MESSAGE value="pyxdh: change version info" />
+    <option name="LAST_COMMIT_MESSAGE" value="pyxdh: change version info" />
   </component>
   <component name="WindowStateProjectService">
     <state x="303" y="264" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1584697718229">
@@ -781,59 +784,75 @@
       <screen x="0" y="40" width="1536" height="824" />
     </state>
     <state x="498" y="198" width="723" height="508" key="EnvironmentVariablesDialog/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584761466093" />
-    <state width="1493" height="299" key="GridCell.Tab.0.bottom" timestamp="1584762382311">
+    <state x="92" y="287" key="FileChooserDialogImpl" timestamp="1584791026497">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
-    <state width="1493" height="299" key="GridCell.Tab.0.bottom/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584762382311" />
+    <state x="92" y="287" key="FileChooserDialogImpl/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584791026497" />
+    <state width="1493" height="259" key="GridCell.Tab.0.bottom" timestamp="1584798558270">
+      <screen x="0" y="40" width="1536" height="824" />
+    </state>
+    <state width="1493" height="259" key="GridCell.Tab.0.bottom/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584798558270" />
     <state width="1342" height="242" key="GridCell.Tab.0.bottom/0.40.1536.824@0.40.1536.824" timestamp="1584722404673" />
-    <state width="1493" height="299" key="GridCell.Tab.0.center" timestamp="1584762382311">
+    <state width="1493" height="259" key="GridCell.Tab.0.center" timestamp="1584798558270">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
-    <state width="1493" height="299" key="GridCell.Tab.0.center/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584762382311" />
+    <state width="1493" height="259" key="GridCell.Tab.0.center/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584798558270" />
     <state width="1342" height="242" key="GridCell.Tab.0.center/0.40.1536.824@0.40.1536.824" timestamp="1584722404673" />
-    <state width="1493" height="299" key="GridCell.Tab.0.left" timestamp="1584762382311">
+    <state width="1493" height="259" key="GridCell.Tab.0.left" timestamp="1584798558269">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
-    <state width="1493" height="299" key="GridCell.Tab.0.left/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584762382311" />
+    <state width="1493" height="259" key="GridCell.Tab.0.left/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584798558269" />
     <state width="1342" height="242" key="GridCell.Tab.0.left/0.40.1536.824@0.40.1536.824" timestamp="1584722404673" />
-    <state width="1493" height="299" key="GridCell.Tab.0.right" timestamp="1584762382311">
+    <state width="1493" height="259" key="GridCell.Tab.0.right" timestamp="1584798558270">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
-    <state width="1493" height="299" key="GridCell.Tab.0.right/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584762382311" />
+    <state width="1493" height="259" key="GridCell.Tab.0.right/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584798558270" />
     <state width="1342" height="242" key="GridCell.Tab.0.right/0.40.1536.824@0.40.1536.824" timestamp="1584722404673" />
-    <state width="1493" height="259" key="GridCell.Tab.1.bottom" timestamp="1584761529689">
+    <state width="1493" height="259" key="GridCell.Tab.1.bottom" timestamp="1584798558270">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
-    <state width="1493" height="259" key="GridCell.Tab.1.bottom/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584761529689" />
+    <state width="1493" height="259" key="GridCell.Tab.1.bottom/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584798558270" />
     <state width="1342" height="242" key="GridCell.Tab.1.bottom/0.40.1536.824@0.40.1536.824" timestamp="1584722404674" />
-    <state width="1493" height="259" key="GridCell.Tab.1.center" timestamp="1584761529689">
+    <state width="1493" height="259" key="GridCell.Tab.1.center" timestamp="1584798558270">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
-    <state width="1493" height="259" key="GridCell.Tab.1.center/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584761529689" />
+    <state width="1493" height="259" key="GridCell.Tab.1.center/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584798558270" />
     <state width="1342" height="242" key="GridCell.Tab.1.center/0.40.1536.824@0.40.1536.824" timestamp="1584722404673" />
-    <state width="1493" height="259" key="GridCell.Tab.1.left" timestamp="1584761529689">
+    <state width="1493" height="259" key="GridCell.Tab.1.left" timestamp="1584798558270">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
-    <state width="1493" height="259" key="GridCell.Tab.1.left/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584761529689" />
+    <state width="1493" height="259" key="GridCell.Tab.1.left/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584798558270" />
     <state width="1342" height="242" key="GridCell.Tab.1.left/0.40.1536.824@0.40.1536.824" timestamp="1584722404673" />
-    <state width="1493" height="259" key="GridCell.Tab.1.right" timestamp="1584761529689">
+    <state width="1493" height="259" key="GridCell.Tab.1.right" timestamp="1584798558270">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
-    <state width="1493" height="259" key="GridCell.Tab.1.right/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584761529689" />
+    <state width="1493" height="259" key="GridCell.Tab.1.right/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584798558270" />
     <state width="1342" height="242" key="GridCell.Tab.1.right/0.40.1536.824@0.40.1536.824" timestamp="1584722404673" />
     <state x="456" y="168" key="RollbackChangesDialog" timestamp="1584762610012">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
     <state x="456" y="168" key="RollbackChangesDialog/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584762610012" />
-    <state x="142" y="97" key="SettingsEditor" timestamp="1584761476604">
+    <state x="142" y="97" key="SettingsEditor" timestamp="1584791102187">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
-    <state x="142" y="97" key="SettingsEditor/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584761476604" />
+    <state x="142" y="97" key="SettingsEditor/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584791102187" />
     <state x="273" y="84" key="SettingsEditor/0.40.1536.824@0.40.1536.824" timestamp="1584717531780" />
     <state width="242" height="198" key="ShowFilterAction_Filter_Popup" timestamp="1584697710511">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
     <state width="242" height="198" key="ShowFilterAction_Filter_Popup/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584697710511" />
+    <state x="361" y="185" key="Vcs.Push.Dialog.v2" timestamp="1584763419829">
+      <screen x="0" y="40" width="1536" height="824" />
+    </state>
+    <state x="361" y="185" key="Vcs.Push.Dialog.v2/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584763419829" />
+    <state x="564" y="365" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1584763374928">
+      <screen x="0" y="40" width="1536" height="824" />
+    </state>
+    <state x="564" y="365" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584763374928" />
+    <state x="578" y="291" key="git4idea.ui.GitTagDialog" timestamp="1584763409728">
+      <screen x="0" y="40" width="1536" height="824" />
+    </state>
+    <state x="578" y="291" key="git4idea.ui.GitTagDialog/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584763409728" />
     <state x="425" y="106" width="672" height="676" key="search.everywhere.popup" timestamp="1584717464396">
       <screen x="0" y="40" width="1536" height="824" />
     </state>

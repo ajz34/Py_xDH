@@ -16,6 +16,7 @@ xDH 在 Python 下实现的简易教程
    motive
    intro/index
    qcbasic/index
+   numdiff/index
 
 
 索引
