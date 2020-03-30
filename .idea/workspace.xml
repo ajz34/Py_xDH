@@ -20,13 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="pyxdh: change version info">
-      <change afterPath="$PROJECT_DIR$/docs/source/derivonce/index.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/source/numdiff/basic_num.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/source/numdiff/index.rst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/_static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/_static/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/conf.py" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/conf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/index.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/numdiff/basic_num.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/numdiff/basic_num.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/numdiff/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/numdiff/index.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/qcbasic/basic_lda.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/qcbasic/basic_lda.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -356,14 +353,9 @@
       <workItem from="1585018871364" duration="8743000" />
       <workItem from="1585107971474" duration="9651000" />
       <workItem from="1585193816496" duration="6334000" />
-      <workItem from="1585274794072" duration="2083000" />
-    </task>
-    <task id="LOCAL-00027" summary="document: update basic_b2plyp and basic_ncgga">
-      <created>1566028129678</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1566028129678</updated>
+      <workItem from="1585274794072" duration="5397000" />
+      <workItem from="1585456418510" duration="600000" />
+      <workItem from="1585553127199" duration="3943000" />
     </task>
     <task id="LOCAL-00028" summary="docker: first try">
       <created>1566221601738</created>
@@ -701,7 +693,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584763396448</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="doc: basic_num">
+      <created>1585296206705</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1585296206705</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -744,7 +743,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pyxdh: add XDH (XYG3) dipole derivative" />
     <MESSAGE value="pyxdh: so I believe dipole derivative is finally finished" />
     <MESSAGE value="deployment: try to publish to pypi" />
     <MESSAGE value="deployment: change pypi passwd" />
@@ -769,7 +767,8 @@
     <MESSAGE value="pyxdh: should solve testing failed due to 0 != np.ndarray" />
     <MESSAGE value="pyxdh: update to pyscf-1.7.1" />
     <MESSAGE value="pyxdh: change version info" />
-    <option name="LAST_COMMIT_MESSAGE" value="pyxdh: change version info" />
+    <MESSAGE value="doc: basic_num" />
+    <option name="LAST_COMMIT_MESSAGE" value="doc: basic_num" />
   </component>
   <component name="WindowStateProjectService">
     <state x="303" y="264" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1584697718229">
