@@ -19,11 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="pyxdh: change version info">
+    <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="doc: nuc_grad">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/numdiff/basic_num.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/numdiff/basic_num.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/numdiff/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/numdiff/index.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/qcbasic/basic_lda.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/qcbasic/basic_lda.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/numdiff/nuc_grad.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/numdiff/nuc_grad.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -355,14 +353,10 @@
       <workItem from="1585193816496" duration="6334000" />
       <workItem from="1585274794072" duration="5397000" />
       <workItem from="1585456418510" duration="600000" />
-      <workItem from="1585553127199" duration="3943000" />
-    </task>
-    <task id="LOCAL-00028" summary="docker: first try">
-      <created>1566221601738</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1566221601739</updated>
+      <workItem from="1585553127199" duration="4818000" />
+      <workItem from="1585633239690" duration="2235000" />
+      <workItem from="1585751366094" duration="387000" />
+      <workItem from="1585800409358" duration="2757000" />
     </task>
     <task id="LOCAL-00029" summary="docker: Add docker subsection to readme.md; docker size should be smaller than the previous one">
       <created>1566276809767</created>
@@ -700,7 +694,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585296206705</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="doc: nuc_grad">
+      <created>1585588394358</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1585588394358</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -743,7 +744,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pyxdh: so I believe dipole derivative is finally finished" />
     <MESSAGE value="deployment: try to publish to pypi" />
     <MESSAGE value="deployment: change pypi passwd" />
     <MESSAGE value="deployment: try another time on travis-ci..." />
@@ -768,7 +768,8 @@
     <MESSAGE value="pyxdh: update to pyscf-1.7.1" />
     <MESSAGE value="pyxdh: change version info" />
     <MESSAGE value="doc: basic_num" />
-    <option name="LAST_COMMIT_MESSAGE" value="doc: basic_num" />
+    <MESSAGE value="doc: nuc_grad" />
+    <option name="LAST_COMMIT_MESSAGE" value="doc: nuc_grad" />
   </component>
   <component name="WindowStateProjectService">
     <state x="303" y="264" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1584697718229">
@@ -779,6 +780,10 @@
       <screen x="-1920" y="40" width="1536" height="824" />
     </state>
     <state x="-918" y="206" key="#xdebugger.evaluate/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584759829289" />
+    <state x="93" y="133" width="1350" height="638" key="DiffContextDialog" timestamp="1585588796936">
+      <screen x="0" y="40" width="1536" height="824" />
+    </state>
+    <state x="93" y="133" width="1350" height="638" key="DiffContextDialog/0.40.1536.824@0.40.1536.824" timestamp="1585588796936" />
     <state x="498" y="198" width="723" height="508" key="EnvironmentVariablesDialog" timestamp="1584761466093">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
@@ -827,6 +832,10 @@
     </state>
     <state width="1493" height="259" key="GridCell.Tab.1.right/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584798558270" />
     <state width="1342" height="242" key="GridCell.Tab.1.right/0.40.1536.824@0.40.1536.824" timestamp="1584722404673" />
+    <state x="349" y="195" key="IDE.errors.dialog" timestamp="1585588512438">
+      <screen x="0" y="40" width="1536" height="824" />
+    </state>
+    <state x="349" y="195" key="IDE.errors.dialog/0.40.1536.824@0.40.1536.824" timestamp="1585588512438" />
     <state x="456" y="168" key="RollbackChangesDialog" timestamp="1584762610012">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
@@ -840,10 +849,11 @@
       <screen x="0" y="40" width="1536" height="824" />
     </state>
     <state width="242" height="198" key="ShowFilterAction_Filter_Popup/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584697710511" />
-    <state x="361" y="185" key="Vcs.Push.Dialog.v2" timestamp="1584763419829">
+    <state x="361" y="185" key="Vcs.Push.Dialog.v2" timestamp="1585588483840">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
     <state x="361" y="185" key="Vcs.Push.Dialog.v2/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584763419829" />
+    <state x="361" y="185" key="Vcs.Push.Dialog.v2/0.40.1536.824@0.40.1536.824" timestamp="1585588483840" />
     <state x="564" y="365" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1584763374928">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
