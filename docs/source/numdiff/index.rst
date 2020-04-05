@@ -10,3 +10,4 @@
    nuc_grad
    num_dip
    num_hess
+   num_polar

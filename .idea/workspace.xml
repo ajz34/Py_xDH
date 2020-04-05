@@ -19,7 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="doc: nuc_grad">
+    <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="doc: nuc_hess">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/source/numdiff/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/numdiff/index.rst" afterDir="false" />
     </list>
@@ -357,14 +357,8 @@
       <workItem from="1585633239690" duration="2235000" />
       <workItem from="1585751366094" duration="387000" />
       <workItem from="1585800409358" duration="3465000" />
-      <workItem from="1585986145567" duration="1645000" />
-    </task>
-    <task id="LOCAL-00030" summary="readme: update badges">
-      <created>1566644922190</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1566644922190</updated>
+      <workItem from="1585986145567" duration="1784000" />
+      <workItem from="1586088701057" duration="303000" />
     </task>
     <task id="LOCAL-00031" summary="document: update XYG3 polar to intro_pyxdh document">
       <created>1566650902295</created>
@@ -702,7 +696,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585835251335</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="doc: nuc_hess">
+      <created>1586005992282</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1586005992282</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -745,7 +746,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="deployment: change pypi passwd" />
     <MESSAGE value="deployment: try another time on travis-ci..." />
     <MESSAGE value="pyxdh: try os/ss split" />
     <MESSAGE value="pyxdh: add xygj-os gradient check" />
@@ -770,7 +770,8 @@
     <MESSAGE value="doc: basic_num" />
     <MESSAGE value="doc: nuc_grad" />
     <MESSAGE value="doc: num_dip" />
-    <option name="LAST_COMMIT_MESSAGE" value="doc: num_dip" />
+    <MESSAGE value="doc: nuc_hess" />
+    <option name="LAST_COMMIT_MESSAGE" value="doc: nuc_hess" />
   </component>
   <component name="WindowStateProjectService">
     <state x="303" y="264" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1584697718229">
@@ -850,10 +851,10 @@
       <screen x="0" y="40" width="1536" height="824" />
     </state>
     <state width="242" height="198" key="ShowFilterAction_Filter_Popup/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584697710511" />
-    <state x="361" y="185" key="Vcs.Push.Dialog.v2" timestamp="1585835256731">
+    <state x="361" y="185" key="Vcs.Push.Dialog.v2" timestamp="1586006007793">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
-    <state x="361" y="185" key="Vcs.Push.Dialog.v2/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1585835256731" />
+    <state x="361" y="185" key="Vcs.Push.Dialog.v2/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1586006007793" />
     <state x="361" y="185" key="Vcs.Push.Dialog.v2/0.40.1536.824@0.40.1536.824" timestamp="1585588483840" />
     <state x="564" y="365" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1584763374928">
       <screen x="0" y="40" width="1536" height="824" />
