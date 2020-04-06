@@ -10,6 +10,8 @@ e_c = physical_constants["elementary charge"][0]
 e_0 = physical_constants["electric constant"][0]
 mu_0 = physical_constants["mag. constant"][0]
 
+FactIR = (e_c * N_A) * np.sqrt(1 / 10000000 * np.pi / 3)
+
 class FreqAnal:
     
     def __init__(self, mol_weight, mol_coord, hessian):

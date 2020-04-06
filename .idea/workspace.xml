@@ -19,9 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="doc: nuc_hess">
+    <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="doc: num_polar">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/numdiff/freqanal.py" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/numdiff/freqanal.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/source/numdiff/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/numdiff/index.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/numdiff/num_hess.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/numdiff/num_hess.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -358,14 +360,8 @@
       <workItem from="1585751366094" duration="387000" />
       <workItem from="1585800409358" duration="3465000" />
       <workItem from="1585986145567" duration="1784000" />
-      <workItem from="1586088701057" duration="303000" />
-    </task>
-    <task id="LOCAL-00031" summary="document: update XYG3 polar to intro_pyxdh document">
-      <created>1566650902295</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1566650902295</updated>
+      <workItem from="1586088701057" duration="442000" />
+      <workItem from="1586143868977" duration="1635000" />
     </task>
     <task id="LOCAL-00032" summary="readme: update warning info">
       <created>1566652515451</created>
@@ -703,7 +699,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586005992282</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="doc: num_polar">
+      <created>1586089013588</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1586089013588</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -746,7 +749,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="deployment: try another time on travis-ci..." />
     <MESSAGE value="pyxdh: try os/ss split" />
     <MESSAGE value="pyxdh: add xygj-os gradient check" />
     <MESSAGE value="pyxdh: add xygj-os dipole check" />
@@ -771,7 +773,8 @@
     <MESSAGE value="doc: nuc_grad" />
     <MESSAGE value="doc: num_dip" />
     <MESSAGE value="doc: nuc_hess" />
-    <option name="LAST_COMMIT_MESSAGE" value="doc: nuc_hess" />
+    <MESSAGE value="doc: num_polar" />
+    <option name="LAST_COMMIT_MESSAGE" value="doc: num_polar" />
   </component>
   <component name="WindowStateProjectService">
     <state x="303" y="264" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1584697718229">
@@ -851,10 +854,10 @@
       <screen x="0" y="40" width="1536" height="824" />
     </state>
     <state width="242" height="198" key="ShowFilterAction_Filter_Popup/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584697710511" />
-    <state x="361" y="185" key="Vcs.Push.Dialog.v2" timestamp="1586006007793">
+    <state x="361" y="185" key="Vcs.Push.Dialog.v2" timestamp="1586089065926">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
-    <state x="361" y="185" key="Vcs.Push.Dialog.v2/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1586006007793" />
+    <state x="361" y="185" key="Vcs.Push.Dialog.v2/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1586089065926" />
     <state x="361" y="185" key="Vcs.Push.Dialog.v2/0.40.1536.824@0.40.1536.824" timestamp="1585588483840" />
     <state x="564" y="365" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1584763374928">
       <screen x="0" y="40" width="1536" height="824" />

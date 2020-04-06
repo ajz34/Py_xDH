@@ -11,3 +11,4 @@
    num_dip
    num_hess
    num_polar
+   num_dipderiv
