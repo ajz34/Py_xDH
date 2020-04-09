@@ -49,6 +49,8 @@ class DerivOnceSCF(ABC):
         self._D = NotImplemented
         self._F_0_ao = NotImplemented
         self._F_0_mo = NotImplemented
+        self._S_0_ao = NotImplemented
+        self._S_0_mo = NotImplemented
         self._H_0_ao = NotImplemented
         self._H_0_mo = NotImplemented
         self._eng = NotImplemented
@@ -227,6 +229,18 @@ class DerivOnceSCF(ABC):
         if self._H_0_mo is NotImplemented:
             self._H_0_mo = self._get_H_0_mo()
         return self._H_0_mo
+
+    @property
+    def S_0_ao(self):
+        if self._S_0_ao is NotImplemented:
+            self._S_0_ao = self._get_S_0_ao()
+        return self._S_0_ao
+
+    @property
+    def S_0_mo(self):
+        if self._S_0_mo is NotImplemented:
+            self._S_0_mo = self._get_S_0_mo()
+        return self._S_0_mo
 
     @property
     def F_0_ao(self):
@@ -471,6 +485,12 @@ class DerivOnceSCF(ABC):
 
     def _get_H_0_mo(self):
         return self.C.T @ self.H_0_ao @ self.C
+
+    def _get_S_0_ao(self):
+        return self.mol.intor("int1e_ovlp")
+
+    def _get_S_0_mo(self):
+        return self.C.T @ self.S_0_ao @ self.C
 
     def _get_F_0_ao(self):
         return self.scf_eng.get_fock(dm=self.D)
