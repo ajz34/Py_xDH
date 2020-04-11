@@ -21,9 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="doc: num_polar">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/numdiff/freqanal.py" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/numdiff/freqanal.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/numdiff/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/numdiff/index.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/numdiff/num_hess.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/numdiff/num_hess.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/derivonce/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/derivonce/index.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/qcbasic/basis_integral.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/qcbasic/basis_integral.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -361,28 +360,11 @@
       <workItem from="1585800409358" duration="3465000" />
       <workItem from="1585986145567" duration="1784000" />
       <workItem from="1586088701057" duration="442000" />
-      <workItem from="1586143868977" duration="1635000" />
-    </task>
-    <task id="LOCAL-00032" summary="readme: update warning info">
-      <created>1566652515451</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1566652515451</updated>
-    </task>
-    <task id="LOCAL-00033" summary="document: minor edit">
-      <created>1566657281527</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1566657281527</updated>
-    </task>
-    <task id="LOCAL-00034" summary="pyxdh: remove lgtm warning on RHS_B">
-      <created>1568256326395</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1568256326395</updated>
+      <workItem from="1586143868977" duration="2259000" />
+      <workItem from="1586341812867" duration="1928000" />
+      <workItem from="1586409650802" duration="1866000" />
+      <workItem from="1586442879035" duration="2592000" />
+      <workItem from="1586500193830" duration="4115000" />
     </task>
     <task id="LOCAL-00035" summary="doc: change to nature theme, typos">
       <created>1568257354378</created>
@@ -706,7 +688,28 @@
       <option name="project" value="LOCAL" />
       <updated>1586089013588</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="doc: num_dipderiv">
+      <created>1586155796250</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1586155796250</updated>
+    </task>
+    <task id="LOCAL-00082" summary="pyxdh: return S_0_mo to deriv_once_scf">
+      <created>1586443671097</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1586443671098</updated>
+    </task>
+    <task id="LOCAL-00083" summary="pyxdh: retag">
+      <created>1586500316341</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1586500316342</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -749,9 +752,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pyxdh: try os/ss split" />
-    <MESSAGE value="pyxdh: add xygj-os gradient check" />
-    <MESSAGE value="pyxdh: add xygj-os dipole check" />
     <MESSAGE value="pyxdh: add requirements to setup.py" />
     <MESSAGE value="pyxdh: flexibility to make cphf more coarse" />
     <MESSAGE value="pyxdh: Ax0_Core use PySCF's _gen_rhf_response instead, for efficiency reason" />
@@ -774,7 +774,10 @@
     <MESSAGE value="doc: num_dip" />
     <MESSAGE value="doc: nuc_hess" />
     <MESSAGE value="doc: num_polar" />
-    <option name="LAST_COMMIT_MESSAGE" value="doc: num_polar" />
+    <MESSAGE value="doc: num_dipderiv" />
+    <MESSAGE value="pyxdh: return S_0_mo to deriv_once_scf" />
+    <MESSAGE value="pyxdh: retag" />
+    <option name="LAST_COMMIT_MESSAGE" value="pyxdh: retag" />
   </component>
   <component name="WindowStateProjectService">
     <state x="303" y="264" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1584697718229">
@@ -841,10 +844,10 @@
       <screen x="0" y="40" width="1536" height="824" />
     </state>
     <state x="349" y="195" key="IDE.errors.dialog/0.40.1536.824@0.40.1536.824" timestamp="1585588512438" />
-    <state x="456" y="168" key="RollbackChangesDialog" timestamp="1584762610012">
+    <state x="456" y="168" width="500" height="560" key="RollbackChangesDialog" timestamp="1586500446946">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
-    <state x="456" y="168" key="RollbackChangesDialog/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584762610012" />
+    <state x="456" y="168" width="500" height="560" key="RollbackChangesDialog/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1586500446946" />
     <state x="142" y="97" key="SettingsEditor" timestamp="1584791102187">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
@@ -854,19 +857,19 @@
       <screen x="0" y="40" width="1536" height="824" />
     </state>
     <state width="242" height="198" key="ShowFilterAction_Filter_Popup/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584697710511" />
-    <state x="361" y="185" key="Vcs.Push.Dialog.v2" timestamp="1586089065926">
+    <state x="361" y="185" key="Vcs.Push.Dialog.v2" timestamp="1586500726434">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
-    <state x="361" y="185" key="Vcs.Push.Dialog.v2/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1586089065926" />
+    <state x="361" y="185" key="Vcs.Push.Dialog.v2/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1586500726434" />
     <state x="361" y="185" key="Vcs.Push.Dialog.v2/0.40.1536.824@0.40.1536.824" timestamp="1585588483840" />
     <state x="564" y="365" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1584763374928">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
     <state x="564" y="365" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584763374928" />
-    <state x="578" y="291" key="git4idea.ui.GitTagDialog" timestamp="1584763409728">
+    <state x="578" y="291" key="git4idea.ui.GitTagDialog" timestamp="1586502394689">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
-    <state x="578" y="291" key="git4idea.ui.GitTagDialog/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584763409728" />
+    <state x="578" y="291" key="git4idea.ui.GitTagDialog/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1586502394689" />
     <state x="425" y="106" width="672" height="676" key="search.everywhere.popup" timestamp="1584717464396">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
