@@ -7,4 +7,7 @@
 .. toctree::
    :maxdepth: 2
 
-   numeric_deriv
+   ref_list
+   skeleton_and_U
+   dip_rhf_skeleton
+   grad_rhf_skeleton

@@ -21,8 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="doc: num_polar">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/derivonce/dip_rhf_skeleton.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/derivonce/dip_rhf_skeleton.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/source/derivonce/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/derivonce/index.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/qcbasic/basis_integral.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/qcbasic/basis_integral.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/derivonce/skeleton_and_U.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/derivonce/skeleton_and_U.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/qcbasic/basic_rhf.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/qcbasic/basic_rhf.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -365,13 +367,8 @@
       <workItem from="1586409650802" duration="1866000" />
       <workItem from="1586442879035" duration="2592000" />
       <workItem from="1586500193830" duration="4115000" />
-    </task>
-    <task id="LOCAL-00035" summary="doc: change to nature theme, typos">
-      <created>1568257354378</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1568257354378</updated>
+      <workItem from="1586600294415" duration="1238000" />
+      <workItem from="1586845957859" duration="69000" />
     </task>
     <task id="LOCAL-00036" summary="readme: add minimal working example illustrating functionality of pyxdh">
       <created>1568265503449</created>
@@ -709,7 +706,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586500316342</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="doc: RHF dipole">
+      <created>1586600318838</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1586600318840</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -752,7 +756,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pyxdh: add requirements to setup.py" />
     <MESSAGE value="pyxdh: flexibility to make cphf more coarse" />
     <MESSAGE value="pyxdh: Ax0_Core use PySCF's _gen_rhf_response instead, for efficiency reason" />
     <MESSAGE value="pyxdh: make hessian quicker" />
@@ -777,7 +780,8 @@
     <MESSAGE value="doc: num_dipderiv" />
     <MESSAGE value="pyxdh: return S_0_mo to deriv_once_scf" />
     <MESSAGE value="pyxdh: retag" />
-    <option name="LAST_COMMIT_MESSAGE" value="pyxdh: retag" />
+    <MESSAGE value="doc: RHF dipole" />
+    <option name="LAST_COMMIT_MESSAGE" value="doc: RHF dipole" />
   </component>
   <component name="WindowStateProjectService">
     <state x="303" y="264" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1584697718229">
