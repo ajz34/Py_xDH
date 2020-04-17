@@ -21,10 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="doc: num_polar">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/derivonce/dip_rhf_skeleton.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/derivonce/dip_rhf_skeleton.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/derivonce/grad_rhf_skeleton.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/derivonce/grad_rhf_skeleton.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/source/derivonce/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/derivonce/index.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/derivonce/skeleton_and_U.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/derivonce/skeleton_and_U.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/qcbasic/basic_rhf.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/qcbasic/basic_rhf.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/index.rst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -368,14 +367,10 @@
       <workItem from="1586442879035" duration="2592000" />
       <workItem from="1586500193830" duration="4115000" />
       <workItem from="1586600294415" duration="1238000" />
-      <workItem from="1586845957859" duration="69000" />
-    </task>
-    <task id="LOCAL-00036" summary="readme: add minimal working example illustrating functionality of pyxdh">
-      <created>1568265503449</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1568265503449</updated>
+      <workItem from="1586845957859" duration="1083000" />
+      <workItem from="1586942896747" duration="8549000" />
+      <workItem from="1587021105887" duration="4735000" />
+      <workItem from="1587109305342" duration="418000" />
     </task>
     <task id="LOCAL-00037" summary="doc: update xyg3">
       <created>1568265784020</created>
@@ -713,7 +708,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586600318840</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="doc: dip, grad for RHF">
+      <created>1586846379807</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1586846379808</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -756,7 +758,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pyxdh: flexibility to make cphf more coarse" />
     <MESSAGE value="pyxdh: Ax0_Core use PySCF's _gen_rhf_response instead, for efficiency reason" />
     <MESSAGE value="pyxdh: make hessian quicker" />
     <MESSAGE value="pyxdh: change all grid setting in cphf to (50, 190), add U_1 not rotated example" />
@@ -781,7 +782,8 @@
     <MESSAGE value="pyxdh: return S_0_mo to deriv_once_scf" />
     <MESSAGE value="pyxdh: retag" />
     <MESSAGE value="doc: RHF dipole" />
-    <option name="LAST_COMMIT_MESSAGE" value="doc: RHF dipole" />
+    <MESSAGE value="doc: dip, grad for RHF" />
+    <option name="LAST_COMMIT_MESSAGE" value="doc: dip, grad for RHF" />
   </component>
   <component name="WindowStateProjectService">
     <state x="303" y="264" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1584697718229">
@@ -861,10 +863,10 @@
       <screen x="0" y="40" width="1536" height="824" />
     </state>
     <state width="242" height="198" key="ShowFilterAction_Filter_Popup/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584697710511" />
-    <state x="361" y="185" key="Vcs.Push.Dialog.v2" timestamp="1586500726434">
+    <state x="361" y="185" key="Vcs.Push.Dialog.v2" timestamp="1586846388024">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
-    <state x="361" y="185" key="Vcs.Push.Dialog.v2/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1586500726434" />
+    <state x="361" y="185" key="Vcs.Push.Dialog.v2/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1586846388024" />
     <state x="361" y="185" key="Vcs.Push.Dialog.v2/0.40.1536.824@0.40.1536.824" timestamp="1585588483840" />
     <state x="564" y="365" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1584763374928">
       <screen x="0" y="40" width="1536" height="824" />

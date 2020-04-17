@@ -11,3 +11,4 @@
    skeleton_and_U
    dip_rhf_skeleton
    grad_rhf_skeleton
+   grad_rhf_U
