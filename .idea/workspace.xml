@@ -19,11 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="doc: num_polar">
+    <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="doc: grad_rhf_U">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/derivonce/grad_rhf_skeleton.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/derivonce/grad_rhf_skeleton.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/derivonce/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/derivonce/index.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/index.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/derivonce/grad_rhf_U.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/derivonce/grad_rhf_U.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/qcbasic/basic_mp2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/qcbasic/basic_mp2.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -370,14 +369,10 @@
       <workItem from="1586845957859" duration="1083000" />
       <workItem from="1586942896747" duration="8549000" />
       <workItem from="1587021105887" duration="4735000" />
-      <workItem from="1587109305342" duration="418000" />
-    </task>
-    <task id="LOCAL-00037" summary="doc: update xyg3">
-      <created>1568265784020</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1568265784020</updated>
+      <workItem from="1587109305342" duration="1054000" />
+      <workItem from="1587208413773" duration="1492000" />
+      <workItem from="1587261175883" duration="1206000" />
+      <workItem from="1587375512338" duration="1549000" />
     </task>
     <task id="LOCAL-00038" summary="lgtm: try to remove lgtm's warning on RHS_B and pytest replication">
       <created>1568290721045</created>
@@ -715,7 +710,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586846379808</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="doc: grad_rhf_U">
+      <created>1587109737787</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1587109737788</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -758,7 +760,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pyxdh: Ax0_Core use PySCF's _gen_rhf_response instead, for efficiency reason" />
     <MESSAGE value="pyxdh: make hessian quicker" />
     <MESSAGE value="pyxdh: change all grid setting in cphf to (50, 190), add U_1 not rotated example" />
     <MESSAGE value="pyxdh: mute gen_B_2 since no actual function actually use it" />
@@ -783,7 +784,8 @@
     <MESSAGE value="pyxdh: retag" />
     <MESSAGE value="doc: RHF dipole" />
     <MESSAGE value="doc: dip, grad for RHF" />
-    <option name="LAST_COMMIT_MESSAGE" value="doc: dip, grad for RHF" />
+    <MESSAGE value="doc: grad_rhf_U" />
+    <option name="LAST_COMMIT_MESSAGE" value="doc: grad_rhf_U" />
   </component>
   <component name="WindowStateProjectService">
     <state x="303" y="264" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1584697718229">
@@ -863,10 +865,10 @@
       <screen x="0" y="40" width="1536" height="824" />
     </state>
     <state width="242" height="198" key="ShowFilterAction_Filter_Popup/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584697710511" />
-    <state x="361" y="185" key="Vcs.Push.Dialog.v2" timestamp="1586846388024">
+    <state x="361" y="185" key="Vcs.Push.Dialog.v2" timestamp="1587109742929">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
-    <state x="361" y="185" key="Vcs.Push.Dialog.v2/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1586846388024" />
+    <state x="361" y="185" key="Vcs.Push.Dialog.v2/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1587109742929" />
     <state x="361" y="185" key="Vcs.Push.Dialog.v2/0.40.1536.824@0.40.1536.824" timestamp="1585588483840" />
     <state x="564" y="365" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1584763374928">
       <screen x="0" y="40" width="1536" height="824" />
