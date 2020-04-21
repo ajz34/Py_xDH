@@ -13,3 +13,4 @@
    grad_rhf_skeleton
    grad_rhf_U
    grad_mp2
+   grad_gga
