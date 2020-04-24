@@ -113,11 +113,15 @@ class DerivOnceMP2(DerivOnceSCF, ABC):
         eri0_mo = self.eri0_mo
         T_iajb, t_iajb = self.T_iajb, self.t_iajb
         # If D_r is not an instance, we generate D_r using _get_D_r_oo_vv
+        D_r = np.zeros((nmo, nmo))
         if self._D_r is NotImplemented:
             self._D_r = np.zeros((nmo, nmo))
             self._D_r[so, so] = - 2 * np.einsum("iakb, jakb -> ij", T_iajb, t_iajb)
             self._D_r[sv, sv] = 2 * np.einsum("iajc, ibjc -> ab", T_iajb, t_iajb)
-        D_r = self._D_r
+            D_r = self._D_r
+        else:
+            D_r[so, so] = self._D_r[so, so]
+            D_r[sv, sv] = self._D_r[sv, sv]
 
         L = np.zeros((nvir, nocc))
         L += Ax0_Core(sv, so, sa, sa)(D_r)

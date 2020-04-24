@@ -15,3 +15,4 @@
    grad_mp2
    grad_gga
    grad_bdh
+   grad_xdh
