@@ -21,8 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="doc: grad_rhf_U">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/derivonce/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/derivonce/index.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_mp2.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_mp2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -376,14 +374,7 @@
       <workItem from="1587464952738" duration="3251000" />
       <workItem from="1587533384658" duration="2639000" />
       <workItem from="1587621933632" duration="2448000" />
-      <workItem from="1587710220417" duration="6712000" />
-    </task>
-    <task id="LOCAL-00041" summary="action: remove warning in flake8 lint (except complex functions)">
-      <created>1568295211531</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1568295211531</updated>
+      <workItem from="1587710220417" duration="7237000" />
     </task>
     <task id="LOCAL-00042" summary="action: change pytest command, change wrong code in deriv_once_scf">
       <created>1568295709739</created>
@@ -721,7 +712,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587632959882</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="doc: grad_xdh">
+      <created>1587742511598</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1587742511598</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -764,7 +762,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pyxdh: possibly pass lgtm's alert" />
     <MESSAGE value="pyxdh: move test of not rotated U_1 to polarizability, since dipole xDH does not need U_1" />
     <MESSAGE value="pyxdh: tag v0.0.2" />
     <MESSAGE value="pyxdh: correct bug in dipderiv" />
@@ -789,7 +786,8 @@
     <MESSAGE value="doc: grad_mp2" />
     <MESSAGE value="doc: grad_gga" />
     <MESSAGE value="doc: grad_bdh" />
-    <option name="LAST_COMMIT_MESSAGE" value="doc: grad_bdh" />
+    <MESSAGE value="doc: grad_xdh" />
+    <option name="LAST_COMMIT_MESSAGE" value="doc: grad_xdh" />
   </component>
   <component name="WindowStateProjectService">
     <state x="303" y="264" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1584697718229">
