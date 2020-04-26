@@ -19,10 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="doc: grad_rhf_U">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/derivonce/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/derivonce/index.rst" afterDir="false" />
-    </list>
+    <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="doc: grad_rhf_U" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -378,14 +375,7 @@
       <workItem from="1587710220417" duration="7237000" />
       <workItem from="1587795998136" duration="5851000" />
       <workItem from="1587822626372" duration="1694000" />
-      <workItem from="1587884865075" duration="4326000" />
-    </task>
-    <task id="LOCAL-00042" summary="action: change pytest command, change wrong code in deriv_once_scf">
-      <created>1568295709739</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1568295709739</updated>
+      <workItem from="1587884865075" duration="4455000" />
     </task>
     <task id="LOCAL-00043" summary="action: remove python 2.7 support">
       <created>1568296209978</created>
@@ -723,7 +713,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587742511598</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="doc: response_density">
+      <created>1587916794002</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1587916794002</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -766,7 +763,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pyxdh: move test of not rotated U_1 to polarizability, since dipole xDH does not need U_1" />
     <MESSAGE value="pyxdh: tag v0.0.2" />
     <MESSAGE value="pyxdh: correct bug in dipderiv" />
     <MESSAGE value="pypi: only one bug fixed, modified packaging to make pip correctly work" />
@@ -791,7 +787,8 @@
     <MESSAGE value="doc: grad_gga" />
     <MESSAGE value="doc: grad_bdh" />
     <MESSAGE value="doc: grad_xdh" />
-    <option name="LAST_COMMIT_MESSAGE" value="doc: grad_xdh" />
+    <MESSAGE value="doc: response_density" />
+    <option name="LAST_COMMIT_MESSAGE" value="doc: response_density" />
   </component>
   <component name="WindowStateProjectService">
     <state x="303" y="264" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1584697718229">
