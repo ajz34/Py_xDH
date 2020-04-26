@@ -21,6 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="doc: grad_rhf_U">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/derivonce/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/derivonce/index.rst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +100,7 @@
       <recent name="E:\Git-Repo\Py_xDH" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.pytest for pyxdh">
+  <component name="RunManager" selected="Python.Ne_5Z">
     <configuration name="MP2_Polar" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Py_xDH" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -122,7 +123,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="xdh_polarizability_xyg3" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Ne_5Z" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Py_xDH" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -130,12 +131,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pyxdh/tmp_dft_speed" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv/xdh_polarizability_xyg3.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pyxdh/tmp_dft_speed/Ne_5Z.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -213,8 +214,8 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.xdh_polarizability_xyg3" />
       <item itemvalue="Python.MP2_Polar" />
+      <item itemvalue="Python.Ne_5Z" />
       <item itemvalue="Python tests.pytest for pyxdh" />
       <item itemvalue="Python tests.pytest for polar_mp2.Test_PolarMP2.test_B2PLYP_polar" />
       <item itemvalue="Python tests.pytest for dipderiv_mp2.Test_DipDerivMP2.test_MP2_dipderiv" />
@@ -222,11 +223,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Ne_5Z" />
         <item itemvalue="Python tests.pytest for polar_mp2.Test_PolarMP2.test_B2PLYP_polar" />
         <item itemvalue="Python tests.pytest for dipderiv_mp2.Test_DipDerivMP2.test_B2PLYP_dipderiv" />
         <item itemvalue="Python tests.pytest for dipderiv_mp2.Test_DipDerivMP2.test_MP2_dipderiv" />
         <item itemvalue="Python.MP2_Polar" />
-        <item itemvalue="Python.xdh_polarizability_xyg3" />
       </list>
     </recent_temporary>
   </component>
@@ -375,6 +376,9 @@
       <workItem from="1587533384658" duration="2639000" />
       <workItem from="1587621933632" duration="2448000" />
       <workItem from="1587710220417" duration="7237000" />
+      <workItem from="1587795998136" duration="5851000" />
+      <workItem from="1587822626372" duration="1694000" />
+      <workItem from="1587884865075" duration="4326000" />
     </task>
     <task id="LOCAL-00042" summary="action: change pytest command, change wrong code in deriv_once_scf">
       <created>1568295709739</created>
@@ -810,44 +814,52 @@
       <screen x="0" y="40" width="1536" height="824" />
     </state>
     <state x="92" y="287" key="FileChooserDialogImpl/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584791026497" />
-    <state width="1493" height="259" key="GridCell.Tab.0.bottom" timestamp="1584798558270">
+    <state width="1493" height="201" key="GridCell.Tab.0.bottom" timestamp="1587819207616">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
+    <state width="1493" height="201" key="GridCell.Tab.0.bottom/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1587819207616" />
     <state width="1493" height="259" key="GridCell.Tab.0.bottom/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584798558270" />
     <state width="1342" height="242" key="GridCell.Tab.0.bottom/0.40.1536.824@0.40.1536.824" timestamp="1584722404673" />
-    <state width="1493" height="259" key="GridCell.Tab.0.center" timestamp="1584798558270">
+    <state width="1493" height="201" key="GridCell.Tab.0.center" timestamp="1587819207616">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
+    <state width="1493" height="201" key="GridCell.Tab.0.center/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1587819207616" />
     <state width="1493" height="259" key="GridCell.Tab.0.center/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584798558270" />
     <state width="1342" height="242" key="GridCell.Tab.0.center/0.40.1536.824@0.40.1536.824" timestamp="1584722404673" />
-    <state width="1493" height="259" key="GridCell.Tab.0.left" timestamp="1584798558269">
+    <state width="1493" height="201" key="GridCell.Tab.0.left" timestamp="1587819207615">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
+    <state width="1493" height="201" key="GridCell.Tab.0.left/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1587819207615" />
     <state width="1493" height="259" key="GridCell.Tab.0.left/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584798558269" />
     <state width="1342" height="242" key="GridCell.Tab.0.left/0.40.1536.824@0.40.1536.824" timestamp="1584722404673" />
-    <state width="1493" height="259" key="GridCell.Tab.0.right" timestamp="1584798558270">
+    <state width="1493" height="201" key="GridCell.Tab.0.right" timestamp="1587819207616">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
+    <state width="1493" height="201" key="GridCell.Tab.0.right/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1587819207616" />
     <state width="1493" height="259" key="GridCell.Tab.0.right/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584798558270" />
     <state width="1342" height="242" key="GridCell.Tab.0.right/0.40.1536.824@0.40.1536.824" timestamp="1584722404673" />
-    <state width="1493" height="259" key="GridCell.Tab.1.bottom" timestamp="1584798558270">
+    <state width="1493" height="201" key="GridCell.Tab.1.bottom" timestamp="1587819207616">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
+    <state width="1493" height="201" key="GridCell.Tab.1.bottom/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1587819207616" />
     <state width="1493" height="259" key="GridCell.Tab.1.bottom/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584798558270" />
     <state width="1342" height="242" key="GridCell.Tab.1.bottom/0.40.1536.824@0.40.1536.824" timestamp="1584722404674" />
-    <state width="1493" height="259" key="GridCell.Tab.1.center" timestamp="1584798558270">
+    <state width="1493" height="201" key="GridCell.Tab.1.center" timestamp="1587819207616">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
+    <state width="1493" height="201" key="GridCell.Tab.1.center/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1587819207616" />
     <state width="1493" height="259" key="GridCell.Tab.1.center/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584798558270" />
     <state width="1342" height="242" key="GridCell.Tab.1.center/0.40.1536.824@0.40.1536.824" timestamp="1584722404673" />
-    <state width="1493" height="259" key="GridCell.Tab.1.left" timestamp="1584798558270">
+    <state width="1493" height="201" key="GridCell.Tab.1.left" timestamp="1587819207616">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
+    <state width="1493" height="201" key="GridCell.Tab.1.left/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1587819207616" />
     <state width="1493" height="259" key="GridCell.Tab.1.left/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584798558270" />
     <state width="1342" height="242" key="GridCell.Tab.1.left/0.40.1536.824@0.40.1536.824" timestamp="1584722404673" />
-    <state width="1493" height="259" key="GridCell.Tab.1.right" timestamp="1584798558270">
+    <state width="1493" height="201" key="GridCell.Tab.1.right" timestamp="1587819207616">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
+    <state width="1493" height="201" key="GridCell.Tab.1.right/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1587819207616" />
     <state width="1493" height="259" key="GridCell.Tab.1.right/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584798558270" />
     <state width="1342" height="242" key="GridCell.Tab.1.right/0.40.1536.824@0.40.1536.824" timestamp="1584722404673" />
     <state x="349" y="195" key="IDE.errors.dialog" timestamp="1585588512438">
@@ -877,14 +889,22 @@
       <screen x="0" y="40" width="1536" height="824" />
     </state>
     <state x="564" y="365" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584763374928" />
+    <state x="93" y="133" width="1350" height="638" key="dock-window-1" timestamp="1587889376092">
+      <screen x="0" y="40" width="1536" height="824" />
+    </state>
+    <state x="93" y="133" width="1350" height="638" key="dock-window-1/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1587889376092" />
+    <state x="339" y="285" width="1350" height="638" key="dock-window-2" timestamp="1587800498428">
+      <screen x="0" y="40" width="1536" height="824" />
+    </state>
+    <state x="339" y="285" width="1350" height="638" key="dock-window-2/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1587800498428" />
     <state x="578" y="291" key="git4idea.ui.GitTagDialog" timestamp="1586502394689">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
     <state x="578" y="291" key="git4idea.ui.GitTagDialog/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1586502394689" />
-    <state x="425" y="106" width="672" height="676" key="search.everywhere.popup" timestamp="1587715271795">
+    <state x="425" y="106" width="672" height="676" key="search.everywhere.popup" timestamp="1587831573997">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
-    <state x="425" y="106" width="672" height="676" key="search.everywhere.popup/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1587715271795" />
+    <state x="425" y="106" width="672" height="676" key="search.everywhere.popup/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1587831573997" />
     <state x="-1495" y="106" width="670" height="676" key="search.everywhere.popup/0.40.1536.824/-1920.40.1536.824@-1920.40.1536.824" timestamp="1584684626357" />
     <state x="425" y="106" width="672" height="676" key="search.everywhere.popup/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584697733180" />
     <state x="425" y="106" width="672" height="676" key="search.everywhere.popup/0.40.1536.824@0.40.1536.824" timestamp="1584717464396" />
@@ -902,6 +922,21 @@
           <line>6</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$USER_HOME$/AppData/Local/JetBrains/PyCharm2020.1/remote_sources/-1053058360/1179071206/pyscf/scf/hf.py</url>
+          <line>1695</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$USER_HOME$/AppData/Local/JetBrains/PyCharm2020.1/remote_sources/-1053058360/1179071206/pyscf/scf/hf.py</url>
+          <line>1667</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$USER_HOME$/AppData/Local/JetBrains/PyCharm2020.1/remote_sources/-1053058360/1179071206/pyscf/scf/_vhf.py</url>
+          <line>58</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
@@ -915,6 +950,7 @@
     <SUITE FILE_PATH="coverage/Py_xDH$ncdft_dipderiv_hf_b3lyp.coverage" NAME="ncdft_dipderiv_hf_b3lyp Coverage Results" MODIFIED="1568439622154" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_grad_mp2_Test_GradMP2_test_5th_functional_grad.coverage" NAME="pytest for grad_mp2.Test_GradMP2.test_5th_functional_grad Coverage Results" MODIFIED="1568727641255" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipole_mp2_Test_DipoleMP2_test_dipole_xygjos.coverage" NAME="pytest for dipole_mp2.Test_DipoleMP2.test_dipole_xygjos Coverage Results" MODIFIED="1568728199508" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
+    <SUITE FILE_PATH="coverage/Py_xDH$Ne_5Z.coverage" NAME="Ne_5Z Coverage Results" MODIFIED="1587800443676" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/tmp_dft_speed" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_polar_mp2_Test_PolarMP2_test_MP2_polar.coverage" NAME="pytest for polar_mp2.Test_PolarMP2.test_MP2_polar Coverage Results" MODIFIED="1568295595324" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_polar_scf_Test_PolarSCF_test_HF_polar.coverage" NAME="pytest for polar_scf.Test_PolarSCF.test_HF_polar Coverage Results" MODIFIED="1568289711492" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipole_scf_Test_DipoleSCF_test_SCF_dipole.coverage" NAME="pytest for dipole_scf.Test_DipoleSCF.test_SCF_dipole Coverage Results" MODIFIED="1568288757649" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
