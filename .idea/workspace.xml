@@ -21,7 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="doc: grad_rhf_U">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/derivonce/grad_bdh.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/derivonce/grad_bdh.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/derivonce/grad_xdh.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/derivonce/grad_xdh.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -379,14 +379,8 @@
       <workItem from="1587795998136" duration="5851000" />
       <workItem from="1587822626372" duration="1694000" />
       <workItem from="1587884865075" duration="4455000" />
-      <workItem from="1587954168612" duration="1086000" />
-    </task>
-    <task id="LOCAL-00043" summary="action: remove python 2.7 support">
-      <created>1568296209978</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1568296209978</updated>
+      <workItem from="1587954168612" duration="1238000" />
+      <workItem from="1588040351814" duration="6011000" />
     </task>
     <task id="LOCAL-00044" summary="action: try move codecov to github action based instead of travis-ci based">
       <created>1568298269002</created>
@@ -724,7 +718,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587916794002</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="doc: Ax additional">
+      <created>1588003574145</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1588003574146</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -767,7 +768,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pyxdh: tag v0.0.2" />
     <MESSAGE value="pyxdh: correct bug in dipderiv" />
     <MESSAGE value="pypi: only one bug fixed, modified packaging to make pip correctly work" />
     <MESSAGE value="DerivTwice: add U_2 entry" />
@@ -792,7 +792,8 @@
     <MESSAGE value="doc: grad_bdh" />
     <MESSAGE value="doc: grad_xdh" />
     <MESSAGE value="doc: response_density" />
-    <option name="LAST_COMMIT_MESSAGE" value="doc: response_density" />
+    <MESSAGE value="doc: Ax additional" />
+    <option name="LAST_COMMIT_MESSAGE" value="doc: Ax additional" />
   </component>
   <component name="WindowStateProjectService">
     <state x="303" y="264" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1584697718229">
@@ -867,9 +868,10 @@
       <screen x="0" y="40" width="1536" height="824" />
     </state>
     <state x="349" y="195" key="IDE.errors.dialog/0.40.1536.824@0.40.1536.824" timestamp="1585588512438" />
-    <state x="456" y="168" width="500" height="560" key="RollbackChangesDialog" timestamp="1586500446946">
+    <state x="456" y="168" width="500" height="560" key="RollbackChangesDialog" timestamp="1588056408538">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
+    <state x="456" y="168" key="RollbackChangesDialog/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1588056408538" />
     <state x="456" y="168" width="500" height="560" key="RollbackChangesDialog/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1586500446946" />
     <state x="142" y="97" key="SettingsEditor" timestamp="1584791102187">
       <screen x="0" y="40" width="1536" height="824" />
@@ -880,10 +882,10 @@
       <screen x="0" y="40" width="1536" height="824" />
     </state>
     <state width="242" height="198" key="ShowFilterAction_Filter_Popup/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584697710511" />
-    <state x="361" y="185" key="Vcs.Push.Dialog.v2" timestamp="1587633093587">
+    <state x="361" y="185" key="Vcs.Push.Dialog.v2" timestamp="1588003579631">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
-    <state x="361" y="185" key="Vcs.Push.Dialog.v2/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1587633093587" />
+    <state x="361" y="185" key="Vcs.Push.Dialog.v2/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1588003579631" />
     <state x="361" y="185" key="Vcs.Push.Dialog.v2/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1587487096791" />
     <state x="361" y="185" key="Vcs.Push.Dialog.v2/0.40.1536.824@0.40.1536.824" timestamp="1585588483840" />
     <state x="564" y="365" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1584763374928">
