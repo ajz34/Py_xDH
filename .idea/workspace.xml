@@ -20,8 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="doc: grad_rhf_U">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/derivonce/grad_xdh.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/derivonce/grad_xdh.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/derivonce/dip_rhf_skeleton.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/derivonce/dip_rhf_skeleton.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/derivonce/grad_bdh.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/derivonce/grad_bdh.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/derivonce/grad_gga.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/derivonce/grad_gga.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/derivonce/grad_mp2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/derivonce/grad_mp2.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/derivonce/grad_rhf_U.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/derivonce/grad_rhf_U.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/derivonce/grad_rhf_skeleton.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/derivonce/grad_rhf_skeleton.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -380,14 +384,7 @@
       <workItem from="1587822626372" duration="1694000" />
       <workItem from="1587884865075" duration="4455000" />
       <workItem from="1587954168612" duration="1238000" />
-      <workItem from="1588040351814" duration="6011000" />
-    </task>
-    <task id="LOCAL-00044" summary="action: try move codecov to github action based instead of travis-ci based">
-      <created>1568298269002</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1568298269002</updated>
+      <workItem from="1588040351814" duration="6844000" />
     </task>
     <task id="LOCAL-00045" summary="action: just change coveragerc to .coveragerc ... my fault ...">
       <created>1568298836544</created>
@@ -725,7 +722,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588003574146</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="doc: dip_xdh">
+      <created>1588059132621</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1588059132621</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -768,7 +772,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pyxdh: correct bug in dipderiv" />
     <MESSAGE value="pypi: only one bug fixed, modified packaging to make pip correctly work" />
     <MESSAGE value="DerivTwice: add U_2 entry" />
     <MESSAGE value="DerivTwice: add U_2 rotation" />
@@ -793,7 +796,8 @@
     <MESSAGE value="doc: grad_xdh" />
     <MESSAGE value="doc: response_density" />
     <MESSAGE value="doc: Ax additional" />
-    <option name="LAST_COMMIT_MESSAGE" value="doc: Ax additional" />
+    <MESSAGE value="doc: dip_xdh" />
+    <option name="LAST_COMMIT_MESSAGE" value="doc: dip_xdh" />
   </component>
   <component name="WindowStateProjectService">
     <state x="303" y="264" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1584697718229">
