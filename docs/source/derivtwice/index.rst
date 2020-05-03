@@ -8,3 +8,4 @@
    :maxdepth: 2
 
    hess_rhf
+   hess_rhf_U

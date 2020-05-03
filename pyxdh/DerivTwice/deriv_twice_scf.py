@@ -355,13 +355,10 @@ class DerivTwiceSCF(ABC):
             # line 6
             + np.einsum("Api, Bpa -> ABai", A.U_1, Ax0_Core(sa, sa, sa, so)(B.U_1[:, :, so]))
             + np.einsum("Bpi, Apa -> ABai", B.U_1, Ax0_Core(sa, sa, sa, so)(A.U_1[:, :, so]))
+            # line 7
+            + A.Ax1_Core(sa, sa, sa, so)(B.U_1[:, :, so])
+            + B.Ax1_Core(sa, sa, sa, so)(A.U_1[:, :, so]).swapaxes(0, 1)
         )
-        if self.xc_type != "HF":
-            B_2 += (
-                # line 7
-                + A.Ax1_Core(sa, sa, sa, so)(B.U_1[:, :, so])
-                + B.Ax1_Core(sa, sa, sa, so)(A.U_1[:, :, so]).swapaxes(0, 1)
-            )
         return B_2
 
     def _get_U_2(self):

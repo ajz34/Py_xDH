@@ -20,10 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="doc: grad_rhf_U">
-      <change afterPath="$PROJECT_DIR$/docs/source/derivtwice/index.rst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/derivonce/grad_xdh.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/derivonce/grad_xdh.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/derivonce/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/derivonce/index.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/derivtwice/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/derivtwice/index.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_scf.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -386,14 +385,8 @@
       <workItem from="1588040351814" duration="7941000" />
       <workItem from="1588150019382" duration="1328000" />
       <workItem from="1588213530782" duration="2582000" />
-      <workItem from="1588224548164" duration="2930000" />
-    </task>
-    <task id="LOCAL-00046" summary="doc: XYG3 proj completed, qc basic part finished">
-      <created>1568361947532</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1568361947532</updated>
+      <workItem from="1588224548164" duration="3710000" />
+      <workItem from="1588490657943" duration="2219000" />
     </task>
     <task id="LOCAL-00047" summary="doc: change slidebar width from 230 pt to 300 pt">
       <created>1568362678183</created>
@@ -731,7 +724,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588061461279</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="doc: hess_rhf">
+      <created>1588258021134</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1588258021134</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -774,7 +774,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="DerivTwice: add U_2 entry" />
     <MESSAGE value="DerivTwice: add U_2 rotation" />
     <MESSAGE value="PolarSCF: add polar option to select certain electric field components" />
     <MESSAGE value="pyxdh: should solve testing failed due to 0 != np.ndarray" />
@@ -799,7 +798,8 @@
     <MESSAGE value="doc: Ax additional" />
     <MESSAGE value="doc: dip_xdh" />
     <MESSAGE value="doc: change molecule to the same of Mol_H2O2" />
-    <option name="LAST_COMMIT_MESSAGE" value="doc: change molecule to the same of Mol_H2O2" />
+    <MESSAGE value="doc: hess_rhf" />
+    <option name="LAST_COMMIT_MESSAGE" value="doc: hess_rhf" />
   </component>
   <component name="WindowStateProjectService">
     <state x="303" y="264" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1584697718229">
