@@ -21,8 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="doc: grad_rhf_U">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/derivtwice/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/derivtwice/index.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_scf.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -386,14 +384,8 @@
       <workItem from="1588150019382" duration="1328000" />
       <workItem from="1588213530782" duration="2582000" />
       <workItem from="1588224548164" duration="3710000" />
-      <workItem from="1588490657943" duration="2219000" />
-    </task>
-    <task id="LOCAL-00047" summary="doc: change slidebar width from 230 pt to 300 pt">
-      <created>1568362678183</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1568362678183</updated>
+      <workItem from="1588490657943" duration="8028000" />
+      <workItem from="1588562280796" duration="11536000" />
     </task>
     <task id="LOCAL-00048" summary="pyxdh: add SCF dipole derivative">
       <created>1568438576907</created>
@@ -731,7 +723,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588258021134</updated>
     </task>
-    <option name="localTasksCounter" value="96" />
+    <task id="LOCAL-00096" summary="doc: hess_rhf_U">
+      <created>1588495081259</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1588495081260</updated>
+    </task>
+    <option name="localTasksCounter" value="97" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -774,7 +773,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="DerivTwice: add U_2 rotation" />
     <MESSAGE value="PolarSCF: add polar option to select certain electric field components" />
     <MESSAGE value="pyxdh: should solve testing failed due to 0 != np.ndarray" />
     <MESSAGE value="pyxdh: update to pyscf-1.7.1" />
@@ -799,7 +797,8 @@
     <MESSAGE value="doc: dip_xdh" />
     <MESSAGE value="doc: change molecule to the same of Mol_H2O2" />
     <MESSAGE value="doc: hess_rhf" />
-    <option name="LAST_COMMIT_MESSAGE" value="doc: hess_rhf" />
+    <MESSAGE value="doc: hess_rhf_U" />
+    <option name="LAST_COMMIT_MESSAGE" value="doc: hess_rhf_U" />
   </component>
   <component name="WindowStateProjectService">
     <state x="303" y="264" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1584697718229">
@@ -888,10 +887,10 @@
       <screen x="0" y="40" width="1536" height="824" />
     </state>
     <state width="242" height="198" key="ShowFilterAction_Filter_Popup/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584697710511" />
-    <state x="361" y="185" key="Vcs.Push.Dialog.v2" timestamp="1588061508035">
+    <state x="361" y="185" key="Vcs.Push.Dialog.v2" timestamp="1588495099596">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
-    <state x="361" y="185" key="Vcs.Push.Dialog.v2/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1588061508035" />
+    <state x="361" y="185" key="Vcs.Push.Dialog.v2/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1588495099596" />
     <state x="361" y="185" key="Vcs.Push.Dialog.v2/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1587487096791" />
     <state x="361" y="185" key="Vcs.Push.Dialog.v2/0.40.1536.824@0.40.1536.824" timestamp="1585588483840" />
     <state x="564" y="365" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1584763374928">

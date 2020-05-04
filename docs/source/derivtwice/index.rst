@@ -9,3 +9,4 @@
 
    hess_rhf
    hess_rhf_U
+   hess_mp2_unsafe
