@@ -21,6 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="doc: grad_rhf_U">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_mp2.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_mp2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -386,6 +387,7 @@
       <workItem from="1588224548164" duration="3710000" />
       <workItem from="1588490657943" duration="8028000" />
       <workItem from="1588562280796" duration="11536000" />
+      <workItem from="1588670823247" duration="1945000" />
     </task>
     <task id="LOCAL-00048" summary="pyxdh: add SCF dipole derivative">
       <created>1568438576907</created>

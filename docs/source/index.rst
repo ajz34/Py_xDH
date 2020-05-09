@@ -18,6 +18,7 @@ xDH 在 Python 下实现的简易教程
    qcbasic/index
    numdiff/index
    derivonce/index
+   derivtwice/index
 
 
 索引

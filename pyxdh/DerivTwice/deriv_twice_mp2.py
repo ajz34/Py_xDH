@@ -37,6 +37,7 @@ class DerivTwiceMP2(DerivTwiceSCF, ABC):
         self._pdB_D_r_oovv = NotImplemented
         self._RHS_B = NotImplemented
         self._pdB_W_I = NotImplemented
+        self._pdB_pdpA_eri0_iajb = NotImplemented
 
     # region Properties
 
@@ -51,6 +52,12 @@ class DerivTwiceMP2(DerivTwiceSCF, ABC):
         if self._pdB_W_I is NotImplemented:
             self._pdB_W_I = self._get_pdB_W_I()
         return self._pdB_W_I
+
+    @property
+    def pdB_pdpA_eri0_iajb(self):
+        if self._pdB_pdpA_eri0_iajb is NotImplemented:
+            self._pdB_pdpA_eri0_iajb = self._get_pdB_pdpA_eri0_iajb()
+        return self._pdB_pdpA_eri0_iajb
 
     # endregion
 
@@ -113,11 +120,10 @@ class DerivTwiceMP2(DerivTwiceSCF, ABC):
 
         return pdR_W_I
 
-    def _get_E_2_MP2_Contrib(self):
+    def _get_pdB_pdpA_eri0_iajb(self):
         A, B = self.A, self.B
         so, sv = self.so, self.sv
         eri1_mo, U_1 = A.eri1_mo, B.U_1
-        #
         pdB_pdpA_eri0_iajb = (
             + np.einsum("ABuvkl, up, vq, kr, ls -> ABpqrs", self.eri2_ao, self.Co, self.Cv, self.Co, self.Cv)
             + np.einsum("Apjkl, Bpi -> ABijkl", eri1_mo[:, :, sv, so, sv], U_1[:, :, so])
@@ -125,6 +131,11 @@ class DerivTwiceMP2(DerivTwiceSCF, ABC):
             + np.einsum("Aijpl, Bpk -> ABijkl", eri1_mo[:, so, sv, :, sv], U_1[:, :, so])
             + np.einsum("Aijkp, Bpl -> ABijkl", eri1_mo[:, so, sv, so, :], U_1[:, :, sv])
         )
+        return pdB_pdpA_eri0_iajb
+
+    def _get_E_2_MP2_Contrib(self):
+        A, B = self.A, self.B
+        so, sv = self.so, self.sv
 
         E_2_MP2_Contrib = (
             # D_r * B
@@ -136,7 +147,7 @@ class DerivTwiceMP2(DerivTwiceSCF, ABC):
             + np.einsum("Bpq, Apq -> AB", self.pdB_W_I, A.S_1_mo)
             # T * g
             + 2 * np.einsum("Biajb, Aiajb -> AB", B.pdA_T_iajb, A.eri1_mo[:, so, sv, so, sv])
-            + 2 * np.einsum("iajb, ABiajb -> AB", self.T_iajb, pdB_pdpA_eri0_iajb)
+            + 2 * np.einsum("iajb, ABiajb -> AB", self.T_iajb, self.pdB_pdpA_eri0_iajb)
         )
         return E_2_MP2_Contrib
 
