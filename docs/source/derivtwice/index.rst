@@ -10,3 +10,5 @@
    hess_rhf
    hess_rhf_U
    hess_mp2_unsafe
+   hess_mp2_safe
+   hess_gga
