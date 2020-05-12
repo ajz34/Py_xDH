@@ -21,8 +21,12 @@
   <component name="ChangeListManager">
     <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="doc: grad_rhf_U">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/derivtwice/hess_rhf.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/derivtwice/hess_rhf.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/derivonce/grad_bdh.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/derivonce/grad_bdh.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/derivonce/grad_xdh.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/derivonce/grad_xdh.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/derivtwice/hess_gga.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/derivtwice/hess_gga.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/derivtwice/hess_gga_U.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/derivtwice/hess_gga_U.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/source/derivtwice/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/derivtwice/index.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/grad_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/grad_scf.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -389,7 +393,8 @@
       <workItem from="1588490657943" duration="8028000" />
       <workItem from="1588562280796" duration="11536000" />
       <workItem from="1588670823247" duration="1945000" />
-      <workItem from="1589171267167" duration="6485000" />
+      <workItem from="1589171267167" duration="9985000" />
+      <workItem from="1589250922736" duration="9978000" />
     </task>
     <task id="LOCAL-00048" summary="pyxdh: add SCF dipole derivative">
       <created>1568438576907</created>
@@ -882,10 +887,11 @@
     </state>
     <state x="456" y="168" key="RollbackChangesDialog/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1588056408538" />
     <state x="456" y="168" width="500" height="560" key="RollbackChangesDialog/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1586500446946" />
-    <state x="142" y="97" key="SettingsEditor" timestamp="1584791102187">
+    <state x="142" y="97" key="SettingsEditor" timestamp="1589252692955">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
     <state x="142" y="97" key="SettingsEditor/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584791102187" />
+    <state x="142" y="97" key="SettingsEditor/0.40.1536.824/1986.0.1470.960@0.40.1536.824" timestamp="1589252692955" />
     <state x="273" y="84" key="SettingsEditor/0.40.1536.824@0.40.1536.824" timestamp="1584717531780" />
     <state width="242" height="198" key="ShowFilterAction_Filter_Popup" timestamp="1584697710511">
       <screen x="0" y="40" width="1536" height="824" />

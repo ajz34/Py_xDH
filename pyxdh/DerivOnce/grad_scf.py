@@ -39,30 +39,30 @@ class GradSCF(DerivOnceSCF):
             shape1 = list(X.shape)
             X.shape = (-1, shape1[-2], shape1[-1])
             if skl_none:
-                dm = X
-                if dm.shape[-2] != nao or dm.shape[-1] != nao:
+                dmX = X
+                if dmX.shape[-2] != nao or dmX.shape[-1] != nao:
                     raise ValueError("if `sk`, `sl` is None, we assume that mo1 passed in is an AO-based matrix!")
             else:
-                dm = C[:, sk] @ X @ C[:, sl].T
-            dm += dm.transpose((0, 2, 1))
+                dmX = C[:, sk] @ X @ C[:, sl].T
+            dmX += dmX.transpose((0, 2, 1))
 
-            ax_ao = np.empty((natm, 3, dm.shape[0], nao, nao))
+            ax_ao = np.empty((natm, 3, dmX.shape[0], nao, nao))
 
             # Actual calculation
             # (ut v | k l), (ut k | v l)
             j_1, k_1 = _vhf.direct_mapdm(
                 mol._add_suffix('int2e_ip1'), "s2kl",
                 ("lk->s1ij", "jk->s1il"),
-                dm, 3,
+                dmX, 3,
                 mol._atm, mol._bas, mol._env
             )
-            if dm.shape[0] == 1:  # dm shape is 1 * nao * nao, then j_1, k_1 do not retain dimension of dm.shape[0]
+            if dmX.shape[0] == 1:  # dm shape is 1 * nao * nao, then j_1, k_1 do not retain dimension of dm.shape[0]
                 j_1, k_1 = j_1[None, :], k_1[None, :]
             j_1, k_1 = j_1.swapaxes(0, 1), k_1.swapaxes(0, 1)
 
             # HF Part
             for A in range(natm):
-                ax = np.zeros((3, dm.shape[0], nao, nao))
+                ax = np.zeros((3, dmX.shape[0], nao, nao))
                 shl0, shl1, p0, p1 = mol.aoslice_by_atom()[A]
                 sA = slice(p0, p1)  # equivalent to mol_slice(A)
                 ax[:, :, sA, :] -= 2 * j_1[:, :, sA, :]
@@ -73,11 +73,11 @@ class GradSCF(DerivOnceSCF):
                 j_1A, k_1A = _vhf.direct_mapdm(
                     mol._add_suffix('int2e_ip1'), "s2kl",
                     ("ji->s1kl", "li->s1kj"),
-                    dm[:, :, p0:p1], 3,
+                    dmX[:, :, p0:p1], 3,
                     mol._atm, mol._bas, mol._env,
                     shls_slice=((shl0, shl1) + (0, mol.nbas) * 3)
                 )
-                if dm.shape[0] == 1:  # dm shape is 1 * nao * nao, then j_1A, k_1A do not retain dimension of dm.shape[0]
+                if dmX.shape[0] == 1:  # dm shape is 1 * nao * nao, then j_1A, k_1A do not retain dimension of dm.shape[0]
                     j_1A, k_1A = j_1A[None, :], k_1A[None, :]
                 j_1A, k_1A = j_1A.swapaxes(0, 1), k_1A.swapaxes(0, 1)
                 ax -= 4 * j_1A
@@ -98,10 +98,10 @@ class GradSCF(DerivOnceSCF):
                     pd_rho_1 = grdh.A_rho_2
 
                     # Form dmX density grid
-                    rho_X_0 = np.array([grdh.get_rho_0(dmX) for dmX in dm])
-                    rho_X_1 = np.array([grdh.get_rho_1(dmX) for dmX in dm])
-                    pd_rho_X_0 = np.array([grdh.get_A_rho_1(dmX) for dmX in dm]).transpose((1, 2, 0, 3))
-                    pd_rho_X_1 = np.array([grdh.get_A_rho_2(dmX) for dmX in dm]).transpose((1, 2, 0, 3, 4))
+                    rho_X_0 = np.array([grdh.get_rho_0(dm) for dm in dmX])
+                    rho_X_1 = np.array([grdh.get_rho_1(dm) for dm in dmX])
+                    pd_rho_X_0 = np.array([grdh.get_A_rho_1(dm) for dm in dmX]).transpose((1, 2, 0, 3))
+                    pd_rho_X_1 = np.array([grdh.get_A_rho_2(dm) for dm in dmX]).transpose((1, 2, 0, 3, 4))
 
                     # Define temporary intermediates
                     tmp_M_0 = (
@@ -132,7 +132,7 @@ class GradSCF(DerivOnceSCF):
                             + 4 * np.einsum("g, AtBrg -> AtBrg", kerh.fg, pd_rho_X_1)
                     )
 
-                    contrib1 = np.zeros((natm, 3, dm.shape[0], nao, nao))
+                    contrib1 = np.zeros((natm, 3, dmX.shape[0], nao, nao))
                     contrib1 += np.einsum("AtBg, gu, gv -> AtBuv", pd_tmp_M_0, grdh.ao_0, grdh.ao_0)
                     contrib1 += np.einsum("AtBrg, rgu, gv -> AtBuv", pd_tmp_M_1, grdh.ao_1, grdh.ao_0)
                     contrib1 += contrib1.swapaxes(-1, -2)
@@ -143,7 +143,7 @@ class GradSCF(DerivOnceSCF):
                             - np.einsum("Brg, tgu, rgv -> tBuv", tmp_M_1, grdh.ao_1, grdh.ao_1)
                     )
 
-                    contrib2 = np.zeros((natm, 3, dm.shape[0], nao, nao))
+                    contrib2 = np.zeros((natm, 3, dmX.shape[0], nao, nao))
                     for A in range(natm):
                         sA = self.mol_slice(A)
                         contrib2[A, :, :, sA] += tmp_contrib[:, :, sA]
@@ -173,14 +173,14 @@ class GradSCF(DerivOnceSCF):
                             + 4 * np.einsum("Atg, Brg -> AtBrg", pdU_fg, rho_X_1)
                     )
 
-                    contrib3 = np.zeros((natm, 3, dm.shape[0], nao, nao))
+                    contrib3 = np.zeros((natm, 3, dmX.shape[0], nao, nao))
                     contrib3 += np.einsum("AtBg, gu, gv -> AtBuv", pdU_tmp_M_0, grdh.ao_0, grdh.ao_0)
                     contrib3 += np.einsum("AtBrg, rgu, gv -> AtBuv", pdU_tmp_M_1, grdh.ao_1, grdh.ao_0)
                     contrib3 += contrib3.swapaxes(-1, -2)
 
                     ax_ao += contrib1 + contrib2 + contrib3
 
-            ax_ao.shape = (natm * 3, dm.shape[0], nao, nao)
+            ax_ao.shape = (natm * 3, dmX.shape[0], nao, nao)
 
             if not sij_none:
                 ax_ao = np.einsum("ABuv, ui, vj -> ABij", ax_ao, C[:, si], C[:, sj])

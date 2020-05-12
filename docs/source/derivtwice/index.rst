@@ -12,3 +12,4 @@
    hess_mp2_unsafe
    hess_mp2_safe
    hess_gga
+   hess_gga_U
