@@ -1,20 +1,4 @@
-一阶梯度与性质
-==============
+一阶梯度与性质：序
+==================
 
 这一部分中，我们会讨论从自洽场到 XYG3 型泛函一阶梯度的性质的实现，包括核坐标梯度与偶极矩计算。在这一章的最后，我们会以 XYG3 型原子的电子云密度计算作为练习。
-
-
-.. toctree::
-   :maxdepth: 2
-
-   ref_list
-   skeleton_and_U
-   dip_rhf_skeleton
-   grad_rhf_skeleton
-   grad_rhf_U
-   grad_mp2
-   grad_gga
-   grad_bdh
-   grad_xdh
-   response_density
-   dip_xdh

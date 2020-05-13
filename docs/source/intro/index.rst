@@ -1,16 +1,7 @@
-前置准备
-========
+前置准备：序
+============
 
 这部分准备并非新手指南。在这里，作者假定读者已经了解基本的 Python、NumPy 的使用方式。如果对 C++、Matlab 等工具有足够多的经验相信也能阅读这份笔记。
 
 在这里，我们会回顾一些不太常用的话题；或者说在一个《数据结构与算法》课程编程中，一般不会遇到的问题。这些问题很可能会穿插在以后的笔记中，或者在 :code:`pyxdh` 的项目中。
-
-.. toctree::
-   :maxdepth: 2
-
-   build_environment
-   intro_python
-   intro_numpy
-   adv_numpy
-   intro_pyxdh
 
