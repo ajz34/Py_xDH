@@ -43,6 +43,7 @@ class DerivOnceSCF(ABC):
         self.xc_type = "HF"
 
         # From SCF Calculation
+        self._nocc = NotImplemented
         self._C = NotImplemented
         self._mo_occ = NotImplemented
         self._e = NotImplemented
@@ -117,6 +118,7 @@ class DerivOnceSCF(ABC):
             self.mo_occ = self.scf_eng.mo_occ
             self.C = self.scf_eng.mo_coeff
             self.e = self.scf_eng.mo_energy
+            self.nocc = self.mol.nelec[0]
         return
 
     # endregion
@@ -146,7 +148,7 @@ class DerivOnceSCF(ABC):
     def nmo(self):
         if self.C is NotImplemented:
             raise ValueError("Molecular orbital number should be determined after SCF process!\nPrepare self.C first.")
-        return self.C.shape[1]
+        return self.C.shape[-1]
 
     @property
     def nao(self):
@@ -154,7 +156,14 @@ class DerivOnceSCF(ABC):
 
     @property
     def nocc(self):
-        return self.mol.nelec[0]
+        return self._nocc
+
+    @nocc.setter
+    def nocc(self, nocc):
+        if self._nocc is NotImplemented:
+            self._nocc = nocc
+        else:
+            raise AttributeError("Once occupation number is set, it should not be changed anymore.")
 
     @property
     def nvir(self):
@@ -170,6 +179,10 @@ class DerivOnceSCF(ABC):
             self._mo_occ = mo_occ
         else:
             raise AttributeError("Once mo_occ is set, it should not be changed anymore.")
+
+    @property
+    def occ(self):
+        return self._mo_occ
 
     @property
     def natm(self):
@@ -306,14 +319,12 @@ class DerivOnceSCF(ABC):
 
     @property
     def eri1_ao(self):
-        warnings.warn("eri1_ao: 4-idx tensor ERI should be not used!")
         if self._eri1_ao is NotImplemented:
             self._eri1_ao = self._get_eri1_ao()
         return self._eri1_ao
 
     @property
     def eri1_mo(self):
-        warnings.warn("eri1_mo: 4-idx tensor ERI should be not used!")
         if self._eri1_mo is NotImplemented:
             self._eri1_mo = self._get_eri1_mo()
         return self._eri1_mo

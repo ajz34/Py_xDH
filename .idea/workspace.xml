@@ -19,16 +19,23 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="doc: grad_rhf_U">
+    <list default="true" id="912d8545-b18a-4722-b0d8-e8c61f686f07" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_uscf.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/grad_uscf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Py_xDH.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Py_xDH.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_scf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/Utilities/test_molecules.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Utilities/test_molecules.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExportTestResults" outputFolder="$PROJECT_DIR$/tmp_snapshots" userTempatePath="" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -37,24 +44,10 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="PUSH_TAGS">
-      <GitPushTagMode>
-        <option name="argument" value="--tags" />
-        <option name="title" value="All" />
-      </GitPushTagMode>
-    </option>
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="0.0.1" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="JupyterTrust" id="31704001-a987-4eb7-857a-c65f67579d31" />
-  <component name="MacroExpansionManager">
-    <option name="directoryName" value="QKmAaWFK" />
-  </component>
-  <component name="ProjectId" id="1PdvxE2OLkdI9OtIDBmBIK41jZA" />
+  <component name="ProjectId" id="1cR3sgUm2fsX4LSpJ9YZNxQAr3l" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -62,47 +55,41 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/docs/source/derivtwice" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pyxdh/DerivOnce/grad_uscf.py" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
-    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="PyConsoleOptionsProvider">
-    <option name="myPythonConsoleState">
-      <console-settings module-name="Py_xDH" is-module-sdk="true">
-        <envs>
-          <env key="PYSCF_TMPDIR" value="/tmp" />
-        </envs>
-        <option name="myUseModuleSdk" value="true" />
-        <option name="myModuleName" value="Py_xDH" />
-        <option name="myEnvs">
-          <map>
-            <entry key="PYSCF_TMPDIR" value="/tmp" />
-          </map>
-        </option>
-      </console-settings>
-    </option>
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\Git-Repo\Py_xDH" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\Git-Repo\Py_xDH\docs\source\derivtwice" />
-      <recent name="E:\Git-Repo\Py_xDH\pyxdh\tmp_dft_speed" />
-      <recent name="E:\Git-Repo\Py_xDH" />
-    </key>
-  </component>
-  <component name="RunManager" selected="Python.Ne_5Z">
-    <configuration name="MP2_Polar" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.pytest in grad_uscf.py">
+    <configuration name="grad_uscf" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Py_xDH" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pyxdh/DerivOnce" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pyxdh/DerivOnce/grad_uscf.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="grid_gen" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Py_xDH" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -115,7 +102,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pyxdh/tmp_dft_speed/MP2_Polar.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pyxdh/tmp_dft_speed/grid_gen.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -124,80 +111,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Ne_5Z" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Py_xDH" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pyxdh/tmp_dft_speed" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pyxdh/tmp_dft_speed/Ne_5Z.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pytest for dipderiv_mp2.Test_DipDerivMP2.test_B2PLYP_dipderiv" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="Py_xDH" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pyxdh/DerivTwice" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_parameters" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;dipderiv_mp2.Test_DipDerivMP2.test_B2PLYP_dipderiv&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pytest for dipderiv_mp2.Test_DipDerivMP2.test_MP2_dipderiv" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="Py_xDH" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pyxdh/DerivTwice" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_parameters" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;dipderiv_mp2.Test_DipDerivMP2.test_MP2_dipderiv&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pytest for polar_mp2.Test_PolarMP2.test_B2PLYP_polar" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="Py_xDH" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pyxdh/DerivTwice" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_parameters" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;polar_mp2.Test_PolarMP2.test_B2PLYP_polar&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pytest for pyxdh" type="tests" factoryName="py.test" nameIsGenerated="true">
+    <configuration name="pytest in grad_uscf.py" type="tests" factoryName="py.test" nameIsGenerated="true">
       <module name="Py_xDH" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -210,546 +124,46 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;pyxdh&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/pyxdh/DerivOnce/grad_uscf.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.MP2_Polar" />
-      <item itemvalue="Python.Ne_5Z" />
-      <item itemvalue="Python tests.pytest for pyxdh" />
-      <item itemvalue="Python tests.pytest for polar_mp2.Test_PolarMP2.test_B2PLYP_polar" />
-      <item itemvalue="Python tests.pytest for dipderiv_mp2.Test_DipDerivMP2.test_MP2_dipderiv" />
-      <item itemvalue="Python tests.pytest for dipderiv_mp2.Test_DipDerivMP2.test_B2PLYP_dipderiv" />
+      <item itemvalue="Python.grad_uscf" />
+      <item itemvalue="Python.grid_gen" />
+      <item itemvalue="Python tests.pytest in grad_uscf.py" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Ne_5Z" />
-        <item itemvalue="Python tests.pytest for polar_mp2.Test_PolarMP2.test_B2PLYP_polar" />
-        <item itemvalue="Python tests.pytest for dipderiv_mp2.Test_DipDerivMP2.test_B2PLYP_dipderiv" />
-        <item itemvalue="Python tests.pytest for dipderiv_mp2.Test_DipDerivMP2.test_MP2_dipderiv" />
-        <item itemvalue="Python.MP2_Polar" />
+        <item itemvalue="Python.grad_uscf" />
+        <item itemvalue="Python.grid_gen" />
       </list>
     </recent_temporary>
   </component>
   <component name="SvnConfiguration">
-    <configuration>C:\Users\ajz34\AppData\Roaming\Subversion</configuration>
+    <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="e875645e-bdb2-4e0c-9a08-ac66836d3144" name="Default Changelist" comment="" />
-      <created>1560170783387</created>
+      <changelist id="912d8545-b18a-4722-b0d8-e8c61f686f07" name="Default Changelist" comment="" />
+      <created>1590477786387</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1560170783387</updated>
-      <workItem from="1560170786111" duration="14802000" />
-      <workItem from="1560335573066" duration="14874000" />
-      <workItem from="1560403688875" duration="2030000" />
-      <workItem from="1560474167905" duration="217000" />
-      <workItem from="1560489896975" duration="591000" />
-      <workItem from="1560494652774" duration="7000" />
-      <workItem from="1560494687276" duration="6099000" />
-      <workItem from="1560680092997" duration="3087000" />
-      <workItem from="1560734558888" duration="1282000" />
-      <workItem from="1560842420844" duration="1811000" />
-      <workItem from="1560855126835" duration="599000" />
-      <workItem from="1560999924626" duration="6577000" />
-      <workItem from="1561047310560" duration="1020000" />
-      <workItem from="1561083184602" duration="3118000" />
-      <workItem from="1561543632291" duration="790000" />
-      <workItem from="1561601440609" duration="288000" />
-      <workItem from="1561861157443" duration="2659000" />
-      <workItem from="1561882827298" duration="842000" />
-      <workItem from="1562466277772" duration="4613000" />
-      <workItem from="1562850465836" duration="153000" />
-      <workItem from="1562850643034" duration="2707000" />
-      <workItem from="1563193807360" duration="670000" />
-      <workItem from="1563675834792" duration="1928000" />
-      <workItem from="1563762992313" duration="1829000" />
-      <workItem from="1563791353300" duration="1482000" />
-      <workItem from="1563930874233" duration="2399000" />
-      <workItem from="1564452846720" duration="9154000" />
-      <workItem from="1564563477911" duration="2757000" />
-      <workItem from="1564623458506" duration="1385000" />
-      <workItem from="1565174076691" duration="1126000" />
-      <workItem from="1565491788485" duration="723000" />
-      <workItem from="1565606063276" duration="2521000" />
-      <workItem from="1565747479402" duration="7160000" />
-      <workItem from="1565835261295" duration="6658000" />
-      <workItem from="1565918764070" duration="3465000" />
-      <workItem from="1566007104299" duration="4786000" />
-      <workItem from="1566028272189" duration="72000" />
-      <workItem from="1566194756442" duration="222000" />
-      <workItem from="1566217035805" duration="5199000" />
-      <workItem from="1566267042551" duration="13686000" />
-      <workItem from="1566301659479" duration="948000" />
-      <workItem from="1566302637572" duration="686000" />
-      <workItem from="1566644529316" duration="3330000" />
-      <workItem from="1566698242037" duration="1198000" />
-      <workItem from="1567232585308" duration="2031000" />
-      <workItem from="1568028794967" duration="1171000" />
-      <workItem from="1568165645021" duration="601000" />
-      <workItem from="1568255314132" duration="7312000" />
-      <workItem from="1568287887761" duration="11065000" />
-      <workItem from="1568338202668" duration="7622000" />
-      <workItem from="1568368832251" duration="1884000" />
-      <workItem from="1568421520374" duration="17620000" />
-      <workItem from="1568597406319" duration="627000" />
-      <workItem from="1568687150189" duration="1121000" />
-      <workItem from="1568694073816" duration="6819000" />
-      <workItem from="1568721321876" duration="997000" />
-      <workItem from="1568726094572" duration="3272000" />
-      <workItem from="1568775842351" duration="1237000" />
-      <workItem from="1568778157905" duration="1783000" />
-      <workItem from="1568793924476" duration="1669000" />
-      <workItem from="1568862793144" duration="24794000" />
-      <workItem from="1568902650290" duration="8108000" />
-      <workItem from="1568956253949" duration="14049000" />
-      <workItem from="1569030569267" duration="5591000" />
-      <workItem from="1569311549304" duration="2494000" />
-      <workItem from="1569315438123" duration="1542000" />
-      <workItem from="1570327194233" duration="2531000" />
-      <workItem from="1570339984157" duration="6293000" />
-      <workItem from="1570415084737" duration="5110000" />
-      <workItem from="1571118320168" duration="2047000" />
-      <workItem from="1571198061596" duration="11061000" />
-      <workItem from="1571287088662" duration="3510000" />
-      <workItem from="1571721371612" duration="9224000" />
-      <workItem from="1571749752586" duration="6684000" />
-      <workItem from="1571800066661" duration="3821000" />
-      <workItem from="1571901424217" duration="2445000" />
-      <workItem from="1571929921891" duration="1625000" />
-      <workItem from="1572404265909" duration="14848000" />
-      <workItem from="1572511867357" duration="4033000" />
-      <workItem from="1572520879825" duration="2139000" />
-      <workItem from="1572538042740" duration="767000" />
-      <workItem from="1572851236132" duration="1515000" />
-      <workItem from="1572926397883" duration="4589000" />
-      <workItem from="1573008684928" duration="10268000" />
-      <workItem from="1573103636196" duration="4904000" />
-      <workItem from="1573132847829" duration="1968000" />
-      <workItem from="1573189936205" duration="9877000" />
-      <workItem from="1573461130444" duration="676000" />
-      <workItem from="1573964955278" duration="49000" />
-      <workItem from="1574572830554" duration="275000" />
-      <workItem from="1574573377067" duration="1283000" />
-      <workItem from="1574651846349" duration="2869000" />
-      <workItem from="1574682181686" duration="20507000" />
-      <workItem from="1575095185748" duration="294000" />
-      <workItem from="1575964692167" duration="4600000" />
-      <workItem from="1576053530588" duration="614000" />
-      <workItem from="1577525822864" duration="2592000" />
-      <workItem from="1577607512472" duration="2149000" />
-      <workItem from="1577771185038" duration="2866000" />
-      <workItem from="1584671861011" duration="1535000" />
-      <workItem from="1584685873471" duration="13119000" />
-      <workItem from="1584711318150" duration="674000" />
-      <workItem from="1584712388793" duration="323000" />
-      <workItem from="1584717397932" duration="777000" />
-      <workItem from="1584756596060" duration="3778000" />
-      <workItem from="1584761143960" duration="15332000" />
-      <workItem from="1584926692991" duration="4993000" />
-      <workItem from="1585018871364" duration="8743000" />
-      <workItem from="1585107971474" duration="9651000" />
-      <workItem from="1585193816496" duration="6334000" />
-      <workItem from="1585274794072" duration="5397000" />
-      <workItem from="1585456418510" duration="600000" />
-      <workItem from="1585553127199" duration="4818000" />
-      <workItem from="1585633239690" duration="2235000" />
-      <workItem from="1585751366094" duration="387000" />
-      <workItem from="1585800409358" duration="3465000" />
-      <workItem from="1585986145567" duration="1784000" />
-      <workItem from="1586088701057" duration="442000" />
-      <workItem from="1586143868977" duration="2259000" />
-      <workItem from="1586341812867" duration="1928000" />
-      <workItem from="1586409650802" duration="1866000" />
-      <workItem from="1586442879035" duration="2592000" />
-      <workItem from="1586500193830" duration="4115000" />
-      <workItem from="1586600294415" duration="1238000" />
-      <workItem from="1586845957859" duration="1083000" />
-      <workItem from="1586942896747" duration="8549000" />
-      <workItem from="1587021105887" duration="4735000" />
-      <workItem from="1587109305342" duration="1054000" />
-      <workItem from="1587208413773" duration="1492000" />
-      <workItem from="1587261175883" duration="1206000" />
-      <workItem from="1587375512338" duration="2264000" />
-      <workItem from="1587464952738" duration="3251000" />
-      <workItem from="1587533384658" duration="2639000" />
-      <workItem from="1587621933632" duration="2448000" />
-      <workItem from="1587710220417" duration="7237000" />
-      <workItem from="1587795998136" duration="5851000" />
-      <workItem from="1587822626372" duration="1694000" />
-      <workItem from="1587884865075" duration="4455000" />
-      <workItem from="1587954168612" duration="1238000" />
-      <workItem from="1588040351814" duration="7941000" />
-      <workItem from="1588150019382" duration="1328000" />
-      <workItem from="1588213530782" duration="2582000" />
-      <workItem from="1588224548164" duration="3710000" />
-      <workItem from="1588490657943" duration="8028000" />
-      <workItem from="1588562280796" duration="11536000" />
-      <workItem from="1588670823247" duration="1945000" />
-      <workItem from="1589171267167" duration="9985000" />
-      <workItem from="1589250922736" duration="9978000" />
-      <workItem from="1589342527252" duration="2070000" />
+      <updated>1590477786387</updated>
+      <workItem from="1590477790990" duration="73000" />
+      <workItem from="1590477885332" duration="3280000" />
+      <workItem from="1590550072941" duration="2530000" />
+      <workItem from="1590633143127" duration="5954000" />
+      <workItem from="1590716697441" duration="2438000" />
+      <workItem from="1590738965221" duration="627000" />
+      <workItem from="1590809239399" duration="1256000" />
+      <workItem from="1590975082909" duration="9658000" />
+      <workItem from="1591009998108" duration="6669000" />
     </task>
-    <task id="LOCAL-00048" summary="pyxdh: add SCF dipole derivative">
-      <created>1568438576907</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1568438576907</updated>
-    </task>
-    <task id="LOCAL-00049" summary="pyxdh: add MP2/B2PLYP dipole derivative">
-      <created>1568439282821</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1568439282821</updated>
-    </task>
-    <task id="LOCAL-00050" summary="pyxdh: add NCDFT(HF-B3LYP) dipole derivative">
-      <created>1568440162701</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1568440162702</updated>
-    </task>
-    <task id="LOCAL-00051" summary="pyxdh: add XDH (XYG3) dipole derivative">
-      <created>1568441857365</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1568441857365</updated>
-    </task>
-    <task id="LOCAL-00052" summary="pyxdh: so I believe dipole derivative is finally finished">
-      <created>1568441941086</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1568441941086</updated>
-    </task>
-    <task id="LOCAL-00053" summary="deployment: try to publish to pypi">
-      <created>1568687433899</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1568687433899</updated>
-    </task>
-    <task id="LOCAL-00054" summary="deployment: change pypi passwd">
-      <created>1568694116740</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1568694116740</updated>
-    </task>
-    <task id="LOCAL-00055" summary="deployment: try another time on travis-ci...">
-      <created>1568698444201</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1568698444201</updated>
-    </task>
-    <task id="LOCAL-00056" summary="pyxdh: try os/ss split">
-      <created>1568727368931</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1568727368932</updated>
-    </task>
-    <task id="LOCAL-00057" summary="pyxdh: add xygj-os gradient check">
-      <created>1568728100639</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1568728100639</updated>
-    </task>
-    <task id="LOCAL-00058" summary="pyxdh: add xygj-os dipole check">
-      <created>1568728236411</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1568728236411</updated>
-    </task>
-    <task id="LOCAL-00059" summary="pyxdh: add requirements to setup.py">
-      <created>1568728764145</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1568728764145</updated>
-    </task>
-    <task id="LOCAL-00060" summary="pyxdh: flexibility to make cphf more coarse">
-      <created>1568881741153</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1568881741154</updated>
-    </task>
-    <task id="LOCAL-00061" summary="pyxdh: Ax0_Core use PySCF's _gen_rhf_response instead, for efficiency reason">
-      <created>1568898108606</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1568898108606</updated>
-    </task>
-    <task id="LOCAL-00062" summary="pyxdh: make hessian quicker">
-      <created>1568971349441</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1568971349442</updated>
-    </task>
-    <task id="LOCAL-00063" summary="pyxdh: change all grid setting in cphf to (50, 190), add U_1 not rotated example">
-      <created>1568976359566</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1568976359566</updated>
-    </task>
-    <task id="LOCAL-00064" summary="pyxdh: mute gen_B_2 since no actual function actually use it">
-      <created>1568976409777</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1568976409777</updated>
-    </task>
-    <task id="LOCAL-00065" summary="pyxdh: possibly pass lgtm's alert">
-      <created>1568976883607</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1568976883607</updated>
-    </task>
-    <task id="LOCAL-00066" summary="pyxdh: move test of not rotated U_1 to polarizability, since dipole xDH does not need U_1">
-      <created>1568978976109</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1568978976109</updated>
-    </task>
-    <task id="LOCAL-00067" summary="pyxdh: tag v0.0.2">
-      <created>1570327559746</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1570327559747</updated>
-    </task>
-    <task id="LOCAL-00068" summary="pyxdh: correct bug in dipderiv">
-      <created>1570340125031</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1570340125032</updated>
-    </task>
-    <task id="LOCAL-00069" summary="pypi: only one bug fixed, modified packaging to make pip correctly work">
-      <created>1570369739580</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1570369739580</updated>
-    </task>
-    <task id="LOCAL-00070" summary="DerivTwice: add U_2 entry">
-      <created>1573022528108</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1573022528109</updated>
-    </task>
-    <task id="LOCAL-00071" summary="DerivTwice: add U_2 rotation">
-      <created>1573132939949</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1573132939950</updated>
-    </task>
-    <task id="LOCAL-00072" summary="PolarSCF: add polar option to select certain electric field components">
-      <created>1573215161007</created>
-      <option name="number" value="00072" />
-      <option name="presentableId" value="LOCAL-00072" />
-      <option name="project" value="LOCAL" />
-      <updated>1573215161008</updated>
-    </task>
-    <task id="LOCAL-00073" summary="pyxdh: should solve testing failed due to 0 != np.ndarray">
-      <created>1573217109545</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1573217109545</updated>
-    </task>
-    <task id="LOCAL-00074" summary="pyxdh: update to pyscf-1.7.1">
-      <created>1584763210677</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1584763210677</updated>
-    </task>
-    <task id="LOCAL-00075" summary="pyxdh: change version info">
-      <created>1584763396447</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1584763396448</updated>
-    </task>
-    <task id="LOCAL-00076" summary="doc: basic_num">
-      <created>1585296206705</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1585296206705</updated>
-    </task>
-    <task id="LOCAL-00077" summary="doc: nuc_grad">
-      <created>1585588394358</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL-00077" />
-      <option name="project" value="LOCAL" />
-      <updated>1585588394358</updated>
-    </task>
-    <task id="LOCAL-00078" summary="doc: num_dip">
-      <created>1585835251334</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1585835251335</updated>
-    </task>
-    <task id="LOCAL-00079" summary="doc: nuc_hess">
-      <created>1586005992282</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1586005992282</updated>
-    </task>
-    <task id="LOCAL-00080" summary="doc: num_polar">
-      <created>1586089013588</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1586089013588</updated>
-    </task>
-    <task id="LOCAL-00081" summary="doc: num_dipderiv">
-      <created>1586155796250</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1586155796250</updated>
-    </task>
-    <task id="LOCAL-00082" summary="pyxdh: return S_0_mo to deriv_once_scf">
-      <created>1586443671097</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1586443671098</updated>
-    </task>
-    <task id="LOCAL-00083" summary="pyxdh: retag">
-      <created>1586500316341</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1586500316342</updated>
-    </task>
-    <task id="LOCAL-00084" summary="doc: RHF dipole">
-      <created>1586600318838</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1586600318840</updated>
-    </task>
-    <task id="LOCAL-00085" summary="doc: dip, grad for RHF">
-      <created>1586846379807</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1586846379808</updated>
-    </task>
-    <task id="LOCAL-00086" summary="doc: grad_rhf_U">
-      <created>1587109737787</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1587109737788</updated>
-    </task>
-    <task id="LOCAL-00087" summary="doc: grad_mp2">
-      <created>1587394852489</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1587394852490</updated>
-    </task>
-    <task id="LOCAL-00088" summary="doc: grad_gga">
-      <created>1587487091985</created>
-      <option name="number" value="00088" />
-      <option name="presentableId" value="LOCAL-00088" />
-      <option name="project" value="LOCAL" />
-      <updated>1587487091985</updated>
-    </task>
-    <task id="LOCAL-00089" summary="doc: grad_bdh">
-      <created>1587632959882</created>
-      <option name="number" value="00089" />
-      <option name="presentableId" value="LOCAL-00089" />
-      <option name="project" value="LOCAL" />
-      <updated>1587632959882</updated>
-    </task>
-    <task id="LOCAL-00090" summary="doc: grad_xdh">
-      <created>1587742511598</created>
-      <option name="number" value="00090" />
-      <option name="presentableId" value="LOCAL-00090" />
-      <option name="project" value="LOCAL" />
-      <updated>1587742511598</updated>
-    </task>
-    <task id="LOCAL-00091" summary="doc: response_density">
-      <created>1587916794002</created>
-      <option name="number" value="00091" />
-      <option name="presentableId" value="LOCAL-00091" />
-      <option name="project" value="LOCAL" />
-      <updated>1587916794002</updated>
-    </task>
-    <task id="LOCAL-00092" summary="doc: Ax additional">
-      <created>1588003574145</created>
-      <option name="number" value="00092" />
-      <option name="presentableId" value="LOCAL-00092" />
-      <option name="project" value="LOCAL" />
-      <updated>1588003574146</updated>
-    </task>
-    <task id="LOCAL-00093" summary="doc: dip_xdh">
-      <created>1588059132621</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1588059132621</updated>
-    </task>
-    <task id="LOCAL-00094" summary="doc: change molecule to the same of Mol_H2O2">
-      <created>1588061461279</created>
-      <option name="number" value="00094" />
-      <option name="presentableId" value="LOCAL-00094" />
-      <option name="project" value="LOCAL" />
-      <updated>1588061461279</updated>
-    </task>
-    <task id="LOCAL-00095" summary="doc: hess_rhf">
-      <created>1588258021134</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1588258021134</updated>
-    </task>
-    <task id="LOCAL-00096" summary="doc: hess_rhf_U">
-      <created>1588495081259</created>
-      <option name="number" value="00096" />
-      <option name="presentableId" value="LOCAL-00096" />
-      <option name="project" value="LOCAL" />
-      <updated>1588495081260</updated>
-    </task>
-    <option name="localTasksCounter" value="97" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
-  </component>
-  <component name="Vcs.Log.History.Properties">
-    <option name="COLUMN_ORDER">
-      <list>
-        <option value="0" />
-        <option value="2" />
-        <option value="3" />
-        <option value="1" />
-      </list>
-    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -761,242 +175,85 @@
         </entry>
       </map>
     </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list />
-          </value>
-        </entry>
-        <entry key="User">
-          <value>
-            <list />
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="PolarSCF: add polar option to select certain electric field components" />
-    <MESSAGE value="pyxdh: should solve testing failed due to 0 != np.ndarray" />
-    <MESSAGE value="pyxdh: update to pyscf-1.7.1" />
-    <MESSAGE value="pyxdh: change version info" />
-    <MESSAGE value="doc: basic_num" />
-    <MESSAGE value="doc: nuc_grad" />
-    <MESSAGE value="doc: num_dip" />
-    <MESSAGE value="doc: nuc_hess" />
-    <MESSAGE value="doc: num_polar" />
-    <MESSAGE value="doc: num_dipderiv" />
-    <MESSAGE value="pyxdh: return S_0_mo to deriv_once_scf" />
-    <MESSAGE value="pyxdh: retag" />
-    <MESSAGE value="doc: RHF dipole" />
-    <MESSAGE value="doc: dip, grad for RHF" />
-    <MESSAGE value="doc: grad_rhf_U" />
-    <MESSAGE value="doc: grad_mp2" />
-    <MESSAGE value="doc: grad_gga" />
-    <MESSAGE value="doc: grad_bdh" />
-    <MESSAGE value="doc: grad_xdh" />
-    <MESSAGE value="doc: response_density" />
-    <MESSAGE value="doc: Ax additional" />
-    <MESSAGE value="doc: dip_xdh" />
-    <MESSAGE value="doc: change molecule to the same of Mol_H2O2" />
-    <MESSAGE value="doc: hess_rhf" />
-    <MESSAGE value="doc: hess_rhf_U" />
-    <option name="LAST_COMMIT_MESSAGE" value="doc: hess_rhf_U" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="303" y="264" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1584697718229">
+    <state x="64" y="99" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1591016736712">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
-    <state x="303" y="264" key="#com.intellij.fileTypes.FileTypeChooser/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584697718229" />
-    <state x="-918" y="206" key="#xdebugger.evaluate" timestamp="1584759829289">
-      <screen x="-1920" y="40" width="1536" height="824" />
+    <state x="64" y="99" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.40.1536.824/-1858.0.1474.864@-1858.0.1474.864" timestamp="1591016736712" />
+    <state x="2199" y="364" key="#xdebugger.evaluate" timestamp="1590481441957">
+      <screen x="1986" y="0" width="1470" height="960" />
     </state>
-    <state x="-918" y="206" key="#xdebugger.evaluate/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584759829289" />
-    <state x="93" y="133" width="1350" height="638" key="DiffContextDialog" timestamp="1585588796936">
+    <state x="2199" y="364" key="#xdebugger.evaluate/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1590481441957" />
+    <state x="-1341" y="211" key="FileChooserDialogImpl" timestamp="1591016734753">
+      <screen x="-1858" y="0" width="1474" height="864" />
+    </state>
+    <state x="-1341" y="211" key="FileChooserDialogImpl/0.40.1536.824/-1858.0.1474.864@-1858.0.1474.864" timestamp="1591016734753" />
+    <state x="2502" y="234" key="FileChooserDialogImpl/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1590478047065" />
+    <state width="1431" height="224" key="GridCell.Tab.0.bottom" timestamp="1591016982305">
+      <screen x="-1858" y="0" width="1474" height="864" />
+    </state>
+    <state width="1431" height="224" key="GridCell.Tab.0.bottom/0.40.1536.824/-1858.0.1474.864@-1858.0.1474.864" timestamp="1591016982305" />
+    <state width="1427" height="316" key="GridCell.Tab.0.bottom/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1590484345086" />
+    <state width="1431" height="224" key="GridCell.Tab.0.center" timestamp="1591016982305">
+      <screen x="-1858" y="0" width="1474" height="864" />
+    </state>
+    <state width="1431" height="224" key="GridCell.Tab.0.center/0.40.1536.824/-1858.0.1474.864@-1858.0.1474.864" timestamp="1591016982305" />
+    <state width="1427" height="316" key="GridCell.Tab.0.center/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1590484345086" />
+    <state width="1431" height="224" key="GridCell.Tab.0.left" timestamp="1591016982305">
+      <screen x="-1858" y="0" width="1474" height="864" />
+    </state>
+    <state width="1431" height="224" key="GridCell.Tab.0.left/0.40.1536.824/-1858.0.1474.864@-1858.0.1474.864" timestamp="1591016982305" />
+    <state width="1427" height="316" key="GridCell.Tab.0.left/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1590484345086" />
+    <state width="1431" height="224" key="GridCell.Tab.0.right" timestamp="1591016982305">
+      <screen x="-1858" y="0" width="1474" height="864" />
+    </state>
+    <state width="1431" height="224" key="GridCell.Tab.0.right/0.40.1536.824/-1858.0.1474.864@-1858.0.1474.864" timestamp="1591016982305" />
+    <state width="1427" height="316" key="GridCell.Tab.0.right/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1590484345086" />
+    <state width="1427" height="316" key="GridCell.Tab.1.bottom" timestamp="1590484345086">
+      <screen x="1986" y="0" width="1470" height="960" />
+    </state>
+    <state width="1427" height="316" key="GridCell.Tab.1.bottom/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1590484345086" />
+    <state width="1427" height="316" key="GridCell.Tab.1.center" timestamp="1590484345086">
+      <screen x="1986" y="0" width="1470" height="960" />
+    </state>
+    <state width="1427" height="316" key="GridCell.Tab.1.center/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1590484345086" />
+    <state width="1427" height="316" key="GridCell.Tab.1.left" timestamp="1590484345086">
+      <screen x="1986" y="0" width="1470" height="960" />
+    </state>
+    <state width="1427" height="316" key="GridCell.Tab.1.left/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1590484345086" />
+    <state width="1427" height="316" key="GridCell.Tab.1.right" timestamp="1590484345086">
+      <screen x="1986" y="0" width="1470" height="960" />
+    </state>
+    <state width="1427" height="316" key="GridCell.Tab.1.right/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1590484345086" />
+    <state x="2223" y="124" key="SettingsEditor" timestamp="1590478054762">
+      <screen x="1986" y="0" width="1470" height="960" />
+    </state>
+    <state x="2223" y="124" key="SettingsEditor/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1590478054762" />
+    <state x="2514" y="345" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration" timestamp="1590477943382">
+      <screen x="1986" y="0" width="1470" height="960" />
+    </state>
+    <state x="2514" y="345" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1590477943382" />
+    <state x="416" y="216" width="703" height="582" key="search.everywhere.popup" timestamp="1591011518800">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
-    <state x="93" y="133" width="1350" height="638" key="DiffContextDialog/0.40.1536.824@0.40.1536.824" timestamp="1585588796936" />
-    <state x="498" y="198" width="723" height="508" key="EnvironmentVariablesDialog" timestamp="1584761466093">
-      <screen x="0" y="40" width="1536" height="824" />
-    </state>
-    <state x="498" y="198" width="723" height="508" key="EnvironmentVariablesDialog/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584761466093" />
-    <state x="92" y="287" key="FileChooserDialogImpl" timestamp="1584791026497">
-      <screen x="0" y="40" width="1536" height="824" />
-    </state>
-    <state x="92" y="287" key="FileChooserDialogImpl/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584791026497" />
-    <state width="1493" height="201" key="GridCell.Tab.0.bottom" timestamp="1587819207616">
-      <screen x="0" y="40" width="1536" height="824" />
-    </state>
-    <state width="1493" height="201" key="GridCell.Tab.0.bottom/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1587819207616" />
-    <state width="1493" height="259" key="GridCell.Tab.0.bottom/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584798558270" />
-    <state width="1342" height="242" key="GridCell.Tab.0.bottom/0.40.1536.824@0.40.1536.824" timestamp="1584722404673" />
-    <state width="1493" height="201" key="GridCell.Tab.0.center" timestamp="1587819207616">
-      <screen x="0" y="40" width="1536" height="824" />
-    </state>
-    <state width="1493" height="201" key="GridCell.Tab.0.center/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1587819207616" />
-    <state width="1493" height="259" key="GridCell.Tab.0.center/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584798558270" />
-    <state width="1342" height="242" key="GridCell.Tab.0.center/0.40.1536.824@0.40.1536.824" timestamp="1584722404673" />
-    <state width="1493" height="201" key="GridCell.Tab.0.left" timestamp="1587819207615">
-      <screen x="0" y="40" width="1536" height="824" />
-    </state>
-    <state width="1493" height="201" key="GridCell.Tab.0.left/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1587819207615" />
-    <state width="1493" height="259" key="GridCell.Tab.0.left/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584798558269" />
-    <state width="1342" height="242" key="GridCell.Tab.0.left/0.40.1536.824@0.40.1536.824" timestamp="1584722404673" />
-    <state width="1493" height="201" key="GridCell.Tab.0.right" timestamp="1587819207616">
-      <screen x="0" y="40" width="1536" height="824" />
-    </state>
-    <state width="1493" height="201" key="GridCell.Tab.0.right/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1587819207616" />
-    <state width="1493" height="259" key="GridCell.Tab.0.right/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584798558270" />
-    <state width="1342" height="242" key="GridCell.Tab.0.right/0.40.1536.824@0.40.1536.824" timestamp="1584722404673" />
-    <state width="1493" height="201" key="GridCell.Tab.1.bottom" timestamp="1587819207616">
-      <screen x="0" y="40" width="1536" height="824" />
-    </state>
-    <state width="1493" height="201" key="GridCell.Tab.1.bottom/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1587819207616" />
-    <state width="1493" height="259" key="GridCell.Tab.1.bottom/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584798558270" />
-    <state width="1342" height="242" key="GridCell.Tab.1.bottom/0.40.1536.824@0.40.1536.824" timestamp="1584722404674" />
-    <state width="1493" height="201" key="GridCell.Tab.1.center" timestamp="1587819207616">
-      <screen x="0" y="40" width="1536" height="824" />
-    </state>
-    <state width="1493" height="201" key="GridCell.Tab.1.center/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1587819207616" />
-    <state width="1493" height="259" key="GridCell.Tab.1.center/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584798558270" />
-    <state width="1342" height="242" key="GridCell.Tab.1.center/0.40.1536.824@0.40.1536.824" timestamp="1584722404673" />
-    <state width="1493" height="201" key="GridCell.Tab.1.left" timestamp="1587819207616">
-      <screen x="0" y="40" width="1536" height="824" />
-    </state>
-    <state width="1493" height="201" key="GridCell.Tab.1.left/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1587819207616" />
-    <state width="1493" height="259" key="GridCell.Tab.1.left/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584798558270" />
-    <state width="1342" height="242" key="GridCell.Tab.1.left/0.40.1536.824@0.40.1536.824" timestamp="1584722404673" />
-    <state width="1493" height="201" key="GridCell.Tab.1.right" timestamp="1587819207616">
-      <screen x="0" y="40" width="1536" height="824" />
-    </state>
-    <state width="1493" height="201" key="GridCell.Tab.1.right/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1587819207616" />
-    <state width="1493" height="259" key="GridCell.Tab.1.right/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584798558270" />
-    <state width="1342" height="242" key="GridCell.Tab.1.right/0.40.1536.824@0.40.1536.824" timestamp="1584722404673" />
-    <state x="349" y="195" key="IDE.errors.dialog" timestamp="1585588512438">
-      <screen x="0" y="40" width="1536" height="824" />
-    </state>
-    <state x="349" y="195" key="IDE.errors.dialog/0.40.1536.824@0.40.1536.824" timestamp="1585588512438" />
-    <state x="456" y="168" width="500" height="560" key="RollbackChangesDialog" timestamp="1588056408538">
-      <screen x="0" y="40" width="1536" height="824" />
-    </state>
-    <state x="456" y="168" key="RollbackChangesDialog/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1588056408538" />
-    <state x="456" y="168" width="500" height="560" key="RollbackChangesDialog/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1586500446946" />
-    <state x="142" y="97" key="SettingsEditor" timestamp="1589252692955">
-      <screen x="0" y="40" width="1536" height="824" />
-    </state>
-    <state x="142" y="97" key="SettingsEditor/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584791102187" />
-    <state x="142" y="97" key="SettingsEditor/0.40.1536.824/1986.0.1470.960@0.40.1536.824" timestamp="1589252692955" />
-    <state x="273" y="84" key="SettingsEditor/0.40.1536.824@0.40.1536.824" timestamp="1584717531780" />
-    <state width="242" height="198" key="ShowFilterAction_Filter_Popup" timestamp="1584697710511">
-      <screen x="0" y="40" width="1536" height="824" />
-    </state>
-    <state width="242" height="198" key="ShowFilterAction_Filter_Popup/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584697710511" />
-    <state x="361" y="185" key="Vcs.Push.Dialog.v2" timestamp="1589342912307">
-      <screen x="0" y="40" width="1536" height="824" />
-    </state>
-    <state x="361" y="185" key="Vcs.Push.Dialog.v2/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1588495099596" />
-    <state x="361" y="185" key="Vcs.Push.Dialog.v2/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1587487096791" />
-    <state x="361" y="185" key="Vcs.Push.Dialog.v2/0.40.1536.824/1986.0.1470.960@0.40.1536.824" timestamp="1589342912307" />
-    <state x="361" y="185" key="Vcs.Push.Dialog.v2/0.40.1536.824@0.40.1536.824" timestamp="1585588483840" />
-    <state x="564" y="365" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1584763374928">
-      <screen x="0" y="40" width="1536" height="824" />
-    </state>
-    <state x="564" y="365" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584763374928" />
-    <state x="93" y="133" width="1350" height="638" key="dock-window-1" timestamp="1587889376092">
-      <screen x="0" y="40" width="1536" height="824" />
-    </state>
-    <state x="93" y="133" width="1350" height="638" key="dock-window-1/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1587889376092" />
-    <state x="339" y="285" width="1350" height="638" key="dock-window-2" timestamp="1587800498428">
-      <screen x="0" y="40" width="1536" height="824" />
-    </state>
-    <state x="339" y="285" width="1350" height="638" key="dock-window-2/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1587800498428" />
-    <state x="578" y="291" key="git4idea.ui.GitTagDialog" timestamp="1589342654703">
-      <screen x="0" y="40" width="1536" height="824" />
-    </state>
-    <state x="578" y="291" key="git4idea.ui.GitTagDialog/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1586502394689" />
-    <state x="578" y="291" key="git4idea.ui.GitTagDialog/0.40.1536.824/1986.0.1470.960@0.40.1536.824" timestamp="1589342654703" />
-    <state x="425" y="106" width="672" height="676" key="search.everywhere.popup" timestamp="1588061860847">
-      <screen x="0" y="40" width="1536" height="824" />
-    </state>
-    <state x="425" y="106" width="672" height="676" key="search.everywhere.popup/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1588061860847" />
-    <state x="-1495" y="106" width="670" height="676" key="search.everywhere.popup/0.40.1536.824/-1920.40.1536.824@-1920.40.1536.824" timestamp="1584684626357" />
-    <state x="425" y="106" width="672" height="676" key="search.everywhere.popup/0.40.1536.824/-1920.40.1536.824@0.40.1536.824" timestamp="1584697733180" />
-    <state x="425" y="106" width="672" height="676" key="search.everywhere.popup/0.40.1536.824@0.40.1536.824" timestamp="1584717464396" />
+    <state x="416" y="216" width="703" height="582" key="search.everywhere.popup/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1591011518800" />
+    <state x="2384" y="205" width="672" height="678" key="search.everywhere.popup/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1590481180275" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$USER_HOME$/.PyCharm2019.2/system/remote_sources/642430189/1473005889/pyscf/soscf/newton_ah.py</url>
-          <line>321</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/pyxdh/tmp_dft_speed/dfscf.py</url>
-          <line>6</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$USER_HOME$/AppData/Local/JetBrains/PyCharm2020.1/remote_sources/-1053058360/1179071206/pyscf/scf/hf.py</url>
-          <line>1695</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$USER_HOME$/AppData/Local/JetBrains/PyCharm2020.1/remote_sources/-1053058360/1179071206/pyscf/scf/hf.py</url>
-          <line>1667</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$USER_HOME$/AppData/Local/JetBrains/PyCharm2020.1/remote_sources/-1053058360/1179071206/pyscf/scf/_vhf.py</url>
-          <line>58</line>
-          <option name="timeStamp" value="19" />
+          <url>file://$USER_HOME$/AppData/Local/JetBrains/PyCharm2020.1/remote_sources/-1053058360/1179071206/pyscf/dft/gen_grid.py</url>
+          <line>274</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipderiv_mp2_Test_DipDerivMP2_test_B2PLYP_polar.coverage" NAME="pytest for dipderiv_mp2.Test_DipDerivMP2.test_B2PLYP_polar Coverage Results" MODIFIED="1568439067444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
-    <SUITE FILE_PATH="coverage/Py_xDH$dfscf.coverage" NAME="dfscf Coverage Results" MODIFIED="1571721440879" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/tmp_dft_speed" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipole_mp2_Test_DipoleMP2_test_5th_functional_dipole.coverage" NAME="pytest for dipole_mp2.Test_DipoleMP2.test_5th_functional_dipole Coverage Results" MODIFIED="1568289194473" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_polar_mp2_Test_PolarMP2_test_XYG3_polar.coverage" NAME="pytest for polar_mp2.Test_PolarMP2.test_XYG3_polar Coverage Results" MODIFIED="1584699618860" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
-    <SUITE FILE_PATH="coverage/Py_xDH$B2PLYP_a_D.coverage" NAME="B2PLYP-a-D Coverage Results" MODIFIED="1571200288463" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/tmp_dft_speed" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipderiv_mp2_Test_DipDerivMP2_test_XYG3_dipderiv.coverage" NAME="pytest for dipderiv_mp2.Test_DipDerivMP2.test_XYG3_dipderiv Coverage Results" MODIFIED="1584698576014" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
-    <SUITE FILE_PATH="coverage/Py_xDH$ncdft_dipderiv_hf_b3lyp.coverage" NAME="ncdft_dipderiv_hf_b3lyp Coverage Results" MODIFIED="1568439622154" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_grad_mp2_Test_GradMP2_test_5th_functional_grad.coverage" NAME="pytest for grad_mp2.Test_GradMP2.test_5th_functional_grad Coverage Results" MODIFIED="1568727641255" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipole_mp2_Test_DipoleMP2_test_dipole_xygjos.coverage" NAME="pytest for dipole_mp2.Test_DipoleMP2.test_dipole_xygjos Coverage Results" MODIFIED="1568728199508" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
-    <SUITE FILE_PATH="coverage/Py_xDH$Ne_5Z.coverage" NAME="Ne_5Z Coverage Results" MODIFIED="1587800443676" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/tmp_dft_speed" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_polar_mp2_Test_PolarMP2_test_MP2_polar.coverage" NAME="pytest for polar_mp2.Test_PolarMP2.test_MP2_polar Coverage Results" MODIFIED="1568295595324" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_polar_scf_Test_PolarSCF_test_HF_polar.coverage" NAME="pytest for polar_scf.Test_PolarSCF.test_HF_polar Coverage Results" MODIFIED="1568289711492" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipole_scf_Test_DipoleSCF_test_SCF_dipole.coverage" NAME="pytest for dipole_scf.Test_DipoleSCF.test_SCF_dipole Coverage Results" MODIFIED="1568288757649" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_grad_mp2_Test_GradMP2_test_grad_xyg3.coverage" NAME="pytest for grad_mp2.Test_GradMP2.test_grad_xyg3 Coverage Results" MODIFIED="1568727867529" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_polar_mp2_Test_PolarMP2_test_B2PLYP_polar.coverage" NAME="pytest for polar_mp2.Test_PolarMP2.test_B2PLYP_polar Coverage Results" MODIFIED="1584761529663" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_grad_scf_Test_GradSCF_test_HF_grad.coverage" NAME="pytest for grad_scf.Test_GradSCF.test_HF_grad Coverage Results" MODIFIED="1568290482556" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
-    <SUITE FILE_PATH="coverage/Py_xDH$H06.coverage" NAME="H06 Coverage Results" MODIFIED="1568898208563" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/tmp_dft_speed" />
-    <SUITE FILE_PATH="coverage/Py_xDH$MP2_Polar.coverage" NAME="MP2_Polar Coverage Results" MODIFIED="1584757042174" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/tmp_dft_speed" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipderiv_mp2_Test_DipDerivMP2_test_MP2_dipderiv.coverage" NAME="pytest for dipderiv_mp2.Test_DipDerivMP2.test_MP2_dipderiv Coverage Results" MODIFIED="1584757130704" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_hess_scf_Test_HessSCF_test_B3LYP_hess.coverage" NAME="pytest for hess_scf.Test_HessSCF.test_B3LYP_hess Coverage Results" MODIFIED="1568896906023" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_grad_mp2_Test_GradMP2_test_grad_xygjos.coverage" NAME="pytest for grad_mp2.Test_GradMP2.test_grad_xygjos Coverage Results" MODIFIED="1568727829880" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_grad_scf_Test_GradSCF.coverage" NAME="pytest for grad_scf.Test_GradSCF Coverage Results" MODIFIED="1568294038419" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipole_mp2_Test_DipoleMP2.coverage" NAME="pytest for dipole_mp2.Test_DipoleMP2 Coverage Results" MODIFIED="1560172191691" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdhalpha/DerivOnce" />
-    <SUITE FILE_PATH="coverage/Py_xDH$MP2_Hess.coverage" NAME="MP2_Hess Coverage Results" MODIFIED="1568970900542" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/tmp_dft_speed" />
-    <SUITE FILE_PATH="coverage/Py_xDH$xdh_hessian_xyg3.coverage" NAME="xdh_hessian_xyg3 Coverage Results" MODIFIED="1584692216079" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipderiv_scf_Test_DipDerivSCF_test_HF_polar.coverage" NAME="pytest for dipderiv_scf.Test_DipDerivSCF.test_HF_polar Coverage Results" MODIFIED="1568438347666" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_hess_scf_Test_HessSCF_test_HF_hess.coverage" NAME="pytest for hess_scf.Test_HessSCF.test_HF_hess Coverage Results" MODIFIED="1568896742329" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipderiv_mp2_Test_DipDerivMP2_test_XYG3_polar.coverage" NAME="pytest for dipderiv_mp2.Test_DipDerivMP2.test_XYG3_polar Coverage Results" MODIFIED="1568441636327" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_hess_mp2_Test_HessMP2_test_B2PLYP_hess.coverage" NAME="pytest for hess_mp2.Test_HessMP2.test_B2PLYP_hess Coverage Results" MODIFIED="1568961952384" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_DerivTwice_hess_scf_Test_HessSCF_test_HF_B3LYP_hess.coverage" NAME="pytest for DerivTwice.hess_scf.Test_HessSCF.test_HF_B3LYP_hess Coverage Results" MODIFIED="1566647091781" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_pyxdh_DerivOnce_dipole_mp2_Test_DipoleMP2.coverage" NAME="pytest for pyxdh.DerivOnce.dipole_mp2.Test_DipoleMP2 Coverage Results" MODIFIED="1566028289586" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_DerivTwice_dipderiv_mp2_Test_DipDerivMP2_test_B2PLYP_polar.coverage" NAME="pytest for DerivTwice.dipderiv_mp2.Test_DipDerivMP2.test_B2PLYP_polar Coverage Results" MODIFIED="1584698087807" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipole_mp2_Test_DipoleMP2_test_dipole_xyg3_rotate.coverage" NAME="pytest for dipole_mp2.Test_DipoleMP2.test_dipole_xyg3_rotate Coverage Results" MODIFIED="1568978318816" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_pyxdh.coverage" NAME="pytest for pyxdh Coverage Results" MODIFIED="1584762382300" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipderiv_scf_Test_DipDerivSCF_test_HF_B3LYP_dipderiv.coverage" NAME="pytest for dipderiv_scf.Test_DipDerivSCF.test_HF_B3LYP_dipderiv Coverage Results" MODIFIED="1568440090601" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
-    <SUITE FILE_PATH="coverage/Py_xDH$test_U_2.coverage" NAME="test_U_2 Coverage Results" MODIFIED="1573012532804" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/tmp_dft_speed" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipderiv_mp2_Test_DipDerivMP2_test_B2PLYP_dipderiv.coverage" NAME="pytest for dipderiv_mp2.Test_DipDerivMP2.test_B2PLYP_dipderiv Coverage Results" MODIFIED="1584757448836" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
-    <SUITE FILE_PATH="coverage/Py_xDH$xdh_dipderiv_xyg3.coverage" NAME="xdh_dipderiv_xyg3 Coverage Results" MODIFIED="1568440638895" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv" />
-    <SUITE FILE_PATH="coverage/Py_xDH$xdh_polarizability_xyg3.coverage" NAME="xdh_polarizability_xyg3 Coverage Results" MODIFIED="1584699771376" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipole_mp2_Test_DipoleMP2_test_MP2_dipole.coverage" NAME="pytest for dipole_mp2.Test_DipoleMP2.test_MP2_dipole Coverage Results" MODIFIED="1560171734840" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdhalpha/DerivOnce" />
-    <SUITE FILE_PATH="coverage/Py_xDH$soscf.coverage" NAME="soscf Coverage Results" MODIFIED="1572514784257" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/tmp_dft_speed" />
+    <SUITE FILE_PATH="coverage/Py_xDH$grid_gen.coverage" NAME="grid_gen Coverage Results" MODIFIED="1590480714382" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/tmp_dft_speed" />
+    <SUITE FILE_PATH="coverage/Py_xDH$pytest_in_grad_uscf_py.coverage" NAME="pytest in grad_uscf.py Coverage Results" MODIFIED="1591017002521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Py_xDH$grad_uscf.coverage" NAME="grad_uscf Coverage Results" MODIFIED="1591016595229" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
   </component>
 </project>
