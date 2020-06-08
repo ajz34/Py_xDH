@@ -1,3 +1,5 @@
+from typing import Tuple
+
 from pyscf import dft
 import pyscf.dft.numint
 from pyscf.dft import xcfun
@@ -16,7 +18,7 @@ np.set_printoptions(8, linewidth=1000, suppress=True)
 class GridHelper:
 
     def __init__(self, mol, grids, D):
-        warnings.warn("GridHelper is considered memory consuming!")
+        # warnings.warn("GridHelper is considered memory consuming!")
 
         # Initialization Parameters
         self.mol = mol  # type: pyscf.gto.Mole
@@ -29,7 +31,7 @@ class GridHelper:
         ni.libxc = xcfun
         ngrid = grids.weights.size
         grid_weight = grids.weights
-        grid_ao = np.empty((20, ngrid, nao))  # 20 at first dimension is related to 3rd derivative of orbital
+        grid_ao = np.zeros((20, ngrid, nao))  # 20 at first dimension is related to 3rd derivative of orbital
         current_grid_count = 0
         for ao, _, _, _ in ni.block_loop(mol, grids, nao, 3, self.mol.max_memory):
             grid_ao[:, current_grid_count:current_grid_count+ao.shape[1]] = ao
@@ -74,6 +76,11 @@ class GridHelper:
             + 2 * np.einsum("uv, rxgu, wgv -> rwxg", D, grid_ao_2, grid_ao_1)
             + 2 * np.einsum("uv, wxgu, rgv -> rwxg", D, grid_ao_2, grid_ao_1)
         )
+        # remove relatively low density
+        # grid_rho_0[np.abs(grid_rho_0) < 1e-14] = 0
+        # grid_rho_1[np.abs(grid_rho_1) < 1e-11] = 0
+        # grid_rho_2[np.abs(grid_rho_2) < 1e-9] = 0
+        # grid_rho_3[np.abs(grid_rho_3) < 1e-7] = 0
 
         natm = mol.natm
         grid_A_rho_1 = np.zeros((natm, 3, ngrid))
@@ -146,7 +153,7 @@ class KernelHelper:
     def __init__(self, gh, xc, deriv=2):
 
         # Initialization Parameters
-        self.gh = gh  # type: GridHelper or GridIterator
+        self.gh = gh  # type: GridHelper or GridIterator or Tuple[GridHelper] or Tuple[GridIterator]
         self.xc = xc  # type: str
 
         # Variable definition
@@ -162,20 +169,42 @@ class KernelHelper:
         self.fggg = None
 
         # Calculation
-        grid_exc, grid_vxc, grid_fxc, grid_kxc = gh.ni.eval_xc(xc, gh.rho_01, deriv=deriv)
-        self.exc = grid_exc * gh.weight
+        if type(gh) is GridHelper or type(gh) is GridIterator:
+            ni = gh.ni
+            grid_exc, grid_vxc, grid_fxc, grid_kxc = ni.eval_xc(xc, gh.rho_01, deriv=deriv)
+            weight = gh.weight
+        else:  # Assume gh is 2-len tuple, for uks calculation
+            ni = gh[0].ni
+            grid_exc, grid_vxc, grid_fxc, grid_kxc = ni.eval_xc(xc, (gh[0].rho_01, gh[1].rho_01), spin=1, deriv=deriv)
+            weight = gh[0].weight
+        self.exc = grid_exc * weight
+        # transpose here is intended to make uks calculation; however in rks, all transposed vectors are still vectors
         if deriv >= 1:
-            self.fr = grid_vxc[0] * gh.weight
-            self.fg = grid_vxc[1] * gh.weight
+            self.fr = grid_vxc[0].T * weight
+            self.fg = grid_vxc[1].T * weight
         if deriv >= 2:
-            self.frr = grid_fxc[0] * gh.weight
-            self.frg = grid_fxc[1] * gh.weight
-            self.fgg = grid_fxc[2] * gh.weight
+            self.frr = grid_fxc[0].T * weight
+            self.frg = grid_fxc[1].T * weight
+            self.fgg = grid_fxc[2].T * weight
         if deriv >= 3:
-            self.frrr = grid_kxc[0] * gh.weight
-            self.frrg = grid_kxc[1] * gh.weight
-            self.frgg = grid_kxc[2] * gh.weight
-            self.fggg = grid_kxc[3] * gh.weight
+            self.frrr = grid_kxc[0].T * weight
+            self.frrg = grid_kxc[1].T * weight
+            self.frgg = grid_kxc[2].T * weight
+            self.fggg = grid_kxc[3].T * weight
+        # remove relatively low density induced blow-up
+        self.exc[np.abs(self.exc) > 1e10] = 0
+        if deriv >= 1:
+            self.fr[np.abs(self.fr) > 1e10] = 0
+            self.fg[np.abs(self.fg) > 1e10] = 0
+        if deriv >= 2:
+            self.frr[np.abs(self.frr) > 1e20] = 0
+            self.frg[np.abs(self.frg) > 1e20] = 0
+            self.fgg[np.abs(self.fgg) > 1e20] = 0
+        if deriv >= 3:
+            self.frrr[np.abs(self.frrr) > 1e30] = 0
+            self.frrg[np.abs(self.frrg) > 1e30] = 0
+            self.frgg[np.abs(self.frgg) > 1e30] = 0
+            self.fggg[np.abs(self.fggg) > 1e30] = 0
         return
 
 

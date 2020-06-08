@@ -151,6 +151,7 @@ class Mol_CH3:
     def gen_grids(self, rad_points=99, sph_points=590):
         grids = dft.Grids(self.mol)
         grids.atom_grid = (rad_points, sph_points)
+        grids.radi_method = dft.gauss_chebyshev
         grids.becke_scheme = dft.gen_grid.stratmann
         grids.build()
         return grids

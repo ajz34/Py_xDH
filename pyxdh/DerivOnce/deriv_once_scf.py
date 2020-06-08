@@ -646,6 +646,7 @@ class DerivOnceNCDFT(DerivOnceSCF, ABC):
         self.nc_deriv = self.DerivOnceMethod(config_nc)
         self.nc_deriv.C = self.C
         self.nc_deriv.mo_occ = self.mo_occ
+        self.nc_deriv.nocc = self.nocc
         self._Z = NotImplemented
         self._pdA_nc_F_0_mo = NotImplemented
 
