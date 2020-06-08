@@ -1,0 +1,11 @@
+%chk=CH3-B3LYP-freq
+#p UB3LYP/6-31G nosymm SCF(VeryTight) Freq Int(Grid=99590)
+
+CH3 B3LYP Frequency
+
+0 2
+C  0.  0.  0.
+H  1.  0.  0.
+H  0.  2.  0.
+H  0.  0.  1.5
+
