@@ -2,11 +2,9 @@ from typing import Tuple
 
 from pyscf import dft
 import pyscf.dft.numint
-from pyscf.dft import xcfun
 import numpy as np
 from functools import partial
 import os
-import warnings
 
 from pyxdh.Utilities.grid_iterator import GridIterator
 
@@ -17,7 +15,7 @@ np.set_printoptions(8, linewidth=1000, suppress=True)
 
 class GridHelper:
 
-    def __init__(self, mol, grids, D):
+    def __init__(self, mol, grids, D, engine="libxc"):
         # warnings.warn("GridHelper is considered memory consuming!")
 
         # Initialization Parameters
@@ -28,7 +26,9 @@ class GridHelper:
         # Calculation
         nao = mol.nao
         ni = dft.numint.NumInt()
-        ni.libxc = xcfun
+        if engine == "xcfun":
+            from pyscf.dft import xcfun
+            ni.libxc = xcfun
         ngrid = grids.weights.size
         grid_weight = grids.weights
         grid_ao = np.zeros((20, ngrid, nao))  # 20 at first dimension is related to 3rd derivative of orbital
@@ -192,20 +192,20 @@ class KernelHelper:
             self.frgg = grid_kxc[2].T * weight
             self.fggg = grid_kxc[3].T * weight
         # remove relatively low density induced blow-up
-        self.exc[np.abs(self.exc) > 1e10] = 0
-        if deriv >= 1:
-            self.fr[np.abs(self.fr) > 1e10] = 0
-            self.fg[np.abs(self.fg) > 1e10] = 0
-        if deriv >= 2:
-            self.frr[np.abs(self.frr) > 1e20] = 0
-            self.frg[np.abs(self.frg) > 1e20] = 0
-            self.fgg[np.abs(self.fgg) > 1e20] = 0
-        if deriv >= 3:
-            self.frrr[np.abs(self.frrr) > 1e30] = 0
-            self.frrg[np.abs(self.frrg) > 1e30] = 0
-            self.frgg[np.abs(self.frgg) > 1e30] = 0
-            self.fggg[np.abs(self.fggg) > 1e30] = 0
-        return
+        # self.exc[np.abs(self.exc) > 1e10] = 0
+        # if deriv >= 1:
+        #     self.fr[np.abs(self.fr) > 1e10] = 0
+        #     self.fg[np.abs(self.fg) > 1e10] = 0
+        # if deriv >= 2:
+        #     self.frr[np.abs(self.frr) > 1e20] = 0
+        #     self.frg[np.abs(self.frg) > 1e20] = 0
+        #     self.fgg[np.abs(self.fgg) > 1e20] = 0
+        # if deriv >= 3:
+        #     self.frrr[np.abs(self.frrr) > 1e30] = 0
+        #     self.frrg[np.abs(self.frrg) > 1e30] = 0
+        #     self.frgg[np.abs(self.frgg) > 1e30] = 0
+        #     self.fggg[np.abs(self.fggg) > 1e30] = 0
+        # return
 
 
 class Test_GridHelper:

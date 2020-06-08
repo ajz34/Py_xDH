@@ -1,6 +1,5 @@
 from pyscf import dft, gto
 import pyscf.dft.numint
-from pyscf.dft import xcfun
 import numpy as np
 from functools import partial
 import os
@@ -12,13 +11,15 @@ np.set_printoptions(8, linewidth=1000, suppress=True)
 
 class GridIterator:
 
-    def __init__(self, mol, grids, D, deriv=3, memory=2000):
+    def __init__(self, mol, grids, D, deriv=3, memory=2000, engine="libxc"):
 
         self.mol = mol  # type: gto.Mole
         self.grids = grids  # type: dft.Grids
         self.D = D
         self.ni = dft.numint.NumInt()
-        self.ni.libxc = xcfun
+        if engine == "xcfun":
+            from pyscf.dft import xcfun
+            self.ni.libxc = xcfun
         self.batch = self.ni.block_loop(mol, grids, mol.nao, deriv, memory)
 
         self._ao = None
