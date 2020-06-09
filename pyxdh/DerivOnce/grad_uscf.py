@@ -4,7 +4,7 @@ import os
 
 from pyscf import grad
 
-from pyxdh.DerivOnce import DerivOnceUSCF, DerivOnceNCDFT, GradSCF
+from pyxdh.DerivOnce import DerivOnceUSCF, GradSCF, DerivOnceUNCDFT
 from pyxdh.Utilities import GridIterator, KernelHelper
 
 MAXMEM = float(os.getenv("MAXMEM", 2))
@@ -55,6 +55,25 @@ class GradUSCF(DerivOnceUSCF, GradSCF):
         return E_1.reshape((natm, 3))
 
 
+class GradUNCDFT(DerivOnceUNCDFT, GradUSCF):
+
+    @property
+    def DerivOnceMethod(self):
+        return GradUSCF
+
+    def _get_E_1(self):
+        natm = self.natm
+        so, sv = self.so, self.sv
+        B_1 = self.B_1
+        Z = self.Z
+        E_1 = (
+            + self.nc_deriv.E_1
+            + 2 * np.einsum("ai, Aai -> A", Z[0], B_1[0, :, sv[0], so[0]]).reshape((natm, 3))
+            + 2 * np.einsum("ai, Aai -> A", Z[1], B_1[1, :, sv[1], so[1]]).reshape((natm, 3))
+        )
+        return E_1
+
+
 class Test_GradUSCF:
 
     def test_UHF_grad(self):
@@ -78,3 +97,15 @@ class Test_GradUSCF:
         helper = GradUSCF({"scf_eng": CH3.gga_eng})
         formchk = FormchkInterface(resource_filename("pyxdh", "Validation/gaussian/CH3-B3LYP-freq.fchk"))
         assert(np.allclose(helper.E_1, formchk.grad(), atol=1e-6, rtol=1e-4))
+
+    def test_UHF_UB3LYP_grad(self):
+
+        from pyxdh.Utilities.test_molecules import Mol_CH3
+        from pkg_resources import resource_filename
+        import pickle
+
+        CH3 = Mol_CH3()
+        helper = GradUNCDFT({"scf_eng": CH3.hf_eng, "nc_eng": CH3.gga_eng, "cphf_tol": 1e-10})
+        with open(resource_filename("pyxdh", "Validation/numerical_deriv/ncdft_derivonce_uhf_ub3lyp.dat"), "rb") as f:
+            ref_grad = pickle.load(f)["grad"].reshape(-1, 3)
+        assert (np.allclose(helper.E_1, ref_grad, atol=1e-5, rtol=1e-4))

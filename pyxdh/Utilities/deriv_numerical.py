@@ -50,7 +50,7 @@ class NucCoordDerivGenerator(AbstractDerivGenerator):
         for tup in movelist:
             mol_ret_coords[tup[0], tup[1]] += tup[2] * self.interval * lib.param.BOHR
         mol_ret.set_geom_(mol_ret_coords)
-        return mol_ret
+        return mol_ret.build()
 
     def perform_mf(self):
         natm = self.mol.natm

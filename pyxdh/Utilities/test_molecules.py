@@ -3,7 +3,7 @@ from pyscf import scf, gto, grad, dft
 
 class Mol_H2O2:
 
-    def __init__(self, xc="B3LYPg", mol=None):
+    def __init__(self, xc="B3LYPg", mol=None, atom_grid=(99, 590)):
 
         if mol is None:
             mol = gto.Mole()
@@ -19,6 +19,7 @@ class Mol_H2O2:
 
         self.mol = mol
         self.xc = xc
+        self.atom_grid = atom_grid
 
         self._hf_eng = NotImplemented
         self._hf_grad = NotImplemented
@@ -48,7 +49,7 @@ class Mol_H2O2:
         if self._gga_eng is not NotImplemented:
             return self._gga_eng
 
-        grids = self.gen_grids()
+        grids = self.gen_grids(atom_grid=self.atom_grid)
 
         gga_eng = scf.RKS(self.mol)
         gga_eng.grids = grids
@@ -70,9 +71,12 @@ class Mol_H2O2:
         self._gga_grad = gga_grad
         return self._gga_grad
 
-    def gen_grids(self, rad_points=99, sph_points=590):
+    def gen_grids(self, rad_points=99, sph_points=590, atom_grid=None):
         grids = dft.Grids(self.mol)
-        grids.atom_grid = (rad_points, sph_points)
+        grids.atom_grid = atom_grid
+        if atom_grid is None:
+            grids.atom_grid = (rad_points, sph_points)
+        grids.radi_method = dft.gauss_chebyshev
         grids.becke_scheme = dft.gen_grid.stratmann
         grids.build()
         return grids

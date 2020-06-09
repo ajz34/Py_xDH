@@ -387,7 +387,7 @@ class DerivOnceSCF(ABC):
         _, _, p0, p1 = self.mol.aoslice_by_atom()[atm_id]
         return slice(p0, p1)
 
-    def Ax0_Core(self, si, sj, sk, sl, reshape=True, in_cphf=False):
+    def Ax0_Core(self, si, sj, sk, sl, reshape=True, in_cphf=False, C=None):
         """
 
         Parameters
@@ -408,7 +408,8 @@ class DerivOnceSCF(ABC):
         -------
         fx : function which pass matrix, then return Ax @ X.
         """
-        C = self.C
+        if C is None:
+            C = self.C
         nao = self.nao
         resp = self.resp_cphf if in_cphf else self.resp
 
