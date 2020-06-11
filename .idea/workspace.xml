@@ -20,15 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="912d8545-b18a-4722-b0d8-e8c61f686f07" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv/ncdft_derivonce_uhf_ub3lyp.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv/ncdft_derivonce_uhf_ub3lyp.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/derivonce/grad_bdh.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/derivonce/grad_bdh.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/index.rst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_scf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_scf.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_uscf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_uscf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/grad_uscf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/grad_uscf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/Utilities/deriv_numerical.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Utilities/deriv_numerical.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/Utilities/test_molecules.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Utilities/test_molecules.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -275,9 +271,9 @@
       <item itemvalue="Python tests.pytest in grad_uscf.py" />
       <item itemvalue="Python tests.pytest for dipderiv_mp2.Test_DipDerivMP2.test_B2PLYP_dipderiv" />
       <item itemvalue="Python tests.pytest for pyxdh" />
+      <item itemvalue="Python tests.pytest for grad_uscf.Test_GradUSCF.test_UHF_UB3LYP_grad" />
       <item itemvalue="Python tests.pytest for grad_uscf.Test_GradUSCF.test_UHF_grad" />
       <item itemvalue="Python tests.pytest for grad_uscf.Test_GradUSCF.test_UB3LYP_grad" />
-      <item itemvalue="Python tests.pytest for grad_uscf.Test_GradUSCF.test_UHF_UB3LYP_grad" />
     </list>
     <recent_temporary>
       <list>
@@ -321,7 +317,10 @@
       <workItem from="1591605332759" duration="1469000" />
       <workItem from="1591612951033" duration="10397000" />
       <workItem from="1591665553856" duration="19078000" />
-      <workItem from="1591702790005" duration="5068000" />
+      <workItem from="1591702790005" duration="7364000" />
+      <workItem from="1591752549766" duration="7976000" />
+      <workItem from="1591837942900" duration="11996000" />
+      <workItem from="1591876706421" duration="3199000" />
     </task>
     <task id="LOCAL-00001" summary="pyxdh: UHF Gradient">
       <created>1591017061437</created>
@@ -351,7 +350,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591619557688</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="pyxdh: UHF-UB3LYP grad">
+      <created>1591708178181</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1591708178181</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -374,7 +380,8 @@
     <MESSAGE value="pyxdh: modify nocc initialization in NCDFT, and mute warning in GridHelper" />
     <MESSAGE value="pyxdh: Now user can specify kernel engine. LibXC should be at least v5.0.0 to make LYP 3rd derivative correct." />
     <MESSAGE value="pyxdh: UB3LYP grad" />
-    <option name="LAST_COMMIT_MESSAGE" value="pyxdh: UB3LYP grad" />
+    <MESSAGE value="pyxdh: UHF-UB3LYP grad" />
+    <option name="LAST_COMMIT_MESSAGE" value="pyxdh: UHF-UB3LYP grad" />
   </component>
   <component name="WindowStateProjectService">
     <state x="173" y="164" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1591689999690">
@@ -413,56 +420,56 @@
     </state>
     <state x="-1341" y="211" key="FileChooserDialogImpl/0.40.1536.824/-1858.0.1474.864@-1858.0.1474.864" timestamp="1591016734753" />
     <state x="2502" y="234" key="FileChooserDialogImpl/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591591721491" />
-    <state width="1493" height="185" key="GridCell.Tab.0.bottom" timestamp="1591707056984">
+    <state width="1493" height="185" key="GridCell.Tab.0.bottom" timestamp="1591713717315">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
     <state width="1431" height="224" key="GridCell.Tab.0.bottom/0.40.1536.824/-1858.0.1474.864@-1858.0.1474.864" timestamp="1591018976711" />
-    <state width="1493" height="185" key="GridCell.Tab.0.bottom/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1591707056984" />
+    <state width="1493" height="185" key="GridCell.Tab.0.bottom/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1591713717315" />
     <state width="1412" height="201" key="GridCell.Tab.0.bottom/0.40.1536.824/1986.0.1470.960@0.40.1536.824" timestamp="1591693173661" />
     <state width="1427" height="230" key="GridCell.Tab.0.bottom/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591681560959" />
-    <state width="1493" height="185" key="GridCell.Tab.0.center" timestamp="1591707056984">
+    <state width="1493" height="185" key="GridCell.Tab.0.center" timestamp="1591713717315">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
     <state width="1431" height="224" key="GridCell.Tab.0.center/0.40.1536.824/-1858.0.1474.864@-1858.0.1474.864" timestamp="1591018976711" />
-    <state width="1493" height="185" key="GridCell.Tab.0.center/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1591707056984" />
+    <state width="1493" height="185" key="GridCell.Tab.0.center/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1591713717315" />
     <state width="1412" height="201" key="GridCell.Tab.0.center/0.40.1536.824/1986.0.1470.960@0.40.1536.824" timestamp="1591693173661" />
     <state width="1427" height="230" key="GridCell.Tab.0.center/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591681560959" />
-    <state width="1493" height="185" key="GridCell.Tab.0.left" timestamp="1591707056984">
+    <state width="1493" height="185" key="GridCell.Tab.0.left" timestamp="1591713717315">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
     <state width="1431" height="224" key="GridCell.Tab.0.left/0.40.1536.824/-1858.0.1474.864@-1858.0.1474.864" timestamp="1591018976711" />
-    <state width="1493" height="185" key="GridCell.Tab.0.left/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1591707056984" />
+    <state width="1493" height="185" key="GridCell.Tab.0.left/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1591713717315" />
     <state width="1412" height="201" key="GridCell.Tab.0.left/0.40.1536.824/1986.0.1470.960@0.40.1536.824" timestamp="1591693173661" />
     <state width="1427" height="230" key="GridCell.Tab.0.left/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591681560959" />
-    <state width="1493" height="185" key="GridCell.Tab.0.right" timestamp="1591707056984">
+    <state width="1493" height="185" key="GridCell.Tab.0.right" timestamp="1591713717315">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
     <state width="1431" height="224" key="GridCell.Tab.0.right/0.40.1536.824/-1858.0.1474.864@-1858.0.1474.864" timestamp="1591018976711" />
-    <state width="1493" height="185" key="GridCell.Tab.0.right/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1591707056984" />
+    <state width="1493" height="185" key="GridCell.Tab.0.right/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1591713717315" />
     <state width="1412" height="201" key="GridCell.Tab.0.right/0.40.1536.824/1986.0.1470.960@0.40.1536.824" timestamp="1591693173661" />
     <state width="1427" height="230" key="GridCell.Tab.0.right/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591681560959" />
-    <state width="1493" height="185" key="GridCell.Tab.1.bottom" timestamp="1591707070471">
+    <state width="1493" height="185" key="GridCell.Tab.1.bottom" timestamp="1591713717315">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
-    <state width="1493" height="185" key="GridCell.Tab.1.bottom/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1591707070471" />
+    <state width="1493" height="185" key="GridCell.Tab.1.bottom/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1591713717315" />
     <state width="1493" height="100" key="GridCell.Tab.1.bottom/0.40.1536.824/1986.0.1470.960@0.40.1536.824" timestamp="1591693173657" />
     <state width="1427" height="230" key="GridCell.Tab.1.bottom/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591681564462" />
-    <state width="1493" height="185" key="GridCell.Tab.1.center" timestamp="1591707070470">
+    <state width="1493" height="185" key="GridCell.Tab.1.center" timestamp="1591713717315">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
-    <state width="1493" height="185" key="GridCell.Tab.1.center/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1591707070470" />
+    <state width="1493" height="185" key="GridCell.Tab.1.center/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1591713717315" />
     <state width="1493" height="100" key="GridCell.Tab.1.center/0.40.1536.824/1986.0.1470.960@0.40.1536.824" timestamp="1591693173657" />
     <state width="1427" height="230" key="GridCell.Tab.1.center/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591681564462" />
-    <state width="1493" height="185" key="GridCell.Tab.1.left" timestamp="1591707070470">
+    <state width="1493" height="185" key="GridCell.Tab.1.left" timestamp="1591713717315">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
-    <state width="1493" height="185" key="GridCell.Tab.1.left/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1591707070470" />
+    <state width="1493" height="185" key="GridCell.Tab.1.left/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1591713717315" />
     <state width="1493" height="100" key="GridCell.Tab.1.left/0.40.1536.824/1986.0.1470.960@0.40.1536.824" timestamp="1591693173657" />
     <state width="1427" height="230" key="GridCell.Tab.1.left/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591681564462" />
-    <state width="1493" height="185" key="GridCell.Tab.1.right" timestamp="1591707070471">
+    <state width="1493" height="185" key="GridCell.Tab.1.right" timestamp="1591713717315">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
-    <state width="1493" height="185" key="GridCell.Tab.1.right/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1591707070471" />
+    <state width="1493" height="185" key="GridCell.Tab.1.right/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1591713717315" />
     <state width="1493" height="100" key="GridCell.Tab.1.right/0.40.1536.824/1986.0.1470.960@0.40.1536.824" timestamp="1591693173657" />
     <state width="1427" height="230" key="GridCell.Tab.1.right/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591681564462" />
     <state x="2223" y="124" key="SettingsEditor" timestamp="1591607196033">
@@ -470,6 +477,10 @@
     </state>
     <state x="-1620" y="112" key="SettingsEditor/0.40.1536.824/-1858.0.1474.864@-1858.0.1474.864" timestamp="1591018863193" />
     <state x="2223" y="124" key="SettingsEditor/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591607196033" />
+    <state x="361" y="185" key="Vcs.Push.Dialog.v2" timestamp="1591708211980">
+      <screen x="0" y="40" width="1536" height="824" />
+    </state>
+    <state x="361" y="185" key="Vcs.Push.Dialog.v2/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1591708211980" />
     <state x="2514" y="345" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration" timestamp="1590477943382">
       <screen x="1986" y="0" width="1470" height="960" />
     </state>
@@ -532,7 +543,7 @@
     <SUITE FILE_PATH="coverage/Py_xDH$ncdft_derivonce_uhf_ub3lyp.coverage" NAME="ncdft_derivonce_uhf_ub3lyp Coverage Results" MODIFIED="1591707031834" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_in_grad_uscf_py.coverage" NAME="pytest in grad_uscf.py Coverage Results" MODIFIED="1591017002521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_pyxdh.coverage" NAME="pytest for pyxdh Coverage Results" MODIFIED="1591612967056" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_grad_uscf_Test_GradUSCF_test_UHF_UB3LYP_grad.coverage" NAME="pytest for grad_uscf.Test_GradUSCF.test_UHF_UB3LYP_grad Coverage Results" MODIFIED="1591707056843" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
+    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_grad_uscf_Test_GradUSCF_test_UHF_UB3LYP_grad.coverage" NAME="pytest for grad_uscf.Test_GradUSCF.test_UHF_UB3LYP_grad Coverage Results" MODIFIED="1591708160728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipderiv_mp2_Test_DipDerivMP2_test_B2PLYP_dipderiv.coverage" NAME="pytest for dipderiv_mp2.Test_DipDerivMP2.test_B2PLYP_dipderiv Coverage Results" MODIFIED="1591607224381" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_grad_uscf_Test_GradUSCF_test_UB3LYP_grad.coverage" NAME="pytest for grad_uscf.Test_GradUSCF.test_UB3LYP_grad Coverage Results" MODIFIED="1591619463301" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
     <SUITE FILE_PATH="coverage/Py_xDH$xcfun_grid.coverage" NAME="xcfun_grid Coverage Results" MODIFIED="1591075406484" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/tmp" />

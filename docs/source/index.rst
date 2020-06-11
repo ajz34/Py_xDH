@@ -81,6 +81,12 @@ xDH 在 Python 下实现的简易教程
    derivtwice/hess_gga
    derivtwice/hess_gga_U
 
+.. toctree::
+   :caption: 开壳层开发笔记
+   :numbered:
+
+   unrestricted/uks_details
+
 
 索引
 ====

@@ -269,16 +269,16 @@ class DerivOnceSCF(ABC):
 
     @property
     def eri0_ao(self):
-        warnings.warn("eri0_ao: ERI should not be stored in memory! Consider J/K engines!")
+        # warnings.warn("eri0_ao: ERI should not be stored in memory! Consider J/K engines!")
         if self._eri0_ao is NotImplemented:
             self._eri0_ao = self._get_eri0_ao()
         return self._eri0_ao
 
     @property
     def eri0_mo(self):
-        warnings.warn("eri0_mo: ERI AO -> MO is quite expensive!")
+        # warnings.warn("eri0_mo: ERI AO -> MO is quite expensive!")
         if self._eri0_mo is NotImplemented:
-            self._eri0_mo = np.einsum("uvkl, up, vq, kr, ls -> pqrs", self.eri0_ao, self.C, self.C, self.C, self.C)
+            self._eri0_mo = self._get_eri0_mo()
         return self._eri0_mo
 
     @property
@@ -512,6 +512,9 @@ class DerivOnceSCF(ABC):
 
     def _get_eri0_ao(self):
         return self.mol.intor("int2e")
+
+    def _get_eri0_mo(self):
+        return np.einsum("uvkl, up, vq, kr, ls -> pqrs", self.eri0_ao, self.C, self.C, self.C, self.C)
 
     @abstractmethod
     def _get_H_1_ao(self):

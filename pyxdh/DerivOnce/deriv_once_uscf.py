@@ -61,19 +61,19 @@ class DerivOnceUSCF(DerivOnceSCF, ABC):
 
     @property
     def Co(self):
-        return self.C[0, :, self.so[0]], self.C[0, :, self.so[1]]
+        return self.C[0, :, self.so[0]], self.C[1, :, self.so[1]]
 
     @property
     def Cv(self):
-        return self.Cv[0, :, self.so[0]], self.Cv[0, :, self.so[1]]
+        return self.C[0, :, self.sv[0]], self.C[1, :, self.sv[1]]
 
     @property
     def eo(self):
-        return self.e[0, self.so[0]], self.e[0, self.so[1]]
+        return self.e[0, self.so[0]], self.e[1, self.so[1]]
 
     @property
     def ev(self):
-        return self.e[0, self.sv[0]], self.e[0, self.sv[1]]
+        return self.e[0, self.sv[0]], self.e[1, self.sv[1]]
 
     def _get_D(self):
         return np.einsum("xup, xp, xvp -> xuv", self.C, self.occ, self.C)
@@ -83,6 +83,16 @@ class DerivOnceUSCF(DerivOnceSCF, ABC):
 
     def _get_S_0_mo(self):
         return np.einsum("xup, uv, xvq -> xpq", self.C, self.S_0_ao, self.C)
+
+    def _get_eri0_mo(self):
+        nmo = self.nmo
+        C = self.C
+        eri0_ao = self.eri0_ao
+        eri0_mo = np.zeros((3, nmo, nmo, nmo, nmo))
+        eri0_mo[0] = np.einsum("uvkl, up, vq, kr, ls -> pqrs", eri0_ao, C[0], C[0], C[0], C[0])
+        eri0_mo[1] = np.einsum("uvkl, up, vq, kr, ls -> pqrs", eri0_ao, C[0], C[0], C[1], C[1])
+        eri0_mo[2] = np.einsum("uvkl, up, vq, kr, ls -> pqrs", eri0_ao, C[1], C[1], C[1], C[1])
+        return eri0_mo
 
     def _get_F_0_mo(self):
         return np.einsum("xup, xuv, xvq -> xpq", self.C, self.F_0_ao, self.C)
@@ -96,6 +106,16 @@ class DerivOnceUSCF(DerivOnceSCF, ABC):
         if not isinstance(self.S_1_ao, np.ndarray):
             return 0
         return np.einsum("Auv, xup, xvq -> xApq", self.S_1_ao, self.C, self.C)
+
+    def _get_eri1_mo(self):
+        nmo = self.nmo
+        C = self.C
+        eri1_ao = self.eri1_ao
+        eri1_mo = np.zeros((3, eri1_ao.shape[0], nmo, nmo, nmo, nmo))
+        eri1_mo[0] = np.einsum("Auvkl, up, vq, kr, ls -> Apqrs", eri1_ao, C[0], C[0], C[0], C[0])
+        eri1_mo[1] = np.einsum("Auvkl, up, vq, kr, ls -> Apqrs", eri1_ao, C[0], C[0], C[1], C[1])
+        eri1_mo[2] = np.einsum("Auvkl, up, vq, kr, ls -> Apqrs", eri1_ao, C[1], C[1], C[1], C[1])
+        return eri1_mo
 
     def _get_F_1_mo(self):
         if not isinstance(self.F_1_ao, np.ndarray):
