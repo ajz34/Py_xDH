@@ -1,0 +1,11 @@
+%chk=CH3-MP2-freq
+#p UMP2(Full)/6-31G nosymm SCF(VeryTight) Freq
+
+CH3 MP2 Frequency
+
+0 2
+C  0.  0.  0.
+H  1.  0.  0.
+H  0.  2.  0.
+H  0.  0.  1.5
+

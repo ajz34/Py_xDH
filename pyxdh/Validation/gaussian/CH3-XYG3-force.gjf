@@ -1,0 +1,11 @@
+%chk=CH3-XYG3-force
+#p UXYG3(Full)/6-31G nosymm SCF(VeryTight) Force
+
+CH3 XYG3 Force
+
+0 2
+C  0.  0.  0.
+H  1.  0.  0.
+H  0.  2.  0.
+H  0.  0.  1.5
+
