@@ -19,12 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="912d8545-b18a-4722-b0d8-e8c61f686f07" name="Default Changelist" comment="doc: uks_details">
-      <change afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_ump2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/grad_ump2.py" afterDir="false" />
+    <list default="true" id="912d8545-b18a-4722-b0d8-e8c61f686f07" name="Default Changelist" comment="pyxdh: UMP2, UB2PLYP, UXYG3, UXYGJOS">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/Utilities/test_molecules.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Utilities/test_molecules.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -305,7 +301,7 @@
       <workItem from="1591752549766" duration="7976000" />
       <workItem from="1591837942900" duration="11996000" />
       <workItem from="1591876706421" duration="3246000" />
-      <workItem from="1591926492524" duration="12139000" />
+      <workItem from="1591926492524" duration="13048000" />
     </task>
     <task id="LOCAL-00001" summary="pyxdh: UHF Gradient">
       <created>1591017061437</created>
@@ -349,7 +345,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591881838799</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="pyxdh: UMP2, UB2PLYP, UXYG3, UXYGJOS">
+      <created>1591947168396</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1591947168396</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -374,7 +377,8 @@
     <MESSAGE value="pyxdh: UB3LYP grad" />
     <MESSAGE value="pyxdh: UHF-UB3LYP grad" />
     <MESSAGE value="doc: uks_details" />
-    <option name="LAST_COMMIT_MESSAGE" value="doc: uks_details" />
+    <MESSAGE value="pyxdh: UMP2, UB2PLYP, UXYG3, UXYGJOS" />
+    <option name="LAST_COMMIT_MESSAGE" value="pyxdh: UMP2, UB2PLYP, UXYG3, UXYGJOS" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2152" y="144" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1591945069374">
@@ -421,34 +425,34 @@
     </state>
     <state x="-1341" y="211" key="FileChooserDialogImpl/0.40.1536.824/-1858.0.1474.864@-1858.0.1474.864" timestamp="1591016734753" />
     <state x="2502" y="234" key="FileChooserDialogImpl/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591591721491" />
-    <state width="1427" height="287" key="GridCell.Tab.0.bottom" timestamp="1591946505386">
+    <state width="1427" height="287" key="GridCell.Tab.0.bottom" timestamp="1591954113336">
       <screen x="1986" y="0" width="1470" height="960" />
     </state>
     <state width="1431" height="224" key="GridCell.Tab.0.bottom/0.40.1536.824/-1858.0.1474.864@-1858.0.1474.864" timestamp="1591018976711" />
     <state width="1493" height="185" key="GridCell.Tab.0.bottom/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1591713717315" />
     <state width="1412" height="201" key="GridCell.Tab.0.bottom/0.40.1536.824/1986.0.1470.960@0.40.1536.824" timestamp="1591693173661" />
-    <state width="1427" height="287" key="GridCell.Tab.0.bottom/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591946505386" />
-    <state width="1427" height="287" key="GridCell.Tab.0.center" timestamp="1591946505386">
+    <state width="1427" height="287" key="GridCell.Tab.0.bottom/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591954113336" />
+    <state width="1427" height="287" key="GridCell.Tab.0.center" timestamp="1591954113335">
       <screen x="1986" y="0" width="1470" height="960" />
     </state>
     <state width="1431" height="224" key="GridCell.Tab.0.center/0.40.1536.824/-1858.0.1474.864@-1858.0.1474.864" timestamp="1591018976711" />
     <state width="1493" height="185" key="GridCell.Tab.0.center/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1591713717315" />
     <state width="1412" height="201" key="GridCell.Tab.0.center/0.40.1536.824/1986.0.1470.960@0.40.1536.824" timestamp="1591693173661" />
-    <state width="1427" height="287" key="GridCell.Tab.0.center/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591946505386" />
-    <state width="1427" height="287" key="GridCell.Tab.0.left" timestamp="1591946505386">
+    <state width="1427" height="287" key="GridCell.Tab.0.center/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591954113335" />
+    <state width="1427" height="287" key="GridCell.Tab.0.left" timestamp="1591954113335">
       <screen x="1986" y="0" width="1470" height="960" />
     </state>
     <state width="1431" height="224" key="GridCell.Tab.0.left/0.40.1536.824/-1858.0.1474.864@-1858.0.1474.864" timestamp="1591018976711" />
     <state width="1493" height="185" key="GridCell.Tab.0.left/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1591713717315" />
     <state width="1412" height="201" key="GridCell.Tab.0.left/0.40.1536.824/1986.0.1470.960@0.40.1536.824" timestamp="1591693173661" />
-    <state width="1427" height="287" key="GridCell.Tab.0.left/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591946505386" />
-    <state width="1427" height="287" key="GridCell.Tab.0.right" timestamp="1591946505386">
+    <state width="1427" height="287" key="GridCell.Tab.0.left/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591954113335" />
+    <state width="1427" height="287" key="GridCell.Tab.0.right" timestamp="1591954113335">
       <screen x="1986" y="0" width="1470" height="960" />
     </state>
     <state width="1431" height="224" key="GridCell.Tab.0.right/0.40.1536.824/-1858.0.1474.864@-1858.0.1474.864" timestamp="1591018976711" />
     <state width="1493" height="185" key="GridCell.Tab.0.right/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1591713717315" />
     <state width="1412" height="201" key="GridCell.Tab.0.right/0.40.1536.824/1986.0.1470.960@0.40.1536.824" timestamp="1591693173661" />
-    <state width="1427" height="287" key="GridCell.Tab.0.right/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591946505386" />
+    <state width="1427" height="287" key="GridCell.Tab.0.right/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591954113335" />
     <state width="1493" height="185" key="GridCell.Tab.1.bottom" timestamp="1591713717315">
       <screen x="0" y="40" width="1536" height="824" />
     </state>
@@ -491,12 +495,12 @@
     </state>
     <state x="-1822" y="-17" width="1488" height="811" maximized="true" key="dock-window-1/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1591619194625" />
     <state x="-7" y="40" width="1357" height="838" key="dock-window-1/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591683344548" />
-    <state x="2384" y="205" width="672" height="678" key="search.everywhere.popup" timestamp="1591940735824">
+    <state x="2384" y="205" width="672" height="678" key="search.everywhere.popup" timestamp="1591947139757">
       <screen x="1986" y="0" width="1470" height="960" />
     </state>
     <state x="416" y="216" width="703" height="582" key="search.everywhere.popup/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1591706648311" />
     <state x="2382" y="205" width="675" height="679" key="search.everywhere.popup/0.40.1536.824/1982.0.1474.960@1982.0.1474.960" timestamp="1591333918246" />
-    <state x="2384" y="205" width="672" height="678" key="search.everywhere.popup/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591940735824" />
+    <state x="2384" y="205" width="672" height="678" key="search.everywhere.popup/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591947139757" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

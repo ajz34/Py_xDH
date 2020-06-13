@@ -86,6 +86,7 @@ xDH 在 Python 下实现的简易教程
    :numbered:
 
    unrestricted/uks_details
+   unrestricted/ump2_details
 
 
 索引
