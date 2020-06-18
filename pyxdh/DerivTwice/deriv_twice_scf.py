@@ -36,11 +36,6 @@ class DerivTwiceSCF(ABC):
         # So it is recommended to initialize deriv_A and deriv_B with the same runned scf.RHF instance
 
         # Basic Information
-        self._mol = self.A.mol
-        self._C = self.A.C
-        self._e = self.A.e
-        self._D = self.A.D
-        self._mo_occ = self.A.mo_occ
 
         self.cx = self.A.cx
         self.xc = self.A.xc
@@ -77,23 +72,23 @@ class DerivTwiceSCF(ABC):
 
     @property
     def mol(self):
-        return self._mol
+        return self.A.mol
 
     @property
     def C(self):
-        return self._C
+        return self.A.C
 
     @property
     def Co(self):
-        return self.C[:, self.so]
+        return self.A.Co
 
     @property
     def Cv(self):
-        return self.C[:, self.sv]
+        return self.A.Cv
 
     @property
     def nmo(self):
-        return self.C.shape[1]
+        return self.A.nmo
 
     @property
     def nao(self):
@@ -101,47 +96,47 @@ class DerivTwiceSCF(ABC):
 
     @property
     def nocc(self):
-        return self.mol.nelec[0]
+        return self.A.nocc
 
     @property
     def nvir(self):
-        return self.nmo - self.nocc
+        return self.A.nvir
 
     @property
     def mo_occ(self):
-        return self._mo_occ
+        return self.A.mo_occ
 
     @property
     def natm(self):
-        return self.mol.natm
+        return self.A.natm
 
     @property
     def sa(self):
-        return slice(0, self.nmo)
+        return self.A.sa
 
     @property
     def so(self):
-        return slice(0, self.nocc)
+        return self.A.so
 
     @property
     def sv(self):
-        return slice(self.nocc, self.nmo)
+        return self.A.sv
 
     @property
     def e(self):
-        return self._e
+        return self.A.e
 
     @property
     def eo(self):
-        return self.e[self.so]
+        return self.A.eo
 
     @property
     def ev(self):
-        return self.e[self.sv]
+        return self.A.ev
 
     @property
     def D(self):
-        return self._D
+        return self.A.D
 
     @property
     def H_2_ao(self):

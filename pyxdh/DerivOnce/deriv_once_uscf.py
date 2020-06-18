@@ -75,6 +75,14 @@ class DerivOnceUSCF(DerivOnceSCF, ABC):
     def ev(self):
         return self.e[0, self.sv[0]], self.e[1, self.sv[1]]
 
+    @property
+    def U_1_vo(self):
+        return self.U_1[0, :, self.sv[0], self.so[0]], self.U_1[1, :, self.sv[1], self.so[1]]
+
+    @property
+    def U_1_ov(self):
+        return self.U_1[0, :, self.so[0], self.sv[0]], self.U_1[1, :, self.so[1], self.sv[1]]
+
     def _get_D(self):
         return np.einsum("xup, xp, xvp -> xuv", self.C, self.occ, self.C)
 
@@ -179,6 +187,60 @@ class DerivOnceUSCF(DerivOnceSCF, ABC):
             return Ax
 
         return fx
+
+    def _get_U_1(self):
+        B_1 = self.B_1
+        S_1_mo = self.S_1_mo
+        if not isinstance(S_1_mo, np.ndarray):
+            S_1_mo = np.zeros_like(B_1)
+        Ax0_Core = self.Ax0_Core
+        sv, so = self.sv, self.so
+        nocc, nvir, nmo = self.nocc, self.nvir, self.nmo
+        e, eo, ev, mo_occ = self.e, self.eo, self.ev, self.mo_occ
+        prop_dim = B_1.shape[1]
+        # Calculate U_1_vo
+        def fx(X):
+            prop_dim = X.shape[0]
+            X_alpha = X[:, :nocc[0] * nvir[0]].reshape((prop_dim, nvir[0], nocc[0]))
+            X_beta = X[:, nocc[0] * nvir[0]:].reshape((prop_dim, nvir[1], nocc[1]))
+            Ax = Ax0_Core(sv, so, sv, so, in_cphf=True)((X_alpha, X_beta))
+            result = np.concatenate([Ax[0].reshape(prop_dim, -1), Ax[1].reshape(prop_dim, -1)], axis=1)
+            return result
+        U_1_vo = ucphf.solve(fx, e, mo_occ, (B_1[0, :, sv[0], so[0]], B_1[1, :, sv[1], so[1]]), max_cycle=100, tol=self.cphf_tol)[0]
+        # Check sanity
+        Ax_U = Ax0_Core(sv, so, sv, so, in_cphf=True)(U_1_vo)
+        conv = (
+            (ev[0][:, None] - eo[0][None, :]) * U_1_vo[0] + Ax_U[0] + B_1[0][:, sv[0], so[0]],
+            (ev[1][:, None] - eo[1][None, :]) * U_1_vo[1] + Ax_U[1] + B_1[1][:, sv[1], so[1]],
+        )
+        if np.abs(conv[0]).max() > 1e-8 or np.abs(conv[1]).max() > 1e-8:
+            msg = "\nget_E_1: CP-HF not converged well!\nMaximum deviation: " + str(np.abs(conv[0]).max()) + ", " + str(np.abs(conv[1]).max())
+            warnings.warn(msg)
+        # Build rest of U_1
+        U_1 = np.zeros((2, prop_dim, nmo, nmo))
+        if self.rotation:
+            U_1 = - 0.5 * S_1_mo
+            U_1[0, :, sv[0], so[0]] = U_1_vo[0]
+            U_1[1, :, sv[1], so[1]] = U_1_vo[1]
+            U_1[0, :, so[0], sv[0]] = - S_1_mo[0, :, so[0], sv[0]] - U_1_vo[0].swapaxes(-1, -2)
+            U_1[1, :, so[1], sv[1]] = - S_1_mo[1, :, so[1], sv[1]] - U_1_vo[1].swapaxes(-1, -2)
+        else:
+            U_1[0, :, sv[0], so[0]] = U_1_vo[0]
+            U_1[1, :, sv[1], so[1]] = U_1_vo[1]
+            U_1[0, :, so[0], sv[0]] = - S_1_mo[0, :, so[0], sv[0]] - U_1_vo[0].swapaxes(-1, -2)
+            U_1[1, :, so[1], sv[1]] = - S_1_mo[1, :, so[1], sv[1]] - U_1_vo[1].swapaxes(-1, -2)
+            Ax_oo = Ax0_Core(so, so, sv, so)(U_1_vo)
+            Ax_vv = Ax0_Core(sv, sv, sv, so)(U_1_vo)
+            U_1[0, :, so[0], so[0]] = - (Ax_oo[0] + B_1[0, :, so[0], so[0]]) / (eo[0][:, None] - eo[0][None, :])
+            U_1[1, :, so[1], so[1]] = - (Ax_oo[1] + B_1[1, :, so[1], so[1]]) / (eo[1][:, None] - eo[1][None, :])
+            U_1[0, :, sv[0], sv[0]] = - (Ax_vv[0] + B_1[0, :, sv[0], sv[0]]) / (ev[0][:, None] - ev[0][None, :])
+            U_1[1, :, sv[1], sv[1]] = - (Ax_vv[1] + B_1[1, :, sv[1], sv[1]]) / (ev[1][:, None] - ev[1][None, :])
+            for p in range(nmo):
+                U_1[:, :, p, p] = - S_1_mo[:, :, p, p] / 2
+            U_1 -= (U_1 + U_1.swapaxes(-1, -2) + S_1_mo) / 2
+            U_1 -= (U_1 + U_1.swapaxes(-1, -2) + S_1_mo) / 2
+
+        return U_1
 
 
 class DerivOnceUNCDFT(DerivOnceUSCF, DerivOnceNCDFT):

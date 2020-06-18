@@ -42,6 +42,15 @@ class HessSCF(DerivTwiceSCF):
 
     @timing
     def _get_F_2_ao_JKcontrib(self):
+        D = self.D
+        eri2_ao = self.eri2_ao
+        return (
+            np.einsum("ABuvkl, kl -> ABuv", eri2_ao, D),
+            np.einsum("ABukvl, kl -> ABuv", eri2_ao, D),
+        )
+
+    @timing
+    def _get_F_2_ao_JKcontrib_(self):
 
         mol = self.mol
         natm = self.natm

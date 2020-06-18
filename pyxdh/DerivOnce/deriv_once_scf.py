@@ -65,8 +65,6 @@ class DerivOnceSCF(ABC):
         self._F_1_mo = NotImplemented
         self._B_1 = NotImplemented
         self._U_1 = NotImplemented
-        self._U_1_vo = NotImplemented
-        self._U_1_ov = NotImplemented
 
         # Tensor total derivative
         self._pdA_F_0_mo = NotImplemented
@@ -614,8 +612,7 @@ class DerivOnceSCF(ABC):
             U_1_pq -= (U_1_pq + U_1_pq.swapaxes(-1, -2) + S_1_mo) / 2
             U_1_pq -= (U_1_pq + U_1_pq.swapaxes(-1, -2) + S_1_mo) / 2
 
-        self._U_1 = U_1_pq
-        return self._U_1
+        return U_1_pq
 
     @abstractmethod
     def _get_E_1(self):
