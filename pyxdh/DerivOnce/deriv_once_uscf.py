@@ -148,6 +148,21 @@ class DerivOnceUSCF(DerivOnceSCF, ABC):
             )
         return B_1
 
+    def _get_pdA_F_0_mo(self):
+        F_1_mo = self.F_1_mo
+        U_1 = self.U_1
+        e = self.e
+        Ax0_Core = self.Ax0_Core
+        so, sa = self.so, self.sa
+
+        pdA_F_0_mo = (
+            + F_1_mo
+            + np.einsum("xApq, xp -> xApq", U_1, e)
+            + np.einsum("xAqp, xq -> xApq", U_1, e)
+            + Ax0_Core(sa, sa, sa, so)((U_1[0, :, :, so[0]], U_1[1, :, :, so[1]]))
+        )
+        return pdA_F_0_mo
+
     @property
     def resp_cphf(self):
         if self._resp_cphf is NotImplemented:
@@ -169,17 +184,22 @@ class DerivOnceUSCF(DerivOnceSCF, ABC):
         @timing
         def fx(X_):
             # For simplicity, shape of X should be (2, dim_prop, sk, sl)
-            have_first_dim = len(X_[0].shape) == 3
-            prop_dim = X_[0].shape[0] if have_first_dim else 1
+            have_first_dim = len(X_[0].shape) >= 3
+            prop_dim = int(np.prod(X_[0].shape[:-2]))
+            restore_shape = list(X_[0].shape[:-2])
+            X = [np.copy(X_[0]), np.copy(X_[1])]
+            X[0] = X[0].reshape([prop_dim] + list(X_[0].shape[-2:]))
+            X[1] = X[1].reshape([prop_dim] + list(X_[1].shape[-2:]))
 
             dm = np.zeros((2, prop_dim, nao, nao))
-            dm[0] = C[0][:, sk[0]] @ X_[0] @ C[0][:, sl[0]].T
-            dm[1] = C[1][:, sk[1]] @ X_[1] @ C[1][:, sl[1]].T
+            dm[0] = C[0][:, sk[0]] @ X[0] @ C[0][:, sl[0]].T
+            dm[1] = C[1][:, sk[1]] @ X[1] @ C[1][:, sl[1]].T
             dm += dm.swapaxes(-1, -2)
-            if (not have_first_dim):
+            if not have_first_dim:
                 dm.shape = (2, nao, nao)
 
             ax_ao = resp(dm)
+            ax_ao.shape = tuple([2] + restore_shape + [nao, nao])
             Ax = (
                 C[0][:, si[0]].T @ ax_ao[0] @ C[0][:, sj[0]],
                 C[1][:, si[1]].T @ ax_ao[1] @ C[1][:, sj[1]]

@@ -5,7 +5,7 @@ import os
 from pyscf import grad
 
 from pyxdh.DerivOnce import DerivOnceUSCF, GradSCF, DerivOnceUNCDFT
-from pyxdh.Utilities import GridIterator, KernelHelper
+from pyxdh.Utilities import GridIterator, KernelHelper, timing
 
 MAXMEM = float(os.getenv("MAXMEM", 2))
 np.einsum = partial(np.einsum, optimize=["greedy", 1024 ** 3 * MAXMEM / 8])
@@ -53,6 +53,46 @@ class GradUSCF(DerivOnceUSCF, GradSCF):
             ).reshape(-1)
 
         return E_1.reshape((natm, 3))
+
+    def Ax1_Core(self, si, sj, sk, sl, reshape=True):
+
+        C, Co = self.C, self.Co
+        natm, nao = self.natm, self.nao
+        mol = self.mol
+        cx = self.cx
+        so = self.so
+        eri1_ao = self.eri1_ao
+
+        @timing
+        def fx(X_):
+            if not isinstance(X_[0], np.ndarray):
+                return 0
+
+            have_first_dim = len(X_[0].shape) >= 3
+            prop_dim = X_[0].shape[0] if have_first_dim else 1
+            restore_shape = list(X_[0].shape[:-2])
+
+            dmX = np.zeros((2, prop_dim, nao, nao))
+            dmX[0] = C[0][:, sk[0]] @ X_[0] @ C[0][:, sl[0]].T
+            dmX[1] = C[1][:, sk[1]] @ X_[1] @ C[1][:, sl[1]].T
+            dmX += dmX.swapaxes(-1, -2)
+
+            ax_ao = (
+                + np.einsum("Auvkl, xBkl -> ABuv", eri1_ao, dmX)
+                - cx * np.einsum("Aukvl, xBkl -> xABuv", eri1_ao, dmX)
+            )
+            ax_ao = (
+                np.einsum("ABuv, ui, vj -> ABij", ax_ao[0], C[0][:, si[0]], C[0][:, sj[0]]),
+                np.einsum("ABuv, ui, vj -> ABij", ax_ao[1], C[1][:, si[1]], C[1][:, sj[1]]),
+            )
+            ax_ao[0].shape = tuple([ax_ao[0].shape[0]] + restore_shape + list(ax_ao[0].shape[-2:]))
+            ax_ao[1].shape = tuple([ax_ao[1].shape[0]] + restore_shape + list(ax_ao[1].shape[-2:]))
+            return ax_ao
+        return fx
+
+
+
+
 
 
 class GradUNCDFT(DerivOnceUNCDFT, GradUSCF):

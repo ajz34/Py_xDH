@@ -141,6 +141,57 @@ class DerivOnceUMP2(DerivOnceUSCF, DerivOnceMP2, ABC):
         D_r[1][sv[1], so[1]] = D_r_vo[1]
         return D_r
 
+    def _get_pdA_eri0_mo(self):
+        eri0_mo = self.eri0_mo
+        U_1 = self.U_1
+        pdA_eri0_mo = np.copy(self.eri1_mo)
+        sigma_list = [
+            [0, 0, 0],
+            [1, 0, 1],
+            [2, 1, 1],
+        ]
+        for x, y, z in sigma_list:
+            pdA_eri0_mo[x] += (
+                + np.einsum("pjkl, Api -> Aijkl", eri0_mo[x], U_1[y])
+                + np.einsum("ipkl, Apj -> Aijkl", eri0_mo[x], U_1[y])
+                + np.einsum("ijpl, Apk -> Aijkl", eri0_mo[x], U_1[z])
+                + np.einsum("ijkp, Apl -> Aijkl", eri0_mo[x], U_1[z])
+            )
+        return pdA_eri0_mo
+
+    def _get_pdA_t_iajb(self):
+        so, sv = self.so, self.sv
+        D_iajb = self.D_iajb
+        pdA_F_0_mo = self.pdA_F_0_mo
+        t_iajb = self.t_iajb
+        pdA_eri0_mo = self.pdA_eri0_mo
+
+        sigma_list = [
+            [0, 0, 0],
+            [1, 0, 1],
+            [2, 1, 1],
+        ]
+        pdA_t_iajb = [np.copy(pdA_eri0_mo[x, :, so[y], sv[y], so[z], sv[z]]) for x, y, z in sigma_list]
+        for x, y, z, in sigma_list:
+            pdA_t_iajb[x] += (
+                - np.einsum("Aki, kajb -> Aiajb", pdA_F_0_mo[y][:, so[y], so[y]], t_iajb[x])
+                - np.einsum("Akj, iakb -> Aiajb", pdA_F_0_mo[z][:, so[z], so[z]], t_iajb[x])
+                + np.einsum("Aca, icjb -> Aiajb", pdA_F_0_mo[y][:, sv[y], sv[y]], t_iajb[x])
+                + np.einsum("Acb, iajc -> Aiajb", pdA_F_0_mo[z][:, sv[z], sv[z]], t_iajb[x])
+            )
+            pdA_t_iajb[x] /= D_iajb[x]
+        return tuple(pdA_t_iajb)
+
+    def _get_pdA_T_iajb(self):
+        pdA_t_iajb = self.pdA_t_iajb
+        cc, ss, os = self.cc, self.ss, self.os
+        pdA_T_iajb = (
+            0.5 * cc * ss * (pdA_t_iajb[0] - pdA_t_iajb[0].swapaxes(-1, -3)),
+            cc * os * pdA_t_iajb[1],
+            0.5 * cc * ss * (pdA_t_iajb[2] - pdA_t_iajb[2].swapaxes(-1, -3))
+        )
+        return pdA_T_iajb
+
 
 class DerivOnceUXDH(DerivOnceUMP2, DerivOnceUNCDFT, ABC):
 

@@ -86,8 +86,9 @@ class DerivTwiceMP2(DerivTwiceSCF, ABC):
         # total partial eri0
         pdA_eri0_mo = B.pdA_eri0_mo
 
+        RHS_B = np.zeros((U_1.shape[0], self.nvir, self.nocc))
         # D_r Part
-        RHS_B = Ax0_Core(sv, so, sa, sa)(pdB_D_r_oovv)
+        RHS_B += Ax0_Core(sv, so, sa, sa)(pdB_D_r_oovv)
         RHS_B += Ax1_Core(sv, so, sa, sa)(D_r)
         RHS_B += np.einsum("Apa, pi -> Aai", U_1[:, :, sv], Ax0_Core(sa, so, sa, sa)(D_r))
         RHS_B += np.einsum("Api, ap -> Aai", U_1[:, :, so], Ax0_Core(sv, sa, sa, sa)(D_r))

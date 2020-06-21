@@ -50,7 +50,7 @@ class HessSCF(DerivTwiceSCF):
         )
 
     @timing
-    def _get_F_2_ao_JKcontrib_(self):
+    def _get_F_2_ao_JKcontrib_old(self):
 
         mol = self.mol
         natm = self.natm
