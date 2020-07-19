@@ -171,3 +171,4 @@ texinfo_documents = [
 
 nbsphinx_allow_errors = True
 nbsphinx_timeout = 720
+mathjax_path = "Mathjax/es5/tex-chtml-full.js"
