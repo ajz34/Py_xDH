@@ -11,7 +11,7 @@ np.set_printoptions(8, linewidth=1000, suppress=True)
 
 class GridIterator:
 
-    def __init__(self, mol, grids, D, deriv=3, memory=2000, engine="libxc"):
+    def __init__(self, mol, grids, D, deriv=3, memory=2000, engine="xcfun"):
 
         self.mol = mol  # type: gto.Mole
         self.grids = grids  # type: dft.Grids

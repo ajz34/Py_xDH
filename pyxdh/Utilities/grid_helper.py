@@ -15,7 +15,7 @@ np.set_printoptions(8, linewidth=1000, suppress=True)
 
 class GridHelperLegacy:
 
-    def __init__(self, mol, grids, D, engine="libxc"):
+    def __init__(self, mol, grids, D, engine="xcfun"):
         # warnings.warn("GridHelper is considered memory consuming!")
 
         # Initialization Parameters
