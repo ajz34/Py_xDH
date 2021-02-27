@@ -29,6 +29,8 @@ class DerivTwiceUSCF(DerivTwiceSCF, ABC):
         return np.einsum("ABuv, xup, xvq -> xABpq", self.S_2_ao, self.C, self.C)
 
     def _get_F_2_mo(self):
+        if not isinstance(self.F_2_ao, np.ndarray):
+            return 0
         return np.einsum("xABuv, xup, xvq -> xABpq", self.F_2_ao, self.C, self.C)
 
     def _get_Xi_2(self):
@@ -77,6 +79,8 @@ class DerivTwiceUSCF(DerivTwiceSCF, ABC):
 
     def _get_pdB_S_A_mo(self):
         A, B = self.A, self.B
+        if not isinstance(A.S_1_mo, np.ndarray):
+            return self.S_2_mo
         pdB_S_A_mo = (
             + self.S_2_mo
             + np.einsum("xApm, xBmq -> xABpq", A.S_1_mo, B.U_1)

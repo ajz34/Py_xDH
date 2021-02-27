@@ -11,6 +11,9 @@ np.set_printoptions(8, linewidth=1000, suppress=True)
 
 class DipoleUMP2(DerivOnceUMP2, DipoleUSCF):
 
+    def _get_eri1_mo(self):
+        return 0
+
     def _get_E_1(self):
         E_1 = np.einsum("xpq, xApq -> A", self.D_r, self.B_1)
         E_1 += DipoleUSCF._get_E_1(self)

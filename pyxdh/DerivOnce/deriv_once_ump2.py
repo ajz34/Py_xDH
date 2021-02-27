@@ -144,7 +144,9 @@ class DerivOnceUMP2(DerivOnceUSCF, DerivOnceMP2, ABC):
     def _get_pdA_eri0_mo(self):
         eri0_mo = self.eri0_mo
         U_1 = self.U_1
-        pdA_eri0_mo = np.copy(self.eri1_mo)
+        nmo = self.nmo
+        pdA_eri0_mo = np.zeros((3, self.H_1_ao.shape[0], nmo, nmo, nmo, nmo))
+        pdA_eri0_mo += self.eri1_mo
         sigma_list = [
             [0, 0, 0],
             [1, 0, 1],

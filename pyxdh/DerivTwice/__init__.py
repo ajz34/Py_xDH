@@ -10,7 +10,9 @@ __all__ = [
     "DerivTwiceUSCF",
     "DerivTwiceUMP2",
     "HessUSCF",
-    "HessUMP2"
+    "HessUMP2",
+    "PolarUSCF",
+    "PolarUMP2",
 ]
 
 from pyxdh.DerivTwice.deriv_twice_scf import DerivTwiceSCF, DerivTwiceNCDFT
@@ -23,6 +25,8 @@ from pyxdh.DerivTwice.dipderiv_scf import DipDerivSCF, DipDerivNCDFT
 from pyxdh.DerivTwice.dipderiv_mp2 import DipDerivMP2, DipDerivXDH
 
 from pyxdh.DerivTwice.deriv_twice_uscf import DerivTwiceUSCF
-from pyxdh.DerivTwice.hess_uscf import HessUSCF
 from pyxdh.DerivTwice.deriv_twice_ump2 import DerivTwiceUMP2
+from pyxdh.DerivTwice.hess_uscf import HessUSCF
 from pyxdh.DerivTwice.hess_ump2 import HessUMP2
+from pyxdh.DerivTwice.polar_uscf import PolarUSCF
+from pyxdh.DerivTwice.polar_ump2 import PolarUMP2

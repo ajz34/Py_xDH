@@ -131,7 +131,8 @@ class DerivTwiceUMP2(DerivTwiceMP2, DerivTwiceUSCF, DerivTwiceSCF, ABC):
         ))
         for x in range(2):
             RHS_B[x] = Ax0_pdB_D_r_oovv[x]
-            RHS_B[x] += Ax1_D_r[x]
+            if isinstance(Ax1_D_r, np.ndarray):
+                RHS_B[x] += Ax1_D_r[x]
             RHS_B[x] += np.einsum("Apa, pi -> Aai", U_1[x][:, sa[x], sv[x]], Ax0_D_r[x][sa[x], so[x]])
             RHS_B[x] += np.einsum("Api, ap -> Aai", U_1[x][:, sa[x], so[x]], Ax0_D_r[x][sv[x], sa[x]])
             RHS_B[x] += Ax0_U_D[x]
