@@ -4,6 +4,7 @@ from functools import partial
 import os
 import warnings
 from pyscf.scf._response_functions import _gen_uhf_response
+from scipy.optimize import newton_krylov
 
 from pyscf import dft, grad, hessian
 from pyscf.scf import ucphf
@@ -219,22 +220,42 @@ class DerivOnceUSCF(DerivOnceSCF, ABC):
         e, eo, ev, mo_occ = self.e, self.eo, self.ev, self.mo_occ
         prop_dim = B_1.shape[1]
         # Calculate U_1_vo
-        def fx(X):
-            prop_dim = X.shape[0]
-            X_alpha = X[:, :nocc[0] * nvir[0]].reshape((prop_dim, nvir[0], nocc[0]))
-            X_beta = X[:, nocc[0] * nvir[0]:].reshape((prop_dim, nvir[1], nocc[1]))
-            Ax = Ax0_Core(sv, so, sv, so, in_cphf=True)((X_alpha, X_beta))
-            result = np.concatenate([Ax[0].reshape(prop_dim, -1), Ax[1].reshape(prop_dim, -1)], axis=1)
-            return result
-        U_1_vo = ucphf.solve(fx, e, mo_occ, (B_1[0, :, sv[0], so[0]], B_1[1, :, sv[1], so[1]]), max_cycle=100, tol=self.cphf_tol)[0]
+        # def fx(X):
+        #     prop_dim = X.shape[0]
+        #     X_alpha = X[:, :nocc[0] * nvir[0]].reshape((prop_dim, nvir[0], nocc[0]))
+        #     X_beta = X[:, nocc[0] * nvir[0]:].reshape((prop_dim, nvir[1], nocc[1]))
+        #     Ax = Ax0_Core(sv, so, sv, so, in_cphf=True)((X_alpha, X_beta))
+        #     result = np.concatenate([Ax[0].reshape(prop_dim, -1), Ax[1].reshape(prop_dim, -1)], axis=1)
+        #     return result
+        # U_1_vo = ucphf.solve(fx, e, mo_occ, (B_1[0, :, sv[0], so[0]], B_1[1, :, sv[1], so[1]]), max_cycle=100, tol=self.cphf_tol)[0]
+        # Additional Iteration by newton_krylov
+        def get_conv(U_1_vo):
+            Ax_U = Ax0_Core(sv, so, sv, so, in_cphf=True)(U_1_vo)
+            conv = (
+                (ev[0][:, None] - eo[0][None, :]) * U_1_vo[0] + Ax_U[0] + B_1[0][:, sv[0], so[0]],
+                (ev[1][:, None] - eo[1][None, :]) * U_1_vo[1] + Ax_U[1] + B_1[1][:, sv[1], so[1]],
+            )
+            return conv
+
+        def vind(guess):
+            U_1_vo_inner = (
+                guess[:3 * nocc[0] * nvir[0]].reshape(3, nvir[0], nocc[0]),
+                guess[3 * nocc[0] * nvir[0]:].reshape(3, nvir[1], nocc[1]))
+            conv = get_conv(U_1_vo_inner)
+            return np.concatenate([conv[0].ravel(), conv[1].ravel()])
+
+        guess = (
+            B_1[0, :, sv[0], so[0]] / (ev[0][:, None] - eo[0][None, :]),
+            B_1[1, :, sv[1], so[1]] / (ev[1][:, None] - eo[1][None, :]))
+        guess = np.concatenate([guess[0].ravel(), guess[1].ravel()])
+        res = newton_krylov(vind, guess, f_tol=1e-10)
+        U_1_vo = (
+            res[:3 * nocc[0] * nvir[0]].reshape(3, nvir[0], nocc[0]),
+            res[3 * nocc[0] * nvir[0]:].reshape(3, nvir[1], nocc[1]))
         # Check sanity
-        Ax_U = Ax0_Core(sv, so, sv, so, in_cphf=True)(U_1_vo)
-        conv = (
-            (ev[0][:, None] - eo[0][None, :]) * U_1_vo[0] + Ax_U[0] + B_1[0][:, sv[0], so[0]],
-            (ev[1][:, None] - eo[1][None, :]) * U_1_vo[1] + Ax_U[1] + B_1[1][:, sv[1], so[1]],
-        )
+        conv = get_conv(U_1_vo)
         if np.abs(conv[0]).max() > 1e-8 or np.abs(conv[1]).max() > 1e-8:
-            msg = "\nget_E_1: CP-HF not converged well!\nMaximum deviation: " + str(np.abs(conv[0]).max()) + ", " + str(np.abs(conv[1]).max())
+            msg = "\nget_U_1: CP-HF not converged well!\nMaximum deviation: " + str(np.abs(conv[0]).max()) + ", " + str(np.abs(conv[1]).max())
             warnings.warn(msg)
         # Build rest of U_1
         U_1 = np.zeros((2, prop_dim, nmo, nmo))
