@@ -65,6 +65,9 @@ class GradUSCF(DerivOnceUSCF, GradSCF):
 
         @timing
         def fx(X_):
+            if self.xc_type != "HF":
+                raise NotImplementedError("DFT is not implemented!")
+
             if not isinstance(X_[0], np.ndarray):
                 return 0
 
@@ -89,10 +92,6 @@ class GradUSCF(DerivOnceUSCF, GradSCF):
             ax_ao[1].shape = tuple([ax_ao[1].shape[0]] + restore_shape + list(ax_ao[1].shape[-2:]))
             return ax_ao
         return fx
-
-
-
-
 
 
 class GradUNCDFT(DerivOnceUNCDFT, GradUSCF):

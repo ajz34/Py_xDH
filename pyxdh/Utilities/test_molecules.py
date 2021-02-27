@@ -113,6 +113,7 @@ class Mol_CH3:
         if self._hf_eng is not NotImplemented:
             return self._hf_eng
         hf_eng = scf.UHF(self.mol)
+        hf_eng.conv_tol = 1e-12
         self._hf_eng = hf_eng
         return self._hf_eng
 
