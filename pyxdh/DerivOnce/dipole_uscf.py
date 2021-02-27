@@ -12,6 +12,9 @@ np.set_printoptions(8, linewidth=1000, suppress=True)
 
 class DipoleUSCF(DerivOnceUSCF, DipoleSCF):
 
+    def _get_F_1_ao(self):
+        return np.array([self.H_1_ao, self.H_1_ao])
+
     def Ax1_Core(self, si, sj, sk, sl, reshape=True):
 
         def fx(_):
@@ -45,4 +48,4 @@ class Test_GradUSCF:
         CH3 = Mol_CH3()
         helper = DipoleUSCF({"scf_eng": CH3.hf_eng})
         formchk = FormchkInterface(resource_filename("pyxdh", "Validation/gaussian/CH3-HF-freq.fchk"))
-        assert(np.allclose(helper.E_1, formchk.dipole(), atol=1e-5, rtol=1e-4))
+        assert(np.allclose(helper.E_1, formchk.dipole(), atol=1e-6, rtol=1e-4))
