@@ -19,8 +19,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="912d8545-b18a-4722-b0d8-e8c61f686f07" name="Default Changelist" comment="pyxdh: UMP2 Hessian">
+    <list default="true" id="912d8545-b18a-4722-b0d8-e8c61f686f07" name="Default Changelist" comment="pyxdh: add PolarUSCF">
+      <change afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/polar_ump2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_ump2.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_ump2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/dipole_ump2.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/dipole_ump2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_ump2.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_ump2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_uscf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_uscf.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +44,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="JupyterTrust" id="31704001-a987-4eb7-857a-c65f67579d31" />
   <component name="ProjectId" id="1cR3sgUm2fsX4LSpJ9YZNxQAr3l" />
   <component name="ProjectViewState">
@@ -47,7 +62,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -55,7 +70,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="pyconsole" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -78,7 +93,29 @@
       <recent name="E:\Git-Repo\Py_xDH\pyxdh\Validation\numerical_deriv" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.pytest for hess_ump2.Test_HessUMP2">
+  <component name="RunManager" selected="Python tests.pytest for polar_ump2.Test_PolarUMP2.test_UMP2_polar">
+    <configuration name="findiff-try" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Py_xDH" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tmp-debug" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tmp-debug/findiff-try.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="pytest for dipderiv_mp2.Test_DipDerivMP2.test_B2PLYP_dipderiv" type="tests" factoryName="py.test" nameIsGenerated="true">
       <module name="Py_xDH" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -99,7 +136,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for grad_ump2.Test_GradUMP2.test_UXYGJOS_grad" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for dipole_ump2.Test_DipoleUMP2.test_dipole_ump2" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="Py_xDH" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -112,7 +149,24 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;grad_ump2.Test_GradUMP2.test_UXYGJOS_grad&quot;" />
+      <option name="_new_target" value="&quot;dipole_ump2.Test_DipoleUMP2.test_dipole_ump2&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for dipole_uscf.Test_GradUSCF.test_UHF_dipole" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="Py_xDH" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pyxdh/DerivOnce" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;dipole_uscf.Test_GradUSCF.test_UHF_dipole&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -136,7 +190,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for hess_scf.Test_HessSCF.test_HF_hess" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for polar_ump2.Test_PolarUMP2.test_UMP2_polar" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="Py_xDH" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -149,11 +203,11 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;hess_scf.Test_HessSCF.test_HF_hess&quot;" />
+      <option name="_new_target" value="&quot;polar_ump2.Test_PolarUMP2.test_UMP2_polar&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for hess_ump2.Test_HessUMP2" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for polar_uscf.Test_PolarUSCF.test_UHF_polar" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="Py_xDH" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -166,41 +220,7 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;hess_ump2.Test_HessUMP2&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pytest for hess_uscf.Test_HessUSCF" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="Py_xDH" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pyxdh/DerivTwice" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_parameters" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;hess_uscf.Test_HessUSCF&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pytest for hess_uscf.Test_HessUSCF.test_UHF_hess" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="Py_xDH" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pyxdh/DerivTwice" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_parameters" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;hess_uscf.Test_HessUSCF.test_UHF_hess&quot;" />
+      <option name="_new_target" value="&quot;polar_uscf.Test_PolarUSCF.test_UHF_polar&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -211,7 +231,7 @@
       <envs>
         <env name="PYTHONPATH" value="/mnt/e/Git-Others/pyscf:$PYTHONPATH" />
       </envs>
-      <option name="SDK_HOME" value="wsl://UBUNTU/home/a/miniconda3/bin/python" />
+      <option name="SDK_HOME" value="$USER_HOME$/miniconda3/envs/pyxdh-dev/bin/python" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -242,26 +262,27 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.findiff-try" />
       <item itemvalue="Python tests.pytest in grad_uscf.py" />
       <item itemvalue="Python tests.pytest for dipderiv_mp2.Test_DipDerivMP2.test_B2PLYP_dipderiv" />
       <item itemvalue="Python tests.pytest for pyxdh" />
       <item itemvalue="Python tests.pytest for grad_uscf.Test_GradUSCF.test_UHF_UB3LYP_grad" />
-      <item itemvalue="Python tests.pytest for grad_ump2.Test_GradUMP2.test_UXYGJOS_grad" />
-      <item itemvalue="Python tests.pytest for hess_scf.Test_HessSCF.test_HF_hess" />
-      <item itemvalue="Python tests.pytest for hess_uscf.Test_HessUSCF" />
-      <item itemvalue="Python tests.pytest for hess_uscf.Test_HessUSCF.test_UHF_hess" />
-      <item itemvalue="Python tests.pytest for hess_ump2.Test_HessUMP2" />
+      <item itemvalue="Python tests.pytest for dipole_uscf.Test_GradUSCF.test_UHF_dipole" />
+      <item itemvalue="Python tests.pytest for dipole_ump2.Test_DipoleUMP2.test_dipole_ump2" />
+      <item itemvalue="Python tests.pytest for polar_uscf.Test_PolarUSCF.test_UHF_polar" />
+      <item itemvalue="Python tests.pytest for polar_ump2.Test_PolarUMP2.test_UMP2_polar" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.pytest for hess_ump2.Test_HessUMP2" />
-        <item itemvalue="Python tests.pytest for hess_uscf.Test_HessUSCF.test_UHF_hess" />
-        <item itemvalue="Python tests.pytest for hess_uscf.Test_HessUSCF" />
-        <item itemvalue="Python tests.pytest for hess_scf.Test_HessSCF.test_HF_hess" />
-        <item itemvalue="Python tests.pytest for grad_ump2.Test_GradUMP2.test_UXYGJOS_grad" />
+        <item itemvalue="Python tests.pytest for polar_ump2.Test_PolarUMP2.test_UMP2_polar" />
+        <item itemvalue="Python tests.pytest for polar_uscf.Test_PolarUSCF.test_UHF_polar" />
+        <item itemvalue="Python tests.pytest for dipole_ump2.Test_DipoleUMP2.test_dipole_ump2" />
+        <item itemvalue="Python tests.pytest for dipole_uscf.Test_GradUSCF.test_UHF_dipole" />
+        <item itemvalue="Python.findiff-try" />
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -317,6 +338,10 @@
       <workItem from="1594187408688" duration="839000" />
       <workItem from="1594972103344" duration="1226000" />
       <workItem from="1595049200172" duration="40000" />
+      <workItem from="1614228935461" duration="5671000" />
+      <workItem from="1614247944230" duration="1901000" />
+      <workItem from="1614306186785" duration="2440000" />
+      <workItem from="1614402469482" duration="4062000" />
     </task>
     <task id="LOCAL-00001" summary="pyxdh: UHF Gradient">
       <created>1591017061437</created>
@@ -381,11 +406,39 @@
       <option name="project" value="LOCAL" />
       <updated>1592720317562</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="pyxdh: return engine to xcfun, try to trigger travis-CI build and see failed or not.">
+      <created>1614235998045</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1614235998045</updated>
+    </task>
+    <task id="LOCAL-00011" summary="pyxdh: add dipole_uscf">
+      <created>1614403798218</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1614403798219</updated>
+    </task>
+    <task id="LOCAL-00012" summary="pyxdh: add DipoleUMP2">
+      <created>1614404647972</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1614404647972</updated>
+    </task>
+    <task id="LOCAL-00013" summary="pyxdh: add PolarUSCF">
+      <created>1614404822389</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1614404822389</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -409,135 +462,11 @@
     <MESSAGE value="pyxdh: UMP2, UB2PLYP, UXYG3, UXYGJOS" />
     <MESSAGE value="pyxdh: USCF Hessian" />
     <MESSAGE value="pyxdh: UMP2 Hessian" />
-    <option name="LAST_COMMIT_MESSAGE" value="pyxdh: UMP2 Hessian" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="173" y="164" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1592458035863">
-      <screen x="0" y="40" width="1536" height="824" />
-    </state>
-    <state x="64" y="99" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.40.1536.824/-1858.0.1474.864@-1858.0.1474.864" timestamp="1591016736712" />
-    <state x="173" y="164" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1591619194201" />
-    <state x="173" y="164" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.40.1536.824/1986.0.1470.960@0.40.1536.824" timestamp="1592458035863" />
-    <state x="2152" y="144" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591945069374" />
-    <state x="2404" y="42" key="#pytest_for_dipderiv_mp2.Test_DipDerivMP2.test_B2PLYP_dipderiv" timestamp="1591607222018">
-      <screen x="1986" y="0" width="1470" height="960" />
-    </state>
-    <state x="2404" y="42" key="#pytest_for_dipderiv_mp2.Test_DipDerivMP2.test_B2PLYP_dipderiv/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591607222018" />
-    <state x="2418" y="42" key="#pytest_for_grad_ump2.Test_GradUMP2.test_UMP2_grad" timestamp="1591941289284">
-      <screen x="1986" y="0" width="1470" height="960" />
-    </state>
-    <state x="2418" y="42" key="#pytest_for_grad_ump2.Test_GradUMP2.test_UMP2_grad/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591941289284" />
-    <state x="2418" y="42" width="910" height="875" key="#pytest_for_grad_ump2.Test_GradUMP2.test_UXYG3_grad" timestamp="1591945080379">
-      <screen x="1986" y="0" width="1470" height="960" />
-    </state>
-    <state x="2418" y="42" width="910" height="875" key="#pytest_for_grad_ump2.Test_GradUMP2.test_UXYG3_grad/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591945080379" />
-    <state x="465" y="40" key="#pytest_for_grad_uscf.Test_GradUSCF.test_UHF_UB3LYP_grad" timestamp="1591706415193">
-      <screen x="0" y="40" width="1536" height="824" />
-    </state>
-    <state x="465" y="40" key="#pytest_for_grad_uscf.Test_GradUSCF.test_UHF_UB3LYP_grad/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1591706415193" />
-    <state x="277" y="137" width="666" height="596" key="#xdebugger.evaluate" timestamp="1592458338048">
-      <screen x="0" y="40" width="1536" height="824" />
-    </state>
-    <state x="242" y="194" width="850" height="567" key="#xdebugger.evaluate/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1591707087209" />
-    <state x="277" y="137" width="666" height="596" key="#xdebugger.evaluate/0.40.1536.824/1986.0.1470.960@0.40.1536.824" timestamp="1592458338048" />
-    <state x="497" y="131" width="850" height="716" key="#xdebugger.evaluate/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591681631424" />
-    <state width="1468" height="440" key="DebuggerActiveHint" timestamp="1591257376643">
-      <screen x="1986" y="0" width="1470" height="960" />
-    </state>
-    <state width="1468" height="440" key="DebuggerActiveHint/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591257376643" />
-    <state x="2579" y="225" width="703" height="508" key="EnvironmentVariablesDialog" timestamp="1591941288336">
-      <screen x="1986" y="0" width="1470" height="960" />
-    </state>
-    <state x="620" y="233" width="703" height="508" key="EnvironmentVariablesDialog/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1591706413473" />
-    <state x="620" y="233" key="EnvironmentVariablesDialog/0.40.1536.824/1986.0.1470.960@0.40.1536.824" timestamp="1591689994168" />
-    <state x="2579" y="225" width="602" height="505" key="EnvironmentVariablesDialog/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591941288336" />
-    <state x="2502" y="234" key="FileChooserDialogImpl" timestamp="1591591721491">
-      <screen x="1986" y="0" width="1470" height="960" />
-    </state>
-    <state x="-1341" y="211" key="FileChooserDialogImpl/0.40.1536.824/-1858.0.1474.864@-1858.0.1474.864" timestamp="1591016734753" />
-    <state x="2502" y="234" key="FileChooserDialogImpl/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591591721491" />
-    <state width="1053" height="196" key="GridCell.Tab.0.bottom" timestamp="1592720483321">
-      <screen x="0" y="40" width="1536" height="824" />
-    </state>
-    <state width="1431" height="224" key="GridCell.Tab.0.bottom/0.40.1536.824/-1858.0.1474.864@-1858.0.1474.864" timestamp="1591018976711" />
-    <state width="1053" height="196" key="GridCell.Tab.0.bottom/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1592720483321" />
-    <state width="1092" height="281" key="GridCell.Tab.0.bottom/0.40.1536.824/1986.0.1470.960@0.40.1536.824" timestamp="1592470928686" />
-    <state width="1427" height="287" key="GridCell.Tab.0.bottom/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591954113336" />
-    <state width="1053" height="196" key="GridCell.Tab.0.center" timestamp="1592720483320">
-      <screen x="0" y="40" width="1536" height="824" />
-    </state>
-    <state width="1431" height="224" key="GridCell.Tab.0.center/0.40.1536.824/-1858.0.1474.864@-1858.0.1474.864" timestamp="1591018976711" />
-    <state width="1053" height="196" key="GridCell.Tab.0.center/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1592720483320" />
-    <state width="1092" height="281" key="GridCell.Tab.0.center/0.40.1536.824/1986.0.1470.960@0.40.1536.824" timestamp="1592470928686" />
-    <state width="1427" height="287" key="GridCell.Tab.0.center/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591954113335" />
-    <state width="1053" height="196" key="GridCell.Tab.0.left" timestamp="1592720483320">
-      <screen x="0" y="40" width="1536" height="824" />
-    </state>
-    <state width="1431" height="224" key="GridCell.Tab.0.left/0.40.1536.824/-1858.0.1474.864@-1858.0.1474.864" timestamp="1591018976711" />
-    <state width="1053" height="196" key="GridCell.Tab.0.left/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1592720483320" />
-    <state width="1092" height="281" key="GridCell.Tab.0.left/0.40.1536.824/1986.0.1470.960@0.40.1536.824" timestamp="1592470928686" />
-    <state width="1427" height="287" key="GridCell.Tab.0.left/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591954113335" />
-    <state width="1053" height="196" key="GridCell.Tab.0.right" timestamp="1592720483321">
-      <screen x="0" y="40" width="1536" height="824" />
-    </state>
-    <state width="1431" height="224" key="GridCell.Tab.0.right/0.40.1536.824/-1858.0.1474.864@-1858.0.1474.864" timestamp="1591018976711" />
-    <state width="1053" height="196" key="GridCell.Tab.0.right/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1592720483321" />
-    <state width="1092" height="281" key="GridCell.Tab.0.right/0.40.1536.824/1986.0.1470.960@0.40.1536.824" timestamp="1592470928686" />
-    <state width="1427" height="287" key="GridCell.Tab.0.right/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591954113335" />
-    <state width="1092" height="281" key="GridCell.Tab.1.bottom" timestamp="1592470928686">
-      <screen x="0" y="40" width="1536" height="824" />
-    </state>
-    <state width="1493" height="185" key="GridCell.Tab.1.bottom/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1591713717315" />
-    <state width="1092" height="281" key="GridCell.Tab.1.bottom/0.40.1536.824/1986.0.1470.960@0.40.1536.824" timestamp="1592470928686" />
-    <state width="1427" height="230" key="GridCell.Tab.1.bottom/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591681564462" />
-    <state width="1092" height="281" key="GridCell.Tab.1.center" timestamp="1592470928686">
-      <screen x="0" y="40" width="1536" height="824" />
-    </state>
-    <state width="1493" height="185" key="GridCell.Tab.1.center/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1591713717315" />
-    <state width="1092" height="281" key="GridCell.Tab.1.center/0.40.1536.824/1986.0.1470.960@0.40.1536.824" timestamp="1592470928686" />
-    <state width="1427" height="230" key="GridCell.Tab.1.center/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591681564462" />
-    <state width="1092" height="281" key="GridCell.Tab.1.left" timestamp="1592470928686">
-      <screen x="0" y="40" width="1536" height="824" />
-    </state>
-    <state width="1493" height="185" key="GridCell.Tab.1.left/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1591713717315" />
-    <state width="1092" height="281" key="GridCell.Tab.1.left/0.40.1536.824/1986.0.1470.960@0.40.1536.824" timestamp="1592470928686" />
-    <state width="1427" height="230" key="GridCell.Tab.1.left/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591681564462" />
-    <state width="1092" height="281" key="GridCell.Tab.1.right" timestamp="1592470928686">
-      <screen x="0" y="40" width="1536" height="824" />
-    </state>
-    <state width="1493" height="185" key="GridCell.Tab.1.right/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1591713717315" />
-    <state width="1092" height="281" key="GridCell.Tab.1.right/0.40.1536.824/1986.0.1470.960@0.40.1536.824" timestamp="1592470928686" />
-    <state width="1427" height="230" key="GridCell.Tab.1.right/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591681564462" />
-    <state x="2223" y="124" key="SettingsEditor" timestamp="1591607196033">
-      <screen x="1986" y="0" width="1470" height="960" />
-    </state>
-    <state x="-1620" y="112" key="SettingsEditor/0.40.1536.824/-1858.0.1474.864@-1858.0.1474.864" timestamp="1591018863193" />
-    <state x="2223" y="124" key="SettingsEditor/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1591607196033" />
-    <state x="361" y="185" key="Vcs.Push.Dialog.v2" timestamp="1592720337156">
-      <screen x="0" y="40" width="1536" height="824" />
-    </state>
-    <state x="361" y="185" key="Vcs.Push.Dialog.v2/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1592720337156" />
-    <state x="2514" y="345" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration" timestamp="1590477943382">
-      <screen x="1986" y="0" width="1470" height="960" />
-    </state>
-    <state x="2514" y="345" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1590477943382" />
-    <state x="-2" y="40" width="1122" height="830" maximized="true" key="dock-window-1" timestamp="1592975646200">
-      <screen x="0" y="40" width="1536" height="824" />
-    </state>
-    <state x="-2" y="40" width="1122" height="830" key="dock-window-1/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1592724961655" />
-    <state x="2235" y="-14" width="1059" height="803" maximized="true" key="dock-window-1/0.40.1536.824/1986.0.1470.960@0.40.1536.824" timestamp="1592444191932" />
-    <state x="-6" y="40" width="1061" height="830" maximized="true" key="dock-window-1/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1592975646200" />
-    <state x="2126" y="153" width="825" height="541" key="dock-window-2" timestamp="1592446798627">
-      <screen x="1986" y="0" width="1470" height="960" />
-    </state>
-    <state x="2126" y="153" width="825" height="541" key="dock-window-2/0.40.1536.824/1986.0.1470.960@0.40.1536.824" timestamp="1592446798627" />
-    <state x="416" y="216" width="703" height="582" key="search.everywhere.popup" timestamp="1592710546097">
-      <screen x="0" y="40" width="1536" height="824" />
-    </state>
-    <state x="416" y="216" width="703" height="582" key="search.everywhere.popup/0.40.1536.824/-1858.0.1474.864@0.40.1536.824" timestamp="1592710546097" />
-    <state x="2382" y="205" width="675" height="679" key="search.everywhere.popup/0.40.1536.824/1982.0.1474.960@1982.0.1474.960" timestamp="1591333918246" />
-    <state x="416" y="216" width="703" height="582" key="search.everywhere.popup/0.40.1536.824/1986.0.1470.960@0.40.1536.824" timestamp="1592469919697" />
-    <state x="2384" y="205" width="672" height="678" key="search.everywhere.popup/0.40.1536.824/1986.0.1470.960@1986.0.1470.960" timestamp="1592280742021" />
+    <MESSAGE value="pyxdh: return engine to xcfun, try to trigger travis-CI build and see failed or not." />
+    <MESSAGE value="pyxdh: add dipole_uscf" />
+    <MESSAGE value="pyxdh: add DipoleUMP2" />
+    <MESSAGE value="pyxdh: add PolarUSCF" />
+    <option name="LAST_COMMIT_MESSAGE" value="pyxdh: add PolarUSCF" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -572,35 +501,50 @@
           <line>317</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$USER_HOME$/miniconda3/envs/pyxdh-dev/lib/python3.8/site-packages/findiff/coefs.py</url>
+          <line>226</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pyxdh/DerivTwice/polar_ump2.py</url>
+          <line>9</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Py_xDH$ucphf_hacking.coverage" NAME="ucphf_hacking Coverage Results" MODIFIED="1591681560839" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/tmp/unrestricted_test" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_hess_uscf_Test_HessUSCF.coverage" NAME="pytest for hess_uscf.Test_HessUSCF Coverage Results" MODIFIED="1592458038078" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
-    <SUITE FILE_PATH="coverage/Py_xDH$grad_uscf.coverage" NAME="grad_uscf Coverage Results" MODIFIED="1591016595229" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
-    <SUITE FILE_PATH="coverage/Py_xDH$libxc_kxc.coverage" NAME="libxc_kxc Coverage Results" MODIFIED="1591584199298" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/tmp/unrestricted_test" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_hess_uscf_Test_HessUSCF_test_UHF_hess.coverage" NAME="pytest for hess_uscf.Test_HessUSCF.test_UHF_hess Coverage Results" MODIFIED="1592462783561" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
-    <SUITE FILE_PATH="coverage/Py_xDH$hess_uscf.coverage" NAME="hess_uscf Coverage Results" MODIFIED="1592458024657" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_in_grad_ump2_py.coverage" NAME="pytest in grad_ump2.py Coverage Results" MODIFIED="1591943871932" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipole_mp2_Test_DipoleMP2_test_dipole_xyg3.coverage" NAME="pytest for dipole_mp2.Test_DipoleMP2.test_dipole_xyg3 Coverage Results" MODIFIED="1591592861708" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_grad_ump2_Test_GradUMP2_test_UB2PLYP_grad.coverage" NAME="pytest for grad_ump2.Test_GradUMP2.test_UB2PLYP_grad Coverage Results" MODIFIED="1591942294272" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
-    <SUITE FILE_PATH="coverage/Py_xDH$grid_gen.coverage" NAME="grid_gen Coverage Results" MODIFIED="1590480714382" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/tmp_dft_speed" />
-    <SUITE FILE_PATH="coverage/Py_xDH$ncdft_derivonce_uhf_ub3lyp.coverage" NAME="ncdft_derivonce_uhf_ub3lyp Coverage Results" MODIFIED="1591707031834" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_hess_ump2_Test_HessUMP2.coverage" NAME="pytest for hess_ump2.Test_HessUMP2 Coverage Results" MODIFIED="1592720277026" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_in_grad_uscf_py.coverage" NAME="pytest in grad_uscf.py Coverage Results" MODIFIED="1591017002521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_grad_uscf_Test_GradUSCF_test_UHF_UB3LYP_grad.coverage" NAME="pytest for grad_uscf.Test_GradUSCF.test_UHF_UB3LYP_grad Coverage Results" MODIFIED="1592462821589" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
-    <SUITE FILE_PATH="coverage/Py_xDH$grad_ump2.coverage" NAME="grad_ump2 Coverage Results" MODIFIED="1591941335995" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_hess_scf_Test_HessSCF_test_HF_hess.coverage" NAME="pytest for hess_scf.Test_HessSCF.test_HF_hess Coverage Results" MODIFIED="1592454825835" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
-    <SUITE FILE_PATH="coverage/Py_xDH$test_xcfun.coverage" NAME="test_xcfun Coverage Results" MODIFIED="1591272538650" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/tmp/unrestricted_test" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_grad_ump2_Test_GradUMP2_test_UMP2_grad.coverage" NAME="pytest for grad_ump2.Test_GradUMP2.test_UMP2_grad Coverage Results" MODIFIED="1591941356764" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_grad_ump2_Test_GradUMP2_test_UXYG3_grad.coverage" NAME="pytest for grad_ump2.Test_GradUMP2.test_UXYG3_grad Coverage Results" MODIFIED="1591946505376" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_grad_ump2_Test_GradUMP2_test_UXYGJOS_grad.coverage" NAME="pytest for grad_ump2.Test_GradUMP2.test_UXYGJOS_grad Coverage Results" MODIFIED="1591947102344" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_pyxdh.coverage" NAME="pytest for pyxdh Coverage Results" MODIFIED="1592458388807" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipderiv_mp2_Test_DipDerivMP2_test_B2PLYP_dipderiv.coverage" NAME="pytest for dipderiv_mp2.Test_DipDerivMP2.test_B2PLYP_dipderiv Coverage Results" MODIFIED="1591607224381" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
+    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_polar_uscf_Test_PolarUSCF_test_UHF_polar.coverage" NAME="pytest for polar_uscf.Test_PolarUSCF.test_UHF_polar Coverage Results" MODIFIED="1614404984707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
+    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_hess_uscf_Test_HessUSCF.coverage" NAME="pytest for hess_uscf.Test_HessUSCF Coverage Results" MODIFIED="1592458038078" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
+    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_polar_ump2_Test_PolarUMP2_test_UMP2_polar.coverage" NAME="pytest for polar_ump2.Test_PolarUMP2.test_UMP2_polar Coverage Results" MODIFIED="1614406508899" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
+    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipole_uscf_Test_GradUSCF_test_UHF_dipole.coverage" NAME="pytest for dipole_uscf.Test_GradUSCF.test_UHF_dipole Coverage Results" MODIFIED="1614404099213" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
+    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_grad_ump2_Test_GradUMP2_test_UB2PLYP_grad.coverage" NAME="pytest for grad_ump2.Test_GradUMP2.test_UB2PLYP_grad Coverage Results" MODIFIED="1591942294272" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
     <SUITE FILE_PATH="coverage/Py_xDH$deriv_once_ump2.coverage" NAME="deriv_once_ump2 Coverage Results" MODIFIED="1591939269615" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
+    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_grad_ump2_Test_GradUMP2_test_UXYG3_grad.coverage" NAME="pytest for grad_ump2.Test_GradUMP2.test_UXYG3_grad Coverage Results" MODIFIED="1591946505376" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
+    <SUITE FILE_PATH="coverage/Py_xDH$pytest_in_grad_uscf_py.coverage" NAME="pytest in grad_uscf.py Coverage Results" MODIFIED="1591017002521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Py_xDH$ucphf_hacking.coverage" NAME="ucphf_hacking Coverage Results" MODIFIED="1591681560839" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/tmp/unrestricted_test" />
+    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_grad_uscf_Test_GradUSCF_test_UHF_UB3LYP_grad.coverage" NAME="pytest for grad_uscf.Test_GradUSCF.test_UHF_UB3LYP_grad Coverage Results" MODIFIED="1592462821589" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
+    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_grad_ump2_Test_GradUMP2_test_UXYGJOS_grad.coverage" NAME="pytest for grad_ump2.Test_GradUMP2.test_UXYGJOS_grad Coverage Results" MODIFIED="1591947102344" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
+    <SUITE FILE_PATH="coverage/Py_xDH$findiff_try.coverage" NAME="findiff-try Coverage Results" MODIFIED="1614242051226" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tmp-debug" />
+    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipole_ump2_Test_DipoleUMP2_test_dipole_ump2.coverage" NAME="pytest for dipole_ump2.Test_DipoleUMP2.test_dipole_ump2 Coverage Results" MODIFIED="1614404607659" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
+    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipole_mp2_Test_DipoleMP2_test_dipole_xyg3.coverage" NAME="pytest for dipole_mp2.Test_DipoleMP2.test_dipole_xyg3 Coverage Results" MODIFIED="1591592861708" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_grad_uscf_Test_GradUSCF_test_UHF_grad.coverage" NAME="pytest for grad_uscf.Test_GradUSCF.test_UHF_grad Coverage Results" MODIFIED="1591619117571" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
+    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_hess_scf_Test_HessSCF_test_HF_hess.coverage" NAME="pytest for hess_scf.Test_HessSCF.test_HF_hess Coverage Results" MODIFIED="1592454825835" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
+    <SUITE FILE_PATH="coverage/Py_xDH$libxc_kxc.coverage" NAME="libxc_kxc Coverage Results" MODIFIED="1591584199298" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/tmp/unrestricted_test" />
+    <SUITE FILE_PATH="coverage/Py_xDH$grad_uscf.coverage" NAME="grad_uscf Coverage Results" MODIFIED="1591016595229" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
+    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_pyxdh.coverage" NAME="pytest for pyxdh Coverage Results" MODIFIED="1614236176001" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_hess_uscf_Test_HessUSCF_test_UHF_hess.coverage" NAME="pytest for hess_uscf.Test_HessUSCF.test_UHF_hess Coverage Results" MODIFIED="1592462783561" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
+    <SUITE FILE_PATH="coverage/Py_xDH$ncdft_derivonce_uhf_ub3lyp.coverage" NAME="ncdft_derivonce_uhf_ub3lyp Coverage Results" MODIFIED="1591707031834" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv" />
     <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_grad_uscf_Test_GradUSCF_test_UB3LYP_grad.coverage" NAME="pytest for grad_uscf.Test_GradUSCF.test_UB3LYP_grad Coverage Results" MODIFIED="1591619463301" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
     <SUITE FILE_PATH="coverage/Py_xDH$xcfun_grid.coverage" NAME="xcfun_grid Coverage Results" MODIFIED="1591075406484" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/tmp" />
-    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_grad_uscf_Test_GradUSCF_test_UHF_grad.coverage" NAME="pytest for grad_uscf.Test_GradUSCF.test_UHF_grad Coverage Results" MODIFIED="1591619117571" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
+    <SUITE FILE_PATH="coverage/Py_xDH$test_xcfun.coverage" NAME="test_xcfun Coverage Results" MODIFIED="1591272538650" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/tmp/unrestricted_test" />
+    <SUITE FILE_PATH="coverage/Py_xDH$grad_ump2.coverage" NAME="grad_ump2 Coverage Results" MODIFIED="1591941335995" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
+    <SUITE FILE_PATH="coverage/Py_xDH$hess_uscf.coverage" NAME="hess_uscf Coverage Results" MODIFIED="1592458024657" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
+    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_dipderiv_mp2_Test_DipDerivMP2_test_B2PLYP_dipderiv.coverage" NAME="pytest for dipderiv_mp2.Test_DipDerivMP2.test_B2PLYP_dipderiv Coverage Results" MODIFIED="1591607224381" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
+    <SUITE FILE_PATH="coverage/Py_xDH$grid_gen.coverage" NAME="grid_gen Coverage Results" MODIFIED="1590480714382" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/tmp_dft_speed" />
+    <SUITE FILE_PATH="coverage/Py_xDH$pytest_for_hess_ump2_Test_HessUMP2.coverage" NAME="pytest for hess_ump2.Test_HessUMP2 Coverage Results" MODIFIED="1592720277026" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivTwice" />
+    <SUITE FILE_PATH="coverage/Py_xDH$pytest_in_grad_ump2_py.coverage" NAME="pytest in grad_ump2.py Coverage Results" MODIFIED="1591943871932" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyxdh/DerivOnce" />
   </component>
 </project>
