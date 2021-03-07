@@ -20,7 +20,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'Py_xDH'
-copyright = '2018, ajz34'
+copyright = '2018-2021, ajz34'
 author = 'ajz34'
 
 # The short X.Y version
@@ -172,3 +172,13 @@ texinfo_documents = [
 nbsphinx_allow_errors = True
 nbsphinx_timeout = 720
 mathjax_path = "Mathjax/es5/tex-chtml-full.js"
+
+bibtex_bibfiles = [
+    "qcbasic/basic_gga.bib",
+    "qcbasic/basic_lda.bib",
+    "qcbasic/basic_grid.bib",
+    "qcbasic/basic_rhf.bib",
+    "qcbasic/basic_b2plyp.bib",
+    "qcbasic/basic_xyg3.bib",
+    "ref.bib",
+]
