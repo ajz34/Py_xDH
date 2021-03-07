@@ -88,6 +88,15 @@ xDH 在 Python 下实现的简易教程
    unrestricted/uks_details
    unrestricted/ump2_details
 
+.. toctree::
+   :caption: 基于效率与内存考量的笔记
+   :numbered:
+
+   efficiency/chkfile_usage
+   efficiency/rhf_grad
+   efficiency/mp2_eng
+   efficiency/mp2_grad
+
 
 索引
 ====
