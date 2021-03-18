@@ -104,11 +104,11 @@ class DerivOnceSCF(ABC):
             self.grids = self.scf_eng.grids
             self.xc_type = dft.libxc.xc_type(self.xc)
             self.cx = dft.numint.NumInt().hybrid_coeff(self.xc)
-            self.scf_grad = grad.rks.Gradients(self.scf_eng)
-            self.scf_hess = hessian.rks.Hessian(self.scf_eng)
+            self.scf_grad = self.scf_eng.Gradients()
+            self.scf_hess = self.scf_eng.Hessian()
         else:
-            self.scf_grad = grad.RHF(self.scf_eng)
-            self.scf_hess = hessian.RHF(self.scf_eng)
+            self.scf_grad = self.scf_eng.Gradients()
+            self.scf_hess = self.scf_eng.Hessian()
         return
 
     def initialization_scf(self):
