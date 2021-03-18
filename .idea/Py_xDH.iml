@@ -3,6 +3,8 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/pyxdh/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/tmp-debug" />
+      <excludeFolder url="file://$MODULE_DIR$/tmp" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.8 (pyxdh-dev)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -11,7 +13,7 @@
     <option name="TEMPLATE_CONFIGURATION" value="Jinja2" />
     <option name="TEMPLATE_FOLDERS">
       <list>
-        <option value="$MODULE_DIR$/docs/source/_templates" />
+        <option value="$USER_HOME$/Documents/Py_xDH/docs/source/_templates" />
       </list>
     </option>
   </component>

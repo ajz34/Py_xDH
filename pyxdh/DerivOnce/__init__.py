@@ -12,6 +12,8 @@ __all__ = [
     "GradUMP2", "GradUXDH",  # grad_ump2
     "DipoleUSCF",  # dipole_uscf
     "DipoleUMP2",  # dipole_ump2
+
+    "DerivOnceDFSCF",  # deriv_once_dfscf
 ]
 
 from pyxdh.DerivOnce.deriv_once_scf import DerivOnceSCF, DerivOnceNCDFT
@@ -27,3 +29,4 @@ from pyxdh.DerivOnce.deriv_once_ump2 import DerivOnceUMP2, DerivOnceUXDH
 from pyxdh.DerivOnce.grad_ump2 import GradUMP2, GradUXDH
 from pyxdh.DerivOnce.dipole_uscf import DipoleUSCF
 from pyxdh.DerivOnce.dipole_ump2 import DipoleUMP2
+from pyxdh.DerivOnce.deriv_once_dfscf import DerivOnceDFSCF

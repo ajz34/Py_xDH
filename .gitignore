@@ -1,5 +1,6 @@
 # ajz34
 *.pyc
+tmp
 tmp*
 temp*
 source/temp
