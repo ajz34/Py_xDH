@@ -15,7 +15,7 @@ class GradDFSCF(DerivOnceDFSCF, GradSCF):
     pass
 
 
-class Test_GradDFSCF:
+class Test_GradDF:
 
     def test_DFHF_grad(self):
         mol = gto.Mole()
