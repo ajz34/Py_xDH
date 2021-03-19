@@ -4,6 +4,12 @@ import os
 
 from pyxdh.DerivOnce import DerivOnceMP2, DerivOnceXDH, GradSCF, GradNCDFT
 
+# pytest
+from pyscf import gto, scf, mp
+from pkg_resources import resource_filename
+from pyxdh.Utilities import FormchkInterface
+import pickle
+
 MAXMEM = float(os.getenv("MAXMEM", 2))
 np.einsum = partial(np.einsum, optimize=["greedy", 1024 ** 3 * MAXMEM / 8])
 np.set_printoptions(8, linewidth=1000, suppress=True)
@@ -48,6 +54,22 @@ class Test_GradMP2:
         formchk = FormchkInterface(resource_filename("pyxdh", resource_path))
         assert (np.allclose(helper.eng, formchk.total_energy()))
         assert (np.allclose(helper.E_1, formchk.grad(), atol=1e-5, rtol=1e-4))
+
+    def test_r_mp2_grad(self):
+        mol = gto.Mole(atom="N 0. 0. 0.; H 1.5 0. 0.2; H 0.1 1.2 0.; H 0. 0. 1.", basis="6-31G", verbose=0).build()
+        scf_eng = scf.RHF(mol).run()
+        mp2_eng = mp.MP2(scf_eng).run()
+        mp2_grad = mp2_eng.Gradients().run()
+        gradh = GradMP2({"scf_eng": scf_eng})
+        formchk = FormchkInterface(resource_filename("pyxdh", "Validation/gaussian/NH3-MP2-freq.fchk"))
+        # ASSERT: energy - Gaussian
+        assert np.allclose(gradh.eng, formchk.total_energy())
+        # ASSERT: energy - PySCF
+        assert np.allclose(gradh.eng, mp2_eng.e_tot)
+        # ASSERT: grad - Gaussian
+        assert np.allclose(gradh.E_1, formchk.grad(), atol=1e-6, rtol=1e-4)
+        # ASSERT: grad - PySCF
+        assert np.allclose(gradh.E_1, mp2_grad.de, atol=1e-6, rtol=1e-4)
 
     def test_grad_mp2(self):
         from pyxdh.Utilities.test_molecules import Mol_H2O2

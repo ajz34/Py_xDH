@@ -233,8 +233,7 @@ class GradSCF(DerivOnceSCF):
             eri1_ao[A, :, :, :, :, sA] -= int2e_ip1[:, sA].transpose(0, 3, 4, 2, 1)
         return eri1_ao.reshape((-1, self.nao, self.nao, self.nao, self.nao))
 
-    @cached_property
-    def E_1(self):
+    def _get_E_1(self):
         cx, xc = self.cx, self.xc
         so = self.so
         mol, natm = self.mol, self.natm
@@ -281,8 +280,7 @@ class GradNCDFT(DerivOnceNCDFT, GradSCF):
     def DerivOnceMethod(self):
         return GradSCF
 
-    @cached_property
-    def E_1(self):
+    def _get_E_1(self):
         natm = self.natm
         so, sv = self.so, self.sv
         B_1 = self.B_1

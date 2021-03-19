@@ -1,0 +1,11 @@
+%chk=NH3-B2PLYP-freq
+#p RB2PLYP(Full)/6-31G nosymm SCF(VeryTight) Freq Int(Grid=99590)
+
+NH3 B2PLYP Freq
+
+0 1
+N  0.  0.  0.
+H  1.5 0.  0.2
+H  0.1 1.2 0.
+H  0.  0.  1.
+

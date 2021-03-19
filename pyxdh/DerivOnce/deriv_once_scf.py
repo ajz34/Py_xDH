@@ -48,7 +48,6 @@ class DerivOnceSCF(ABC):
         # Initializer
         self.initialization()
         self.cphf_grids = config.get("cphf_grids", self.grids)
-
         return
 
     # region Initializers
@@ -340,8 +339,11 @@ class DerivOnceSCF(ABC):
         return self.U_1[:, self.so, self.sv]
 
     @cached_property
-    @abstractmethod
     def E_1(self):
+        return self._get_E_1()
+
+    @abstractmethod
+    def _get_E_1(self):
         pass
 
     @cached_property
