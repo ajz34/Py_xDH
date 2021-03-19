@@ -3,8 +3,8 @@ __all__ = [
     "timing",
     "GridIterator",
     "GridHelper", "KernelHelper",
-    "FormchkInterface"
-    ""
+    "FormchkInterface",
+    "cached_property"
 ]
 
 from pyxdh.Utilities.deriv_numerical import NucCoordDerivGenerator, NumericDiff, DipoleDerivGenerator

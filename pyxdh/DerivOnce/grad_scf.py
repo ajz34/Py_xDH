@@ -1,21 +1,17 @@
 # basic utilities
 import numpy as np
-from functools import partial
-import os
+from opt_einsum import contract as einsum
 # pyscf utilities
 from pyscf import grad
 from pyscf.scf import _vhf
 # pyxdh utilities
 from pyxdh.DerivOnce import DerivOnceSCF, DerivOnceNCDFT
-from pyxdh.Utilities import GridIterator, KernelHelper, timing
+from pyxdh.Utilities import GridIterator, KernelHelper, timing, cached_property
 # pytest
 from pyscf import gto, scf, dft
 from pkg_resources import resource_filename
 from pyxdh.Utilities import FormchkInterface
 import pickle
-# additional modifications
-MAXMEM = float(os.getenv("MAXMEM", 2))
-np.einsum = partial(np.einsum, optimize=["greedy", 1024 ** 3 * MAXMEM / 8])
 
 
 # Cubic Inheritance: A2
@@ -110,42 +106,42 @@ class GradSCF(DerivOnceSCF):
 
                     # Define temporary intermediates
                     tmp_M_0 = (
-                            + np.einsum("g, Bg -> Bg", kerh.frr, rho_X_0)
-                            + 2 * np.einsum("g, wg, Bwg -> Bg", kerh.frg, grdh.rho_1, rho_X_1)
+                            + einsum("g, Bg -> Bg", kerh.frr, rho_X_0)
+                            + 2 * einsum("g, wg, Bwg -> Bg", kerh.frg, grdh.rho_1, rho_X_1)
                     )
                     tmp_M_1 = (
-                            + 4 * np.einsum("g, Bg, rg -> Brg", kerh.frg, rho_X_0, grdh.rho_1)
-                            + 8 * np.einsum("g, wg, Bwg, rg -> Brg", kerh.fgg, grdh.rho_1, rho_X_1, grdh.rho_1)
-                            + 4 * np.einsum("g, Brg -> Brg", kerh.fg, rho_X_1)
+                            + 4 * einsum("g, Bg, rg -> Brg", kerh.frg, rho_X_0, grdh.rho_1)
+                            + 8 * einsum("g, wg, Bwg, rg -> Brg", kerh.fgg, grdh.rho_1, rho_X_1, grdh.rho_1)
+                            + 4 * einsum("g, Brg -> Brg", kerh.fg, rho_X_1)
                     )
                     pd_tmp_M_0 = (
-                            + np.einsum("Atg, Bg -> AtBg", pd_frr, rho_X_0)
-                            + np.einsum("g, AtBg -> AtBg", kerh.frr, pd_rho_X_0)
-                            + 2 * np.einsum("Atg, wg, Bwg -> AtBg", pd_frg, grdh.rho_1, rho_X_1)
-                            + 2 * np.einsum("g, Atwg, Bwg -> AtBg", kerh.frg, pd_rho_1, rho_X_1)
-                            + 2 * np.einsum("g, wg, AtBwg -> AtBg", kerh.frg, grdh.rho_1, pd_rho_X_1)
+                            + einsum("Atg, Bg -> AtBg", pd_frr, rho_X_0)
+                            + einsum("g, AtBg -> AtBg", kerh.frr, pd_rho_X_0)
+                            + 2 * einsum("Atg, wg, Bwg -> AtBg", pd_frg, grdh.rho_1, rho_X_1)
+                            + 2 * einsum("g, Atwg, Bwg -> AtBg", kerh.frg, pd_rho_1, rho_X_1)
+                            + 2 * einsum("g, wg, AtBwg -> AtBg", kerh.frg, grdh.rho_1, pd_rho_X_1)
                     )
                     pd_tmp_M_1 = (
-                            + 4 * np.einsum("Atg, Bg, rg -> AtBrg", pd_frg, rho_X_0, grdh.rho_1)
-                            + 4 * np.einsum("g, Bg, Atrg -> AtBrg", kerh.frg, rho_X_0, pd_rho_1)
-                            + 4 * np.einsum("g, AtBg, rg -> AtBrg", kerh.frg, pd_rho_X_0, grdh.rho_1)
-                            + 8 * np.einsum("Atg, wg, Bwg, rg -> AtBrg", pd_fgg, grdh.rho_1, rho_X_1, grdh.rho_1)
-                            + 8 * np.einsum("g, Atwg, Bwg, rg -> AtBrg", kerh.fgg, pd_rho_1, rho_X_1, grdh.rho_1)
-                            + 8 * np.einsum("g, wg, Bwg, Atrg -> AtBrg", kerh.fgg, grdh.rho_1, rho_X_1, pd_rho_1)
-                            + 8 * np.einsum("g, wg, AtBwg, rg -> AtBrg", kerh.fgg, grdh.rho_1, pd_rho_X_1, grdh.rho_1)
-                            + 4 * np.einsum("Atg, Brg -> AtBrg", pd_fg, rho_X_1)
-                            + 4 * np.einsum("g, AtBrg -> AtBrg", kerh.fg, pd_rho_X_1)
+                            + 4 * einsum("Atg, Bg, rg -> AtBrg", pd_frg, rho_X_0, grdh.rho_1)
+                            + 4 * einsum("g, Bg, Atrg -> AtBrg", kerh.frg, rho_X_0, pd_rho_1)
+                            + 4 * einsum("g, AtBg, rg -> AtBrg", kerh.frg, pd_rho_X_0, grdh.rho_1)
+                            + 8 * einsum("Atg, wg, Bwg, rg -> AtBrg", pd_fgg, grdh.rho_1, rho_X_1, grdh.rho_1)
+                            + 8 * einsum("g, Atwg, Bwg, rg -> AtBrg", kerh.fgg, pd_rho_1, rho_X_1, grdh.rho_1)
+                            + 8 * einsum("g, wg, Bwg, Atrg -> AtBrg", kerh.fgg, grdh.rho_1, rho_X_1, pd_rho_1)
+                            + 8 * einsum("g, wg, AtBwg, rg -> AtBrg", kerh.fgg, grdh.rho_1, pd_rho_X_1, grdh.rho_1)
+                            + 4 * einsum("Atg, Brg -> AtBrg", pd_fg, rho_X_1)
+                            + 4 * einsum("g, AtBrg -> AtBrg", kerh.fg, pd_rho_X_1)
                     )
 
                     contrib1 = np.zeros((natm, 3, dmX.shape[0], nao, nao))
-                    contrib1 += np.einsum("AtBg, gu, gv -> AtBuv", pd_tmp_M_0, grdh.ao_0, grdh.ao_0)
-                    contrib1 += np.einsum("AtBrg, rgu, gv -> AtBuv", pd_tmp_M_1, grdh.ao_1, grdh.ao_0)
+                    contrib1 += einsum("AtBg, gu, gv -> AtBuv", pd_tmp_M_0, grdh.ao_0, grdh.ao_0)
+                    contrib1 += einsum("AtBrg, rgu, gv -> AtBuv", pd_tmp_M_1, grdh.ao_1, grdh.ao_0)
                     contrib1 += contrib1.swapaxes(-1, -2)
 
                     tmp_contrib = (
-                            - 2 * np.einsum("Bg, tgu, gv -> tBuv", tmp_M_0, grdh.ao_1, grdh.ao_0)
-                            - np.einsum("Brg, trgu, gv -> tBuv", tmp_M_1, grdh.ao_2, grdh.ao_0)
-                            - np.einsum("Brg, tgu, rgv -> tBuv", tmp_M_1, grdh.ao_1, grdh.ao_1)
+                            - 2 * einsum("Bg, tgu, gv -> tBuv", tmp_M_0, grdh.ao_1, grdh.ao_0)
+                            - einsum("Brg, trgu, gv -> tBuv", tmp_M_1, grdh.ao_2, grdh.ao_0)
+                            - einsum("Brg, tgu, rgv -> tBuv", tmp_M_1, grdh.ao_1, grdh.ao_1)
                     )
 
                     contrib2 = np.zeros((natm, 3, dmX.shape[0], nao, nao))
@@ -156,31 +152,31 @@ class GradSCF(DerivOnceSCF):
                     contrib2 += contrib2.swapaxes(-1, -2)
 
                     # U contribution to \partial_{A_t} A
-                    rho_U_0 = np.einsum("Atuv, gu, gv -> Atg", dmU, grdh.ao_0, grdh.ao_0)
-                    rho_U_1 = 2 * np.einsum("Atuv, rgu, gv -> Atrg", dmU, grdh.ao_1, grdh.ao_0)
-                    gamma_U_0 = 2 * np.einsum("rg, Atrg -> Atg", grdh.rho_1, rho_U_1)
+                    rho_U_0 = einsum("Atuv, gu, gv -> Atg", dmU, grdh.ao_0, grdh.ao_0)
+                    rho_U_1 = 2 * einsum("Atuv, rgu, gv -> Atrg", dmU, grdh.ao_1, grdh.ao_0)
+                    gamma_U_0 = 2 * einsum("rg, Atrg -> Atg", grdh.rho_1, rho_U_1)
                     pdU_frr = kerh.frrr * rho_U_0 + kerh.frrg * gamma_U_0
                     pdU_frg = kerh.frrg * rho_U_0 + kerh.frgg * gamma_U_0
                     pdU_fgg = kerh.frgg * rho_U_0 + kerh.fggg * gamma_U_0
                     pdU_fg = kerh.frg * rho_U_0 + kerh.fgg * gamma_U_0
                     pdU_rho_1 = rho_U_1
                     pdU_tmp_M_0 = (
-                            + np.einsum("Atg, Bg -> AtBg", pdU_frr, rho_X_0)
-                            + 2 * np.einsum("Atg, wg, Bwg -> AtBg", pdU_frg, grdh.rho_1, rho_X_1)
-                            + 2 * np.einsum("g, Atwg, Bwg -> AtBg", kerh.frg, pdU_rho_1, rho_X_1)
+                            + einsum("Atg, Bg -> AtBg", pdU_frr, rho_X_0)
+                            + 2 * einsum("Atg, wg, Bwg -> AtBg", pdU_frg, grdh.rho_1, rho_X_1)
+                            + 2 * einsum("g, Atwg, Bwg -> AtBg", kerh.frg, pdU_rho_1, rho_X_1)
                     )
                     pdU_tmp_M_1 = (
-                            + 4 * np.einsum("Atg, Bg, rg -> AtBrg", pdU_frg, rho_X_0, grdh.rho_1)
-                            + 4 * np.einsum("g, Bg, Atrg -> AtBrg", kerh.frg, rho_X_0, pdU_rho_1)
-                            + 8 * np.einsum("Atg, wg, Bwg, rg -> AtBrg", pdU_fgg, grdh.rho_1, rho_X_1, grdh.rho_1)
-                            + 8 * np.einsum("g, Atwg, Bwg, rg -> AtBrg", kerh.fgg, pdU_rho_1, rho_X_1, grdh.rho_1)
-                            + 8 * np.einsum("g, wg, Bwg, Atrg -> AtBrg", kerh.fgg, grdh.rho_1, rho_X_1, pdU_rho_1)
-                            + 4 * np.einsum("Atg, Brg -> AtBrg", pdU_fg, rho_X_1)
+                            + 4 * einsum("Atg, Bg, rg -> AtBrg", pdU_frg, rho_X_0, grdh.rho_1)
+                            + 4 * einsum("g, Bg, Atrg -> AtBrg", kerh.frg, rho_X_0, pdU_rho_1)
+                            + 8 * einsum("Atg, wg, Bwg, rg -> AtBrg", pdU_fgg, grdh.rho_1, rho_X_1, grdh.rho_1)
+                            + 8 * einsum("g, Atwg, Bwg, rg -> AtBrg", kerh.fgg, pdU_rho_1, rho_X_1, grdh.rho_1)
+                            + 8 * einsum("g, wg, Bwg, Atrg -> AtBrg", kerh.fgg, grdh.rho_1, rho_X_1, pdU_rho_1)
+                            + 4 * einsum("Atg, Brg -> AtBrg", pdU_fg, rho_X_1)
                     )
 
                     contrib3 = np.zeros((natm, 3, dmX.shape[0], nao, nao))
-                    contrib3 += np.einsum("AtBg, gu, gv -> AtBuv", pdU_tmp_M_0, grdh.ao_0, grdh.ao_0)
-                    contrib3 += np.einsum("AtBrg, rgu, gv -> AtBuv", pdU_tmp_M_1, grdh.ao_1, grdh.ao_0)
+                    contrib3 += einsum("AtBg, gu, gv -> AtBuv", pdU_tmp_M_0, grdh.ao_0, grdh.ao_0)
+                    contrib3 += einsum("AtBrg, rgu, gv -> AtBuv", pdU_tmp_M_1, grdh.ao_1, grdh.ao_0)
                     contrib3 += contrib3.swapaxes(-1, -2)
 
                     ax_ao += contrib1 + contrib2 + contrib3
@@ -188,7 +184,7 @@ class GradSCF(DerivOnceSCF):
             ax_ao.shape = (natm * 3, dmX.shape[0], nao, nao)
 
             if not sij_none:
-                ax_ao = np.einsum("ABuv, ui, vj -> ABij", ax_ao, C[:, si], C[:, sj])
+                ax_ao = einsum("ABuv, ui, vj -> ABij", ax_ao, C[:, si], C[:, sj])
             if reshape:
                 shape1.pop()
                 shape1.pop()
@@ -201,14 +197,17 @@ class GradSCF(DerivOnceSCF):
 
         return fx
 
-    def _get_H_1_ao(self):
+    @cached_property
+    def H_1_ao(self):
         return np.array([self.scf_grad.hcore_generator()(A) for A in range(self.natm)])\
             .reshape((-1, self.nao, self.nao))
 
-    def _get_F_1_ao(self):
+    @cached_property
+    def F_1_ao(self):
         return np.array(self.scf_hess.make_h1(self.C, self.mo_occ)).reshape((-1, self.nao, self.nao))
 
-    def _get_S_1_ao(self):
+    @cached_property
+    def S_1_ao(self):
         int1e_ipovlp = self.mol.intor("int1e_ipovlp")
 
         def get_S_S_ao(A):
@@ -220,7 +219,8 @@ class GradSCF(DerivOnceSCF):
         S_1_ao = np.array([get_S_S_ao(A) for A in range(self.natm)]).reshape((-1, self.nao, self.nao))
         return S_1_ao
 
-    def _get_eri1_ao(self):
+    @cached_property
+    def eri1_ao(self):
         nao = self.nao
         natm = self.natm
         int2e_ip1 = self.mol.intor("int2e_ip1")
@@ -233,7 +233,8 @@ class GradSCF(DerivOnceSCF):
             eri1_ao[A, :, :, :, :, sA] -= int2e_ip1[:, sA].transpose(0, 3, 4, 2, 1)
         return eri1_ao.reshape((-1, self.nao, self.nao, self.nao, self.nao))
 
-    def _get_E_1(self):
+    @cached_property
+    def E_1(self):
         cx, xc = self.cx, self.xc
         so = self.so
         mol, natm = self.mol, self.natm
@@ -254,10 +255,10 @@ class GradSCF(DerivOnceSCF):
         )
         for A in range(natm):
             sA = self.mol_slice(A)
-            grad_total[3 * A: 3 * (A + 1)] += np.einsum("tuv, uv -> t", jk_1[:, sA], D[sA])
+            grad_total[3 * A: 3 * (A + 1)] += einsum("tuv, uv -> t", jk_1[:, sA], D[sA])
 
-        grad_total += np.einsum("Auv, uv -> A", H_1_ao, D)
-        grad_total -= 2 * np.einsum("Aij, ij -> A", S_1_mo[:, so, so], F_0_mo[so, so])
+        grad_total += einsum("Auv, uv -> A", H_1_ao, D)
+        grad_total -= 2 * einsum("Aij, ij -> A", S_1_mo[:, so, so], F_0_mo[so, so])
         grad_total += grad.rhf.grad_nuc(mol).reshape(-1)
 
         # GGA part contiribution
@@ -266,8 +267,8 @@ class GradSCF(DerivOnceSCF):
             for grdh in grdit:
                 kerh = KernelHelper(grdh, xc)
                 grad_total += (
-                    + np.einsum("g, Atg -> At", kerh.fr, grdh.A_rho_1)
-                    + 2 * np.einsum("g, rg, Atrg -> At", kerh.fg, grdh.rho_1, grdh.A_rho_2)
+                    + einsum("g, Atg -> At", kerh.fr, grdh.A_rho_1)
+                    + 2 * einsum("g, rg, Atrg -> At", kerh.fg, grdh.rho_1, grdh.A_rho_2)
                 ).reshape(-1)
 
         return grad_total.reshape(natm, 3)
@@ -280,12 +281,13 @@ class GradNCDFT(DerivOnceNCDFT, GradSCF):
     def DerivOnceMethod(self):
         return GradSCF
 
-    def _get_E_1(self):
+    @cached_property
+    def E_1(self):
         natm = self.natm
         so, sv = self.so, self.sv
         B_1 = self.B_1
         Z = self.Z
-        E_1 = 4 * np.einsum("ai, Aai -> A", Z, B_1[:, sv, so]).reshape((natm, 3))
+        E_1 = 4 * einsum("ai, Aai -> A", Z, B_1[:, sv, so]).reshape((natm, 3))
         E_1 += self.nc_deriv.E_1
         return E_1
 

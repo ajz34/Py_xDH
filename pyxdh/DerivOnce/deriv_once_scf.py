@@ -1,19 +1,16 @@
+# basic utilities
 import numpy as np
+from opt_einsum import contract as einsum
 from abc import ABC, abstractmethod
-from functools import partial
-import os
+# python utilities
 import warnings
 import copy
+# pyscf utilities
 from pyscf.scf._response_functions import _gen_rhf_response
-
-from pyscf import gto, dft, grad, hessian
+from pyscf import gto, dft
 from pyscf.scf import cphf
-
-from pyxdh.Utilities import timing
-
-MAXMEM = float(os.getenv("MAXMEM", 2))
-np.einsum = partial(np.einsum, optimize=["greedy", 1024 ** 3 * MAXMEM / 8])
-np.set_printoptions(8, linewidth=1000, suppress=True)
+# pyxdh utilties
+from pyxdh.Utilities import timing, cached_property
 
 
 # Cubic Inheritance: A1
@@ -43,44 +40,10 @@ class DerivOnceSCF(ABC):
         self.xc_type = "HF"
 
         # From SCF Calculation
-        self._nocc = NotImplemented
-        self._C = NotImplemented
-        self._mo_occ = NotImplemented
-        self._e = NotImplemented
-        self._D = NotImplemented
-        self._F_0_ao = NotImplemented
-        self._F_0_mo = NotImplemented
-        self._S_0_ao = NotImplemented
-        self._S_0_mo = NotImplemented
-        self._H_0_ao = NotImplemented
-        self._H_0_mo = NotImplemented
-        self._eng = NotImplemented
-
-        # From gradient and hessian calculation
-        self._H_1_ao = NotImplemented
-        self._H_1_mo = NotImplemented
-        self._S_1_ao = NotImplemented
-        self._S_1_mo = NotImplemented
-        self._F_1_ao = NotImplemented
-        self._F_1_mo = NotImplemented
-        self._B_1 = NotImplemented
-        self._U_1 = NotImplemented
-
-        # Tensor total derivative
-        self._pdA_F_0_mo = NotImplemented
-
-        # ERI
-        self._eri0_ao = NotImplemented
-        self._eri0_mo = NotImplemented
-        self._eri1_ao = NotImplemented
-        self._eri1_mo = NotImplemented
-
-        # Response generator
-        self._resp = NotImplemented
-        self._resp_cphf = NotImplemented
-
-        # E1
-        self._E_1 = NotImplemented
+        self._nocc = NotImplemented  # type: int
+        self._C = NotImplemented  # type: np.ndarray
+        self._mo_occ = NotImplemented  # type: np.ndarray
+        self._e = NotImplemented  # type: np.ndarray
 
         # Initializer
         self.initialization()
@@ -217,121 +180,156 @@ class DerivOnceSCF(ABC):
     def ev(self):
         return self.e[self.sv]
 
-    @property
+    @cached_property
     def D(self):
-        if self._D is NotImplemented:
-            self._D = self._get_D()
-        return self._D
+        return 2 * self.Co @ self.Co.T
 
-    @property
+    @cached_property
     def eng(self):
-        if self._eng is NotImplemented:
-            self._eng = self._get_eng()
-        return self._eng
+        return self.scf_eng.e_tot
 
-    @property
+    @cached_property
     def H_0_ao(self):
-        if self._H_0_ao is NotImplemented:
-            self._H_0_ao = self._get_H_0_ao()
-        return self._H_0_ao
+        return self.scf_eng.get_hcore()
 
-    @property
+    @cached_property
     def H_0_mo(self):
-        if self._H_0_mo is NotImplemented:
-            self._H_0_mo = self._get_H_0_mo()
-        return self._H_0_mo
+        return self.C.T @ self.H_0_ao @ self.C
 
-    @property
+    @cached_property
     def S_0_ao(self):
-        if self._S_0_ao is NotImplemented:
-            self._S_0_ao = self._get_S_0_ao()
-        return self._S_0_ao
+        return self.mol.intor("int1e_ovlp")
 
-    @property
+    @cached_property
     def S_0_mo(self):
-        if self._S_0_mo is NotImplemented:
-            self._S_0_mo = self._get_S_0_mo()
-        return self._S_0_mo
+        return self.C.T @ self.S_0_ao @ self.C
 
-    @property
+    @cached_property
     def F_0_ao(self):
-        if self._F_0_ao is NotImplemented:
-            self._F_0_ao = self._get_F_0_ao()
-        return self._F_0_ao
+        return self.scf_eng.get_fock(dm=self.D)
 
-    @property
+    @cached_property
     def F_0_mo(self):
-        if self._F_0_mo is NotImplemented:
-            self._F_0_mo = self._get_F_0_mo()
-        return self._F_0_mo
+        return self.C.T @ self.F_0_ao @ self.C
 
-    @property
+    @cached_property
     def eri0_ao(self):
-        # warnings.warn("eri0_ao: ERI should not be stored in memory! Consider J/K engines!")
-        if self._eri0_ao is NotImplemented:
-            self._eri0_ao = self._get_eri0_ao()
-        return self._eri0_ao
+        return self.mol.intor("int2e")
 
-    @property
+    @cached_property
     def eri0_mo(self):
-        # warnings.warn("eri0_mo: ERI AO -> MO is quite expensive!")
-        if self._eri0_mo is NotImplemented:
-            self._eri0_mo = self._get_eri0_mo()
-        return self._eri0_mo
+        return einsum("uvkl, up, vq, kr, ls -> pqrs", self.eri0_ao, self.C, self.C, self.C, self.C)
 
-    @property
+    @cached_property
+    @abstractmethod
     def H_1_ao(self):
-        if self._H_1_ao is NotImplemented:
-            self._H_1_ao = self._get_H_1_ao()
-        return self._H_1_ao
+        pass
 
-    @property
+    @cached_property
     def H_1_mo(self):
-        if self._H_1_mo is NotImplemented:
-            self._H_1_mo = self._get_H_1_mo()
-        return self._H_1_mo
+        if not isinstance(self.H_1_ao, np.ndarray):
+            return 0
+        return einsum("Auv, up, vq -> Apq", self.H_1_ao, self.C, self.C)
 
-    @property
+    @cached_property
+    @abstractmethod
     def F_1_ao(self):
-        if self._F_1_ao is NotImplemented:
-            self._F_1_ao = self._get_F_1_ao()
-        return self._F_1_ao
+        pass
 
-    @property
+    @cached_property
     def F_1_mo(self):
-        if self._F_1_mo is NotImplemented:
-            self._F_1_mo = self._get_F_1_mo()
-        return self._F_1_mo
+        if not isinstance(self.F_1_ao, np.ndarray):
+            return 0
+        return einsum("Auv, up, vq -> Apq", self.F_1_ao, self.C, self.C)
 
-    @property
+    @cached_property
+    @abstractmethod
     def S_1_ao(self):
-        if self._S_1_ao is NotImplemented:
-            self._S_1_ao = self._get_S_1_ao()
-        return self._S_1_ao
+        pass
 
-    @property
+    @cached_property
     def S_1_mo(self):
-        if self._S_1_mo is NotImplemented:
-            self._S_1_mo = self._get_S_1_mo()
-        return self._S_1_mo
+        if not isinstance(self.S_1_ao, np.ndarray):
+            return 0
+        return einsum("Auv, up, vq -> Apq", self.S_1_ao, self.C, self.C)
 
-    @property
+    @cached_property
+    @abstractmethod
     def eri1_ao(self):
-        if self._eri1_ao is NotImplemented:
-            self._eri1_ao = self._get_eri1_ao()
-        return self._eri1_ao
+        pass
 
-    @property
+    @cached_property
+    @timing
     def eri1_mo(self):
-        if self._eri1_mo is NotImplemented:
-            self._eri1_mo = self._get_eri1_mo()
-        return self._eri1_mo
+        if not isinstance(self.eri1_ao, np.ndarray):
+            return 0
+        return einsum("Auvkl, up, vq, kr, ls -> Apqrs", self.eri1_ao, self.C, self.C, self.C, self.C)
 
-    @property
+    @cached_property
     def B_1(self):
-        if self._B_1 is NotImplemented:
-            self._B_1 = self._get_B_1()
-        return self._B_1
+        sa = self.sa
+        so = self.so
+
+        B_1 = self.F_1_mo.copy()
+        if isinstance(self.S_1_mo, np.ndarray):
+            B_1 += (
+                - self.S_1_mo * self.e
+                - 0.5 * self.Ax0_Core(sa, sa, so, so)(self.S_1_mo[:, so, so])
+            )
+        return B_1
+
+    @cached_property
+    @timing
+    def U_1(self):
+        B_1 = self.B_1
+        S_1_mo = self.S_1_mo
+        if not isinstance(S_1_mo, np.ndarray):
+            S_1_mo = np.zeros_like(B_1)
+        Ax0_Core = self.Ax0_Core
+        sv = self.sv
+        so = self.so
+
+        # Generate v-o block of U
+        U_1_ai = cphf.solve(
+            self.Ax0_Core(sv, so, sv, so, in_cphf=True),
+            self.e,
+            self.scf_eng.mo_occ,
+            B_1[:, sv, so],
+            max_cycle=100,
+            tol=self.cphf_tol,
+            hermi=False
+        )[0]
+        U_1_ai.shape = (B_1.shape[0], self.nvir, self.nocc)
+
+        # Test whether converged
+        conv = (
+            + U_1_ai * (self.ev[:, None] - self.eo[None, :])
+            + self.Ax0_Core(sv, so, sv, so)(U_1_ai)
+            + self.B_1[:, sv, so]
+        )
+        if abs(conv).max() > 1e-8:
+            msg = "\nget_E_1: CP-HF not converged well!\nMaximum deviation: " + str(abs(conv).max())
+            warnings.warn(msg)
+
+        if self.rotation:
+            # Generate rotated U
+            U_1_pq = - 0.5 * S_1_mo
+            U_1_pq[:, sv, so] = U_1_ai
+            U_1_pq[:, so, sv] = - S_1_mo[:, so, sv] - U_1_pq[:, sv, so].swapaxes(-1, -2)
+        else:
+            # Generate total U
+            D_pq = - (self.e[:, None] - self.e[None, :]) + 1e-300
+            U_1_pq = np.zeros((B_1.shape[0], self.nmo, self.nmo))
+            U_1_pq[:, sv, so] = U_1_ai
+            U_1_pq[:, so, sv] = - S_1_mo[:, so, sv] - U_1_pq[:, sv, so].swapaxes(-1, -2)
+            U_1_pq[:, so, so] = (Ax0_Core(so, so, sv, so)(U_1_ai) + B_1[:, so, so]) / D_pq[so, so]
+            U_1_pq[:, sv, sv] = (Ax0_Core(sv, sv, sv, so)(U_1_ai) + B_1[:, sv, sv]) / D_pq[sv, sv]
+            for p in range(self.nmo):
+                U_1_pq[:, p, p] = - S_1_mo[:, p, p] / 2
+            U_1_pq -= (U_1_pq + U_1_pq.swapaxes(-1, -2) + S_1_mo) / 2
+            U_1_pq -= (U_1_pq + U_1_pq.swapaxes(-1, -2) + S_1_mo) / 2
+
+        return U_1_pq
 
     @property
     def U_1_vo(self):
@@ -341,41 +339,40 @@ class DerivOnceSCF(ABC):
     def U_1_ov(self):
         return self.U_1[:, self.so, self.sv]
 
-    @property
-    def U_1(self):
-        if self._U_1 is NotImplemented:
-            self._U_1 = self._get_U_1()
-        return self._U_1
-
-    @property
+    @cached_property
+    @abstractmethod
     def E_1(self):
-        if self._E_1 is NotImplemented:
-            self._E_1 = self._get_E_1()
-        return self._E_1
+        pass
 
-    @property
+    @cached_property
     def pdA_F_0_mo(self):
-        if self._pdA_F_0_mo is NotImplemented:
-            self._pdA_F_0_mo = self._get_pdA_F_0_mo()
-        return self._pdA_F_0_mo
+        F_1_mo = self.F_1_mo
+        U_1 = self.U_1
+        e = self.e
+        Ax0_Core = self.Ax0_Core
+        so, sa = self.so, self.sa
 
-    @property
+        pdA_F_0_mo = (
+            + F_1_mo
+            + einsum("Apq, p -> Apq", U_1, e)
+            + einsum("Aqp, q -> Apq", U_1, e)
+            + Ax0_Core(sa, sa, sa, so)(U_1[:, :, so])
+        )
+        return pdA_F_0_mo
+
+    @cached_property
     def resp(self):
-        if self._resp is NotImplemented:
-            self._resp = _gen_rhf_response(self.scf_eng, mo_coeff=self.C, mo_occ=self.mo_occ, hermi=1, max_memory=self.grdit_memory)
-        return self._resp
+        return _gen_rhf_response(self.scf_eng, mo_coeff=self.C, mo_occ=self.mo_occ, hermi=1, max_memory=self.grdit_memory)
 
-    @property
+    @cached_property
     def resp_cphf(self):
-        if self._resp_cphf is NotImplemented:
-            if self.xc_type == "HF":
-                self._resp_cphf = self.resp
-            else:
-                mf = dft.RKS(self.mol)
-                mf.xc = self.scf_eng.xc
-                mf.grids = self.cphf_grids
-                self._resp_cphf = _gen_rhf_response(mf, mo_coeff=self.C, mo_occ=self.mo_occ, hermi=1, max_memory=self.grdit_memory)
-        return self._resp_cphf
+        if self.xc_type == "HF":
+            return self.resp
+        else:
+            mf = dft.RKS(self.mol)
+            mf.xc = self.scf_eng.xc
+            mf.grids = self.cphf_grids
+            return _gen_rhf_response(mf, mo_coeff=self.C, mo_occ=self.mo_occ, hermi=1, max_memory=self.grdit_memory)
 
     # endregion
 
@@ -445,27 +442,27 @@ class DerivOnceSCF(ABC):
             #     for grdh in grdit:
             #         kerh = KernelHelper(grdh, self.xc)
             #         for idx, dmX in enumerate(dm):
-            #             tmp_K = np.einsum("kl, gl -> gk", dmX, grdh.ao_0)
-            #             rho_X_0 = np.einsum("gk, gk -> g", grdh.ao_0, tmp_K)
-            #             rho_X_1 = 2 * np.einsum("rgk, gk -> rg", grdh.ao_1, tmp_K)
-            #             gamma_XD = np.einsum("rg, rg -> g", rho_X_1, grdh.rho_1)
+            #             tmp_K = einsum("kl, gl -> gk", dmX, grdh.ao_0)
+            #             rho_X_0 = einsum("gk, gk -> g", grdh.ao_0, tmp_K)
+            #             rho_X_1 = 2 * einsum("rgk, gk -> rg", grdh.ao_1, tmp_K)
+            #             gamma_XD = einsum("rg, rg -> g", rho_X_1, grdh.rho_1)
             #             tmp_M = np.empty((4, grdh.ngrid))
             #             tmp_M[0] = (
-            #                     np.einsum("g, g -> g", rho_X_0, kerh.frr)
-            #                     + 2 * np.einsum("g, g -> g", gamma_XD, kerh.frg)
+            #                     einsum("g, g -> g", rho_X_0, kerh.frr)
+            #                     + 2 * einsum("g, g -> g", gamma_XD, kerh.frg)
             #             )
             #             tmp_M[1:4] = (
-            #                     + 4 * np.einsum("g, g, rg -> rg", rho_X_0, kerh.frg, grdh.rho_1)
-            #                     + 8 * np.einsum("g, g, rg -> rg", gamma_XD, kerh.fgg, grdh.rho_1)
-            #                     + 4 * np.einsum("rg, g -> rg", rho_X_1, kerh.fg)
+            #                     + 4 * einsum("g, g, rg -> rg", rho_X_0, kerh.frg, grdh.rho_1)
+            #                     + 8 * einsum("g, g, rg -> rg", gamma_XD, kerh.fgg, grdh.rho_1)
+            #                     + 4 * einsum("rg, g -> rg", rho_X_1, kerh.fg)
             #             )
             #             ax_ao[idx] += (
-            #                 + np.einsum("rg, rgu, gv -> uv", tmp_M, grdh.ao[:4], grdh.ao_0)
+            #                 + einsum("rg, rgu, gv -> uv", tmp_M, grdh.ao[:4], grdh.ao_0)
             #             )
             # ax_ao += ax_ao.swapaxes(-1, -2)
 
             if not sij_none:
-                ax_ao = np.einsum("Auv, ui, vj -> Aij", ax_ao, C[:, si], C[:, sj])
+                ax_ao = einsum("Auv, ui, vj -> Aij", ax_ao, C[:, si], C[:, sj])
             if reshape:
                 shape1.pop()
                 shape1.pop()
@@ -482,159 +479,6 @@ class DerivOnceSCF(ABC):
 
     # endregion
 
-    # region Getting Functions
-
-    def _get_D(self):
-        return 2 * self.Co @ self.Co.T
-
-    def _get_eng(self):
-        return self.scf_eng.e_tot
-
-    def _get_H_0_ao(self):
-        return self.scf_eng.get_hcore()
-
-    def _get_H_0_mo(self):
-        return self.C.T @ self.H_0_ao @ self.C
-
-    def _get_S_0_ao(self):
-        return self.mol.intor("int1e_ovlp")
-
-    def _get_S_0_mo(self):
-        return self.C.T @ self.S_0_ao @ self.C
-
-    def _get_F_0_ao(self):
-        return self.scf_eng.get_fock(dm=self.D)
-
-    def _get_F_0_mo(self):
-        return self.C.T @ self.F_0_ao @ self.C
-
-    def _get_eri0_ao(self):
-        return self.mol.intor("int2e")
-
-    def _get_eri0_mo(self):
-        return np.einsum("uvkl, up, vq, kr, ls -> pqrs", self.eri0_ao, self.C, self.C, self.C, self.C)
-
-    @abstractmethod
-    def _get_H_1_ao(self):
-        pass
-
-    def _get_H_1_mo(self):
-        if not isinstance(self.H_1_ao, np.ndarray):
-            return 0
-        return np.einsum("Auv, up, vq -> Apq", self.H_1_ao, self.C, self.C)
-
-    @abstractmethod
-    def _get_F_1_ao(self):
-        pass
-
-    def _get_F_1_mo(self):
-        if not isinstance(self.F_1_ao, np.ndarray):
-            return 0
-        return np.einsum("Auv, up, vq -> Apq", self.F_1_ao, self.C, self.C)
-
-    @abstractmethod
-    def _get_S_1_ao(self):
-        pass
-
-    def _get_S_1_mo(self):
-        if not isinstance(self.S_1_ao, np.ndarray):
-            return 0
-        return np.einsum("Auv, up, vq -> Apq", self.S_1_ao, self.C, self.C)
-
-    @abstractmethod
-    def _get_eri1_ao(self):
-        pass
-
-    @timing
-    def _get_eri1_mo(self):
-        if not isinstance(self.eri1_ao, np.ndarray):
-            return 0
-        return np.einsum("Auvkl, up, vq, kr, ls -> Apqrs", self.eri1_ao, self.C, self.C, self.C, self.C)
-
-    def _get_B_1(self):
-        sa = self.sa
-        so = self.so
-
-        B_1 = self.F_1_mo.copy()
-        if isinstance(self.S_1_mo, np.ndarray):
-            B_1 += (
-                - self.S_1_mo * self.e
-                - 0.5 * self.Ax0_Core(sa, sa, so, so)(self.S_1_mo[:, so, so])
-            )
-        return B_1
-
-    def _get_U_1(self):
-        B_1 = self.B_1
-        S_1_mo = self.S_1_mo
-        if not isinstance(S_1_mo, np.ndarray):
-            S_1_mo = np.zeros_like(B_1)
-        Ax0_Core = self.Ax0_Core
-        sv = self.sv
-        so = self.so
-
-        # Generate v-o block of U
-        U_1_ai = cphf.solve(
-            self.Ax0_Core(sv, so, sv, so, in_cphf=True),
-            self.e,
-            self.scf_eng.mo_occ,
-            B_1[:, sv, so],
-            max_cycle=100,
-            tol=self.cphf_tol,
-            hermi=False
-        )[0]
-        U_1_ai.shape = (B_1.shape[0], self.nvir, self.nocc)
-
-        # Test whether converged
-        conv = (
-            + U_1_ai * (self.ev[:, None] - self.eo[None, :])
-            + self.Ax0_Core(sv, so, sv, so)(U_1_ai)
-            + self.B_1[:, sv, so]
-        )
-        if abs(conv).max() > 1e-8:
-            msg = "\nget_E_1: CP-HF not converged well!\nMaximum deviation: " + str(abs(conv).max())
-            warnings.warn(msg)
-
-        if self.rotation:
-            # Generate rotated U
-            U_1_pq = - 0.5 * S_1_mo
-            U_1_pq[:, sv, so] = U_1_ai
-            U_1_pq[:, so, sv] = - S_1_mo[:, so, sv] - U_1_pq[:, sv, so].swapaxes(-1, -2)
-        else:
-            # Generate total U
-            D_pq = - (self.e[:, None] - self.e[None, :]) + 1e-300
-            U_1_pq = np.zeros((B_1.shape[0], self.nmo, self.nmo))
-            U_1_pq[:, sv, so] = U_1_ai
-            U_1_pq[:, so, sv] = - S_1_mo[:, so, sv] - U_1_pq[:, sv, so].swapaxes(-1, -2)
-            U_1_pq[:, so, so] = (Ax0_Core(so, so, sv, so)(U_1_ai) + B_1[:, so, so]) / D_pq[so, so]
-            U_1_pq[:, sv, sv] = (Ax0_Core(sv, sv, sv, so)(U_1_ai) + B_1[:, sv, sv]) / D_pq[sv, sv]
-            for p in range(self.nmo):
-                U_1_pq[:, p, p] = - S_1_mo[:, p, p] / 2
-            U_1_pq -= (U_1_pq + U_1_pq.swapaxes(-1, -2) + S_1_mo) / 2
-            U_1_pq -= (U_1_pq + U_1_pq.swapaxes(-1, -2) + S_1_mo) / 2
-
-        return U_1_pq
-
-    @abstractmethod
-    def _get_E_1(self):
-        pass
-
-    def _get_pdA_F_0_mo(self):
-        F_1_mo = self.F_1_mo
-        U_1 = self.U_1
-        e = self.e
-        Ax0_Core = self.Ax0_Core
-        so, sa = self.so, self.sa
-
-        pdA_F_0_mo = (
-            + F_1_mo
-            + np.einsum("Apq, p -> Apq", U_1, e)
-            + np.einsum("Aqp, q -> Apq", U_1, e)
-            + Ax0_Core(sa, sa, sa, so)(U_1[:, :, so])
-        )
-        return pdA_F_0_mo
-
-    # endregion
-
 
 # Cubic Inheritance: B1
 class DerivOnceNCDFT(DerivOnceSCF, ABC):
@@ -648,27 +492,14 @@ class DerivOnceNCDFT(DerivOnceSCF, ABC):
         self.nc_deriv.C = self.C
         self.nc_deriv.mo_occ = self.mo_occ
         self.nc_deriv.nocc = self.nocc
-        self._Z = NotImplemented
-        self._pdA_nc_F_0_mo = NotImplemented
 
     @property
     @abstractmethod
     def DerivOnceMethod(self):
         pass
 
-    @property
+    @cached_property
     def Z(self):
-        if self._Z is NotImplemented:
-            self._Z = self._get_Z()
-        return self._Z
-
-    @property
-    def pdA_nc_F_0_mo(self):
-        if self._pdA_nc_F_0_mo is NotImplemented:
-            self._pdA_nc_F_0_mo = self._get_pdA_nc_F_0_mo()
-        return self._pdA_nc_F_0_mo
-
-    def _get_Z(self):
         so, sv = self.so, self.sv
         Ax0_Core = self.Ax0_Core
         e, mo_occ = self.e, self.mo_occ
@@ -676,7 +507,8 @@ class DerivOnceNCDFT(DerivOnceSCF, ABC):
         Z = cphf.solve(Ax0_Core(sv, so, sv, so, in_cphf=True), e, mo_occ, F_0_mo[sv, so], max_cycle=100, tol=self.cphf_tol)[0]
         return Z
 
-    def _get_pdA_nc_F_0_mo(self):
+    @cached_property
+    def pdA_nc_F_0_mo(self):
         nc_F_0_mo = self.nc_deriv.F_0_mo
         nc_F_1_mo = self.nc_deriv.F_1_mo
         U_1 = self.U_1
@@ -685,11 +517,12 @@ class DerivOnceNCDFT(DerivOnceSCF, ABC):
 
         pdA_nc_F_0_mo = (
             + nc_F_1_mo
-            + np.einsum("Amp, mq -> Apq", U_1, nc_F_0_mo)
-            + np.einsum("Amq, pm -> Apq", U_1, nc_F_0_mo)
+            + einsum("Amp, mq -> Apq", U_1, nc_F_0_mo)
+            + einsum("Amq, pm -> Apq", U_1, nc_F_0_mo)
             + Ax0_Core(sa, sa, sa, so)(U_1[:, :, so])
         )
         return pdA_nc_F_0_mo
 
-    def _get_eng(self):
+    @cached_property
+    def eng(self):
         return self.nc_deriv.scf_eng.energy_tot(dm=self.D)
