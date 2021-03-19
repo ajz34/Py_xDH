@@ -16,6 +16,8 @@ matrix:
       script:
         - cd $TRAVIS_BUILD_DIR
         - export LOGLEVEL=2
+        - export OPENBLAS_NUM_THREADS=4
+        - export MKL_NUM_THREADS=4
         - pytest pyxdh --disable-warnings --cov=pyxdh --cov-config=.coveragerc
 
 deploy:

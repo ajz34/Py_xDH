@@ -1,5 +1,6 @@
 pyscf>=1.7.1
 numpy!=1.16
+opt_einsum
 scipy
 jupyter
 sphinx
