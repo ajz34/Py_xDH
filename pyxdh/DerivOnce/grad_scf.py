@@ -1,16 +1,21 @@
+# basic utilities
 import numpy as np
 from functools import partial
 import os
-
+# pyscf utilities
 from pyscf import grad
 from pyscf.scf import _vhf
-
-from pyxdh.DerivOnce.deriv_once_scf import DerivOnceSCF, DerivOnceNCDFT
+# pyxdh utilities
+from pyxdh.DerivOnce import DerivOnceSCF, DerivOnceNCDFT
 from pyxdh.Utilities import GridIterator, KernelHelper, timing
-
+# pytest
+from pyscf import gto, scf, dft
+from pkg_resources import resource_filename
+from pyxdh.Utilities import FormchkInterface
+import pickle
+# additional modifications
 MAXMEM = float(os.getenv("MAXMEM", 2))
 np.einsum = partial(np.einsum, optimize=["greedy", 1024 ** 3 * MAXMEM / 8])
-np.set_printoptions(8, linewidth=1000, suppress=True)
 
 
 # Cubic Inheritance: A2
@@ -285,34 +290,55 @@ class GradNCDFT(DerivOnceNCDFT, GradSCF):
         return E_1
 
 
-class Test_GradSCF:
+class TestGradR:
 
-    @staticmethod
-    def valid_assert(config, resource_path):
-        from pkg_resources import resource_filename
-        from pyxdh.Utilities import FormchkInterface
-        helper = GradSCF(config)
-        formchk = FormchkInterface(resource_filename("pyxdh", resource_path))
-        assert(np.allclose(helper.E_1, formchk.grad(), atol=1e-5, rtol=1e-4))
+    def test_r_rhf_grad(self):
+        mol = gto.Mole(atom="N 0. 0. 0.; H 1.5 0. 0.2; H 0.1 1.2 0.; H 0. 0. 1.", basis="6-31G", verbose=0).build()
+        scf_eng = scf.RHF(mol).run()
+        scf_grad = scf_eng.Gradients().run()
+        gradh = GradSCF({"scf_eng": scf_eng})
+        formchk = FormchkInterface(resource_filename("pyxdh", "Validation/gaussian/NH3-HF-freq.fchk"))
+        # ASSERT: energy - Gaussian
+        assert np.allclose(gradh.eng, formchk.total_energy())
+        # ASSERT: energy - PySCF
+        assert np.allclose(gradh.eng, scf_eng.e_tot)
+        # ASSERT: grad - Gaussian
+        assert np.allclose(gradh.E_1, formchk.grad(), atol=1e-6, rtol=1e-4)
+        # ASSERT: grad - PySCF
+        assert np.allclose(gradh.E_1, scf_grad.de, atol=1e-6, rtol=1e-4)
 
-    def test_HF_grad(self):
+    def test_r_b3lyp_grad(self):
+        mol = gto.Mole(atom="N 0. 0. 0.; H 1.5 0. 0.2; H 0.1 1.2 0.; H 0. 0. 1.", basis="6-31G", verbose=0).build()
+        grids = dft.Grids(mol)
+        grids.atom_grid = (99, 590)
+        grids.build()
+        scf_eng = dft.RKS(mol, xc="B3LYPg")
+        scf_eng.grids = grids
+        scf_eng.run()
+        scf_grad = scf_eng.Gradients().run()
+        gradh = GradSCF({"scf_eng": scf_eng})
+        formchk = FormchkInterface(resource_filename("pyxdh", "Validation/gaussian/NH3-B3LYP-freq.fchk"))
+        # ASSERT: energy - Gaussian
+        assert np.allclose(gradh.eng, formchk.total_energy())
+        # ASSERT: energy - PySCF
+        assert np.allclose(gradh.eng, scf_eng.e_tot)
+        # ASSERT: grad - Gaussian
+        assert np.allclose(gradh.E_1, formchk.grad(), atol=5e-6, rtol=1e-4)
+        # ASSERT: grad - PySCF
+        assert np.allclose(gradh.E_1, scf_grad.de, atol=1e-6, rtol=1e-4)
 
-        from pyxdh.Utilities.test_molecules import Mol_H2O2
-
-        H2O2 = Mol_H2O2()
-        grids_cphf = H2O2.gen_grids(50, 194)
-        self.valid_assert({"scf_eng": H2O2.hf_eng}, "Validation/gaussian/H2O2-HF-freq.fchk")
-        self.valid_assert({"scf_eng": H2O2.gga_eng, "cphf_grids": grids_cphf}, "Validation/gaussian/H2O2-B3LYP-freq.fchk")
-
-    def test_HF_B3LYP_grad(self):
-
-        import pickle
-        from pkg_resources import resource_filename
-        from pyxdh.Utilities.test_molecules import Mol_H2O2
-
-        H2O2 = Mol_H2O2()
-        config = {"scf_eng": H2O2.hf_eng, "nc_eng": H2O2.gga_eng}
-        helper = GradNCDFT(config)
-        with open(resource_filename("pyxdh", "Validation/numerical_deriv/ncdft_derivonce_hf_b3lyp.dat"), "rb") as f:
-            ref_grad = pickle.load(f)["grad"].reshape(-1, 3)
-        assert (np.allclose(helper.E_1, ref_grad, atol=1e-6, rtol=1e-4))
+    def test_r_hfb3lyp_grad(self):
+        mol = gto.Mole(atom="N 0. 0. 0.; H 1.5 0. 0.2; H 0.1 1.2 0.; H 0. 0. 1.", basis="6-31G", verbose=0).build()
+        grids = dft.Grids(mol)
+        grids.atom_grid = (99, 590)
+        grids.build()
+        scf_eng = scf.RHF(mol).run()
+        nc_eng = dft.RKS(mol, xc="B3LYPg")
+        nc_eng.grids = grids
+        gradh = GradNCDFT({"scf_eng": scf_eng, "nc_eng": nc_eng})
+        with open(resource_filename("pyxdh", "Validation/numerical_deriv/NH3-HFB3LYP-grad.dat"), "rb") as f:
+            ref_grad = pickle.load(f).reshape(-1, 3)
+        # ASSERT: energy - theoretical
+        assert np.allclose(gradh.eng, nc_eng.energy_tot(dm=scf_eng.make_rdm1()))
+        # ASSERT: grad - numerical
+        assert np.allclose(gradh.E_1, ref_grad, atol=1e-6, rtol=1e-4)

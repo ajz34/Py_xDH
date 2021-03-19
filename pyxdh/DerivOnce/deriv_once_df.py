@@ -29,6 +29,14 @@ class DerivOnceDFSCF(DerivOnceSCF, ABC):
     def _get_eri1_ao(self):
         raise AssertionError("eri1 should not be called in density fitting module!")
 
+    @staticmethod
+    def _get_int2c2e(aux):
+        return aux.intor("int2c2e")
+
+    @staticmethod
+    def _get_int3c2e(mol, aux):
+        return int3c_wrapper(mol, aux, "int3c2e", "s1")()
+
 
 class DerivOnceDFMP2(DerivOnceMP2, DerivOnceDFSCF, ABC):
 
