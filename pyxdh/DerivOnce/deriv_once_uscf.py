@@ -9,7 +9,7 @@ from scipy.optimize import newton_krylov
 from pyscf import dft, grad, hessian
 from pyscf.scf import ucphf
 
-from pyxdh.DerivOnce.deriv_once_scf import DerivOnceSCF, DerivOnceNCDFT
+from pyxdh.DerivOnce.deriv_once_r import DerivOnceSCF, DerivOnceNCDFT
 from pyxdh.Utilities import GridIterator, KernelHelper, timing
 
 MAXMEM = float(os.getenv("MAXMEM", 2))

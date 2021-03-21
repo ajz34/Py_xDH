@@ -1,8 +1,6 @@
 __all__ = [
-    "DerivOnceSCF", "DerivOnceNCDFT",  # deriv_once_scf
-    "DerivOnceMP2", "DerivOnceXDH",  # deriv_once_mp2
-    "GradSCF", "GradNCDFT",  # grad_scf
-    "GradMP2", "GradXDH",  # grad_mp2
+    "DerivOnceSCF", "DerivOnceNCDFT", "DerivOnceMP2", "DerivOnceXDH",  # deriv_once_r
+    "GradSCF", "GradNCDFT", "GradMP2", "GradXDH",  # grad_r
     "DipoleSCF", "DipoleNCDFT",  # dipole_scf
     "DipoleMP2", "DipoleXDH",  # dipole_mp2
 
@@ -17,10 +15,8 @@ __all__ = [
     "GradDFSCF",  # grad_df
 ]
 
-from pyxdh.DerivOnce.deriv_once_scf import DerivOnceSCF, DerivOnceNCDFT
-from pyxdh.DerivOnce.deriv_once_mp2 import DerivOnceMP2, DerivOnceXDH
-from pyxdh.DerivOnce.grad_scf import GradSCF, GradNCDFT
-from pyxdh.DerivOnce.grad_mp2 import GradMP2, GradXDH
+from pyxdh.DerivOnce.deriv_once_r import DerivOnceSCF, DerivOnceNCDFT, DerivOnceMP2, DerivOnceXDH
+from pyxdh.DerivOnce.grad_r import GradSCF, GradNCDFT, GradMP2, GradXDH
 from pyxdh.DerivOnce.dipole_scf import DipoleSCF, DipoleNCDFT
 from pyxdh.DerivOnce.dipole_mp2 import DipoleMP2, DipoleXDH
 

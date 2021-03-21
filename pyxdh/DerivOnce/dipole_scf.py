@@ -2,7 +2,7 @@ import numpy as np
 from functools import partial
 import os
 
-from pyxdh.DerivOnce.deriv_once_scf import DerivOnceSCF, DerivOnceNCDFT
+from pyxdh.DerivOnce.deriv_once_r import DerivOnceSCF, DerivOnceNCDFT
 from pyxdh.Utilities import GridIterator, KernelHelper
 
 
