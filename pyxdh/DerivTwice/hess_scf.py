@@ -1,29 +1,35 @@
+# basic utilities
 import numpy as np
-from functools import partial
-import os
-
+from opt_einsum import contract as einsum
+# pyscf utilities
 from pyscf.scf import _vhf
-
+# pyxdh utilities
 from pyxdh.DerivTwice import DerivTwiceSCF, DerivTwiceNCDFT
-from pyxdh.Utilities import timing, GridIterator, KernelHelper
-
-MAXMEM = float(os.getenv("MAXMEM", 2))
-np.einsum = partial(np.einsum, optimize=["greedy", 1024 ** 3 * MAXMEM / 8])
-np.set_printoptions(8, linewidth=1000, suppress=True)
-
+from pyxdh.Utilities import timing, GridIterator, KernelHelper, cached_property
+# pytest
+from pyscf import gto, scf, dft
+from pyxdh.DerivOnce import GradSCF, GradNCDFT, GradMP2, GradXDH
+from pkg_resources import resource_filename
+from pyxdh.Utilities import FormchkInterface
+import pickle
 
 # Cubic Inheritance: A2
 class HessSCF(DerivTwiceSCF):
 
     # Assert A and B are the same GradSCF instance
+    @property
+    def A_is_B(self) -> bool:
+        return True
 
-    def _get_H_2_ao(self):
+    @cached_property
+    def H_2_ao(self):
         scf_hess = self.A.scf_hess
         dhess, nao = self.natm * 3, self.nao
         H_2_ao = np.array([[scf_hess.hcore_generator()(A, B) for B in range(self.natm)] for A in range(self.natm)])
         return H_2_ao.swapaxes(1, 2).reshape((dhess, dhess, nao, nao))
 
-    def _get_S_2_ao(self):
+    @cached_property
+    def S_2_ao(self):
         int1e_ipovlpip = self.mol.intor("int1e_ipovlpip")
         int1e_ipipovlp = self.mol.intor("int1e_ipipovlp")
 
@@ -40,13 +46,14 @@ class HessSCF(DerivTwiceSCF):
         S_2_ao = np.array([[get_S_SS_ao(A, B) for B in range(self.natm)] for A in range(self.natm)])
         return S_2_ao.swapaxes(1, 2).reshape((dhess, dhess, nao, nao))
 
+    @cached_property
     @timing
-    def _get_F_2_ao_JKcontrib(self):
+    def F_2_ao_JKcontrib(self):
         D = self.D
         eri2_ao = self.eri2_ao
         return (
-            np.einsum("ABuvkl, kl -> ABuv", eri2_ao, D),
-            np.einsum("ABukvl, kl -> ABuv", eri2_ao, D),
+            einsum("ABuvkl, kl -> ABuv", eri2_ao, D),
+            einsum("ABukvl, kl -> ABuv", eri2_ao, D),
         )
 
     @timing
@@ -205,8 +212,9 @@ class HessSCF(DerivTwiceSCF):
         return (Jcontrib.swapaxes(1, 2).reshape((dhess, dhess, nao, nao)),
                 Kcontrib.swapaxes(1, 2).reshape((dhess, dhess, nao, nao)))
 
+    @cached_property
     @timing
-    def _get_F_2_ao_GGAcontrib(self):
+    def F_2_ao_GGAcontrib(self):
         if self.xc_type != "GGA":
             return 0
 
@@ -225,35 +233,35 @@ class HessSCF(DerivTwiceSCF):
             pd_frg = kerh.frrg * grdh.A_rho_1 + kerh.frgg * grdh.A_gamma_1
             pd_fgg = kerh.frgg * grdh.A_rho_1 + kerh.fggg * grdh.A_gamma_1
             pdpd_fr = (
-                    + np.einsum("Bsg, Atg -> ABtsg", pd_frr, grdh.A_rho_1)
-                    + np.einsum("Bsg, Atg -> ABtsg", pd_frg, grdh.A_gamma_1)
+                    + einsum("Bsg, Atg -> ABtsg", pd_frr, grdh.A_rho_1)
+                    + einsum("Bsg, Atg -> ABtsg", pd_frg, grdh.A_gamma_1)
                     + kerh.frr * grdh.AB_rho_2 + kerh.frg * grdh.AB_gamma_2
             )
             pdpd_fg = (
-                    + np.einsum("Bsg, Atg -> ABtsg", pd_frg, grdh.A_rho_1)
-                    + np.einsum("Bsg, Atg -> ABtsg", pd_fgg, grdh.A_gamma_1)
+                    + einsum("Bsg, Atg -> ABtsg", pd_frg, grdh.A_rho_1)
+                    + einsum("Bsg, Atg -> ABtsg", pd_fgg, grdh.A_gamma_1)
                     + kerh.frg * grdh.AB_rho_2 + kerh.fgg * grdh.AB_gamma_2
             )
             pdpd_rho_1 = grdh.AB_rho_3
 
             # Contrib 1
             contrib1 = (
-                    + 0.5 * np.einsum("ABtsg, gu, gv -> ABtsuv", pdpd_fr, grdh.ao_0, grdh.ao_0)
-                    + 2 * np.einsum("ABtsg, rg, rgu, gv -> ABtsuv", pdpd_fg, grdh.rho_1, grdh.ao_1, grdh.ao_0)
-                    + 2 * np.einsum("Atg, Bsrg, rgu, gv -> ABtsuv", pd_fg, pd_rho_1, grdh.ao_1, grdh.ao_0)
-                    + 2 * np.einsum("Bsg, Atrg, rgu, gv -> ABtsuv", pd_fg, pd_rho_1, grdh.ao_1, grdh.ao_0)
-                    + 2 * np.einsum("g, ABtsrg, rgu, gv -> ABtsuv", kerh.fg, pdpd_rho_1, grdh.ao_1, grdh.ao_0)
+                    + 0.5 * einsum("ABtsg, gu, gv -> ABtsuv", pdpd_fr, grdh.ao_0, grdh.ao_0)
+                    + 2 * einsum("ABtsg, rg, rgu, gv -> ABtsuv", pdpd_fg, grdh.rho_1, grdh.ao_1, grdh.ao_0)
+                    + 2 * einsum("Atg, Bsrg, rgu, gv -> ABtsuv", pd_fg, pd_rho_1, grdh.ao_1, grdh.ao_0)
+                    + 2 * einsum("Bsg, Atrg, rgu, gv -> ABtsuv", pd_fg, pd_rho_1, grdh.ao_1, grdh.ao_0)
+                    + 2 * einsum("g, ABtsrg, rgu, gv -> ABtsuv", kerh.fg, pdpd_rho_1, grdh.ao_1, grdh.ao_0)
             )
             contrib1 += contrib1.swapaxes(-1, -2)
             F_2_ao_GGA += contrib1
 
             # Contrib 2
             tmp_contrib = (
-                    - np.einsum("Bsg, tgu, gv -> Btsuv", pd_fr, grdh.ao_1, grdh.ao_0)
-                    - 2 * np.einsum("Bsg, rg, tgu, rgv -> Btsuv", pd_fg, grdh.rho_1, grdh.ao_1, grdh.ao_1)
-                    - 2 * np.einsum("Bsg, rg, trgu, gv -> Btsuv", pd_fg, grdh.rho_1, grdh.ao_2, grdh.ao_0)
-                    - 2 * np.einsum("g, Bsrg, tgu, rgv -> Btsuv", kerh.fg, pd_rho_1, grdh.ao_1, grdh.ao_1)
-                    - 2 * np.einsum("g, Bsrg, trgu, gv -> Btsuv", kerh.fg, pd_rho_1, grdh.ao_2, grdh.ao_0)
+                    - einsum("Bsg, tgu, gv -> Btsuv", pd_fr, grdh.ao_1, grdh.ao_0)
+                    - 2 * einsum("Bsg, rg, tgu, rgv -> Btsuv", pd_fg, grdh.rho_1, grdh.ao_1, grdh.ao_1)
+                    - 2 * einsum("Bsg, rg, trgu, gv -> Btsuv", pd_fg, grdh.rho_1, grdh.ao_2, grdh.ao_0)
+                    - 2 * einsum("g, Bsrg, tgu, rgv -> Btsuv", kerh.fg, pd_rho_1, grdh.ao_1, grdh.ao_1)
+                    - 2 * einsum("g, Bsrg, trgu, gv -> Btsuv", kerh.fg, pd_rho_1, grdh.ao_2, grdh.ao_0)
             )
             contrib2 = np.zeros((natm, natm, 3, 3, nao, nao))
             for A in range(natm):
@@ -267,17 +275,17 @@ class HessSCF(DerivTwiceSCF):
             contrib3 = np.zeros((natm, natm, 3, 3, nao, nao))
 
             tmp_contrib = (
-                    + np.einsum("g, tsgu, gv -> tsuv", kerh.fr, grdh.ao_2, grdh.ao_0)
-                    + 2 * np.einsum("g, rg, tsrgu, gv -> tsuv", kerh.fg, grdh.rho_1, grdh.ao_3, grdh.ao_0)
-                    + 2 * np.einsum("g, rg, tsgu, rgv -> tsuv", kerh.fg, grdh.rho_1, grdh.ao_2, grdh.ao_1)
+                    + einsum("g, tsgu, gv -> tsuv", kerh.fr, grdh.ao_2, grdh.ao_0)
+                    + 2 * einsum("g, rg, tsrgu, gv -> tsuv", kerh.fg, grdh.rho_1, grdh.ao_3, grdh.ao_0)
+                    + 2 * einsum("g, rg, tsgu, rgv -> tsuv", kerh.fg, grdh.rho_1, grdh.ao_2, grdh.ao_1)
             )
             for A in range(natm):
                 sA = self.mol_slice(A)
                 contrib3[A, A, :, :, sA] += tmp_contrib[:, :, sA]
             tmp_contrib = (
-                    + np.einsum("g, tgu, sgv -> tsuv", kerh.fr, grdh.ao_1, grdh.ao_1)
-                    + 2 * np.einsum("g, rg, trgu, sgv -> tsuv", kerh.fg, grdh.rho_1, grdh.ao_2, grdh.ao_1)
-                    + 2 * np.einsum("g, rg, tgu, srgv -> tsuv", kerh.fg, grdh.rho_1, grdh.ao_1, grdh.ao_2)
+                    + einsum("g, tgu, sgv -> tsuv", kerh.fr, grdh.ao_1, grdh.ao_1)
+                    + 2 * einsum("g, rg, trgu, sgv -> tsuv", kerh.fg, grdh.rho_1, grdh.ao_2, grdh.ao_1)
+                    + 2 * einsum("g, rg, tgu, srgv -> tsuv", kerh.fg, grdh.rho_1, grdh.ao_1, grdh.ao_2)
             )
             for A in range(natm):
                 for B in range(natm):
@@ -290,8 +298,9 @@ class HessSCF(DerivTwiceSCF):
         dhess = natm * 3
         return F_2_ao_GGA.swapaxes(1, 2).reshape((dhess, dhess, nao, nao))
 
+    @cached_property
     @timing
-    def _get_eri2_ao(self):
+    def eri2_ao(self):
         natm = self.natm
         nao = self.nao
         mol_slice = self.mol_slice
@@ -310,17 +319,17 @@ class HessSCF(DerivTwiceSCF):
                 eri2[:, :, :, sA, :] += int2e_ipip1[:, sA].transpose(0, 3, 4, 1, 2)
                 eri2[:, :, :, :, sA] += int2e_ipip1[:, sA].transpose(0, 3, 4, 2, 1)
             eri2[:, sA, sB, :, :] += int2e_ipvip1[:, sA, sB]
-            eri2[:, sB, sA, :, :] += np.einsum("Tijkl -> Tjikl", int2e_ipvip1[:, sA, sB])
-            eri2[:, :, :, sA, sB] += np.einsum("Tijkl -> Tklij", int2e_ipvip1[:, sA, sB])
-            eri2[:, :, :, sB, sA] += np.einsum("Tijkl -> Tklji", int2e_ipvip1[:, sA, sB])
+            eri2[:, sB, sA, :, :] += einsum("Tijkl -> Tjikl", int2e_ipvip1[:, sA, sB])
+            eri2[:, :, :, sA, sB] += einsum("Tijkl -> Tklij", int2e_ipvip1[:, sA, sB])
+            eri2[:, :, :, sB, sA] += einsum("Tijkl -> Tklji", int2e_ipvip1[:, sA, sB])
             eri2[:, sA, :, sB, :] += int2e_ip1ip2[:, sA, :, sB]
-            eri2[:, sB, :, sA, :] += np.einsum("Tijkl -> Tklij", int2e_ip1ip2[:, sA, :, sB])
-            eri2[:, sA, :, :, sB] += np.einsum("Tijkl -> Tijlk", int2e_ip1ip2[:, sA, :, sB])
-            eri2[:, sB, :, :, sA] += np.einsum("Tijkl -> Tklji", int2e_ip1ip2[:, sA, :, sB])
-            eri2[:, :, sA, sB, :] += np.einsum("Tijkl -> Tjikl", int2e_ip1ip2[:, sA, :, sB])
-            eri2[:, :, sB, sA, :] += np.einsum("Tijkl -> Tlkij", int2e_ip1ip2[:, sA, :, sB])
-            eri2[:, :, sA, :, sB] += np.einsum("Tijkl -> Tjilk", int2e_ip1ip2[:, sA, :, sB])
-            eri2[:, :, sB, :, sA] += np.einsum("Tijkl -> Tlkji", int2e_ip1ip2[:, sA, :, sB])
+            eri2[:, sB, :, sA, :] += einsum("Tijkl -> Tklij", int2e_ip1ip2[:, sA, :, sB])
+            eri2[:, sA, :, :, sB] += einsum("Tijkl -> Tijlk", int2e_ip1ip2[:, sA, :, sB])
+            eri2[:, sB, :, :, sA] += einsum("Tijkl -> Tklji", int2e_ip1ip2[:, sA, :, sB])
+            eri2[:, :, sA, sB, :] += einsum("Tijkl -> Tjikl", int2e_ip1ip2[:, sA, :, sB])
+            eri2[:, :, sB, sA, :] += einsum("Tijkl -> Tlkij", int2e_ip1ip2[:, sA, :, sB])
+            eri2[:, :, sA, :, sB] += einsum("Tijkl -> Tjilk", int2e_ip1ip2[:, sA, :, sB])
+            eri2[:, :, sB, :, sA] += einsum("Tijkl -> Tlkji", int2e_ip1ip2[:, sA, :, sB])
 
             return eri2.reshape((3, 3, nao, nao, nao, nao))
 
@@ -355,37 +364,37 @@ class HessSCF(DerivTwiceSCF):
                 kerh = KernelHelper(grdh, xc)
 
                 tmp_tensor_1 = (
-                        + 2 * np.einsum("g, Tgu, gv -> Tuv", kerh.fr, grdh.ao_2T, grdh.ao_0)
-                        + 4 * np.einsum("g, rg, rTgu, gv -> Tuv", kerh.fg, grdh.rho_1, grdh.ao_3T, grdh.ao_0)
-                        + 4 * np.einsum("g, rg, Tgu, rgv -> Tuv", kerh.fg, grdh.rho_1, grdh.ao_2T, grdh.ao_1)
+                        + 2 * einsum("g, Tgu, gv -> Tuv", kerh.fr, grdh.ao_2T, grdh.ao_0)
+                        + 4 * einsum("g, rg, rTgu, gv -> Tuv", kerh.fg, grdh.rho_1, grdh.ao_3T, grdh.ao_0)
+                        + 4 * einsum("g, rg, Tgu, rgv -> Tuv", kerh.fg, grdh.rho_1, grdh.ao_2T, grdh.ao_1)
                 )
                 XX, XY, XZ, YY, YZ, ZZ = range(6)
                 for A in range(natm):
                     sA = mol_slice(A)
-                    E_SS_GGA_contrib1[A, A] += np.einsum("Tuv, uv -> T", tmp_tensor_1[:, sA], D[sA])[
+                    E_SS_GGA_contrib1[A, A] += einsum("Tuv, uv -> T", tmp_tensor_1[:, sA], D[sA])[
                         [XX, XY, XZ, XY, YY, YZ, XZ, YZ, ZZ]].reshape(3, 3)
 
-                tmp_tensor_2 = 4 * np.einsum("g, rg, trgu, sgv -> tsuv", kerh.fg, grdh.rho_1, grdh.ao_2, grdh.ao_1)
+                tmp_tensor_2 = 4 * einsum("g, rg, trgu, sgv -> tsuv", kerh.fg, grdh.rho_1, grdh.ao_2, grdh.ao_1)
                 tmp_tensor_2 += tmp_tensor_2.transpose((1, 0, 3, 2))
-                tmp_tensor_2 += 2 * np.einsum("g, tgu, sgv -> tsuv", kerh.fr, grdh.ao_1, grdh.ao_1)
+                tmp_tensor_2 += 2 * einsum("g, tgu, sgv -> tsuv", kerh.fr, grdh.ao_1, grdh.ao_1)
                 E_SS_GGA_contrib2_inbatch = np.zeros((natm, natm, 3, 3))
                 for A in range(natm):
                     sA = mol_slice(A)
                     for B in range(A + 1):
                         sB = mol_slice(B)
-                        E_SS_GGA_contrib2_inbatch[A, B] += np.einsum("tsuv, uv -> ts",
+                        E_SS_GGA_contrib2_inbatch[A, B] += einsum("tsuv, uv -> ts",
                                                                      tmp_tensor_2[:, :, sA, sB], D[sA, sB])
                         if A != B:
                             E_SS_GGA_contrib2_inbatch[B, A] += E_SS_GGA_contrib2_inbatch[A, B].T
                 E_SS_GGA_contrib2 += E_SS_GGA_contrib2_inbatch
 
                 E_SS_GGA_contrib3 += (
-                        + np.einsum("g, Atg, Bsg -> ABts", kerh.frr, grdh.A_rho_1, grdh.A_rho_1)
-                        + 2 * np.einsum("g, wg, Atwg, Bsg -> ABts", kerh.frg, grdh.rho_1, grdh.A_rho_2, grdh.A_rho_1)
-                        + 2 * np.einsum("g, Atg, rg, Bsrg -> ABts", kerh.frg, grdh.A_rho_1, grdh.rho_1, grdh.A_rho_2)
-                        + 4 * np.einsum("g, wg, Atwg, rg, Bsrg -> ABts", kerh.fgg, grdh.rho_1, grdh.A_rho_2, grdh.rho_1,
+                        + einsum("g, Atg, Bsg -> ABts", kerh.frr, grdh.A_rho_1, grdh.A_rho_1)
+                        + 2 * einsum("g, wg, Atwg, Bsg -> ABts", kerh.frg, grdh.rho_1, grdh.A_rho_2, grdh.A_rho_1)
+                        + 2 * einsum("g, Atg, rg, Bsrg -> ABts", kerh.frg, grdh.A_rho_1, grdh.rho_1, grdh.A_rho_2)
+                        + 4 * einsum("g, wg, Atwg, rg, Bsrg -> ABts", kerh.fgg, grdh.rho_1, grdh.A_rho_2, grdh.rho_1,
                                         grdh.A_rho_2)
-                        + 2 * np.einsum("g, Atrg, Bsrg -> ABts", kerh.fg, grdh.A_rho_2, grdh.A_rho_2)
+                        + 2 * einsum("g, Atrg, Bsrg -> ABts", kerh.fg, grdh.A_rho_2, grdh.A_rho_2)
                 )
 
         E_SS_GGA_contrib = E_SS_GGA_contrib1 + E_SS_GGA_contrib2 + E_SS_GGA_contrib3
@@ -393,8 +402,8 @@ class HessSCF(DerivTwiceSCF):
 
         # HF Contribution
         E_SS_HF_contrib = (
-                + np.einsum("ABuv, uv -> AB", self.H_2_ao, D)
-                + 0.5 * np.einsum("ABuv, uv -> AB", self.F_2_ao_Jcontrib - 0.5 * cx * self.F_2_ao_Kcontrib, D)
+                + einsum("ABuv, uv -> AB", self.H_2_ao, D)
+                + 0.5 * einsum("ABuv, uv -> AB", self.F_2_ao_Jcontrib - 0.5 * cx * self.F_2_ao_Kcontrib, D)
         )
 
         E_SS = E_SS_GGA_contrib + E_SS_HF_contrib
@@ -419,90 +428,46 @@ class HessNCDFT(DerivTwiceNCDFT, HessSCF):
         return HessSCF._get_E_2_Skeleton(self, grids, xc, cx, xc_type)
 
 
-class Test_HessSCF:
+class TestHessR:
 
-    def test_HF_hess(self):
+    mol = gto.Mole(atom="N 0. 0. 0.; H 1.5 0. 0.2; H 0.1 1.2 0.; H 0. 0. 1.", basis="6-31G", verbose=0).build()
+    grids = dft.Grids(mol)
+    grids.atom_grid = (99, 590)
+    grids.build()
+    grids_cphf = dft.Grids(mol)
+    grids_cphf.atom_grid = (50, 194)
+    grids_cphf.build()
 
-        from pkg_resources import resource_filename
-        from pyxdh.Utilities.test_molecules import Mol_H2O2
-        from pyxdh.Utilities import FormchkInterface
-        from pyxdh.DerivOnce import GradSCF
+    def test_r_rhf_hess(self):
+        scf_eng = scf.RHF(self.mol).run()
+        scf_hess = scf_eng.Hessian().run()
+        gradh = GradSCF({"scf_eng": scf_eng})
+        hessh = HessSCF({"deriv_A": gradh})
+        formchk = FormchkInterface(resource_filename("pyxdh", "Validation/gaussian/NH3-HF-freq.fchk"))
+        # ASSERT: hessian - Gaussian
+        assert np.allclose(hessh.E_2, formchk.hessian(), atol=5e-6, rtol=1e-4)
+        # ASSERT: hessian - PySCF
+        assert np.allclose(hessh.E_2, scf_hess.de.swapaxes(-2, -3).reshape((-1, self.mol.natm * 3)), atol=1e-6, rtol=1e-4)
 
-        H2O2 = Mol_H2O2()
-        config = {
-            "scf_eng": H2O2.hf_eng
-        }
-        grad_helper = GradSCF(config)
-        config = {
-            "deriv_A": grad_helper,
-            "deriv_B": grad_helper,
-        }
+    def test_r_b3lyp_hess(self):
+        scf_eng = dft.RKS(self.mol, xc="B3LYPg"); scf_eng.grids = self.grids; scf_eng.run()
+        scf_hess = scf_eng.Hessian().run()
+        gradh = GradSCF({"scf_eng": scf_eng, "cphf_grids": self.grids_cphf})
+        hessh = HessSCF({"deriv_A": gradh})
+        formchk = FormchkInterface(resource_filename("pyxdh", "Validation/gaussian/NH3-B3LYP-freq.fchk"))
+        # ASSERT: hessian - Gaussian
+        assert np.allclose(hessh.E_2, formchk.hessian(), atol=1e-5, rtol=2e-4)
+        # ASSERT: hessian - PySCF
+        assert np.allclose(hessh.E_2, scf_hess.de.swapaxes(-2, -3).reshape((-1, self.mol.natm * 3)), atol=1e-6, rtol=1e-4)
 
-        helper = HessSCF(config)
-        E_2 = helper.E_2
+    def test_r_hfb3lyp_hess(self):
+        scf_eng = scf.RHF(self.mol).run()
+        nc_eng = dft.RKS(self.mol, xc="B3LYPg")
+        nc_eng.grids = self.grids
+        gradh = GradNCDFT({"scf_eng": scf_eng, "nc_eng": nc_eng})
+        hessh = HessNCDFT({"deriv_A": gradh})
+        with open(resource_filename("pyxdh", "Validation/numerical_deriv/NH3-HFB3LYP-hess.dat"), "rb") as f:
+            ref_grad = pickle.load(f)
+        # ASSERT: hessian - numerical
+        assert np.allclose(hessh.E_2, ref_grad.reshape((-1, self.mol.natm * 3)), atol=1e-6, rtol=1e-4)
 
-        formchk = FormchkInterface(resource_filename("pyxdh", "Validation/gaussian/H2O2-HF-freq.fchk"))
-
-        assert(np.allclose(
-            E_2, formchk.hessian(),
-            atol=1e-6, rtol=1e-4
-        ))
-
-    def test_B3LYP_hess(self):
-
-        from pkg_resources import resource_filename
-        from pyxdh.Utilities.test_molecules import Mol_H2O2
-        from pyxdh.Utilities import FormchkInterface
-        from pyxdh.DerivOnce import GradSCF
-
-        H2O2 = Mol_H2O2()
-        grids_cphf = H2O2.gen_grids(50, 194)
-        config = {
-            "scf_eng": H2O2.gga_eng
-        }
-        grad_helper = GradSCF(config)
-        config = {
-            "deriv_A": grad_helper,
-            "deriv_B": grad_helper,
-            "cphf_grids": grids_cphf
-        }
-
-        helper = HessSCF(config)
-        E_2 = helper.E_2
-
-        formchk = FormchkInterface(resource_filename("pyxdh", "Validation/gaussian/H2O2-B3LYP-freq.fchk"))
-
-        assert(np.allclose(
-            E_2, formchk.hessian(),
-            atol=1e-5, rtol=1e-4
-        ))
-
-    def test_HF_B3LYP_hess(self):
-
-        from pkg_resources import resource_filename
-        from pyxdh.Utilities.test_molecules import Mol_H2O2
-        from pyxdh.DerivOnce import GradNCDFT
-        import pickle
-
-        H2O2 = Mol_H2O2()
-        config = {
-            "scf_eng": H2O2.hf_eng,
-            "nc_eng": H2O2.gga_eng,
-            "rotation": True,
-        }
-        grad_helper = GradNCDFT(config)
-
-        config = {
-            "deriv_A": grad_helper,
-            "deriv_B": grad_helper,
-        }
-        helper = HessNCDFT(config)
-        E_2 = helper.E_2
-
-        with open(resource_filename("pyxdh", "Validation/numerical_deriv/ncdft_hessian_hf_b3lyp.dat"), "rb") as f:
-            ref_hess = pickle.load(f)["hess"]
-
-        assert (np.allclose(
-            E_2, ref_hess,
-            atol=1e-6, rtol=1e-4
-        ))

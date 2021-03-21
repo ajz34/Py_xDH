@@ -1,8 +1,8 @@
 # basic utilities
 import numpy as np
 from opt_einsum import contract as einsum
-from abc import ABC, abstractmethod
 # python utilities
+from abc import ABC, abstractmethod
 import warnings
 import copy
 # pyscf utilities

@@ -1,15 +1,14 @@
+# basic utilities
 import numpy as np
-from pyscf.scf import cphf
+from opt_einsum import contract as einsum
+# python utilities
 from abc import ABC, abstractmethod
-from functools import partial
 import warnings
-import os
-
+# pyscf utilities
+from pyscf.scf import cphf
+# pyxdh utilities
 from pyxdh.DerivOnce import DerivOnceSCF, DerivOnceNCDFT
-
-MAXMEM = float(os.getenv("MAXMEM", 2))
-np.einsum = partial(np.einsum, optimize=["greedy", 1024 ** 3 * MAXMEM / 8])
-np.set_printoptions(8, linewidth=1000, suppress=True)
+from pyxdh.Utilities import cached_property
 
 
 # Cubic Inheritance: A1
@@ -20,13 +19,14 @@ class DerivTwiceSCF(ABC):
         # From configuration file, with default values
         self.config = config  # type: dict
         self.A = config["deriv_A"]  # type: DerivOnceSCF
-        self.B = config["deriv_B"]  # type: DerivOnceSCF
+        if self.A_is_B:
+            self.B = self.A  # type: DerivOnceSCF
+        else:
+            self.B = config["deriv_B"]  # type: DerivOnceSCF
         self.rotation = config.get("rotation", True)
         self.grdit_memory = 2000
         if "grdit_memory" in config:
             self.grdit_memory = config["grdit_memory"]
-
-        self._same_deriv = True  # This is only an indication to use symmetry to eliminate computation cost
 
         # Make assertion on coefficient idential of deriv_A and deriv_B instances
         # for some molecules which have degenerate orbital energies,
@@ -42,33 +42,16 @@ class DerivTwiceSCF(ABC):
         self.grids = self.A.grids
         self.xc_type = self.A.xc_type
 
-        # Matrices
-        self._H_2_ao = NotImplemented
-        self._H_2_mo = NotImplemented
-        self._S_2_ao = NotImplemented
-        self._S_2_mo = NotImplemented
-        self._F_2_ao = NotImplemented
-        self._F_2_ao_Jcontrib = NotImplemented
-        self._F_2_ao_Kcontrib = NotImplemented
-        self._F_2_ao_GGAcontrib = NotImplemented
-        self._F_2_mo = NotImplemented
-        self._Xi_2 = NotImplemented
-        self._B_2 = NotImplemented
-        self._U_2 = NotImplemented
-        self._eri2_ao = NotImplemented
-        self._eri2_mo = NotImplemented
+    def mol_slice(self, atm_id):
+        _, _, p0, p1 = self.mol.aoslice_by_atom()[atm_id]
+        return slice(p0, p1)
 
-        # E_2
-        self._E_2_Skeleton = NotImplemented
-        self._E_2_U = NotImplemented
-        self._E_2 = NotImplemented
+    # region Basic Properties
 
-        # Intermediate variables
-        self._pdB_F_A_mo = NotImplemented
-        self._pdB_S_A_mo = NotImplemented
-        self._pdB_B_A = NotImplemented
-
-    # region Properties
+    @property
+    @abstractmethod
+    def A_is_B(self) -> bool:
+        pass
 
     @property
     def mol(self):
@@ -138,187 +121,72 @@ class DerivTwiceSCF(ABC):
     def D(self):
         return self.A.D
 
-    @property
-    def H_2_ao(self):
-        if self._H_2_ao is NotImplemented:
-            self._H_2_ao = self._get_H_2_ao()
-        return self._H_2_ao
+    # endregion Basic Properties
 
-    @property
-    def H_2_mo(self):
-        if self._H_2_mo is NotImplemented:
-            self._H_2_mo = self._get_H_2_mo()
-        return self._H_2_mo
+    # region Properties
 
-    @property
-    def S_2_ao(self):
-        if self._S_2_ao is NotImplemented:
-            self._S_2_ao = self._get_S_2_ao()
-        return self._S_2_ao
-
-    @property
-    def S_2_mo(self):
-        if self._S_2_mo is NotImplemented:
-            self._S_2_mo = self._get_S_2_mo()
-        return self._S_2_mo
-
-    @property
-    def F_2_ao_Jcontrib(self):
-        if self._F_2_ao_Jcontrib is NotImplemented:
-            self._F_2_ao_Jcontrib, self._F_2_ao_Kcontrib = self._get_F_2_ao_JKcontrib()
-        return self._F_2_ao_Jcontrib
-
-    @property
-    def F_2_ao_Kcontrib(self):
-        if self._F_2_ao_Kcontrib is NotImplemented:
-            self._F_2_ao_Jcontrib, self._F_2_ao_Kcontrib = self._get_F_2_ao_JKcontrib()
-        return self._F_2_ao_Kcontrib
-
-    @property
-    def F_2_ao_GGAcontrib(self):
-        if self._F_2_ao_GGAcontrib is NotImplemented:
-            self._F_2_ao_GGAcontrib = self._get_F_2_ao_GGAcontrib()
-        return self._F_2_ao_GGAcontrib
-
-    @property
-    def F_2_ao(self):
-        if self._F_2_ao is NotImplemented:
-            self._F_2_ao = self._get_F_2_ao()
-        return self._F_2_ao
-
-    @property
-    def F_2_mo(self):
-        if self._F_2_mo is NotImplemented:
-            self._F_2_mo = self._get_F_2_mo()
-        return self._F_2_mo
-
-    @property
-    def Xi_2(self):
-        if self._Xi_2 is NotImplemented:
-            self._Xi_2 = self._get_Xi_2()
-        return self._Xi_2
-
-    @property
-    def B_2(self):
-        if self._B_2 is NotImplemented:
-            self._B_2 = self._get_B_2()
-        return self._B_2
-
-    @property
-    def U_2(self):
-        if self._U_2 is NotImplemented:
-            self._U_2 = self._get_U_2()
-        return self._U_2
-
-    @property
-    def eri2_ao(self):
-        if self._eri2_ao is NotImplemented:
-            self._eri2_ao = self._get_eri2_ao()
-        return self._eri2_ao
-
-    @property
-    def eri2_mo(self):
-        if self._eri2_mo is NotImplemented:
-            self._eri2_mo = self._get_eri2_mo()
-        return self._eri2_mo
-
-    @property
-    def E_2_Skeleton(self):
-        if self._E_2_Skeleton is NotImplemented:
-            self._E_2_Skeleton = self._get_E_2_Skeleton()
-        return self._E_2_Skeleton
-
-    @property
-    def E_2_U(self):
-        if self._E_2_U is NotImplemented:
-            self._E_2_U = self._get_E_2_U()
-        return self._E_2_U
-
-    @property
-    def E_2(self):
-        if self._E_2 is NotImplemented:
-            self._E_2 = self._get_E_2()
-        return self._E_2
-
-    @property
-    def pdB_F_A_mo(self):
-        if self._pdB_F_A_mo is NotImplemented:
-            self._pdB_F_A_mo = self._get_pdB_F_A_mo()
-        return self._pdB_F_A_mo
-
-    @property
-    def pdB_S_A_mo(self):
-        if self._pdB_S_A_mo is NotImplemented:
-            self._pdB_S_A_mo = self._get_pdB_S_A_mo()
-        return self._pdB_S_A_mo
-
-    @property
-    def pdB_B_A(self):
-        if self._pdB_B_A is NotImplemented:
-            self._pdB_B_A = self._get_pdB_B_A()
-        return self._pdB_B_A
-
-    @property
-    def RHS_B(self):
-        if self._RHS_B is NotImplemented:
-            self._RHS_B = self._get_RHS_B()
-        return self._RHS_B
-
-    # endregion
-
-    # region Getters
-
-    def mol_slice(self, atm_id):
-        _, _, p0, p1 = self.mol.aoslice_by_atom()[atm_id]
-        return slice(p0, p1)
-
+    @cached_property
     @abstractmethod
-    def _get_H_2_ao(self):
+    def H_2_ao(self):
         pass
 
-    def _get_H_2_mo(self):
+    @cached_property
+    def H_2_mo(self):
         return self.C.T @ self.H_2_ao @ self.C
 
+    @cached_property
     @abstractmethod
-    def _get_S_2_ao(self):
+    def S_2_ao(self):
         pass
 
-    def _get_S_2_mo(self):
-        if not isinstance(self.S_2_ao, np.ndarray):
-            return 0
+    @cached_property
+    def S_2_mo(self):
         return self.C.T @ self.S_2_ao @ self.C
 
+    @cached_property
     @abstractmethod
-    def _get_F_2_ao_JKcontrib(self):
+    def F_2_ao_JKcontrib(self):
         pass
 
+    @cached_property
+    def F_2_ao_Jcontrib(self):
+        return self.F_2_ao_JKcontrib[0]
+
+    @cached_property
+    def F_2_ao_Kcontrib(self):
+        return self.F_2_ao_JKcontrib[1]
+
+    @cached_property
     @abstractmethod
-    def _get_F_2_ao_GGAcontrib(self):
+    def F_2_ao_GGAcontrib(self):
         pass
 
-    def _get_F_2_ao(self):
+    @cached_property
+    def F_2_ao(self):
         return self.H_2_ao + self.F_2_ao_Jcontrib - 0.5 * self.cx * self.F_2_ao_Kcontrib + self.F_2_ao_GGAcontrib
 
-    def _get_F_2_mo(self):
+    @cached_property
+    def F_2_mo(self):
         return self.C.T @ self.F_2_ao @ self.C
 
-    def _get_Xi_2(self):
+    @cached_property
+    def Xi_2(self):
         A = self.A
         B = self.B
-
         Xi_2 = (
             self.S_2_mo
-            + np.einsum("Apm, Bqm -> ABpq", A.U_1, B.U_1)
-            + np.einsum("Bpm, Aqm -> ABpq", B.U_1, A.U_1)
-            # - np.einsum("Apm, Bqm -> ABpq", A.S_1_mo, B.S_1_mo)
-            # - np.einsum("Bpm, Aqm -> ABpq", B.S_1_mo, A.S_1_mo)
+            + einsum("Apm, Bqm -> ABpq", A.U_1, B.U_1)
+            + einsum("Bpm, Aqm -> ABpq", B.U_1, A.U_1)
+            # - einsum("Apm, Bqm -> ABpq", A.S_1_mo, B.S_1_mo)
+            # - einsum("Bpm, Aqm -> ABpq", B.S_1_mo, A.S_1_mo)
         )
         if isinstance(A.S_1_mo, np.ndarray) and isinstance(B.S_1_mo, np.ndarray):
-            Xi_2 -= np.einsum("Apm, Bqm -> ABpq", A.S_1_mo, B.S_1_mo)
-            Xi_2 -= np.einsum("Bpm, Aqm -> ABpq", B.S_1_mo, A.S_1_mo)
+            Xi_2 -= einsum("Apm, Bqm -> ABpq", A.S_1_mo, B.S_1_mo)
+            Xi_2 -= einsum("Bpm, Aqm -> ABpq", B.S_1_mo, A.S_1_mo)
         return Xi_2
 
-    def _get_B_2(self):
+    @cached_property
+    def B_2(self):
         A = self.A
         B = self.B
         Ax0_Core = A.Ax0_Core  # Ax0_Core should be the same for A and B derivative
@@ -329,34 +197,35 @@ class DerivTwiceSCF(ABC):
         B_2 = (
             # line 1
             + self.F_2_mo
-            - np.einsum("ABai, i -> ABai", self.Xi_2, e)
+            - einsum("ABai, i -> ABai", self.Xi_2, e)
             - 0.5 * Ax0_Core(sa, sa, so, so)(self.Xi_2[:, :, so, so])
             # line 2
-            + np.einsum("Apa, Bpi -> ABai", A.U_1, B.F_1_mo)
-            + np.einsum("Api, Bpa -> ABai", A.U_1, B.F_1_mo)
-            + np.einsum("Bpa, Api -> ABai", B.U_1, A.F_1_mo)
-            + np.einsum("Bpi, Apa -> ABai", B.U_1, A.F_1_mo)
+            + einsum("Apa, Bpi -> ABai", A.U_1, B.F_1_mo)
+            + einsum("Api, Bpa -> ABai", A.U_1, B.F_1_mo)
+            + einsum("Bpa, Api -> ABai", B.U_1, A.F_1_mo)
+            + einsum("Bpi, Apa -> ABai", B.U_1, A.F_1_mo)
             # line 3
-            + np.einsum("Apa, Bpi, p -> ABai", A.U_1, B.U_1, e)
-            + np.einsum("Bpa, Api, p -> ABai", B.U_1, A.U_1, e)
+            + einsum("Apa, Bpi, p -> ABai", A.U_1, B.U_1, e)
+            + einsum("Bpa, Api, p -> ABai", B.U_1, A.U_1, e)
             # line 4
             + 0.5 * Ax0_Core(sa, sa, sa, sa)(
-                + np.einsum("Akm, Blm -> ABkl", A.U_1[:, :, so], B.U_1[:, :, so])
-                + np.einsum("Bkm, Alm -> ABkl", B.U_1[:, :, so], A.U_1[:, :, so])
+                + einsum("Akm, Blm -> ABkl", A.U_1[:, :, so], B.U_1[:, :, so])
+                + einsum("Bkm, Alm -> ABkl", B.U_1[:, :, so], A.U_1[:, :, so])
             )
             # line 5
-            + np.einsum("Apa, Bpi -> ABai", A.U_1, Ax0_Core(sa, sa, sa, so)(B.U_1[:, :, so]))
-            + np.einsum("Bpa, Api -> ABai", B.U_1, Ax0_Core(sa, sa, sa, so)(A.U_1[:, :, so]))
+            + einsum("Apa, Bpi -> ABai", A.U_1, Ax0_Core(sa, sa, sa, so)(B.U_1[:, :, so]))
+            + einsum("Bpa, Api -> ABai", B.U_1, Ax0_Core(sa, sa, sa, so)(A.U_1[:, :, so]))
             # line 6
-            + np.einsum("Api, Bpa -> ABai", A.U_1, Ax0_Core(sa, sa, sa, so)(B.U_1[:, :, so]))
-            + np.einsum("Bpi, Apa -> ABai", B.U_1, Ax0_Core(sa, sa, sa, so)(A.U_1[:, :, so]))
+            + einsum("Api, Bpa -> ABai", A.U_1, Ax0_Core(sa, sa, sa, so)(B.U_1[:, :, so]))
+            + einsum("Bpi, Apa -> ABai", B.U_1, Ax0_Core(sa, sa, sa, so)(A.U_1[:, :, so]))
             # line 7
             + A.Ax1_Core(sa, sa, sa, so)(B.U_1[:, :, so])
             + B.Ax1_Core(sa, sa, sa, so)(A.U_1[:, :, so]).swapaxes(0, 1)
         )
         return B_2
 
-    def _get_U_2(self):
+    @cached_property
+    def U_2(self):
         B_2 = self.B_2
         Xi_2 = self.Xi_2
         Ax0_Core = self.A.Ax0_Core
@@ -406,51 +275,73 @@ class DerivTwiceSCF(ABC):
         self._U_2 = U_2_pq
         return self._U_2
 
+    @cached_property
     @abstractmethod
-    def _get_eri2_ao(self):
+    def eri2_ao(self):
         pass
 
-    def _get_eri2_mo(self):
-        return np.einsum("ABuvkl, up, vq, kr, ls -> ABpqrs", self.eri2_ao, self.C, self.C, self.C, self.C)
+    @cached_property
+    def eri2_mo(self):
+        return einsum("ABuvkl, up, vq, kr, ls -> ABpqrs", self.eri2_ao, self.C, self.C, self.C, self.C)
 
-    def _get_pdB_F_A_mo(self):
+    @cached_property
+    def E_2_Skeleton(self):
+        return self._get_E_2_Skeleton()
+
+    @cached_property
+    def E_2_U(self):
+        return self._get_E_2_U()
+
+    @cached_property
+    def E_2(self):
+        return self._get_E_2()
+
+    @cached_property
+    def pdB_F_A_mo(self):
         A, B = self.A, self.B
         so, sa = self.so, self.sa
         pdB_F_A_mo = (
             + self.F_2_mo
-            + np.einsum("Apm, Bmq -> ABpq", A.F_1_mo, B.U_1)
-            + np.einsum("Amq, Bmp -> ABpq", A.F_1_mo, B.U_1)
+            + einsum("Apm, Bmq -> ABpq", A.F_1_mo, B.U_1)
+            + einsum("Amq, Bmp -> ABpq", A.F_1_mo, B.U_1)
             + A.Ax1_Core(sa, sa, sa, so)(B.U_1[:, :, so])
         )
         return pdB_F_A_mo
 
-    def _get_pdB_S_A_mo(self):
+    @cached_property
+    def pdB_S_A_mo(self):
         A, B = self.A, self.B
         pdB_S_A_mo = (
             + self.S_2_mo
-            + np.einsum("Apm, Bmq -> ABpq", A.S_1_mo, B.U_1)
-            + np.einsum("Amq, Bmp -> ABpq", A.S_1_mo, B.U_1)
+            + einsum("Apm, Bmq -> ABpq", A.S_1_mo, B.U_1)
+            + einsum("Amq, Bmp -> ABpq", A.S_1_mo, B.U_1)
         )
         return pdB_S_A_mo
 
-    def _get_pdB_B_A(self):
+    @cached_property
+    def pdB_B_A(self):
         A, B = self.A, self.B
         so, sa = self.so, self.sa
         Ax0_Core = A.Ax0_Core
         pdB_B_A = (
             + self.pdB_F_A_mo
             - self.pdB_S_A_mo * self.e
-            - np.einsum("Apm, Bqm -> ABpq", A.S_1_mo, B.pdA_F_0_mo)
+            - einsum("Apm, Bqm -> ABpq", A.S_1_mo, B.pdA_F_0_mo)
             - 0.5 * B.Ax1_Core(sa, sa, so, so)(A.S_1_mo[:, so, so]).swapaxes(0, 1)
             - 0.5 * Ax0_Core(sa, sa, so, so)(self.pdB_S_A_mo[:, :, so, so])
-            - Ax0_Core(sa, sa, sa, so)(np.einsum("Bml, Akl -> ABmk", B.U_1[:, :, so], A.S_1_mo[:, so, so]))
-            - 0.5 * np.einsum("Bmp, Amq -> ABpq", B.U_1, Ax0_Core(sa, sa, so, so)(A.S_1_mo[:, so, so]))
-            - 0.5 * np.einsum("Bmq, Amp -> ABpq", B.U_1, Ax0_Core(sa, sa, so, so)(A.S_1_mo[:, so, so]))
+            - Ax0_Core(sa, sa, sa, so)(einsum("Bml, Akl -> ABmk", B.U_1[:, :, so], A.S_1_mo[:, so, so]))
+            - 0.5 * einsum("Bmp, Amq -> ABpq", B.U_1, Ax0_Core(sa, sa, so, so)(A.S_1_mo[:, so, so]))
+            - 0.5 * einsum("Bmq, Amp -> ABpq", B.U_1, Ax0_Core(sa, sa, so, so)(A.S_1_mo[:, so, so]))
         )
         return pdB_B_A
 
-    def _get_RHS_B(self):
+    @cached_property
+    def RHS_B(self):
         return "In SCF there should be no need to use RHS_B!"
+
+    # endregion
+
+    # region Getters
 
     @abstractmethod
     def _get_E_2_Skeleton(self):
@@ -463,11 +354,11 @@ class DerivTwiceSCF(ABC):
         e, eo = self.e, self.eo
         Ax0_Core = self.A.Ax0_Core
 
-        E_2_U = - 2 * np.einsum("ABi, i -> AB", Xi_2.diagonal(0, -1, -2)[:, :, so], eo)
-        E_2_U += 4 * np.einsum("Bpi, Api -> AB", B.U_1[:, :, so], A.F_1_mo[:, :, so])
-        E_2_U += 4 * np.einsum("Api, Bpi -> AB", A.U_1[:, :, so], B.F_1_mo[:, :, so])
-        E_2_U += 4 * np.einsum("Api, Bpi, p -> AB", A.U_1[:, :, so], B.U_1[:, :, so], e)
-        E_2_U += 4 * np.einsum("Api, Bpi -> AB", A.U_1[:, :, so], Ax0_Core(sa, so, sa, so)(B.U_1[:, :, so]))
+        E_2_U = - 2 * einsum("ABi, i -> AB", Xi_2.diagonal(0, -1, -2)[:, :, so], eo)
+        E_2_U += 4 * einsum("Bpi, Api -> AB", B.U_1[:, :, so], A.F_1_mo[:, :, so])
+        E_2_U += 4 * einsum("Api, Bpi -> AB", A.U_1[:, :, so], B.F_1_mo[:, :, so])
+        E_2_U += 4 * einsum("Api, Bpi, p -> AB", A.U_1[:, :, so], B.U_1[:, :, so], e)
+        E_2_U += 4 * einsum("Api, Bpi -> AB", A.U_1[:, :, so], Ax0_Core(sa, so, sa, so)(B.U_1[:, :, so]))
 
         return E_2_U
 
@@ -483,44 +374,34 @@ class DerivTwiceNCDFT(DerivTwiceSCF, ABC):
     def __init__(self, config):
         super(DerivTwiceNCDFT, self).__init__(config)
         # Only make IDE know these two instances are DerivOnceNCDFT classes
-        self.A = config["deriv_A"]  # type: DerivOnceNCDFT
-        self.B = config["deriv_B"]  # type: DerivOnceNCDFT
-        assert(isinstance(self.A, DerivOnceNCDFT))
-        assert(isinstance(self.B, DerivOnceNCDFT))
+        self.A: DerivOnceNCDFT = self.A
+        self.B: DerivOnceNCDFT = self.B
 
-        # For simplicity, these values are not set to be properties
-        # However, these values should not be changed or redefined
-        self._Z = NotImplemented
-
-        # For non-consistent calculation
-        self._RHS_B = NotImplemented
-
-    @property
+    @cached_property
     def Z(self):
-        if self._Z is NotImplemented:
-            self._Z = self.A.Z
-        return self._Z
+        return self.A.Z
 
-    def _get_RHS_B(self):
+    @cached_property
+    def RHS_B(self):
         B = self.B
         U_1, Z = B.U_1, B.Z
         so, sv, sa = self.so, self.sv, self.sa
         RHS_B = B.pdA_nc_F_0_mo[:, sv, so].copy()
         RHS_B += B.Ax1_Core(sv, so, sv, so)(Z)
-        RHS_B += np.einsum("Apa, pi -> Aai", U_1[:, :, sv], B.Ax0_Core(sa, so, sv, so)(Z))
-        RHS_B += np.einsum("Api, pa -> Aai", U_1[:, :, so], B.Ax0_Core(sa, sv, sv, so)(Z))
-        RHS_B += B.Ax0_Core(sv, so, sa, so)(np.einsum("Apa, ai -> Api", U_1[:, :, sv], Z))
-        RHS_B += B.Ax0_Core(sv, so, sa, sv)(np.einsum("Api, ai -> Apa", U_1[:, :, so], Z))
-        RHS_B += np.einsum("ci, Aca -> Aai", Z, B.pdA_F_0_mo[:, sv, sv])
-        RHS_B -= np.einsum("ak, Aki -> Aai", Z, B.pdA_F_0_mo[:, so, so])
+        RHS_B += einsum("Apa, pi -> Aai", U_1[:, :, sv], B.Ax0_Core(sa, so, sv, so)(Z))
+        RHS_B += einsum("Api, pa -> Aai", U_1[:, :, so], B.Ax0_Core(sa, sv, sv, so)(Z))
+        RHS_B += B.Ax0_Core(sv, so, sa, so)(einsum("Apa, ai -> Api", U_1[:, :, sv], Z))
+        RHS_B += B.Ax0_Core(sv, so, sa, sv)(einsum("Api, ai -> Apa", U_1[:, :, so], Z))
+        RHS_B += einsum("ci, Aca -> Aai", Z, B.pdA_F_0_mo[:, sv, sv])
+        RHS_B -= einsum("ak, Aki -> Aai", Z, B.pdA_F_0_mo[:, so, so])
         return RHS_B
 
     def _get_E_2_U(self):
         A, B = self.A, self.B
         so, sv = self.so, self.sv
-        E_2_U = 4 * np.einsum("Bpi, Api -> AB", B.U_1[:, :, so], A.nc_deriv.F_1_mo[:, :, so])
-        E_2_U += 4 * np.einsum("Aai, Bai -> AB", A.U_1[:, sv, so], self.RHS_B)
-        E_2_U += 4 * np.einsum("ABai, ai -> AB", self.pdB_B_A[:, :, sv, so], self.Z)
-        E_2_U -= 2 * np.einsum("Aki, Bki -> AB", A.S_1_mo[:, so, so], B.pdA_nc_F_0_mo[:, so, so])
-        E_2_U -= 2 * np.einsum("ABki, ki -> AB", self.pdB_S_A_mo[:, :, so, so], A.nc_deriv.F_0_mo[so, so])
+        E_2_U = 4 * einsum("Bpi, Api -> AB", B.U_1[:, :, so], A.nc_deriv.F_1_mo[:, :, so])
+        E_2_U += 4 * einsum("Aai, Bai -> AB", A.U_1[:, sv, so], self.RHS_B)
+        E_2_U += 4 * einsum("ABai, ai -> AB", self.pdB_B_A[:, :, sv, so], self.Z)
+        E_2_U -= 2 * einsum("Aki, Bki -> AB", A.S_1_mo[:, so, so], B.pdA_nc_F_0_mo[:, so, so])
+        E_2_U -= 2 * einsum("ABki, ki -> AB", self.pdB_S_A_mo[:, :, so, so], A.nc_deriv.F_0_mo[so, so])
         return E_2_U
