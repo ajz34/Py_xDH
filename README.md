@@ -1,5 +1,9 @@
 # Python xDH Project
 
+**This project is under going code refactorization. Document code is currently not updated. Unrestricted and RI implementation is on-going.**
+
+**程序正在进行重构。其所对应的文档目前还没有更新。开窍层与 RI 实现目前还有待完善。**
+
 |         | Badges   |
 | :------ | :------- |
 | **Builds** | [![Build Status](https://travis-ci.com/ajz34/Py_xDH.svg?branch=master)](https://travis-ci.com/ajz34/Py_xDH) [![Documentation Status](https://readthedocs.org/projects/py-xdh/badge/?version=latest)](https://py-xdh.readthedocs.io/zh_CN/latest/?badge=latest) ![GitHub](https://img.shields.io/github/license/ajz34/py_xdh) |
@@ -29,7 +33,7 @@ basis processing, DFT grid engine and CP-HF algorithm is based on python quantum
 > 
 > `pyxdh` 没有经过严格的测评，目前也没有任何同行评议。
 > 在这份警告撤销之前，请不要在正式发表的论文中使用此处的做法作为 XYG3 及其导数性质的计算方法。
-> 对于其它方法，譬如 MP2、双杂化泛函等性质，也请在生产环境或正式发表论文中使用成熟的量化软件。
+> 对于其它方法，譬如 MP2、双杂化泛函等性质，也请在生产环境或正式发表的论文中使用成熟的量化软件。
 > 
 > 这个库仅仅是对二阶梯度初步实现的技术讨论。程序效率会比较糟糕且并不是这个库关心的核心问题。
 

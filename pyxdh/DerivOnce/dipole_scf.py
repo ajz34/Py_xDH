@@ -1,14 +1,14 @@
+# basic utilities
 import numpy as np
-from functools import partial
-import os
-
+from opt_einsum import contract as einsum
+# pyxdh utilities
 from pyxdh.DerivOnce.deriv_once_r import DerivOnceSCF, DerivOnceNCDFT
-from pyxdh.Utilities import GridIterator, KernelHelper
-
-
-MAXMEM = float(os.getenv("MAXMEM", 2))
-np.einsum = partial(np.einsum, optimize=["greedy", 1024 ** 3 * MAXMEM / 8])
-np.set_printoptions(8, linewidth=1000, suppress=True)
+from pyxdh.Utilities import GridIterator, KernelHelper, cached_property
+# pytest
+from pyscf import gto, scf, dft
+from pkg_resources import resource_filename
+from pyxdh.Utilities import FormchkInterface
+import pickle
 
 
 class DipoleSCF(DerivOnceSCF):
@@ -63,37 +63,37 @@ class DipoleSCF(DerivOnceSCF):
                 rho_X_1 = np.array([grdh.get_rho_1(dmX) for dmX in dm])
 
                 # U contribution to \partial_{A_t} A
-                rho_U_0 = np.einsum("Auv, gu, gv -> Ag", dmU, grdh.ao_0, grdh.ao_0)
-                rho_U_1 = 2 * np.einsum("Auv, rgu, gv -> Arg", dmU, grdh.ao_1, grdh.ao_0)
-                gamma_U_0 = 2 * np.einsum("rg, Arg -> Ag", grdh.rho_1, rho_U_1)
+                rho_U_0 = einsum("Auv, gu, gv -> Ag", dmU, grdh.ao_0, grdh.ao_0)
+                rho_U_1 = 2 * einsum("Auv, rgu, gv -> Arg", dmU, grdh.ao_1, grdh.ao_0)
+                gamma_U_0 = 2 * einsum("rg, Arg -> Ag", grdh.rho_1, rho_U_1)
                 pdU_frr = kerh.frrr * rho_U_0 + kerh.frrg * gamma_U_0
                 pdU_frg = kerh.frrg * rho_U_0 + kerh.frgg * gamma_U_0
                 pdU_fgg = kerh.frgg * rho_U_0 + kerh.fggg * gamma_U_0
                 pdU_fg = kerh.frg * rho_U_0 + kerh.fgg * gamma_U_0
                 pdU_rho_1 = rho_U_1
                 pdU_tmp_M_0 = (
-                        + np.einsum("Ag, Bg -> ABg", pdU_frr, rho_X_0)
-                        + 2 * np.einsum("Ag, wg, Bwg -> ABg", pdU_frg, grdh.rho_1, rho_X_1)
-                        + 2 * np.einsum("g, Awg, Bwg -> ABg", kerh.frg, pdU_rho_1, rho_X_1)
+                        + einsum("Ag, Bg -> ABg", pdU_frr, rho_X_0)
+                        + 2 * einsum("Ag, wg, Bwg -> ABg", pdU_frg, grdh.rho_1, rho_X_1)
+                        + 2 * einsum("g, Awg, Bwg -> ABg", kerh.frg, pdU_rho_1, rho_X_1)
                 )
                 pdU_tmp_M_1 = (
-                        + 4 * np.einsum("Ag, Bg, rg -> ABrg", pdU_frg, rho_X_0, grdh.rho_1)
-                        + 4 * np.einsum("g, Bg, Arg -> ABrg", kerh.frg, rho_X_0, pdU_rho_1)
-                        + 8 * np.einsum("Ag, wg, Bwg, rg -> ABrg", pdU_fgg, grdh.rho_1, rho_X_1, grdh.rho_1)
-                        + 8 * np.einsum("g, Awg, Bwg, rg -> ABrg", kerh.fgg, pdU_rho_1, rho_X_1, grdh.rho_1)
-                        + 8 * np.einsum("g, wg, Bwg, Arg -> ABrg", kerh.fgg, grdh.rho_1, rho_X_1, pdU_rho_1)
-                        + 4 * np.einsum("Ag, Brg -> ABrg", pdU_fg, rho_X_1)
+                        + 4 * einsum("Ag, Bg, rg -> ABrg", pdU_frg, rho_X_0, grdh.rho_1)
+                        + 4 * einsum("g, Bg, Arg -> ABrg", kerh.frg, rho_X_0, pdU_rho_1)
+                        + 8 * einsum("Ag, wg, Bwg, rg -> ABrg", pdU_fgg, grdh.rho_1, rho_X_1, grdh.rho_1)
+                        + 8 * einsum("g, Awg, Bwg, rg -> ABrg", kerh.fgg, pdU_rho_1, rho_X_1, grdh.rho_1)
+                        + 8 * einsum("g, wg, Bwg, Arg -> ABrg", kerh.fgg, grdh.rho_1, rho_X_1, pdU_rho_1)
+                        + 4 * einsum("Ag, Brg -> ABrg", pdU_fg, rho_X_1)
                 )
 
                 contrib3 = np.zeros((num_components, dm.shape[0], nao, nao))
-                contrib3 += np.einsum("ABg, gu, gv -> ABuv", pdU_tmp_M_0, grdh.ao_0, grdh.ao_0)
-                contrib3 += np.einsum("ABrg, rgu, gv -> ABuv", pdU_tmp_M_1, grdh.ao_1, grdh.ao_0)
+                contrib3 += einsum("ABg, gu, gv -> ABuv", pdU_tmp_M_0, grdh.ao_0, grdh.ao_0)
+                contrib3 += einsum("ABrg, rgu, gv -> ABuv", pdU_tmp_M_1, grdh.ao_1, grdh.ao_0)
                 contrib3 += contrib3.swapaxes(-1, -2)
 
                 ax_ao += contrib3
 
             if not sij_none:
-                ax_ao = np.einsum("ABuv, ui, vj -> ABij", ax_ao, C[:, si], C[:, sj])
+                ax_ao = einsum("ABuv, ui, vj -> ABij", ax_ao, C[:, si], C[:, sj])
             if reshape:
                 shape1.pop()
                 shape1.pop()
@@ -106,16 +106,20 @@ class DipoleSCF(DerivOnceSCF):
 
         return fx
 
-    def _get_H_1_ao(self):
+    @cached_property
+    def H_1_ao(self):
         return - self.mol.intor("int1e_r")[self.components]
 
-    def _get_F_1_ao(self):
+    @cached_property
+    def F_1_ao(self):
         return self.H_1_ao
 
-    def _get_S_1_ao(self):
+    @cached_property
+    def S_1_ao(self):
         return 0
 
-    def _get_eri1_ao(self):
+    @cached_property
+    def eri1_ao(self):
         return 0
 
     def _get_E_1(self):
@@ -123,8 +127,8 @@ class DipoleSCF(DerivOnceSCF):
         H_1_ao = self.H_1_ao
         D = self.D
 
-        dip_elec = np.einsum("Apq, pq -> A", H_1_ao, D)
-        dip_nuc = np.einsum("A, At -> t", mol.atom_charges(), mol.atom_coords())
+        dip_elec = einsum("Apq, pq -> A", H_1_ao, D)
+        dip_nuc = einsum("A, At -> t", mol.atom_charges(), mol.atom_coords())
 
         return dip_elec + dip_nuc
 
@@ -139,41 +143,42 @@ class DipoleNCDFT(DerivOnceNCDFT, DipoleSCF):
         so, sv = self.so, self.sv
         B_1 = self.B_1
         Z = self.Z
-        E_1 = 4 * np.einsum("ai, Aai -> A", Z, B_1[:, sv, so])
+        E_1 = 4 * einsum("ai, Aai -> A", Z, B_1[:, sv, so])
         E_1 += self.nc_deriv.E_1
         return E_1
 
 
-class Test_DipoleSCF:
+class TestDipoleR:
 
-    @staticmethod
-    def valid_assert(config, resource_path):
-        from pkg_resources import resource_filename
-        from pyxdh.Utilities import FormchkInterface
-        helper = DipoleSCF(config)
-        assert (np.allclose(helper.E_1, helper.scf_eng.dip_moment(unit="A.U."), atol=1e-6, rtol=1e-4))
-        formchk = FormchkInterface(resource_filename("pyxdh", resource_path))
-        assert (np.allclose(helper.E_1, formchk.dipole(), atol=1e-6, rtol=1e-4))
+    mol = gto.Mole(atom="N 0. 0. 0.; H 1.5 0. 0.2; H 0.1 1.2 0.; H 0. 0. 1.", basis="6-31G", verbose=0).build()
+    grids = dft.Grids(mol)
+    grids.atom_grid = (99, 590)
+    grids.build()
+    grids_cphf = dft.Grids(mol)
+    grids_cphf.atom_grid = (50, 194)
+    grids_cphf.build()
 
-    def test_SCF_dipole(self):
+    def test_r_rhf_dipole(self):
+        scf_eng = scf.RHF(self.mol).run()
+        diph = DipoleSCF({"scf_eng": scf_eng})
+        formchk = FormchkInterface(resource_filename("pyxdh", "Validation/gaussian/NH3-HF-freq.fchk"))
+        # ASSERT: dipole - Gaussian
+        assert np.allclose(diph.E_1, formchk.dipole(), atol=1e-6, rtol=1e-4)
 
-        from pyxdh.Utilities.test_molecules import Mol_H2O2
+    def test_r_b3lyp_dipole(self):
+        scf_eng = dft.RKS(self.mol, xc="B3LYPg"); scf_eng.grids = self.grids; scf_eng.run()
+        diph = DipoleSCF({"scf_eng": scf_eng})
+        formchk = FormchkInterface(resource_filename("pyxdh", "Validation/gaussian/NH3-B3LYP-freq.fchk"))
+        # ASSERT: dipole - Gaussian
+        assert np.allclose(diph.E_1, formchk.dipole(), atol=1e-6, rtol=1e-4)
 
-        H2O2 = Mol_H2O2()
-        grids_cphf = H2O2.gen_grids(50, 194)
-        self.valid_assert({"scf_eng": H2O2.hf_eng}, "Validation/gaussian/H2O2-HF-freq.fchk")
-        self.valid_assert({"scf_eng": H2O2.gga_eng, "cphf_grids": grids_cphf}, "Validation/gaussian/H2O2-B3LYP-freq.fchk")
+    def test_r_hfb3lyp_dipole(self):
+        scf_eng = scf.RHF(self.mol).run()
+        nc_eng = dft.RKS(self.mol, xc="B3LYPg")
+        nc_eng.grids = self.grids
+        diph = DipoleNCDFT({"scf_eng": scf_eng, "nc_eng": nc_eng})
+        with open(resource_filename("pyxdh", "Validation/numerical_deriv/NH3-HFB3LYP-dip.dat"), "rb") as f:
+            ref_dip = pickle.load(f)
+        # ASSERT: dip - numerical
+        assert np.allclose(diph.E_1, ref_dip, atol=1e-6, rtol=1e-4)
 
-    def test_HF_B3LYP_dipole(self):
-
-        import pickle
-        from pkg_resources import resource_filename
-        from pyxdh.Utilities.test_molecules import Mol_H2O2
-
-        H2O2 = Mol_H2O2()
-        config = {"scf_eng": H2O2.hf_eng, "nc_eng": H2O2.gga_eng}
-        helper = DipoleNCDFT(config)
-
-        with open(resource_filename("pyxdh", "Validation/numerical_deriv/ncdft_derivonce_hf_b3lyp.dat"), "rb") as f:
-            ref_dipole = pickle.load(f)["dipole"]
-        assert (np.allclose(helper.E_1, ref_dipole, atol=1e-6, rtol=1e-4))
