@@ -2,7 +2,7 @@
 import numpy as np
 from opt_einsum import contract as einsum
 # pyxdh utilities
-from pyxdh.DerivOnce.deriv_once_r import DerivOnceSCF, DerivOnceNCDFT
+from pyxdh.DerivOnce.deriv_once_r import DerivOnceSCF, DerivOnceNCDFT, DerivOnceMP2, DerivOnceXDH
 from pyxdh.Utilities import GridIterator, KernelHelper, cached_property
 # pytest
 from pyscf import gto, scf, dft
@@ -148,6 +148,22 @@ class DipoleNCDFT(DerivOnceNCDFT, DipoleSCF):
         return E_1
 
 
+class DipoleMP2(DerivOnceMP2, DipoleSCF):
+
+    def _get_E_1(self):
+        E_1 = np.einsum("pq, Apq -> A", self.D_r, self.B_1)
+        E_1 += DipoleSCF._get_E_1(self)
+        return E_1
+
+
+class DipoleXDH(DerivOnceXDH, DipoleMP2, DipoleNCDFT):
+
+    def _get_E_1(self):
+        E_1 = np.einsum("pq, Apq -> A", self.D_r, self.B_1)
+        E_1 += self.nc_deriv.E_1
+        return E_1
+
+
 class TestDipoleR:
 
     mol = gto.Mole(atom="N 0. 0. 0.; H 1.5 0. 0.2; H 0.1 1.2 0.; H 0. 0. 1.", basis="6-31G", verbose=0).build()
@@ -179,6 +195,37 @@ class TestDipoleR:
         diph = DipoleNCDFT({"scf_eng": scf_eng, "nc_eng": nc_eng})
         with open(resource_filename("pyxdh", "Validation/numerical_deriv/NH3-HFB3LYP-dip.dat"), "rb") as f:
             ref_dip = pickle.load(f)
-        # ASSERT: dip - numerical
+        # ASSERT: dipole - numerical
         assert np.allclose(diph.E_1, ref_dip, atol=1e-6, rtol=1e-4)
 
+    def test_r_mp2_dipole(self):
+        scf_eng = scf.RHF(self.mol).run()
+        diph = DipoleMP2({"scf_eng": scf_eng})
+        formchk = FormchkInterface(resource_filename("pyxdh", "Validation/gaussian/NH3-MP2-freq.fchk"))
+        # ASSERT: dipole - Gaussian
+        assert np.allclose(diph.E_1, formchk.dipole(), atol=1e-6, rtol=1e-4)
+
+    def test_r_b2plyp_dipole(self):
+        scf_eng = dft.RKS(self.mol, xc="0.53*HF + 0.47*B88, 0.73*LYP"); scf_eng.grids = self.grids; scf_eng.run()
+        diph = DipoleMP2({"scf_eng": scf_eng, "cc": 0.27, "cphf_grids": self.grids_cphf})
+        formchk = FormchkInterface(resource_filename("pyxdh", "Validation/gaussian/NH3-B2PLYP-freq.fchk"))
+        # ASSERT: dipole - Gaussian
+        assert np.allclose(diph.E_1, formchk.dipole(), atol=1e-6, rtol=1e-4)
+
+    def test_r_xyg3_dipole(self):
+        scf_eng = dft.RKS(self.mol, xc="B3LYPg"); scf_eng.grids = self.grids; scf_eng.run()
+        nc_eng = dft.RKS(self.mol, xc="0.8033*HF - 0.0140*LDA + 0.2107*B88, 0.6789*LYP"); nc_eng.grids = self.grids
+        config = {"scf_eng": scf_eng, "nc_eng": nc_eng, "cc": 0.3211, "cphf_grids": self.grids_cphf}
+        diph = DipoleXDH(config)
+        formchk = FormchkInterface(resource_filename("pyxdh", "Validation/gaussian/NH3-XYG3-freq.fchk"))
+        # ASSERT: grad - Gaussian
+        assert np.allclose(diph.E_1, formchk.dipole(), atol=1e-6, rtol=1e-4)
+
+    def test_r_xygjos_dipole(self):
+        scf_eng = dft.RKS(self.mol, xc="B3LYPg"); scf_eng.grids = self.grids; scf_eng.run()
+        nc_eng = dft.RKS(self.mol, xc="0.7731*HF + 0.2269*LDA, 0.2309*VWN3 + 0.2754*LYP"); nc_eng.grids = self.grids
+        config = {"scf_eng": scf_eng, "nc_eng": nc_eng, "cc": 0.4364, "ss": 0., "cphf_grids": self.grids_cphf}
+        diph = DipoleXDH(config)
+        formchk = FormchkInterface(resource_filename("pyxdh", "Validation/gaussian/NH3-XYGJOS-freq.fchk"))
+        # ASSERT: grad - Gaussian
+        assert np.allclose(diph.E_1, formchk.dipole(), atol=1e-6, rtol=1e-4)
