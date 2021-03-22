@@ -61,7 +61,7 @@ class DerivOnceSCF(ABC):
             self.scf_eng.kernel()
             if not self.scf_eng.converged:
                 warnings.warn("SCF not converged!")
-        if isinstance(self.scf_eng, dft.rks.RKS):
+        if isinstance(self.scf_eng, (dft.rks.RKS, dft.uks.UKS)):
             self.xc = self.scf_eng.xc
             self.grids = self.scf_eng.grids
             self.xc_type = dft.libxc.xc_type(self.xc)
