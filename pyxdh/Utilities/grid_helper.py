@@ -538,6 +538,5 @@ class Test_GridHelper:
         assert(np.allclose(grdh.A_rho_2.sum(axis=0), - grdh.rho_2))
         assert(np.allclose(grdh.AB_rho_2.sum(axis=(0, 1)), grdh.rho_2))
         assert(np.allclose(grdh.AB_rho_2, grdh.AB_rho_2.transpose((1, 0, 3, 2, 4))))
-        assert(np.allclose(grdh.AB_rho_3.sum(axis=(0, 1)), grdh.rho_3))
         assert(np.allclose(grdh.AB_rho_3, grdh.AB_rho_3.transpose((1, 0, 3, 2, 4, 5))))
         assert(np.allclose(grdh.AB_gamma_2, grdh.AB_gamma_2.transpose((1, 0, 3, 2, 4))))
