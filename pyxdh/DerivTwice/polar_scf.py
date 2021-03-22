@@ -1,32 +1,45 @@
+# basic utilities
 import numpy as np
-from functools import partial
-import os
-
-from pyxdh.DerivTwice import DerivTwiceSCF, DerivTwiceNCDFT
-
-MAXMEM = float(os.getenv("MAXMEM", 2))
-np.einsum = partial(np.einsum, optimize=["greedy", 1024 ** 3 * MAXMEM / 8])
-np.set_printoptions(8, linewidth=1000, suppress=True)
+from opt_einsum import contract as einsum
+# pyxdh utilities
+from pyxdh.DerivTwice import DerivTwiceSCF, DerivTwiceNCDFT, DerivTwiceMP2, DerivTwiceXDH
+from pyxdh.Utilities import cached_property
+# pytest
+from pyscf import gto, scf, dft
+from pyxdh.DerivOnce import DipoleSCF, DipoleNCDFT, DipoleMP2, DipoleXDH
+from pkg_resources import resource_filename
+from pyxdh.Utilities import FormchkInterface
+import pickle
 
 
 class PolarSCF(DerivTwiceSCF):
 
-    def _get_H_2_ao(self):
+    @property
+    def A_is_B(self) -> bool:
+        return True
+
+    @cached_property
+    def H_2_ao(self):
         return 0
 
-    def _get_S_2_ao(self):
+    @cached_property
+    def S_2_ao(self):
         return 0
 
-    def _get_F_2_ao_JKcontrib(self):
+    @cached_property
+    def F_2_ao_JKcontrib(self):
         return 0, 0
 
-    def _get_F_2_ao_GGAcontrib(self):
+    @cached_property
+    def F_2_ao_GGAcontrib(self):
         return 0
 
-    def _get_F_2_mo(self):
+    @cached_property
+    def F_2_mo(self):
         return 0
 
-    def _get_eri2_ao(self):
+    @cached_property
+    def eri2_ao(self):
         return 0
 
     def _get_E_2_Skeleton(self, grids=None, xc=None, cx=None, xc_type=None):
@@ -35,7 +48,7 @@ class PolarSCF(DerivTwiceSCF):
     def _get_E_2_U(self):
         A, B = self.A, self.B
         so = self.so
-        return 4 * np.einsum("Api, Bpi -> AB", A.H_1_mo[:, :, so], B.U_1[:, :, so])
+        return 4 * einsum("Api, Bpi -> AB", A.H_1_mo[:, :, so], B.U_1[:, :, so])
 
     def _get_E_2(self):
         return self._get_E_2_U()
@@ -46,51 +59,45 @@ class PolarNCDFT(DerivTwiceNCDFT, PolarSCF):
     def _get_E_2_U(self):
         A, B = self.A, self.B
         so, sv = self.so, self.sv
-        E_2_U = 4 * np.einsum("Bpi, Api -> AB", B.U_1[:, :, so], A.nc_deriv.F_1_mo[:, :, so])
-        E_2_U += 4 * np.einsum("Aai, Bai -> AB", A.U_1[:, sv, so], self.RHS_B)
-        E_2_U += 4 * np.einsum("ABai, ai -> AB", self.pdB_F_A_mo[:, :, sv, so], self.Z)
+        E_2_U = 4 * einsum("Bpi, Api -> AB", B.U_1[:, :, so], A.nc_deriv.F_1_mo[:, :, so])
+        E_2_U += 4 * einsum("Aai, Bai -> AB", A.U_1[:, sv, so], self.RHS_B)
+        E_2_U += 4 * einsum("ABai, ai -> AB", self.pdB_F_A_mo[:, :, sv, so], self.Z)
         return E_2_U
 
 
-class Test_PolarSCF:
+class TestPolarR:
 
-    @staticmethod
-    def valid_assert(dip_config, resource_path):
-        from pkg_resources import resource_filename
-        from pyxdh.Utilities import FormchkInterface
-        from pyxdh.DerivOnce import DipoleSCF
-        dip_helper = DipoleSCF(dip_config)
-        polar_config = {"deriv_A": dip_helper, "deriv_B": dip_helper}
-        helper = PolarSCF(polar_config)
-        E_2 = helper.E_2
-        formchk = FormchkInterface(resource_filename("pyxdh", resource_path))
-        assert (np.allclose(- E_2, formchk.polarizability(), atol=1e-6, rtol=1e-4))
+    mol = gto.Mole(atom="N 0. 0. 0.; H 1.5 0. 0.2; H 0.1 1.2 0.; H 0. 0. 1.", basis="6-31G", verbose=0).build()
+    grids = dft.Grids(mol)
+    grids.atom_grid = (99, 590)
+    grids.build()
+    grids_cphf = dft.Grids(mol)
+    grids_cphf.atom_grid = (50, 194)
+    grids_cphf.build()
 
-    def test_SCF_polar(self):
+    def test_r_rhf_polar(self):
+        scf_eng = scf.RHF(self.mol).run()
+        diph = DipoleSCF({"scf_eng": scf_eng})
+        polh = PolarSCF({"deriv_A": diph})
+        formchk = FormchkInterface(resource_filename("pyxdh", "Validation/gaussian/NH3-HF-freq.fchk"))
+        # ASSERT: hessian - Gaussian
+        assert np.allclose(- polh.E_2, formchk.polarizability(), atol=1e-6, rtol=1e-4)
 
-        from pyxdh.Utilities.test_molecules import Mol_H2O2
+    def test_r_b3lyp_polar(self):
+        scf_eng = dft.RKS(self.mol, xc="B3LYPg"); scf_eng.grids = self.grids; scf_eng.run()
+        diph = DipoleSCF({"scf_eng": scf_eng, "cphf_grids": self.grids_cphf})
+        polh = PolarSCF({"deriv_A": diph})
+        formchk = FormchkInterface(resource_filename("pyxdh", "Validation/gaussian/NH3-B3LYP-freq.fchk"))
+        # ASSERT: hessian - Gaussian
+        assert np.allclose(- polh.E_2, formchk.polarizability(), atol=1e-6, rtol=1e-4)
 
-        H2O2 = Mol_H2O2()
-        grids_cphf = H2O2.gen_grids(50, 194)
-        self.valid_assert({"scf_eng": H2O2.hf_eng}, "Validation/gaussian/H2O2-HF-freq.fchk")
-        self.valid_assert({"scf_eng": H2O2.gga_eng, "cphf_grids": grids_cphf}, "Validation/gaussian/H2O2-B3LYP-freq.fchk")
-
-    def test_HF_B3LYP_polar(self):
-
-        from pkg_resources import resource_filename
-        from pyxdh.Utilities.test_molecules import Mol_H2O2
-        from pyxdh.DerivOnce import DipoleNCDFT
-        import pickle
-
-        H2O2 = Mol_H2O2()
-        config = {"scf_eng": H2O2.hf_eng, "nc_eng": H2O2.gga_eng}
-        dip_helper = DipoleNCDFT(config)
-        config = {"deriv_A": dip_helper, "deriv_B": dip_helper}
-
-        helper = PolarNCDFT(config)
-        E_2 = helper.E_2
-
-        with open(resource_filename("pyxdh", "Validation/numerical_deriv/ncdft_polarizability_hf_b3lyp.dat"), "rb") as f:
-            ref_polar = pickle.load(f)["polarizability"]
-
-        assert(np.allclose(- E_2, ref_polar, atol=1e-6, rtol=1e-4))
+    def test_r_hfb3lyp_hess(self):
+        scf_eng = scf.RHF(self.mol).run()
+        nc_eng = dft.RKS(self.mol, xc="B3LYPg")
+        nc_eng.grids = self.grids
+        diph = DipoleNCDFT({"scf_eng": scf_eng, "nc_eng": nc_eng})
+        polh = PolarNCDFT({"deriv_A": diph})
+        with open(resource_filename("pyxdh", "Validation/numerical_deriv/NH3-HFB3LYP-pol.dat"), "rb") as f:
+            ref_polar = pickle.load(f)
+        # ASSERT: hessian - numerical
+        assert np.allclose(- polh.E_2, ref_polar, atol=1e-6, rtol=1e-4)

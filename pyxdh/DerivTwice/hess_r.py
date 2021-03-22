@@ -480,9 +480,9 @@ class TestHessR:
         gradh = GradNCDFT({"scf_eng": scf_eng, "nc_eng": nc_eng})
         hessh = HessNCDFT({"deriv_A": gradh})
         with open(resource_filename("pyxdh", "Validation/numerical_deriv/NH3-HFB3LYP-hess.dat"), "rb") as f:
-            ref_grad = pickle.load(f)
+            ref_hess = pickle.load(f)
         # ASSERT: hessian - numerical
-        assert np.allclose(hessh.E_2, ref_grad.reshape((-1, self.mol.natm * 3)), atol=1e-6, rtol=1e-4)
+        assert np.allclose(hessh.E_2, ref_hess.reshape((-1, self.mol.natm * 3)), atol=1e-6, rtol=1e-4)
 
     def test_r_mp2_hess(self):
         scf_eng = scf.RHF(self.mol).run()
