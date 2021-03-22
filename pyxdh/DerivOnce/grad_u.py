@@ -1,11 +1,12 @@
+# basic utilities
 import numpy as np
 from opt_einsum import contract as einsum
-
+# pyscf utilities
 from pyscf import grad
-
+# pyxdh utilities
 from pyxdh.DerivOnce import DerivOnceUSCF, GradSCF, DerivOnceUNCDFT, DerivOnceUMP2, DerivOnceUXDH
 from pyxdh.Utilities import GridIterator, KernelHelper, timing, cached_property
-
+# pytest
 from pyscf import gto, scf, dft, mp
 from pyxdh.Utilities import FormchkInterface
 from pkg_resources import resource_filename
@@ -206,7 +207,7 @@ class TestGradU:
         # ASSERT: grad - PySCF
         assert np.allclose(gradh.E_1, mp2_grad.de, atol=1e-6, rtol=1e-4)
 
-    def test_r_xyg3_grad(self):
+    def test_u_xyg3_grad(self):
         scf_eng = dft.UKS(self.mol, xc="B3LYPg"); scf_eng.grids = self.grids
         scf_eng.conv_tol_grad = 1e-10; scf_eng.max_cycle = 128; scf_eng.run()
         nc_eng = dft.UKS(self.mol, xc="0.8033*HF - 0.0140*LDA + 0.2107*B88, 0.6789*LYP"); nc_eng.grids = self.grids
@@ -218,7 +219,7 @@ class TestGradU:
         # ASSERT: grad - Gaussian
         assert np.allclose(gradh.E_1, formchk.grad(), atol=5e-6, rtol=1e-4)
 
-    def test_r_xygjos_grad(self):
+    def test_u_xygjos_grad(self):
         scf_eng = dft.UKS(self.mol, xc="B3LYPg"); scf_eng.grids = self.grids
         scf_eng.conv_tol_grad = 1e-10; scf_eng.max_cycle = 128; scf_eng.run()
         nc_eng = dft.UKS(self.mol, xc="0.7731*HF + 0.2269*LDA, 0.2309*VWN3 + 0.2754*LYP"); nc_eng.grids = self.grids
