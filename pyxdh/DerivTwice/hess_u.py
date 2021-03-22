@@ -6,7 +6,7 @@ from pyxdh.DerivTwice import DerivTwiceUSCF, DerivTwiceUMP2, HessSCF
 from pyxdh.Utilities import timing, cached_property
 # pytest
 from pyscf import gto, scf
-from pyxdh.DerivOnce import GradUSCF, GradUMP2
+from pyxdh.DerivOnce import GradUSCF
 from pyxdh.Utilities import FormchkInterface
 from pkg_resources import resource_filename
 
