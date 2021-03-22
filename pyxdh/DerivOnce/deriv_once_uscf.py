@@ -1,8 +1,13 @@
+# basic utilities
 import numpy as np
+from opt_einsum import contract as einsum
+# python utilities
 from abc import ABC
 from functools import partial
 import os
 import warnings
+from typing import Tuple
+# pyscf utilities
 from pyscf.scf._response_functions import _gen_uhf_response
 from scipy.optimize import newton_krylov
 
@@ -10,14 +15,18 @@ from pyscf import dft, grad, hessian
 from pyscf.scf import ucphf
 
 from pyxdh.DerivOnce.deriv_once_r import DerivOnceSCF, DerivOnceNCDFT
-from pyxdh.Utilities import GridIterator, KernelHelper, timing
+from pyxdh.Utilities import GridIterator, KernelHelper, timing, cached_property
 
 MAXMEM = float(os.getenv("MAXMEM", 2))
-np.einsum = partial(np.einsum, optimize=["greedy", 1024 ** 3 * MAXMEM / 8])
+einsum = partial(einsum, optimize=["greedy", 1024 ** 3 * MAXMEM / 8])
 np.set_printoptions(8, linewidth=1000, suppress=True)
 
 
 class DerivOnceUSCF(DerivOnceSCF, ABC):
+
+    def __init__(self, config):
+        self._nocc = NotImplemented  # type: Tuple[int, int]
+        super(DerivOnceUSCF, self).__init__(config)
 
     def initialization_scf(self):
         if self.init_scf:
@@ -27,124 +36,119 @@ class DerivOnceUSCF(DerivOnceSCF, ABC):
             self.nocc = self.mol.nelec
         return
 
-    def initialization_pyscf(self):
-        if (self.scf_eng.mo_coeff is NotImplemented or self.scf_eng.mo_coeff is None) and self.init_scf:
-            self.scf_eng.kernel()
-            if not self.scf_eng.converged:
-                warnings.warn("SCF not converged!")
-        if isinstance(self.scf_eng, dft.rks.RKS) or isinstance(self.scf_eng, dft.uks.UKS):
-            self.xc = self.scf_eng.xc
-            self.grids = self.scf_eng.grids
-            self.xc_type = dft.libxc.xc_type(self.xc)
-            self.cx = dft.numint.NumInt().hybrid_coeff(self.xc)
-            self.scf_grad = grad.uks.Gradients(self.scf_eng)
-            self.scf_hess = hessian.uks.Hessian(self.scf_eng)
-        else:
-            self.scf_grad = grad.UHF(self.scf_eng)
-            self.scf_hess = hessian.UHF(self.scf_eng)
-        return
-
     @property
-    def nvir(self):
+    def nvir(self) -> Tuple[int, int]:
         return self.nmo - self.nocc[0], self.nmo - self.nocc[1]
 
     @property
-    def so(self):
+    def so(self) -> Tuple[slice, slice]:
         return slice(0, self.nocc[0]), slice(0, self.nocc[1])
 
     @property
-    def sv(self):
+    def sv(self) -> Tuple[slice, slice]:
         return slice(self.nocc[0], self.nmo), slice(self.nocc[1], self.nmo)
 
     @property
-    def sa(self):
+    def sa(self) -> Tuple[slice, slice]:
         return slice(0, self.nmo), slice(0, self.nmo)
 
     @property
-    def Co(self):
+    def Co(self) -> Tuple[np.ndarray, np.ndarray]:
         return self.C[0, :, self.so[0]], self.C[1, :, self.so[1]]
 
     @property
-    def Cv(self):
+    def Cv(self) -> Tuple[np.ndarray, np.ndarray]:
         return self.C[0, :, self.sv[0]], self.C[1, :, self.sv[1]]
 
     @property
-    def eo(self):
+    def eo(self) -> Tuple[np.ndarray, np.ndarray]:
         return self.e[0, self.so[0]], self.e[1, self.so[1]]
 
     @property
-    def ev(self):
+    def ev(self) -> Tuple[np.ndarray, np.ndarray]:
         return self.e[0, self.sv[0]], self.e[1, self.sv[1]]
 
     @property
-    def U_1_vo(self):
+    def U_1_vo(self) -> Tuple[np.ndarray, np.ndarray]:
         return self.U_1[0, :, self.sv[0], self.so[0]], self.U_1[1, :, self.sv[1], self.so[1]]
 
     @property
-    def U_1_ov(self):
+    def U_1_ov(self) -> Tuple[np.ndarray, np.ndarray]:
         return self.U_1[0, :, self.so[0], self.sv[0]], self.U_1[1, :, self.so[1], self.sv[1]]
 
-    def _get_D(self):
-        return np.einsum("xup, xp, xvp -> xuv", self.C, self.occ, self.C)
+    @cached_property
+    def D(self) -> np.ndarray:
+        return einsum("xup, xp, xvp -> xuv", self.C, self.occ, self.C)
 
-    def _get_H_0_mo(self):
-        return np.einsum("xup, uv, xvq -> xpq", self.C, self.H_0_ao, self.C)
+    @cached_property
+    def H_0_mo(self) -> np.ndarray:
+        return einsum("xup, uv, xvq -> xpq", self.C, self.H_0_ao, self.C)
 
-    def _get_S_0_mo(self):
-        return np.einsum("xup, uv, xvq -> xpq", self.C, self.S_0_ao, self.C)
+    @cached_property
+    def S_0_mo(self) -> np.ndarray:
+        return einsum("xup, uv, xvq -> xpq", self.C, self.S_0_ao, self.C)
 
-    def _get_eri0_mo(self):
+    @cached_property
+    def eri0_mo(self) -> np.ndarray:
         nmo = self.nmo
         C = self.C
         eri0_ao = self.eri0_ao
         eri0_mo = np.zeros((3, nmo, nmo, nmo, nmo))
-        eri0_mo[0] = np.einsum("uvkl, up, vq, kr, ls -> pqrs", eri0_ao, C[0], C[0], C[0], C[0])
-        eri0_mo[1] = np.einsum("uvkl, up, vq, kr, ls -> pqrs", eri0_ao, C[0], C[0], C[1], C[1])
-        eri0_mo[2] = np.einsum("uvkl, up, vq, kr, ls -> pqrs", eri0_ao, C[1], C[1], C[1], C[1])
+        eri0_mo[0] = einsum("uvkl, up, vq, kr, ls -> pqrs", eri0_ao, C[0], C[0], C[0], C[0])
+        eri0_mo[1] = einsum("uvkl, up, vq, kr, ls -> pqrs", eri0_ao, C[0], C[0], C[1], C[1])
+        eri0_mo[2] = einsum("uvkl, up, vq, kr, ls -> pqrs", eri0_ao, C[1], C[1], C[1], C[1])
         return eri0_mo
 
-    def _get_F_0_mo(self):
-        return np.einsum("xup, xuv, xvq -> xpq", self.C, self.F_0_ao, self.C)
+    @cached_property
+    def F_0_mo(self) -> np.ndarray:
+        return einsum("xup, xuv, xvq -> xpq", self.C, self.F_0_ao, self.C)
 
-    def _get_H_1_mo(self):
+    @cached_property
+    def H_1_mo(self) -> np.ndarray:
         if not isinstance(self.H_1_ao, np.ndarray):
             return 0
-        return np.einsum("Auv, xup, xvq -> xApq", self.H_1_ao, self.C, self.C)
+        return einsum("Auv, xup, xvq -> xApq", self.H_1_ao, self.C, self.C)
 
-    def _get_S_1_mo(self):
+    @cached_property
+    def S_1_mo(self) -> np.ndarray:
         if not isinstance(self.S_1_ao, np.ndarray):
             return 0
-        return np.einsum("Auv, xup, xvq -> xApq", self.S_1_ao, self.C, self.C)
+        return einsum("Auv, xup, xvq -> xApq", self.S_1_ao, self.C, self.C)
 
-    def _get_eri1_mo(self):
+    @cached_property
+    def eri1_mo(self) -> np.ndarray or int:
+        if self.eri1_ao is 0:
+            return 0
         nmo = self.nmo
         C = self.C
         eri1_ao = self.eri1_ao
         eri1_mo = np.zeros((3, eri1_ao.shape[0], nmo, nmo, nmo, nmo))
-        eri1_mo[0] = np.einsum("Auvkl, up, vq, kr, ls -> Apqrs", eri1_ao, C[0], C[0], C[0], C[0])
-        eri1_mo[1] = np.einsum("Auvkl, up, vq, kr, ls -> Apqrs", eri1_ao, C[0], C[0], C[1], C[1])
-        eri1_mo[2] = np.einsum("Auvkl, up, vq, kr, ls -> Apqrs", eri1_ao, C[1], C[1], C[1], C[1])
+        eri1_mo[0] = einsum("Auvkl, up, vq, kr, ls -> Apqrs", eri1_ao, C[0], C[0], C[0], C[0])
+        eri1_mo[1] = einsum("Auvkl, up, vq, kr, ls -> Apqrs", eri1_ao, C[0], C[0], C[1], C[1])
+        eri1_mo[2] = einsum("Auvkl, up, vq, kr, ls -> Apqrs", eri1_ao, C[1], C[1], C[1], C[1])
         return eri1_mo
 
-    def _get_F_1_mo(self):
+    @cached_property
+    def F_1_mo(self) -> np.ndarray or int:
         if not isinstance(self.F_1_ao, np.ndarray):
             return 0
-        return np.einsum("xAuv, xup, xvq -> xApq", self.F_1_ao, self.C, self.C)
+        return einsum("xAuv, xup, xvq -> xApq", self.F_1_ao, self.C, self.C)
 
-    @property
+    @cached_property
     def resp(self):
         if self._resp is NotImplemented:
             self._resp = _gen_uhf_response(self.scf_eng, mo_coeff=self.C, mo_occ=self.mo_occ, hermi=1, max_memory=self.grdit_memory)
         return self._resp
 
-    def _get_B_1(self):
+    @cached_property
+    def B_1(self):
         sa = self.sa
         so = self.so
 
-        B_1 = self.F_1_mo.copy()
+        B_1 = np.copy(self.F_1_mo)
         if isinstance(self.S_1_mo, np.ndarray):
             B_1 += (
-                - np.einsum("xApq, xq -> xApq", self.S_1_mo, self.e)
+                - einsum("xApq, xq -> xApq", self.S_1_mo, self.e)
                 - 0.5 * np.array(self.Ax0_Core(sa, sa, so, so)((self.S_1_mo[0, :, so[0], so[0]], self.S_1_mo[1, :, so[1], so[1]])))
             )
         return B_1
@@ -158,8 +162,8 @@ class DerivOnceUSCF(DerivOnceSCF, ABC):
 
         pdA_F_0_mo = (
             + F_1_mo
-            + np.einsum("xApq, xp -> xApq", U_1, e)
-            + np.einsum("xAqp, xq -> xApq", U_1, e)
+            + einsum("xApq, xp -> xApq", U_1, e)
+            + einsum("xAqp, xq -> xApq", U_1, e)
             + Ax0_Core(sa, sa, sa, so)((U_1[0, :, :, so[0]], U_1[1, :, :, so[1]]))
         )
         return pdA_F_0_mo

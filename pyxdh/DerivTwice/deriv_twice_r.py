@@ -433,44 +433,7 @@ class DerivTwiceMP2(DerivTwiceSCF, ABC):
         self.W_I = self.A.W_I
         self.D_iajb = self.A.D_iajb
 
-        # For MP2 calculation
-        self._pdB_D_r_oovv = NotImplemented
-        self._RHS_B = NotImplemented
-        self._pdB_W_I = NotImplemented
-        self._pdB_pdpA_eri0_iajb = NotImplemented
-
     # region Properties
-
-    @property
-    def pdB_D_r_oovv(self):
-        B = self.B
-        so, sv = self.so, self.sv
-        nmo = self.nmo
-
-        pdB_D_r_oovv = np.zeros((B.pdA_t_iajb.shape[0], nmo, nmo))
-        pdB_D_r_oovv[:, so, so] -= 2 * np.einsum("iakb, Ajakb -> Aij", B.T_iajb, B.pdA_t_iajb)
-        pdB_D_r_oovv[:, sv, sv] += 2 * np.einsum("iajc, Aibjc -> Aab", B.T_iajb, B.pdA_t_iajb)
-        pdB_D_r_oovv[:, so, so] -= 2 * np.einsum("Aiakb, jakb -> Aij", B.pdA_T_iajb, B.t_iajb)
-        pdB_D_r_oovv[:, sv, sv] += 2 * np.einsum("Aiajc, ibjc -> Aab", B.pdA_T_iajb, B.t_iajb)
-
-        return pdB_D_r_oovv
-
-    @property
-    def pdB_W_I(self):
-        so, sv = self.so, self.sv
-        natm, nmo = self.natm, self.nmo
-        pdA_T_iajb, T_iajb = self.B.pdA_T_iajb, self.B.T_iajb
-        eri0_mo, pdA_eri0_mo = self.B.eri0_mo, self.B.pdA_eri0_mo
-
-        pdR_W_I = np.zeros((natm * 3, nmo, nmo))
-        pdR_W_I[:, so, so] -= 2 * np.einsum("Aiakb, jakb -> Aij", pdA_T_iajb, eri0_mo[so, sv, so, sv])
-        pdR_W_I[:, sv, sv] -= 2 * np.einsum("Aiajc, ibjc -> Aab", pdA_T_iajb, eri0_mo[so, sv, so, sv])
-        pdR_W_I[:, sv, so] -= 4 * np.einsum("Ajakb, ijbk -> Aai", pdA_T_iajb, eri0_mo[so, so, sv, so])
-        pdR_W_I[:, so, so] -= 2 * np.einsum("iakb, Ajakb -> Aij", T_iajb, pdA_eri0_mo[:, so, sv, so, sv])
-        pdR_W_I[:, sv, sv] -= 2 * np.einsum("iajc, Aibjc -> Aab", T_iajb, pdA_eri0_mo[:, so, sv, so, sv])
-        pdR_W_I[:, sv, so] -= 4 * np.einsum("jakb, Aijbk -> Aai", T_iajb, pdA_eri0_mo[:, so, so, sv, so])
-
-        return pdR_W_I
 
     @property
     def pdB_pdpA_eri0_iajb(self):
@@ -491,7 +454,7 @@ class DerivTwiceMP2(DerivTwiceSCF, ABC):
         so, sv, sa = self.so, self.sv, self.sa
         U_1, D_r, pdB_F_0_mo, eri0_mo = B.U_1, B.D_r, B.pdA_F_0_mo, B.eri0_mo
         Ax0_Core, Ax1_Core = B.Ax0_Core, B.Ax1_Core
-        pdB_D_r_oovv = self.pdB_D_r_oovv
+        pdB_D_r_oovv = B.pdA_D_r_oovv
 
         # total partial eri0
         pdA_eri0_mo = B.pdA_eri0_mo
@@ -522,11 +485,11 @@ class DerivTwiceMP2(DerivTwiceSCF, ABC):
         E_2_MP2_Contrib = (
             # D_r * B
             + np.einsum("pq, ABpq -> AB", self.D_r, self.pdB_B_A)
-            + np.einsum("Bpq, Apq -> AB", self.pdB_D_r_oovv, A.B_1)
+            + np.einsum("Bpq, Apq -> AB", B.pdA_D_r_oovv, A.B_1)
             + np.einsum("Aai, Bai -> AB", A.U_1[:, sv, so], self.RHS_B)
             # W_I * S
             + np.einsum("pq, ABpq -> AB", self.W_I, self.pdB_S_A_mo)
-            + np.einsum("Bpq, Apq -> AB", self.pdB_W_I, A.S_1_mo)
+            + np.einsum("Bpq, Apq -> AB", B.pdA_W_I, A.S_1_mo)
             # T * g
             + 2 * np.einsum("Biajb, Aiajb -> AB", B.pdA_T_iajb, A.eri1_mo[:, so, sv, so, sv])
             + 2 * np.einsum("iajb, ABiajb -> AB", self.T_iajb, self.pdB_pdpA_eri0_iajb)

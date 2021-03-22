@@ -105,7 +105,7 @@ class DerivOnceSCF(ABC):
         return self.C[:, self.sv]
 
     @property
-    def nmo(self):
+    def nmo(self) -> int:
         if self.C is NotImplemented:
             raise ValueError("Molecular orbital number should be determined after SCF process!\nPrepare self.C first.")
         return self.C.shape[-1]
@@ -649,6 +649,36 @@ class DerivOnceMP2(DerivOnceSCF, ABC):
     @cached_property
     def pdA_T_iajb(self):
         return self.cc * ((self.os + self.ss) * self.pdA_t_iajb - self.ss * self.pdA_t_iajb.swapaxes(-1, -3))
+
+    @cached_property
+    def pdA_D_r_oovv(self):
+        so, sv = self.so, self.sv
+        nmo = self.nmo
+
+        pdB_D_r_oovv = np.zeros((self.pdA_t_iajb.shape[0], nmo, nmo))
+        pdB_D_r_oovv[:, so, so] -= 2 * np.einsum("iakb, Ajakb -> Aij", self.T_iajb, self.pdA_t_iajb)
+        pdB_D_r_oovv[:, sv, sv] += 2 * np.einsum("iajc, Aibjc -> Aab", self.T_iajb, self.pdA_t_iajb)
+        pdB_D_r_oovv[:, so, so] -= 2 * np.einsum("Aiakb, jakb -> Aij", self.pdA_T_iajb, self.t_iajb)
+        pdB_D_r_oovv[:, sv, sv] += 2 * np.einsum("Aiajc, ibjc -> Aab", self.pdA_T_iajb, self.t_iajb)
+
+        return pdB_D_r_oovv
+
+    @cached_property
+    def pdA_W_I(self):
+        so, sv = self.so, self.sv
+        natm, nmo = self.natm, self.nmo
+        pdA_T_iajb, T_iajb = self.pdA_T_iajb, self.T_iajb
+        eri0_mo, pdA_eri0_mo = self.eri0_mo, self.pdA_eri0_mo
+
+        pdR_W_I = np.zeros((natm * 3, nmo, nmo))
+        pdR_W_I[:, so, so] -= 2 * np.einsum("Aiakb, jakb -> Aij", pdA_T_iajb, eri0_mo[so, sv, so, sv])
+        pdR_W_I[:, sv, sv] -= 2 * np.einsum("Aiajc, ibjc -> Aab", pdA_T_iajb, eri0_mo[so, sv, so, sv])
+        pdR_W_I[:, sv, so] -= 4 * np.einsum("Ajakb, ijbk -> Aai", pdA_T_iajb, eri0_mo[so, so, sv, so])
+        pdR_W_I[:, so, so] -= 2 * np.einsum("iakb, Ajakb -> Aij", T_iajb, pdA_eri0_mo[:, so, sv, so, sv])
+        pdR_W_I[:, sv, sv] -= 2 * np.einsum("iajc, Aibjc -> Aab", T_iajb, pdA_eri0_mo[:, so, sv, so, sv])
+        pdR_W_I[:, sv, so] -= 4 * np.einsum("jakb, Aijbk -> Aai", T_iajb, pdA_eri0_mo[:, so, so, sv, so])
+
+        return pdR_W_I
 
     # endregion
 

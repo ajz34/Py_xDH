@@ -84,7 +84,7 @@ class DipDerivMP2(DerivTwiceMP2, DipDerivSCF):
         so, sv = self.so, self.sv
 
         E_2_MP2_Contrib = (
-            + np.einsum("Bpq, Apq -> AB", self.pdB_D_r_oovv, A.B_1)
+            + np.einsum("Bpq, Apq -> AB", B.pdA_D_r_oovv, A.B_1)
             + np.einsum("Aai, Bai -> AB", A.U_1[:, sv, so], self.RHS_B)
             + np.einsum("pq, ABpq -> AB", self.D_r, self.pdB_F_A_mo)
         )

@@ -72,7 +72,7 @@ class PolarMP2(DerivTwiceMP2, PolarSCF):
         so, sv = self.so, self.sv
 
         E_2_MP2_Contrib = (
-            + einsum("Bpq, Apq -> AB", self.pdB_D_r_oovv, A.B_1)
+            + einsum("Bpq, Apq -> AB", B.pdA_D_r_oovv, A.B_1)
             + einsum("Aai, Bai -> AB", A.U_1[:, sv, so], self.RHS_B)
             + einsum("pq, ABpq -> AB", self.D_r, self.pdB_F_A_mo)
         )

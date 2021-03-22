@@ -10,7 +10,7 @@ class PolarUMP2(DerivTwiceUMP2, PolarUSCF):
         so, sv = self.so, self.sv
 
         E_2_MP2_Contrib = (
-            + np.einsum("xBpq, xApq -> AB", self.pdB_D_r_oovv, A.B_1)
+            + np.einsum("xBpq, xApq -> AB", B.pdA_D_r_oovv, A.B_1)
             + np.einsum("Aai, Bai -> AB", A.U_1[0, :, sv[0], so[0]], self.RHS_B[0])
             + np.einsum("Aai, Bai -> AB", A.U_1[1, :, sv[1], so[1]], self.RHS_B[1])
             + np.einsum("xpq, xABpq -> AB", self.D_r, self.pdB_F_A_mo)

@@ -113,7 +113,7 @@ class DerivTwiceUMP2(DerivTwiceMP2, DerivTwiceUSCF, DerivTwiceSCF, ABC):
         so, sv, sa = self.so, self.sv, self.sa
         U_1, D_r, pdB_F_0_mo, eri0_mo = B.U_1, B.D_r, B.pdA_F_0_mo, B.eri0_mo
         Ax0_Core, Ax1_Core = B.Ax0_Core, B.Ax1_Core
-        pdB_D_r_oovv = self.pdB_D_r_oovv
+        pdB_D_r_oovv = B.pdA_D_r_oovv
         prop_dim = pdB_D_r_oovv[0].shape[0]
 
         # total partial eri0
@@ -173,11 +173,11 @@ class DerivTwiceUMP2(DerivTwiceMP2, DerivTwiceUSCF, DerivTwiceSCF, ABC):
             E_2_MP2_Contrib += (
                 # D_r * B
                 + np.einsum("pq, ABpq -> AB", self.D_r[x], self.pdB_B_A[x])
-                + np.einsum("Bpq, Apq -> AB", self.pdB_D_r_oovv[x], A.B_1[x])
+                + np.einsum("Bpq, Apq -> AB", B.pdA_D_r_oovv[x], A.B_1[x])
                 + np.einsum("Aai, Bai -> AB", A.U_1[x][:, sv[x], so[x]], self.RHS_B[x])
                 # W_I * S
                 + np.einsum("pq, ABpq -> AB", self.W_I[x], self.pdB_S_A_mo[x])
-                + np.einsum("Bpq, Apq -> AB", self.pdB_W_I[x], A.S_1_mo[x])
+                + np.einsum("Bpq, Apq -> AB", B.pdA_W_I[x], A.S_1_mo[x])
             )
         # T * g
         sigma_list = [
