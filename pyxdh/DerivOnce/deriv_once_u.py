@@ -489,6 +489,77 @@ class DerivOnceUMP2(DerivOnceUSCF, DerivOnceMP2, ABC):
         )
         return pdA_T_iajb
 
+    @cached_property
+    def pdA_D_r_oovv(self):
+        so, sv = self.so, self.sv
+        nmo = self.nmo
+        T_iajb, t_iajb = self.T_iajb, self.t_iajb
+        pdA_t_iajb, pdA_T_iajb = self.pdA_t_iajb, self.pdA_T_iajb
+
+        pdB_D_r_oovv = np.zeros((2, pdA_t_iajb[0].shape[0], nmo, nmo))
+        pdB_D_r_oovv[0, :, so[0], so[0]] = (
+                - 2 * np.einsum("iakb, Ajakb -> Aij", T_iajb[0], pdA_t_iajb[0])
+                - np.einsum("iakb, Ajakb -> Aij", T_iajb[1], pdA_t_iajb[1])
+                - 2 * np.einsum("Aiakb, jakb -> Aij", pdA_T_iajb[0], t_iajb[0])
+                - np.einsum("Aiakb, jakb -> Aij", pdA_T_iajb[1], t_iajb[1]))
+        pdB_D_r_oovv[1, :, so[1], so[1]] = (
+                - 2 * np.einsum("iakb, Ajakb -> Aij", T_iajb[2], pdA_t_iajb[2])
+                - np.einsum("kbia, Akbja -> Aij", T_iajb[1], pdA_t_iajb[1])
+                - 2 * np.einsum("Aiakb, jakb -> Aij", pdA_T_iajb[2], t_iajb[2])
+                - np.einsum("Akbia, kbja -> Aij", pdA_T_iajb[1], t_iajb[1]))
+        pdB_D_r_oovv[0, :, sv[0], sv[0]] = (
+                + 2 * np.einsum("iajc, Aibjc -> Aab", T_iajb[0], pdA_t_iajb[0])
+                + np.einsum("iajc, Aibjc -> Aab", T_iajb[1], pdA_t_iajb[1])
+                + 2 * np.einsum("Aiajc, ibjc -> Aab", pdA_T_iajb[0], t_iajb[0])
+                + np.einsum("Aiajc, ibjc -> Aab", pdA_T_iajb[1], t_iajb[1]))
+        pdB_D_r_oovv[1, :, sv[1], sv[1]] = (
+                + 2 * np.einsum("iajc, Aibjc -> Aab", T_iajb[2], pdA_t_iajb[2])
+                + np.einsum("jcia, Ajcib -> Aab", T_iajb[1], pdA_t_iajb[1])
+                + 2 * np.einsum("Aiajc, ibjc -> Aab", pdA_T_iajb[2], t_iajb[2])
+                + np.einsum("Ajcia, jcib -> Aab", pdA_T_iajb[1], t_iajb[1]))
+        return pdB_D_r_oovv
+
+    @cached_property
+    def pdA_W_I(self):
+        so, sv = self.so, self.sv
+        natm, nmo = self.natm, self.nmo
+        pdA_T_iajb, T_iajb = self.pdA_T_iajb, self.T_iajb
+        eri0_mo, pdA_eri0_mo = self.eri0_mo, self.pdA_eri0_mo
+        pdA_W_I = np.zeros((2, pdA_T_iajb[0].shape[0], nmo, nmo))
+        pdA_W_I[0, :, so[0], so[0]] = (
+                - 2 * np.einsum("Aiakb, jakb -> Aij", pdA_T_iajb[0], eri0_mo[0][so[0], sv[0], so[0], sv[0]])
+                - 1 * np.einsum("Aiakb, jakb -> Aij", pdA_T_iajb[1], eri0_mo[1][so[0], sv[0], so[1], sv[1]])
+                - 2 * np.einsum("iakb, Ajakb -> Aij", T_iajb[0], pdA_eri0_mo[0][:, so[0], sv[0], so[0], sv[0]])
+                - 1 * np.einsum("iakb, Ajakb -> Aij", T_iajb[1], pdA_eri0_mo[1][:, so[0], sv[0], so[1], sv[1]]))
+        pdA_W_I[1, :, so[1], so[1]] = (
+                - 2 * np.einsum("Aiakb, jakb -> Aij", pdA_T_iajb[2], eri0_mo[2][so[1], sv[1], so[1], sv[1]])
+                - 1 * np.einsum("Akbia, kbja -> Aij", pdA_T_iajb[1], eri0_mo[1][so[0], sv[0], so[1], sv[1]])
+                - 2 * np.einsum("iakb, Ajakb -> Aij", T_iajb[2], pdA_eri0_mo[2][:, so[1], sv[1], so[1], sv[1]])
+                - 1 * np.einsum("kbia, Akbja -> Aij", T_iajb[1], pdA_eri0_mo[1][:, so[0], sv[0], so[1], sv[1]]))
+        # vir-vir part
+        pdA_W_I[0, :, sv[0], sv[0]] = (
+                - 2 * np.einsum("Aiajc, ibjc -> Aab", pdA_T_iajb[0], eri0_mo[0][so[0], sv[0], so[0], sv[0]])
+                - 1 * np.einsum("Aiajc, ibjc -> Aab", pdA_T_iajb[1], eri0_mo[1][so[0], sv[0], so[1], sv[1]])
+                - 2 * np.einsum("iajc, Aibjc -> Aab", T_iajb[0], pdA_eri0_mo[0][:, so[0], sv[0], so[0], sv[0]])
+                - 1 * np.einsum("iajc, Aibjc -> Aab", T_iajb[1], pdA_eri0_mo[1][:, so[0], sv[0], so[1], sv[1]]))
+        pdA_W_I[1, :, sv[1], sv[1]] = (
+                - 2 * np.einsum("Aiajc, ibjc -> Aab", pdA_T_iajb[2], eri0_mo[2][so[1], sv[1], so[1], sv[1]])
+                - 1 * np.einsum("Ajcia, jcib -> Aab", pdA_T_iajb[1], eri0_mo[1][so[0], sv[0], so[1], sv[1]])
+                - 2 * np.einsum("iajc, Aibjc -> Aab", T_iajb[2], pdA_eri0_mo[2][:, so[1], sv[1], so[1], sv[1]])
+                - 1 * np.einsum("jcia, Ajcib -> Aab", T_iajb[1], pdA_eri0_mo[1][:, so[0], sv[0], so[1], sv[1]]))
+        # vir-occ part
+        pdA_W_I[0, :, sv[0], so[0]] = (
+                - 4 * np.einsum("Ajakb, ijbk -> Aai", pdA_T_iajb[0], eri0_mo[0][so[0], so[0], sv[0], so[0]])
+                - 2 * np.einsum("Ajakb, ijbk -> Aai", pdA_T_iajb[1], eri0_mo[1][so[0], so[0], sv[1], so[1]])
+                - 4 * np.einsum("jakb, Aijbk -> Aai", T_iajb[0], pdA_eri0_mo[0][:, so[0], so[0], sv[0], so[0]])
+                - 2 * np.einsum("jakb, Aijbk -> Aai", T_iajb[1], pdA_eri0_mo[1][:, so[0], so[0], sv[1], so[1]]))
+        pdA_W_I[1, :, sv[1], so[1]] = (
+                - 4 * np.einsum("Ajakb, ijbk -> Aai", pdA_T_iajb[2], eri0_mo[2][so[1], so[1], sv[1], so[1]])
+                - 2 * np.einsum("Akbja, bkij -> Aai", pdA_T_iajb[1], eri0_mo[1][sv[0], so[0], so[1], so[1]])
+                - 4 * np.einsum("jakb, Aijbk -> Aai", T_iajb[2], pdA_eri0_mo[2][:, so[1], so[1], sv[1], so[1]])
+                - 2 * np.einsum("kbja, Abkij -> Aai", T_iajb[1], pdA_eri0_mo[1][:, sv[0], so[0], so[1], so[1]]))
+        return pdA_W_I
+
 
 class DerivOnceUXDH(DerivOnceUMP2, DerivOnceUNCDFT, ABC):
 

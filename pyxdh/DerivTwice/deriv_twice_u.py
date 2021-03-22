@@ -1,94 +1,125 @@
+# basic utilities
 import numpy as np
+from opt_einsum import contract as einsum
+# python utilities
 from abc import ABC
-from functools import partial
-import os
+# pyxdh utilities
+from pyxdh.DerivOnce import DerivOnceUSCF
+from pyxdh.DerivTwice import DerivTwiceSCF, DerivTwiceMP2
+from pyxdh.Utilities import cached_property
 
-from pyxdh.DerivTwice import DerivTwiceSCF, DerivTwiceUSCF, DerivTwiceMP2, DerivTwiceNCDFT
-from pyxdh.DerivOnce import DerivOnceUMP2, DerivOnceXDH
 
-MAXMEM = float(os.getenv("MAXMEM", 2))
-np.einsum = partial(np.einsum, optimize=["greedy", 1024 ** 3 * MAXMEM / 8])
-np.set_printoptions(8, linewidth=1000, suppress=True)
+class DerivTwiceUSCF(DerivTwiceSCF, ABC):
+
+    def __init__(self, config):
+        super(DerivTwiceUSCF, self).__init__(config)
+        self.A = self.A  # type: DerivOnceUSCF
+        self.B = self.B  # type: DerivOnceUSCF
+
+    @cached_property
+    def F_2_ao(self):
+        return self.H_2_ao + self.F_2_ao_Jcontrib - self.cx * self.F_2_ao_Kcontrib + self.F_2_ao_GGAcontrib
+
+    @cached_property
+    def S_2_mo(self):
+        if not isinstance(self.S_2_ao, np.ndarray):
+            return 0
+        return einsum("ABuv, xup, xvq -> xABpq", self.S_2_ao, self.C, self.C)
+
+    @cached_property
+    def F_2_mo(self):
+        if not isinstance(self.F_2_ao, np.ndarray):
+            return 0
+        return einsum("xABuv, xup, xvq -> xABpq", self.F_2_ao, self.C, self.C)
+
+    @cached_property
+    def Xi_2(self):
+        A = self.A
+        B = self.B
+
+        Xi_2 = (
+            self.S_2_mo
+            + einsum("xApm, xBqm -> xABpq", A.U_1, B.U_1)
+            + einsum("xBpm, xAqm -> xABpq", B.U_1, A.U_1)
+        )
+        if isinstance(A.S_1_mo, np.ndarray) and isinstance(B.S_1_mo, np.ndarray):
+            Xi_2 -= einsum("xApm, xBqm -> xABpq", A.S_1_mo, B.S_1_mo)
+            Xi_2 -= einsum("xBpm, xAqm -> xABpq", B.S_1_mo, A.S_1_mo)
+        return Xi_2
+
+    def _get_E_2_U(self):
+        A, B = self.A, self.B
+        Xi_2 = self.Xi_2
+        so, sa = self.so, self.sa
+        e, eo = self.e, self.eo
+        Ax0_Core = self.A.Ax0_Core
+
+        prop_dim = A.U_1.shape[1]
+        E_2_U = np.zeros((prop_dim, prop_dim))
+        Ax0_BU = Ax0_Core(sa, so, sa, so)((B.U_1[0, :, :, so[0]], B.U_1[1, :, :, so[1]]))
+        for x in range(2):
+            E_2_U -= 1 * einsum("ABi, i -> AB", Xi_2[x].diagonal(0, -1, -2)[:, :, so[x]], eo[x])
+            E_2_U += 2 * einsum("Bpi, Api -> AB", B.U_1[x][:, :, so[x]], A.F_1_mo[x][:, :, so[x]])
+            E_2_U += 2 * einsum("Api, Bpi -> AB", A.U_1[x][:, :, so[x]], B.F_1_mo[x][:, :, so[x]])
+            E_2_U += 2 * einsum("Api, Bpi, p -> AB", A.U_1[x][:, :, so[x]], B.U_1[x][:, :, so[x]], e[x])
+            E_2_U += 2 * einsum("Api, Bpi -> AB", A.U_1[x][:, :, so[x]], Ax0_BU[x])
+
+        return E_2_U
+
+    @cached_property
+    def pdB_F_A_mo(self):
+        A, B = self.A, self.B
+        so, sa = self.so, self.sa
+        pdB_F_A_mo = (
+            + self.F_2_mo
+            + einsum("xApm, xBmq -> xABpq", A.F_1_mo, B.U_1)
+            + einsum("xAmq, xBmp -> xABpq", A.F_1_mo, B.U_1)
+            + np.array(A.Ax1_Core(sa, sa, sa, so)((B.U_1[0][:, :, so[0]], B.U_1[1][:, :, so[1]])))
+        )
+        return pdB_F_A_mo
+
+    @cached_property
+    def pdB_S_A_mo(self):
+        A, B = self.A, self.B
+        if not isinstance(A.S_1_mo, np.ndarray):
+            return self.S_2_mo
+        pdB_S_A_mo = (
+            + self.S_2_mo
+            + einsum("xApm, xBmq -> xABpq", A.S_1_mo, B.U_1)
+            + einsum("xAmq, xBmp -> xABpq", A.S_1_mo, B.U_1)
+        )
+        return pdB_S_A_mo
+
+    @cached_property
+    def pdB_B_A(self):
+        A, B = self.A, self.B
+        so, sa = self.so, self.sa
+        Ax0_Core = A.Ax0_Core
+        pdB_B_A = (
+            + self.pdB_F_A_mo
+            - einsum("xABpq, xq -> xABpq", self.pdB_S_A_mo, self.e)
+            - einsum("xApm, xBqm -> xABpq", A.S_1_mo, B.pdA_F_0_mo)
+            - 0.5 * np.array(B.Ax1_Core(sa, sa, so, so)((A.S_1_mo[0][:, so[0], so[0]], A.S_1_mo[1][:, so[1], so[1]]))).swapaxes(1, 2)
+            - 0.5 * np.array(Ax0_Core(sa, sa, so, so)((self.pdB_S_A_mo[0][:, :, so[0], so[0]], self.pdB_S_A_mo[1][:, :, so[1], so[1]])))
+            - np.array(Ax0_Core(sa, sa, sa, so)((
+                    einsum("Bml, Akl -> ABmk", B.U_1[0][:, :, so[0]], A.S_1_mo[0][:, so[0], so[0]]),
+                    einsum("Bml, Akl -> ABmk", B.U_1[1][:, :, so[1]], A.S_1_mo[1][:, so[1], so[1]]),
+                )))
+            - 0.5 * einsum("xBmp, xAmq -> xABpq", B.U_1, np.array(Ax0_Core(sa, sa, so, so)((A.S_1_mo[0][:, so[0], so[0]], A.S_1_mo[1][:, so[1], so[1]]))))
+            - 0.5 * einsum("xBmq, xAmp -> xABpq", B.U_1, np.array(Ax0_Core(sa, sa, so, so)((A.S_1_mo[0][:, so[0], so[0]], A.S_1_mo[1][:, so[1], so[1]]))))
+        )
+        return pdB_B_A
 
 
 class DerivTwiceUMP2(DerivTwiceMP2, DerivTwiceUSCF, DerivTwiceSCF, ABC):
 
     def __init__(self, config):
         super(DerivTwiceUMP2, self).__init__(config)
-        self.A = config["deriv_A"]  # type: DerivOnceUMP2
-        self.B = config["deriv_B"]  # type: DerivOnceUMP2
+        self.A = self.A  # type: DerivOnceUMP2
+        self.B = self.B  # type: DerivOnceUMP2
 
-    def _get_pdB_D_r_oovv(self):
-        B = self.B
-        so, sv = self.so, self.sv
-        nmo = self.nmo
-        T_iajb, t_iajb = B.T_iajb, B.t_iajb
-        pdA_t_iajb, pdA_T_iajb = B.pdA_t_iajb, B.pdA_T_iajb
-
-        pdB_D_r_oovv = np.zeros((2, pdA_t_iajb[0].shape[0], nmo, nmo))
-        pdB_D_r_oovv[0, :, so[0], so[0]] = (
-                - 2 * np.einsum("iakb, Ajakb -> Aij", T_iajb[0], pdA_t_iajb[0])
-                - np.einsum("iakb, Ajakb -> Aij", T_iajb[1], pdA_t_iajb[1])
-                - 2 * np.einsum("Aiakb, jakb -> Aij", pdA_T_iajb[0], t_iajb[0])
-                - np.einsum("Aiakb, jakb -> Aij", pdA_T_iajb[1], t_iajb[1]))
-        pdB_D_r_oovv[1, :, so[1], so[1]] = (
-                - 2 * np.einsum("iakb, Ajakb -> Aij", T_iajb[2], pdA_t_iajb[2])
-                - np.einsum("kbia, Akbja -> Aij", T_iajb[1], pdA_t_iajb[1])
-                - 2 * np.einsum("Aiakb, jakb -> Aij", pdA_T_iajb[2], t_iajb[2])
-                - np.einsum("Akbia, kbja -> Aij", pdA_T_iajb[1], t_iajb[1]))
-        pdB_D_r_oovv[0, :, sv[0], sv[0]] = (
-                + 2 * np.einsum("iajc, Aibjc -> Aab", T_iajb[0], pdA_t_iajb[0])
-                + np.einsum("iajc, Aibjc -> Aab", T_iajb[1], pdA_t_iajb[1])
-                + 2 * np.einsum("Aiajc, ibjc -> Aab", pdA_T_iajb[0], t_iajb[0])
-                + np.einsum("Aiajc, ibjc -> Aab", pdA_T_iajb[1], t_iajb[1]))
-        pdB_D_r_oovv[1, :, sv[1], sv[1]] = (
-                + 2 * np.einsum("iajc, Aibjc -> Aab", T_iajb[2], pdA_t_iajb[2])
-                + np.einsum("jcia, Ajcib -> Aab", T_iajb[1], pdA_t_iajb[1])
-                + 2 * np.einsum("Aiajc, ibjc -> Aab", pdA_T_iajb[2], t_iajb[2])
-                + np.einsum("Ajcia, jcib -> Aab", pdA_T_iajb[1], t_iajb[1]))
-        return pdB_D_r_oovv
-
-    def _get_pdB_W_I(self):
-        so, sv = self.so, self.sv
-        natm, nmo = self.natm, self.nmo
-        pdA_T_iajb, T_iajb = self.B.pdA_T_iajb, self.B.T_iajb
-        eri0_mo, pdA_eri0_mo = self.B.eri0_mo, self.B.pdA_eri0_mo
-        pdB_W_I = np.zeros((2, pdA_T_iajb[0].shape[0], nmo, nmo))
-        pdB_W_I[0, :, so[0], so[0]] = (
-                - 2 * np.einsum("Aiakb, jakb -> Aij", pdA_T_iajb[0], eri0_mo[0][so[0], sv[0], so[0], sv[0]])
-                - 1 * np.einsum("Aiakb, jakb -> Aij", pdA_T_iajb[1], eri0_mo[1][so[0], sv[0], so[1], sv[1]])
-                - 2 * np.einsum("iakb, Ajakb -> Aij", T_iajb[0], pdA_eri0_mo[0][:, so[0], sv[0], so[0], sv[0]])
-                - 1 * np.einsum("iakb, Ajakb -> Aij", T_iajb[1], pdA_eri0_mo[1][:, so[0], sv[0], so[1], sv[1]]))
-        pdB_W_I[1, :, so[1], so[1]] = (
-                - 2 * np.einsum("Aiakb, jakb -> Aij", pdA_T_iajb[2], eri0_mo[2][so[1], sv[1], so[1], sv[1]])
-                - 1 * np.einsum("Akbia, kbja -> Aij", pdA_T_iajb[1], eri0_mo[1][so[0], sv[0], so[1], sv[1]])
-                - 2 * np.einsum("iakb, Ajakb -> Aij", T_iajb[2], pdA_eri0_mo[2][:, so[1], sv[1], so[1], sv[1]])
-                - 1 * np.einsum("kbia, Akbja -> Aij", T_iajb[1], pdA_eri0_mo[1][:, so[0], sv[0], so[1], sv[1]]))
-        # vir-vir part
-        pdB_W_I[0, :, sv[0], sv[0]] = (
-                - 2 * np.einsum("Aiajc, ibjc -> Aab", pdA_T_iajb[0], eri0_mo[0][so[0], sv[0], so[0], sv[0]])
-                - 1 * np.einsum("Aiajc, ibjc -> Aab", pdA_T_iajb[1], eri0_mo[1][so[0], sv[0], so[1], sv[1]])
-                - 2 * np.einsum("iajc, Aibjc -> Aab", T_iajb[0], pdA_eri0_mo[0][:, so[0], sv[0], so[0], sv[0]])
-                - 1 * np.einsum("iajc, Aibjc -> Aab", T_iajb[1], pdA_eri0_mo[1][:, so[0], sv[0], so[1], sv[1]]))
-        pdB_W_I[1, :, sv[1], sv[1]] = (
-                - 2 * np.einsum("Aiajc, ibjc -> Aab", pdA_T_iajb[2], eri0_mo[2][so[1], sv[1], so[1], sv[1]])
-                - 1 * np.einsum("Ajcia, jcib -> Aab", pdA_T_iajb[1], eri0_mo[1][so[0], sv[0], so[1], sv[1]])
-                - 2 * np.einsum("iajc, Aibjc -> Aab", T_iajb[2], pdA_eri0_mo[2][:, so[1], sv[1], so[1], sv[1]])
-                - 1 * np.einsum("jcia, Ajcib -> Aab", T_iajb[1], pdA_eri0_mo[1][:, so[0], sv[0], so[1], sv[1]]))
-        # vir-occ part
-        pdB_W_I[0, :, sv[0], so[0]] = (
-                - 4 * np.einsum("Ajakb, ijbk -> Aai", pdA_T_iajb[0], eri0_mo[0][so[0], so[0], sv[0], so[0]])
-                - 2 * np.einsum("Ajakb, ijbk -> Aai", pdA_T_iajb[1], eri0_mo[1][so[0], so[0], sv[1], so[1]])
-                - 4 * np.einsum("jakb, Aijbk -> Aai", T_iajb[0], pdA_eri0_mo[0][:, so[0], so[0], sv[0], so[0]])
-                - 2 * np.einsum("jakb, Aijbk -> Aai", T_iajb[1], pdA_eri0_mo[1][:, so[0], so[0], sv[1], so[1]]))
-        pdB_W_I[1, :, sv[1], so[1]] = (
-                - 4 * np.einsum("Ajakb, ijbk -> Aai", pdA_T_iajb[2], eri0_mo[2][so[1], so[1], sv[1], so[1]])
-                - 2 * np.einsum("Akbja, bkij -> Aai", pdA_T_iajb[1], eri0_mo[1][sv[0], so[0], so[1], so[1]])
-                - 4 * np.einsum("jakb, Aijbk -> Aai", T_iajb[2], pdA_eri0_mo[2][:, so[1], so[1], sv[1], so[1]])
-                - 2 * np.einsum("kbja, Abkij -> Aai", T_iajb[1], pdA_eri0_mo[1][:, sv[0], so[0], so[1], so[1]]))
-        return pdB_W_I
-
-    def _get_pdB_pdpA_eri0_iajb(self):
+    @cached_property
+    def pdB_pdpA_eri0_iajb(self):
         A, B = self.A, self.B
         so, sv, sa = self.so, self.sv, self.sa
         eri1_mo, U_1 = A.eri1_mo, B.U_1
@@ -191,4 +222,3 @@ class DerivTwiceUMP2(DerivTwiceMP2, DerivTwiceUSCF, DerivTwiceSCF, ABC):
                 + 2 * np.einsum("iajb, ABiajb -> AB", self.T_iajb[x], self.pdB_pdpA_eri0_iajb[x])
             )
         return E_2_MP2_Contrib
-
