@@ -19,9 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="912d8545-b18a-4722-b0d8-e8c61f686f07" name="Default Changelist" comment="refactor: re-update for NH3 molecule change">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-    </list>
+    <list default="true" id="912d8545-b18a-4722-b0d8-e8c61f686f07" name="Default Changelist" comment="refactor: update readme" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -381,7 +379,7 @@
       <workItem from="1616123473926" duration="17197000" />
       <workItem from="1616301533686" duration="17609000" />
       <workItem from="1616384820158" duration="26535000" />
-      <workItem from="1616472035705" duration="11583000" />
+      <workItem from="1616472035705" duration="12323000" />
     </task>
     <task id="LOCAL-00001" summary="pyxdh: UHF Gradient">
       <created>1591017061437</created>
@@ -691,7 +689,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616486048496</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="refactor: update readme">
+      <created>1616486632889</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1616486632889</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -710,7 +715,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pyxdh: rename" />
     <MESSAGE value="pyxdh/DF: add MP2 energy and clearify SCF derivative" />
     <MESSAGE value="pyxdh: add requirements, declare threads in travis, add cached_property" />
     <MESSAGE value="refactor: change test molecule and update test module in grad_r" />
@@ -735,7 +739,8 @@
     <MESSAGE value="refactor: gather all testing to folder, and update CI configuration" />
     <MESSAGE value="refactor: updated NH3 molecular structure as simple as CH3" />
     <MESSAGE value="refactor: re-update for NH3 molecule change" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: re-update for NH3 molecule change" />
+    <MESSAGE value="refactor: update readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: update readme" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

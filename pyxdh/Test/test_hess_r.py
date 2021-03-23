@@ -64,7 +64,7 @@ class TestHessR:
         # ASSERT: hessian - Gaussian
         np.allclose(hessh.E_2, formchk.hessian(), atol=2e-5, rtol=2e-4)
 
-    def test_r_xygjos_grad(self):
+    def test_r_xygjos_hess(self):
         scf_eng = dft.RKS(self.mol, xc="B3LYPg"); scf_eng.grids = self.grids; scf_eng.run()
         nc_eng = dft.RKS(self.mol, xc="0.7731*HF + 0.2269*LDA, 0.2309*VWN3 + 0.2754*LYP"); nc_eng.grids = self.grids
         config = {"scf_eng": scf_eng, "nc_eng": nc_eng, "cc": 0.4364, "ss": 0., "cphf_grids": self.grids_cphf}
