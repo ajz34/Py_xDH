@@ -1,3 +1,8 @@
+path_classifiers:
+  test:
+    - pyxdh/Validation
+    - pyxdh/Test
+
 queries:
   - include: pyxdh
 
@@ -7,5 +12,3 @@ extraction:
       - version: 3
       - requirements_files: requirements.txt
       - setup_py: setup.py
-      - exclude: pyxdh/Validation
-      - exclude: pyxdh/Test
