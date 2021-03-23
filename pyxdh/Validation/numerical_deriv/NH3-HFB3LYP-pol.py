@@ -5,11 +5,12 @@ from pyxdh.Utilities import NumericDiff, DipoleDerivGenerator
 
 
 def dipole_generator(component, interval):
-    mol = gto.Mole(atom="N 0. 0. 0.; H 1. 0. 0.; H 0. 2. 0.; H 0. 0. 1.5", basis="6-31G", verbose=0).build()
+    mol = gto.Mole(atom="N 0. 0. 0.; H .9 0. 0.; H 0. 1. 0.; H 0. 0. 1.1", basis="6-31G", verbose=0).build()
     grids = dft.Grids(mol)
     grids.atom_grid = (99, 590)
     grids.build()
     scf_eng = scf.RHF(mol)
+    scf_eng.conv_tol_grad = 1e-8
     nc_eng = dft.RKS(mol, xc="B3LYPg")
     nc_eng.grids = grids
 
@@ -19,7 +20,7 @@ def dipole_generator(component, interval):
     scf_eng.get_hcore = get_hcore
     nc_eng.get_hcore = get_hcore
     scf_eng.run()
-    diph = DipoleNCDFT({"scf_eng": scf_eng, "nc_eng": nc_eng})
+    diph = DipoleNCDFT({"scf_eng": scf_eng, "nc_eng": nc_eng, "cphf_tol": 1e-10})
     return diph.E_1
 
 

@@ -5,7 +5,7 @@ from pyxdh.Utilities import NumericDiff, DipoleDerivGenerator
 
 
 def dipole_generator(component, interval):
-    mol = gto.Mole(atom="N 0. 0. 0.; H 1. 0. 0.; H 0. 2. 0.; H 0. 0. 1.5", basis="6-31G", verbose=0).build()
+    mol = gto.Mole(atom="N 0. 0. 0.; H .9 0. 0.; H 0. 1. 0.; H 0. 0. 1.1", basis="6-31G", verbose=0).build()
     grids = dft.Grids(mol)
     grids.atom_grid = (99, 590)
     grids.build()
@@ -24,7 +24,7 @@ def dipole_generator(component, interval):
 
 if __name__ == '__main__':
     name = __file__.split("/")[-1].split(".")[0]
-    mol = gto.Mole(atom="N 0. 0. 0.; H 1.5 0. 0.2; H 0.1 1.2 0.; H 0. 0. 1.", basis="6-31G", verbose=0).build()
+    mol = gto.Mole(atom="N 0. 0. 0.; H .9 0. 0.; H 0. 1. 0.; H 0. 0. 1.1", basis="6-31G", verbose=0).build()
     num_obj = DipoleDerivGenerator(dipole_generator)
     num_dif = NumericDiff(num_obj).derivative
     dip_nuc = einsum("A, At -> t", mol.atom_charges(), mol.atom_coords())

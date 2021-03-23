@@ -9,7 +9,7 @@ import pickle
 
 class TestHessR:
 
-    mol = gto.Mole(atom="N 0. 0. 0.; H 1. 0. 0.; H 0. 2. 0.; H 0. 0. 1.5", basis="6-31G", verbose=0).build()
+    mol = gto.Mole(atom="N 0. 0. 0.; H .9 0. 0.; H 0. 1. 0.; H 0. 0. 1.1", basis="6-31G", verbose=0).build()
     grids = dft.Grids(mol); grids.atom_grid = (99, 590); grids.build()
     grids_cphf = dft.Grids(mol); grids_cphf.atom_grid = (50, 194); grids_cphf.build()
 
@@ -36,7 +36,7 @@ class TestHessR:
         assert np.allclose(hessh.E_2, scf_hess.de.swapaxes(-2, -3).reshape((-1, self.mol.natm * 3)), atol=1e-6, rtol=1e-4)
 
     def test_r_hfb3lyp_hess(self):
-        scf_eng = scf.RHF(self.mol).run()
+        scf_eng = scf.RHF(self.mol); scf_eng.conv_tol_grad = 1e-10; scf_eng.max_cycle = 256; scf_eng.run()
         nc_eng = dft.RKS(self.mol, xc="B3LYPg")
         nc_eng.grids = self.grids
         gradh = GradNCDFT({"scf_eng": scf_eng, "nc_eng": nc_eng})
@@ -44,7 +44,7 @@ class TestHessR:
         with open(resource_filename("pyxdh", "Validation/numerical_deriv/NH3-HFB3LYP-hess.dat"), "rb") as f:
             ref_hess = pickle.load(f)
         # ASSERT: hessian - numerical
-        assert np.allclose(hessh.E_2, ref_hess.reshape((-1, self.mol.natm * 3)), atol=1e-6, rtol=1e-4)
+        assert np.allclose(hessh.E_2, ref_hess.reshape((-1, self.mol.natm * 3)), atol=5e-6, rtol=1e-4)
 
     def test_r_mp2_hess(self):
         scf_eng = scf.RHF(self.mol).run()

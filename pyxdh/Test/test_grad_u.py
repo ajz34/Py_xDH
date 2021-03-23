@@ -53,7 +53,8 @@ class TestGradU:
         assert np.allclose(gradh.E_1, ref_grad, atol=1e-6, rtol=1e-4)
 
     def test_u_mp2_grad(self):
-        scf_eng = scf.UHF(self.mol); scf_eng.conv_tol_grad = 1e-10; scf_eng.max_cycle = 128; scf_eng.run()
+        scf_eng = scf.UHF(self.mol); scf_eng.conv_tol_grad = 1e-8; scf_eng.max_cycle = 128; scf_eng.run()
+        assert scf_eng.converged
         mp2_eng = mp.MP2(scf_eng).run()
         mp2_grad = mp2_eng.Gradients().run()
         gradh = GradUMP2({"scf_eng": scf_eng})
