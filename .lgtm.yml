@@ -1,14 +1,12 @@
 path_classifiers:
   test:
-    - pyxdh/Validation
-    - pyxdh/Test
-
+  - "pyxdh/Validation"
+  - "pyxdh/Test"
 queries:
-  - include: pyxdh
-
+  include: "pyxdh"
 extraction:
   python:
     python_setup:
-      - version: 3
-      - requirements_files: requirements.txt
-      - setup_py: setup.py
+      version: "3"
+      requirements_files: "requirements.txt"
+      setup_py: "setup.py"

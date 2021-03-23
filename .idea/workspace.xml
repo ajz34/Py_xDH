@@ -19,8 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="912d8545-b18a-4722-b0d8-e8c61f686f07" name="Default Changelist" comment="refactor: uniform test naming convention">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="912d8545-b18a-4722-b0d8-e8c61f686f07" name="Default Changelist" comment="refactor: update lgtm configuration">
       <change beforePath="$PROJECT_DIR$/.lgtm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.lgtm.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -382,7 +381,7 @@
       <workItem from="1616123473926" duration="17197000" />
       <workItem from="1616301533686" duration="17609000" />
       <workItem from="1616384820158" duration="26535000" />
-      <workItem from="1616472035705" duration="13373000" />
+      <workItem from="1616472035705" duration="14174000" />
     </task>
     <task id="LOCAL-00001" summary="pyxdh: UHF Gradient">
       <created>1591017061437</created>
@@ -706,7 +705,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616487624873</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="refactor: update lgtm configuration">
+      <created>1616488520928</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1616488520928</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -725,7 +731,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pyxdh: add requirements, declare threads in travis, add cached_property" />
     <MESSAGE value="refactor: change test molecule and update test module in grad_r" />
     <MESSAGE value="refactor: grad_r property update" />
     <MESSAGE value="pyxdh/DF: update MP2 grad test and code" />
@@ -750,7 +755,8 @@
     <MESSAGE value="refactor: re-update for NH3 molecule change" />
     <MESSAGE value="refactor: update readme" />
     <MESSAGE value="refactor: uniform test naming convention" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: uniform test naming convention" />
+    <MESSAGE value="refactor: update lgtm configuration" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: update lgtm configuration" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
