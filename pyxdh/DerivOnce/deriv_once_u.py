@@ -7,11 +7,14 @@ import warnings
 from typing import Tuple, Callable
 # pyscf utilities
 from pyscf.scf._response_functions import _gen_uhf_response
-from pyscf import dft
+from pyscf import dft, scf, lib, hessian
 from pyscf.scf import ucphf
 # pyxdh utilities
 from pyxdh.DerivOnce.deriv_once_r import DerivOnceSCF, DerivOnceNCDFT, DerivOnceMP2
 from pyxdh.Utilities import timing, cached_property
+# additional definition for hessian
+scf.uhf.UHF.Hessian = lib.class_as_method(hessian.uhf.Hessian)
+dft.uks.UKS.Hessian = lib.class_as_method(hessian.uks.Hessian)
 
 
 class DerivOnceUSCF(DerivOnceSCF, ABC):

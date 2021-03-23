@@ -7,11 +7,13 @@ import warnings
 import copy
 # pyscf utilities
 from pyscf.scf._response_functions import _gen_rhf_response
-from pyscf import gto, dft
+from pyscf import gto, dft, scf, lib, hessian
 from pyscf.scf import cphf
 # pyxdh utilities
 from pyxdh.Utilities import timing, cached_property
-
+# additional definition for hessian
+scf.hf.RHF.Hessian = lib.class_as_method(hessian.rhf.Hessian)
+dft.rks.RKS.Hessian = lib.class_as_method(hessian.rks.Hessian)
 
 # Cubic Inheritance: A1
 class DerivOnceSCF(ABC):

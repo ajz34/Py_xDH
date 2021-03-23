@@ -15,7 +15,7 @@ def mol_to_eng(mol):
 
 if __name__ == '__main__':
     name = __file__.split("/")[-1].split(".")[0]
-    mol = gto.Mole(atom="N 0. 0. 0.; H 1.5 0. 0.2; H 0.1 1.2 0.; H 0. 0. 1.", basis="6-31G", verbose=0).build()
+    mol = gto.Mole(atom="N 0. 0. 0.; H 1. 0. 0.; H 0. 2. 0.; H 0. 0. 1.5", basis="6-31G", verbose=0).build()
     num_obj = NucCoordDerivGenerator(mol, mol_to_eng)
     num_dif = NumericDiff(num_obj).derivative
     with open(name + ".dat", "wb") as f:
