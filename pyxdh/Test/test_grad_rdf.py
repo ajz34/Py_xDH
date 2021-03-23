@@ -1,34 +1,11 @@
 import numpy as np
-from functools import partial
-import os
-
 from pyscf import gto, scf, mp, df
-
-from pyxdh.DerivOnce import DerivOnceDFSCF, DerivOnceDFMP2, GradSCF, GradMP2
-
-MAXMEM = float(os.getenv("MAXMEM", 2))
-np.einsum = partial(np.einsum, optimize=["greedy", 1024 ** 3 * MAXMEM / 8])
-np.set_printoptions(8, linewidth=1000, suppress=True)
+from pyxdh.DerivOnce import GradDFSCF, GradDFMP2
 
 
-class GradDFSCF(DerivOnceDFSCF, GradSCF):
+class TestGradRDF:
 
-    def _get_E_1(self):
-        E_1 = GradSCF._get_E_1(self)
-        j_1 = self.scf_grad.get_j(dm=self.D)
-        k_1 = self.scf_grad.get_k(dm=self.D)
-        v_aux = j_1.aux - 0.5 * self.cx * k_1.aux
-        E_1 += v_aux
-        return E_1
-
-
-class GradDFMP2(DerivOnceDFMP2, GradMP2):
-    pass
-
-
-class Test_GradDF:
-
-    def test_DFHF_grad(self):
+    def test_rdf_rhf_grad(self):
         mol = gto.Mole()
         mol.atom = """
         N  0.  0.  0.
@@ -46,7 +23,7 @@ class Test_GradDF:
         helper = GradDFSCF(config)
         assert np.allclose(helper.E_1, mf_grad.de, atol=1e-6, rtol=1e-4)
 
-    def test_DFMP2_eng(self):
+    def test_rdf_rhf_eng(self):
         mol = gto.Mole()
         mol.atom = """
         N  0.  0.  0.
@@ -66,4 +43,3 @@ class Test_GradDF:
         config = {"scf_eng": mf_scf, "aux_ri": aux_ri}
         helper = GradDFMP2(config)
         assert np.allclose(helper.eng, mf_mp2.e_tot, rtol=1e-10, atol=1e-12)
-

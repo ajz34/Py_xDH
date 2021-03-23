@@ -4,7 +4,7 @@ from opt_einsum import contract as einsum
 # python utilities
 from abc import ABC
 # pyxdh utilities
-from pyxdh.DerivOnce import DerivOnceUSCF
+from pyxdh.DerivOnce import DerivOnceUSCF, DerivOnceUMP2
 from pyxdh.DerivTwice import DerivTwiceSCF, DerivTwiceMP2
 from pyxdh.Utilities import cached_property
 

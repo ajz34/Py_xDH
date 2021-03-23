@@ -507,36 +507,3 @@ class KernelHelper:
             self.frgg = grid_kxc[2].T * weight
             self.fggg = grid_kxc[3].T * weight
             self.kxc = (self.frrr.T, self.frrg.T, self.frgg.T, self.fggg.T)
-
-
-class Test_GridHelper:
-
-    def test_high_coordinate_derivative_accordance(self):
-
-        from pyscf import gto
-
-        mol = gto.Mole()
-        mol.atom = """
-        O  0.0  0.0  0.0
-        O  0.0  0.0  1.5
-        H  1.5  0.0  0.0
-        H  0.0  0.7  1.5
-        """
-        mol.basis = "6-31G"
-        mol.verbose = 0
-        mol.build()
-
-        grids = dft.gen_grid.Grids(mol)
-        grids.atom_grid = (75, 302)
-        grids.becke_scheme = dft.gen_grid.stratmann
-        grids.build()
-
-        dmX = np.random.random((mol.nao, mol.nao))
-        dmX += dmX.T
-        grdh = GridHelper(mol, grids, dmX)
-        assert(np.allclose(grdh.A_rho_1.sum(axis=0), - grdh.rho_1))
-        assert(np.allclose(grdh.A_rho_2.sum(axis=0), - grdh.rho_2))
-        assert(np.allclose(grdh.AB_rho_2.sum(axis=(0, 1)), grdh.rho_2))
-        assert(np.allclose(grdh.AB_rho_2, grdh.AB_rho_2.transpose((1, 0, 3, 2, 4))))
-        assert(np.allclose(grdh.AB_rho_3, grdh.AB_rho_3.transpose((1, 0, 3, 2, 4, 5))))
-        assert(np.allclose(grdh.AB_gamma_2, grdh.AB_gamma_2.transpose((1, 0, 3, 2, 4))))

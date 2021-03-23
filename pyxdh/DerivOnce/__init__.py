@@ -19,4 +19,4 @@ from pyxdh.DerivOnce.deriv_once_u import DerivOnceUSCF, DerivOnceUNCDFT, DerivOn
 from pyxdh.DerivOnce.grad_u import GradUSCF, GradUNCDFT, GradUMP2, GradUXDH
 from pyxdh.DerivOnce.dipole_u import DipoleUSCF, DipoleUMP2
 from pyxdh.DerivOnce.deriv_once_df import DerivOnceDFSCF, DerivOnceDFMP2
-from pyxdh.DerivOnce.grad_df import GradDFSCF, GradDFMP2
+from pyxdh.DerivOnce.grad_rdf import GradDFSCF, GradDFMP2

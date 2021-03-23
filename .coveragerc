@@ -1,4 +1,5 @@
 [run]
 omit =
     pyxdh/Validation/*
+    pyxdh/Test/*
     setup.py
