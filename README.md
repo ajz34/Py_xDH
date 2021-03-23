@@ -45,24 +45,24 @@ Previous version 0.0.3 should work with pyscf==1.6.4.
 
 ## Abilities
 
-|                 | GGA | MP2 | GGA-GGA | GGA xDH |
-|:---------------:|:---:|:---:|:-------:|:-------:|
-| Energy          | +   | +   | +       | +       |
-| Gradient        | +   | +   | +       | +       |
-| Dipole          | +   | +   | +       | +       |
-| Hessian         | +   | +   | +       | +       |
-| Dipole Gradient | +   | +   | +       | +       |
-| Polarizability  | +   | +   | +       | +       |
+|                 | HF        | GGA  | MP2       | GGA-GGA | GGA xDH |
+|:---------------:|:----------|:-----|:----------|:--------|:--------|
+| Energy          | R, U, RDF | R, U | R, U, RDF | R, U    | R, U    |
+| Gradient        | R, U, RDF | R, U | R, U      | R, U    | R, U    |
+| Dipole          | R, U      | R    | R, U      | R, U    | R, U    |
+| Hessian         | R, U      | R    | R         | R       | R       |
+| Dipole Gradient | R, U      | R    | R, U      | R       | R       |
+| Polarizability  | R, U      | R    | R, U      | R       | R       |
 
 Where
-  - "+": Implemented in this repository;
+  - "R", "U", "RDF", "UDF": Restricted, Unrestricted, Restricted Density Fitting, Unrestricted Density Fitting;
   - "GGA": SCF process with GGA kernel or naive HF; note that LDA, meta-GGA or NLC is not supported in these code;
   - "MP2": PT2 with SCF reference; can be naive MP2 with HF reference or B2PLYP-type Double Hybrid functional (DH);
   - "GGA-GGA": Non-Consistent GGA, e.g. B3LYP energy take HF density as reference;
   - "GGA xDH": XYG3 type functional (xDH) take GGA density as reference.
   
 其中，
-  - "+"：在这份代码库中已经实现；
+  - "R", "U", "RDF", "UDF": 闭壳层、开壳层、闭壳层 Density Fitting、开壳层 Density Fitting；
   - "GGA"：以 GGA 为基础的 SCF，包括 HF；但 LDA、meta-GGA、NLC 现不支持；
   - "MP2"：以 SCF 为参考态的二阶微扰；这包括普通的 MP2 和 B2PLYP 型双杂化泛函；
   - "GGA-GGA"：非自洽 GGA，譬如以 HF 为参考态获得的 B3LYP 能量的泛函；

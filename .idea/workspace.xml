@@ -19,34 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="912d8545-b18a-4722-b0d8-e8c61f686f07" name="Default Changelist" comment="refactor: add data of NH3 from Gaussian">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/Test/test_dipderiv_r.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Test/test_dipderiv_r.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/Test/test_dipole_r.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Test/test_dipole_r.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/Test/test_grad_r.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Test/test_grad_r.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/Test/test_grad_u.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Test/test_grad_u.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/Test/test_hess_r.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Test/test_hess_r.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/Test/test_polar_r.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Test/test_polar_r.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/Validation/gaussian/NH3-B2PLYP-freq.fchk" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Validation/gaussian/NH3-B2PLYP-freq.fchk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/Validation/gaussian/NH3-B2PLYP-freq.gjf" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Validation/gaussian/NH3-B2PLYP-freq.gjf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/Validation/gaussian/NH3-B3LYP-freq.fchk" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Validation/gaussian/NH3-B3LYP-freq.fchk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/Validation/gaussian/NH3-B3LYP-freq.gjf" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Validation/gaussian/NH3-B3LYP-freq.gjf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/Validation/gaussian/NH3-HF-freq.fchk" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Validation/gaussian/NH3-HF-freq.fchk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/Validation/gaussian/NH3-HF-freq.gjf" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Validation/gaussian/NH3-HF-freq.gjf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/Validation/gaussian/NH3-MP2-freq.fchk" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Validation/gaussian/NH3-MP2-freq.fchk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/Validation/gaussian/NH3-MP2-freq.gjf" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Validation/gaussian/NH3-MP2-freq.gjf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/Validation/gaussian/NH3-XYG3-freq.fchk" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Validation/gaussian/NH3-XYG3-freq.fchk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/Validation/gaussian/NH3-XYG3-freq.gjf" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Validation/gaussian/NH3-XYG3-freq.gjf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/Validation/gaussian/NH3-XYGJOS-freq.fchk" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Validation/gaussian/NH3-XYGJOS-freq.fchk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/Validation/gaussian/NH3-XYGJOS-freq.gjf" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Validation/gaussian/NH3-XYGJOS-freq.gjf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv/NH3-HFB3LYP-dip.dat" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv/NH3-HFB3LYP-dip.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv/NH3-HFB3LYP-dip.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv/NH3-HFB3LYP-dip.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv/NH3-HFB3LYP-grad.dat" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv/NH3-HFB3LYP-grad.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv/NH3-HFB3LYP-grad.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv/NH3-HFB3LYP-grad.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv/NH3-HFB3LYP-hess.dat" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv/NH3-HFB3LYP-hess.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv/NH3-HFB3LYP-hess.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv/NH3-HFB3LYP-hess.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv/NH3-HFB3LYP-pol.dat" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv/NH3-HFB3LYP-pol.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv/NH3-HFB3LYP-pol.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/Validation/numerical_deriv/NH3-HFB3LYP-pol.py" afterDir="false" />
+    <list default="true" id="912d8545-b18a-4722-b0d8-e8c61f686f07" name="Default Changelist" comment="refactor: re-update for NH3 molecule change">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -407,7 +381,7 @@
       <workItem from="1616123473926" duration="17197000" />
       <workItem from="1616301533686" duration="17609000" />
       <workItem from="1616384820158" duration="26535000" />
-      <workItem from="1616472035705" duration="10717000" />
+      <workItem from="1616472035705" duration="11583000" />
     </task>
     <task id="LOCAL-00001" summary="pyxdh: UHF Gradient">
       <created>1591017061437</created>
@@ -710,7 +684,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616478019079</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="refactor: re-update for NH3 molecule change">
+      <created>1616486048496</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1616486048496</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -729,7 +710,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="pyxdh: density fitting module initialized and add mp2 numerical gradient" />
     <MESSAGE value="pyxdh: rename" />
     <MESSAGE value="pyxdh/DF: add MP2 energy and clearify SCF derivative" />
     <MESSAGE value="pyxdh: add requirements, declare threads in travis, add cached_property" />
@@ -754,7 +734,8 @@
     <MESSAGE value="refactor: clean up and try CI build?" />
     <MESSAGE value="refactor: gather all testing to folder, and update CI configuration" />
     <MESSAGE value="refactor: updated NH3 molecular structure as simple as CH3" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: updated NH3 molecular structure as simple as CH3" />
+    <MESSAGE value="refactor: re-update for NH3 molecule change" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: re-update for NH3 molecule change" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
