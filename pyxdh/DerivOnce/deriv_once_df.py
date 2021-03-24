@@ -3,7 +3,7 @@ import numpy as np
 from opt_einsum import contract as einsum
 from scipy.linalg import solve_triangular
 # python utilities
-from abc import ABC
+from abc import ABC, abstractmethod
 from functools import partial
 from warnings import warn
 # pyscf utilities
@@ -31,7 +31,7 @@ class DerivOnceDFSCF(DerivOnceSCF, ABC):
 
     @staticmethod
     def _gen_int3c2e(mol, aux):
-        int3c_wrapper(mol, aux, "int3c2e", "s1")()
+        return int3c_wrapper(mol, aux, "int3c2e", "s1")()
 
     @staticmethod
     def _gen_L_aux(int2c2e):  # in actual programming, L_aux may refers to L_ri or L_jk
@@ -44,6 +44,44 @@ class DerivOnceDFSCF(DerivOnceSCF, ABC):
     @staticmethod
     def _gen_Y_ao(int3c2e, L_inv):
         return einsum("μνQ, PQ -> μνP", int3c2e, L_inv)
+
+    @staticmethod
+    @abstractmethod
+    def _gen_int2c2e_1(aux):
+        pass
+
+    @staticmethod
+    @abstractmethod
+    def _gen_int3c2e_1(mol, aux):
+        pass
+
+    @staticmethod
+    def _gen_L_1(L, L_inv, int2c2e_1):
+        if not isinstance(int2c2e_1, np.ndarray):
+            return 0
+        l = np.zeros_like(L)
+        for i in range(l.shape[0]):
+            l[i, :i] = 1
+            l[i, i] = 1/2
+        # in principle, the following code is correct
+        # but in implementation, it's quite slow
+        # einsum("PR, RQ, RS, AST, QT -> APQ", L, l, L_inv, int2c2e_1, L_inv)
+        return L @ (l * (L_inv @ int2c2e_1 @ L_inv.T))
+
+    @staticmethod
+    def _gen_L_inv_1(L_inv, L_1):
+        if not isinstance(L_1, np.ndarray):
+            return 0
+        return - einsum("PR, ARS, SQ -> APQ", L_inv, L_1, L_inv)
+
+    @staticmethod
+    def _gen_Y_ao_1(int3c2e, int3c2e_1, L_inv, L_inv_1):
+        Y_ao_1 = 0
+        if isinstance(int3c2e_1, np.ndarray):
+            Y_ao_1 += einsum("AμνQ, PQ -> AμνP", int3c2e_1, L_inv)
+        if isinstance(L_inv_1, np.ndarray):
+            Y_ao_1 += einsum("μνQ, APQ -> AμνP", int3c2e, L_inv_1)
+        return Y_ao_1
 
     # endregion Auxiliary Basis Integral Generation
 
@@ -69,12 +107,32 @@ class DerivOnceDFSCF(DerivOnceSCF, ABC):
     def Y_ao_jk(self):
         return self._gen_Y_ao(self.int3c2e_jk, self.L_inv_jk)
 
+    @cached_property
+    def int2c2e_1_jk(self):
+        return self._gen_int2c2e_1(self.aux_jk)
+
+    @cached_property
+    def int3c2e_1_jk(self):
+        return self._gen_int3c2e_1(self.mol, self.aux_jk)
+
+    @cached_property
+    def L_1_jk(self):
+        return self._gen_L_1(self.L_jk, self.L_inv_jk, self.int2c2e_1_jk)
+
+    @cached_property
+    def L_inv_1_jk(self):
+        return self._gen_L_inv_1(self.L_inv_jk, self.L_1_jk)
+
+    @cached_property
+    def Y_ao_1_jk(self):
+        return self._gen_Y_ao_1(self.int3c2e_jk, self.int3c2e_1_jk, self.L_inv_jk, self.L_inv_1_jk)
+
     # endregion Auxiliary Basis JK
 
     @cached_property
     def eri0_ao(self):
         warn("eri0 should not be called in density fitting module!", FutureWarning)
-        return einsum("uvP, PQ, klQ -> uvkl", self.int3c2e_jk, np.linalg.inv(self.int2c2e_jk), self.int3c2e_jk)
+        return einsum("μνP, PQ, κλQ -> μνκλ", self.int3c2e_jk, np.linalg.inv(self.int2c2e_jk), self.int3c2e_jk)
 
 
 class DerivOnceDFMP2(DerivOnceMP2, DerivOnceDFSCF, ABC):
