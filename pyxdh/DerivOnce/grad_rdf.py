@@ -1,5 +1,3 @@
-
-
 from pyxdh.DerivOnce import DerivOnceDFSCF, DerivOnceDFMP2, GradSCF, GradMP2
 
 

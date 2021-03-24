@@ -5,6 +5,7 @@ from scipy.linalg import solve_triangular
 # python utilities
 from abc import ABC
 from functools import partial
+from warnings import warn
 # pyscf utilities
 from pyscf import gto
 from pyscf.df.grad.rhf import _int3c_wrapper as int3c_wrapper
@@ -19,23 +20,61 @@ class DerivOnceDFSCF(DerivOnceSCF, ABC):
 
     def __init__(self, config):
         super(DerivOnceDFSCF, self).__init__(config)
+        self.scf_eng = self.scf_eng  # cheat pycharm to disable it's warning on type
         self.aux_jk = self.scf_eng.with_df.auxmol  # type: gto.Mole
 
-    @cached_property
-    def eri0_ao(self):
-        raise AssertionError("eri0 should not be called in density fitting module!")
-
-    @cached_property
-    def eri1_ao(self):
-        raise AssertionError("eri1 should not be called in density fitting module!")
+    # region Auxiliary Basis Integral Generation
 
     @staticmethod
-    def _get_int2c2e(aux):
+    def _gen_int2c2e(aux):
         return aux.intor("int2c2e")
 
     @staticmethod
-    def _get_int3c2e(mol, aux):
-        return int3c_wrapper(mol, aux, "int3c2e", "s1")()
+    def _gen_int3c2e(mol, aux):
+        int3c_wrapper(mol, aux, "int3c2e", "s1")()
+
+    @staticmethod
+    def _gen_L_aux(int2c2e):  # in actual programming, L_aux may refers to L_ri or L_jk
+        return np.linalg.cholesky(int2c2e)  # should be lower triangular
+
+    @staticmethod
+    def _gen_L_inv(L_aux):
+        return np.linalg.inv(L_aux)
+
+    @staticmethod
+    def _gen_Y_ao(int3c2e, L_inv):
+        return einsum("μνQ, PQ -> μνP", int3c2e, L_inv)
+
+    # endregion Auxiliary Basis Integral Generation
+
+    # region Auxiliary Basis JK
+
+    @cached_property
+    def int2c2e_jk(self):
+        return self._gen_int2c2e(self.aux_jk)
+
+    @cached_property
+    def int3c2e_jk(self):
+        return self._gen_int3c2e(self.mol, self.aux_jk)
+
+    @cached_property
+    def L_jk(self):
+        return self._gen_L_aux(self.int2c2e_jk)
+
+    @cached_property
+    def L_inv_jk(self):
+        return self._gen_L_inv(self.L_jk)
+
+    @cached_property
+    def Y_ao_jk(self):
+        return self._gen_Y_ao(self.int3c2e_jk, self.L_inv_jk)
+
+    # endregion Auxiliary Basis JK
+
+    @cached_property
+    def eri0_ao(self):
+        warn("eri0 should not be called in density fitting module!", FutureWarning)
+        return einsum("uvP, PQ, klQ -> uvkl", self.int3c2e_jk, np.linalg.inv(self.int2c2e_jk), self.int3c2e_jk)
 
 
 class DerivOnceDFMP2(DerivOnceMP2, DerivOnceDFSCF, ABC):
@@ -43,32 +82,26 @@ class DerivOnceDFMP2(DerivOnceMP2, DerivOnceDFSCF, ABC):
     def __init__(self, config):
         super(DerivOnceDFMP2, self).__init__(config)
         self.aux_ri = config["aux_ri"]  # type: gto.Mole
-        self._int2c2e_ri = NotImplemented  # type: np.ndarray
-        self._int3c2e_ri = NotImplemented  # type: np.ndarray
-        self._L_ri = NotImplemented  # type: np.ndarray
-        self._L_inv_ri = NotImplemented  # type: np.ndarray
-        self._Y_ao_ri = NotImplemented  # type: np.ndarray
-        self._Y_ia_ri = NotImplemented  # type: np.ndarray
 
     @cached_property
     def int2c2e_ri(self):
-        return self.aux_ri.intor("int2c2e")
+        return self._gen_int2c2e(self.aux_ri)
 
     @cached_property
     def int3c2e_ri(self):
-        return int3c_wrapper(self.mol, self.aux_ri, "int3c2e", "s1")()
+        return self._gen_int3c2e(self.mol, self.aux_ri)
 
     @cached_property
     def L_ri(self):
-        return np.linalg.cholesky(self.int2c2e_ri)
+        return self._gen_L_aux(self.int2c2e_ri)
 
     @cached_property
     def L_inv_ri(self):
-        return np.linalg.inv(self.L_ri)
+        return self._gen_L_inv(self.L_ri)
 
     @cached_property
     def Y_ao_ri(self):
-        return einsum("μνQ, PQ -> μνP", self.int3c2e_ri, self.L_inv_ri)
+        return self._gen_Y_ao(self.int3c2e_ri, self.L_inv_ri)
 
     @cached_property
     def Y_ia_ri(self):

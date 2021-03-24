@@ -20,7 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="912d8545-b18a-4722-b0d8-e8c61f686f07" name="Default Changelist" comment="refactor: update lgtm configuration">
-      <change beforePath="$PROJECT_DIR$/.lgtm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.lgtm.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_df.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_df.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/grad_rdf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/grad_rdf.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +38,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -277,14 +285,14 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.NH3-HFB3LYP-grad" />
+      <item itemvalue="Python.NH3-HFB3LYP-dip" />
       <item itemvalue="Python tests.pytest for dipderiv_mp2.Test_DipDerivMP2.test_B2PLYP_dipderiv" />
       <item itemvalue="Python tests.pytest for pyxdh" />
       <item itemvalue="Python tests.pytest in /home/a/Git-Repo/Py_xDH/Py_xDH/pyxdh/DerivOnce/grad_uscf.py" />
       <item itemvalue="Python tests.pytest for pyxdh.DerivOnce.grad_u" />
-      <item itemvalue="Python.NH3-HFB3LYP-grad" />
       <item itemvalue="Python tests.pytest for test_dipole_r.TestDipoleR.test_r_hfb3lyp_dipole" />
       <item itemvalue="Python tests.pytest for test_dipole_r.TestDipoleR.test_r_b3lyp_dipole" />
-      <item itemvalue="Python.NH3-HFB3LYP-dip" />
       <item itemvalue="Python tests.pytest for test_dipderiv_r.Test_DipDerivSCF" />
     </list>
     <recent_temporary>

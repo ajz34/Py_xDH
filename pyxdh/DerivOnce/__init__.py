@@ -7,8 +7,8 @@ __all__ = [
     "GradUSCF", "GradUNCDFT", "GradUMP2", "GradUXDH",
     "DipoleUSCF", "DipoleUMP2",
 
-    "DerivOnceDFSCF",  # deriv_once_df
-    "GradDFSCF",  # grad_df
+    "DerivOnceDFSCF",
+    "GradDFSCF",
 ]
 
 from pyxdh.DerivOnce.deriv_once_r import DerivOnceSCF, DerivOnceNCDFT, DerivOnceMP2, DerivOnceXDH
