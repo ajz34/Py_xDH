@@ -60,9 +60,15 @@ class GradDFSCF(DerivOnceDFSCF, GradSCF):
         ).reshape((self.mol.natm, 3)) + self.scf_grad.grad_nuc()
 
 
-class GradDFMP2(DerivOnceDFMP2, GradMP2):
-    pass
+class GradDFMP2(DerivOnceDFMP2, GradDFSCF, GradMP2):
 
-
-
-
+    def _get_E_1(self):
+        natm = self.natm
+        E_1 = (
+            + einsum("pq, Apq -> A", self.D_r, self.B_1)
+            + einsum("pq, Apq -> A", self.W_I, self.S_1_mo)
+            + 2 * einsum("iajb, AiaP, jbP -> A", self.T_iajb, self.Y_ia_1_ri, self.Y_ia_ri)
+            + 2 * einsum("iajb, iaP, AjbP -> A", self.T_iajb, self.Y_ia_ri, self.Y_ia_1_ri)
+        ).reshape(natm, 3)
+        E_1 += GradDFSCF._get_E_1(self)
+        return E_1

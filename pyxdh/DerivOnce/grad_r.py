@@ -1,12 +1,16 @@
 # basic utilities
 import numpy as np
 from opt_einsum import contract as einsum
+from functools import partial
 # pyscf utilities
 from pyscf import grad
 from pyscf.scf import _vhf
 # pyxdh utilities
 from pyxdh.DerivOnce import DerivOnceSCF, DerivOnceNCDFT, DerivOnceMP2, DerivOnceXDH
 from pyxdh.Utilities import GridIterator, KernelHelper, timing, cached_property
+
+# additional
+einsum = partial(einsum, optimize="greedy")
 
 
 # Cubic Inheritance: A2
@@ -292,9 +296,9 @@ class GradMP2(DerivOnceMP2, GradSCF):
         so, sv = self.so, self.sv
         natm = self.natm
         E_1 = (
-            + np.einsum("pq, Apq -> A", self.D_r, self.B_1)
-            + np.einsum("pq, Apq -> A", self.W_I, self.S_1_mo)
-            + 2 * np.einsum("iajb, Aiajb -> A", self.T_iajb, self.eri1_mo[:, so, sv, so, sv])
+            + einsum("pq, Apq -> A", self.D_r, self.B_1)
+            + einsum("pq, Apq -> A", self.W_I, self.S_1_mo)
+            + 2 * einsum("iajb, Aiajb -> A", self.T_iajb, self.eri1_mo[:, so, sv, so, sv])
         ).reshape(natm, 3)
         E_1 += super(GradMP2, self)._get_E_1()
         return E_1
@@ -307,9 +311,9 @@ class GradXDH(DerivOnceXDH, GradMP2, GradNCDFT):
         so, sv = self.so, self.sv
         natm = self.natm
         E_1 = (
-            + np.einsum("pq, Apq -> A", self.D_r, self.B_1)
-            + np.einsum("pq, Apq -> A", self.W_I, self.S_1_mo)
-            + 2 * np.einsum("iajb, Aiajb -> A", self.T_iajb, self.eri1_mo[:, so, sv, so, sv])
+            + einsum("pq, Apq -> A", self.D_r, self.B_1)
+            + einsum("pq, Apq -> A", self.W_I, self.S_1_mo)
+            + 2 * einsum("iajb, Aiajb -> A", self.T_iajb, self.eri1_mo[:, so, sv, so, sv])
         ).reshape(natm, 3)
         E_1 += self.nc_deriv.E_1
         return E_1

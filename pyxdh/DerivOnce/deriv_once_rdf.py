@@ -15,6 +15,10 @@ from pyxdh.Utilities import cached_property
 # simplification
 st = partial(solve_triangular, lower=True)
 
+# additional
+einsum = partial(einsum, optimize="greedy")
+
+
 
 class DerivOnceDFSCF(DerivOnceSCF, ABC):
 
@@ -160,9 +164,65 @@ class DerivOnceDFMP2(DerivOnceMP2, DerivOnceDFSCF, ABC):
         return self._gen_Y_ao(self.int3c2e_ri, self.L_inv_ri)
 
     @cached_property
+    def Y_mo_ri(self):
+        return einsum("μνP, μp, νq -> pqP", self.Y_ao_ri, self.C, self.C)
+
+    @property
     def Y_ia_ri(self):
-        return einsum("μνP, μi, νa -> iaP", self.Y_ao_ri, self.Co, self.Cv)
+        return self.Y_mo_ri[self.so, self.sv, :]
+
+    @cached_property
+    def int2c2e_1_ri(self):
+        return self._gen_int2c2e_1(self.aux_ri)
+
+    @cached_property
+    def int3c2e_1_ri(self):
+        return self._gen_int3c2e_1(self.mol, self.aux_ri)
+
+    @cached_property
+    def L_1_ri(self):
+        return self._gen_L_1(self.L_ri, self.L_inv_ri, self.int2c2e_1_ri)
+
+    @cached_property
+    def L_inv_1_ri(self):
+        return self._gen_L_inv_1(self.L_inv_ri, self.L_1_ri)
+
+    @cached_property
+    def Y_ao_1_ri(self):
+        return self._gen_Y_ao_1(self.int3c2e_ri, self.int3c2e_1_ri, self.L_inv_ri, self.L_inv_1_ri)
+
+    @cached_property
+    def Y_mo_1_ri(self):
+        return einsum("AμνP, μp, νq -> ApqP", self.Y_ao_1_ri, self.C, self.C)
+
+    @property
+    def Y_ia_1_ri(self):
+        return self.Y_mo_1_ri[:, self.so, self.sv, :]
 
     @cached_property
     def t_iajb(self):
         return einsum("iaP, jbP -> iajb", self.Y_ia_ri, self.Y_ia_ri) / self.D_iajb
+
+    def _get_L(self):
+        nvir, nocc, nmo = self.nvir, self.nocc, self.nmo
+        so, sv, sa = self.so, self.sv, self.sa
+        Ax0_Core = self.Ax0_Core
+        T_iajb = self.T_iajb
+        Y_ia_ri, Y_mo_ri = self.Y_ia_ri, self.Y_mo_ri
+        L = np.zeros((nvir, nocc))
+        L += Ax0_Core(sv, so, sa, sa)(self.D_r_oovv)
+        L -= 4 * np.einsum("jakb, ijP, kbP -> ai", T_iajb, Y_mo_ri[so, so], Y_ia_ri)
+        L += 4 * np.einsum("ibjc, abP, jcP -> ai", T_iajb, Y_mo_ri[sv, sv], Y_ia_ri)
+        return L
+
+    @cached_property
+    def W_I(self):
+        so, sv = self.so, self.sv
+        nmo = self.nmo
+        T_iajb = self.T_iajb
+        Y_ia_ri, Y_mo_ri = self.Y_ia_ri, self.Y_mo_ri
+        W_I = np.zeros((nmo, nmo))
+        W_I[so, so] = - 2 * einsum("iakb, jaP, kbP -> ij", T_iajb, Y_ia_ri, Y_ia_ri)
+        W_I[sv, sv] = - 2 * einsum("iajc, ibP, jcP -> ab", T_iajb, Y_ia_ri, Y_ia_ri)
+        W_I[sv, so] = - 4 * einsum("jakb, ijP, kbP -> ai", T_iajb, Y_mo_ri[so, so], Y_ia_ri)
+        return W_I
