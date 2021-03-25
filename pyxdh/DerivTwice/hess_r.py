@@ -1,11 +1,16 @@
 # basic utilities
 import numpy as np
 from opt_einsum import contract as einsum
+# python utilities
+from functools import partial
 # pyscf utilities
 from pyscf.scf import _vhf
 # pyxdh utilities
 from pyxdh.DerivTwice import DerivTwiceSCF, DerivTwiceNCDFT, DerivTwiceMP2, DerivTwiceXDH
 from pyxdh.Utilities import timing, GridIterator, KernelHelper, cached_property
+
+# additional
+einsum = partial(einsum, optimize="greedy")
 
 
 # Cubic Inheritance: A2

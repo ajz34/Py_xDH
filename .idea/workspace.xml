@@ -20,9 +20,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="912d8545-b18a-4722-b0d8-e8c61f686f07" name="Default Changelist" comment="refactor: update lgtm configuration">
+      <change afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_rdf.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/hess_rdf.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_df.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_df.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_df.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/deriv_once_rdf.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyxdh/DerivOnce/grad_rdf.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivOnce/grad_rdf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_r.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/deriv_twice_r.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyxdh/DerivTwice/hess_r.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyxdh/DerivTwice/hess_r.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -389,7 +395,8 @@
       <workItem from="1616301533686" duration="17609000" />
       <workItem from="1616384820158" duration="26535000" />
       <workItem from="1616472035705" duration="14174000" />
-      <workItem from="1616579244477" duration="4981000" />
+      <workItem from="1616579244477" duration="13047000" />
+      <workItem from="1616643157660" duration="15753000" />
     </task>
     <task id="LOCAL-00001" summary="pyxdh: UHF Gradient">
       <created>1591017061437</created>
@@ -727,7 +734,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616563072129</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="rdf: update GradRDF for skeleton derivatives">
+      <created>1616584655170</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1616584655170</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -746,7 +760,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor: grad_r property update" />
     <MESSAGE value="pyxdh/DF: update MP2 grad test and code" />
     <MESSAGE value="refactor: add data of NH3 from Gaussian" />
     <MESSAGE value="refactor: merge deriv_once_r and grad_r" />
@@ -771,7 +784,8 @@
     <MESSAGE value="refactor: uniform test naming convention" />
     <MESSAGE value="refactor: update lgtm configuration" />
     <MESSAGE value="rdf: update DerivOnceDFSCF for aux integrals methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="rdf: update DerivOnceDFSCF for aux integrals methods" />
+    <MESSAGE value="rdf: update GradRDF for skeleton derivatives" />
+    <option name="LAST_COMMIT_MESSAGE" value="rdf: update GradRDF for skeleton derivatives" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

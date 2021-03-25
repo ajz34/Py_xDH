@@ -63,10 +63,8 @@ class DerivOnceDFSCF(DerivOnceSCF, ABC):
         for i in range(l.shape[0]):
             l[i, :i] = 1
             l[i, i] = 1/2
-        # in principle, the following code is correct
-        # but in implementation, it's quite slow
-        # einsum("PR, RQ, RS, AST, QT -> APQ", L, l, L_inv, int2c2e_1, L_inv)
-        return L @ (l * (L_inv @ int2c2e_1 @ L_inv.T))
+        # return L @ (l * (L_inv @ int2c2e_1 @ L_inv.T))   # greedy search is required
+        return einsum("PR, RQ, RS, AST, QT -> APQ", L, l, L_inv, int2c2e_1, L_inv, optimize="greedy")
 
     @staticmethod
     def _gen_L_inv_1(L_inv, L_1):

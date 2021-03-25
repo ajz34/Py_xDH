@@ -4,11 +4,15 @@ from opt_einsum import contract as einsum
 # python utilities
 from abc import ABC, abstractmethod
 import warnings
+from functools import partial
 # pyscf utilities
 from pyscf.scf import cphf
 # pyxdh utilities
 from pyxdh.DerivOnce import DerivOnceSCF, DerivOnceNCDFT, DerivOnceMP2, DerivOnceXDH
 from pyxdh.Utilities import cached_property
+
+# additional
+einsum = partial(einsum, optimize="greedy")
 
 
 # Cubic Inheritance: A1
@@ -441,11 +445,11 @@ class DerivTwiceMP2(DerivTwiceSCF, ABC):
         so, sv = self.so, self.sv
         eri1_mo, U_1 = A.eri1_mo, B.U_1
         pdB_pdpA_eri0_iajb = (
-            + np.einsum("ABuvkl, up, vq, kr, ls -> ABpqrs", self.eri2_ao, self.Co, self.Cv, self.Co, self.Cv)
-            + np.einsum("Apjkl, Bpi -> ABijkl", eri1_mo[:, :, sv, so, sv], U_1[:, :, so])
-            + np.einsum("Aipkl, Bpj -> ABijkl", eri1_mo[:, so, :, so, sv], U_1[:, :, sv])
-            + np.einsum("Aijpl, Bpk -> ABijkl", eri1_mo[:, so, sv, :, sv], U_1[:, :, so])
-            + np.einsum("Aijkp, Bpl -> ABijkl", eri1_mo[:, so, sv, so, :], U_1[:, :, sv])
+            + einsum("ABuvkl, up, vq, kr, ls -> ABpqrs", self.eri2_ao, self.Co, self.Cv, self.Co, self.Cv)
+            + einsum("Apjkl, Bpi -> ABijkl", eri1_mo[:, :, sv, so, sv], U_1[:, :, so])
+            + einsum("Aipkl, Bpj -> ABijkl", eri1_mo[:, so, :, so, sv], U_1[:, :, sv])
+            + einsum("Aijpl, Bpk -> ABijkl", eri1_mo[:, so, sv, :, sv], U_1[:, :, so])
+            + einsum("Aijkp, Bpl -> ABijkl", eri1_mo[:, so, sv, so, :], U_1[:, :, sv])
         )
         return pdB_pdpA_eri0_iajb
 
@@ -463,18 +467,18 @@ class DerivTwiceMP2(DerivTwiceSCF, ABC):
         # D_r Part
         RHS_B += Ax0_Core(sv, so, sa, sa)(pdB_D_r_oovv)
         RHS_B += Ax1_Core(sv, so, sa, sa)(D_r)
-        RHS_B += np.einsum("Apa, pi -> Aai", U_1[:, :, sv], Ax0_Core(sa, so, sa, sa)(D_r))
-        RHS_B += np.einsum("Api, ap -> Aai", U_1[:, :, so], Ax0_Core(sv, sa, sa, sa)(D_r))
-        RHS_B += Ax0_Core(sv, so, sa, sa)(np.einsum("Amp, pq -> Amq", U_1, D_r))
-        RHS_B += Ax0_Core(sv, so, sa, sa)(np.einsum("Amq, pq -> Apm", U_1, D_r))
+        RHS_B += einsum("Apa, pi -> Aai", U_1[:, :, sv], Ax0_Core(sa, so, sa, sa)(D_r))
+        RHS_B += einsum("Api, ap -> Aai", U_1[:, :, so], Ax0_Core(sv, sa, sa, sa)(D_r))
+        RHS_B += Ax0_Core(sv, so, sa, sa)(einsum("Amp, pq -> Amq", U_1, D_r))
+        RHS_B += Ax0_Core(sv, so, sa, sa)(einsum("Amq, pq -> Apm", U_1, D_r))
         # (ea - ei) * Dai
-        RHS_B += np.einsum("Aca, ci -> Aai", pdB_F_0_mo[:, sv, sv], D_r[sv, so])
-        RHS_B -= np.einsum("Aki, ak -> Aai", pdB_F_0_mo[:, so, so], D_r[sv, so])
+        RHS_B += einsum("Aca, ci -> Aai", pdB_F_0_mo[:, sv, sv], D_r[sv, so])
+        RHS_B -= einsum("Aki, ak -> Aai", pdB_F_0_mo[:, so, so], D_r[sv, so])
         # 2-pdm part
-        RHS_B -= 4 * np.einsum("Ajakb, ijbk -> Aai", B.pdA_T_iajb, eri0_mo[so, so, sv, so])
-        RHS_B += 4 * np.einsum("Aibjc, abjc -> Aai", B.pdA_T_iajb, eri0_mo[sv, sv, so, sv])
-        RHS_B -= 4 * np.einsum("jakb, Aijbk -> Aai", B.T_iajb, pdA_eri0_mo[:, so, so, sv, so])
-        RHS_B += 4 * np.einsum("ibjc, Aabjc -> Aai", B.T_iajb, pdA_eri0_mo[:, sv, sv, so, sv])
+        RHS_B -= 4 * einsum("Ajakb, ijbk -> Aai", B.pdA_T_iajb, eri0_mo[so, so, sv, so])
+        RHS_B += 4 * einsum("Aibjc, abjc -> Aai", B.pdA_T_iajb, eri0_mo[sv, sv, so, sv])
+        RHS_B -= 4 * einsum("jakb, Aijbk -> Aai", B.T_iajb, pdA_eri0_mo[:, so, so, sv, so])
+        RHS_B += 4 * einsum("ibjc, Aabjc -> Aai", B.T_iajb, pdA_eri0_mo[:, sv, sv, so, sv])
 
         return RHS_B
 
@@ -484,15 +488,15 @@ class DerivTwiceMP2(DerivTwiceSCF, ABC):
 
         E_2_MP2_Contrib = (
             # D_r * B
-            + np.einsum("pq, ABpq -> AB", self.D_r, self.pdB_B_A)
-            + np.einsum("Bpq, Apq -> AB", B.pdA_D_r_oovv, A.B_1)
-            + np.einsum("Aai, Bai -> AB", A.U_1[:, sv, so], self.RHS_B)
+            + einsum("pq, ABpq -> AB", self.D_r, self.pdB_B_A)
+            + einsum("Bpq, Apq -> AB", B.pdA_D_r_oovv, A.B_1)
+            + einsum("Aai, Bai -> AB", A.U_1[:, sv, so], self.RHS_B)
             # W_I * S
-            + np.einsum("pq, ABpq -> AB", self.W_I, self.pdB_S_A_mo)
-            + np.einsum("Bpq, Apq -> AB", B.pdA_W_I, A.S_1_mo)
+            + einsum("pq, ABpq -> AB", self.W_I, self.pdB_S_A_mo)
+            + einsum("Bpq, Apq -> AB", B.pdA_W_I, A.S_1_mo)
             # T * g
-            + 2 * np.einsum("Biajb, Aiajb -> AB", B.pdA_T_iajb, A.eri1_mo[:, so, sv, so, sv])
-            + 2 * np.einsum("iajb, ABiajb -> AB", self.T_iajb, self.pdB_pdpA_eri0_iajb)
+            + 2 * einsum("Biajb, Aiajb -> AB", B.pdA_T_iajb, A.eri1_mo[:, so, sv, so, sv])
+            + 2 * einsum("iajb, ABiajb -> AB", self.T_iajb, self.pdB_pdpA_eri0_iajb)
         )
         return E_2_MP2_Contrib
 
@@ -520,7 +524,7 @@ class DerivTwiceXDH(DerivTwiceMP2, DerivTwiceNCDFT, ABC):
     def _get_E_2_U(self):
         A, B = self.A, self.B
         so = self.so
-        E_2_U = 4 * np.einsum("Bpi, Api -> AB", B.U_1[:, :, so], A.nc_deriv.F_1_mo[:, :, so])
-        E_2_U -= 2 * np.einsum("Aki, Bki -> AB", A.S_1_mo[:, so, so], B.pdA_nc_F_0_mo[:, so, so])
-        E_2_U -= 2 * np.einsum("ABki, ki -> AB", self.pdB_S_A_mo[:, :, so, so], A.nc_deriv.F_0_mo[so, so])
+        E_2_U = 4 * einsum("Bpi, Api -> AB", B.U_1[:, :, so], A.nc_deriv.F_1_mo[:, :, so])
+        E_2_U -= 2 * einsum("Aki, Bki -> AB", A.S_1_mo[:, so, so], B.pdA_nc_F_0_mo[:, so, so])
+        E_2_U -= 2 * einsum("ABki, ki -> AB", self.pdB_S_A_mo[:, :, so, so], A.nc_deriv.F_0_mo[so, so])
         return E_2_U

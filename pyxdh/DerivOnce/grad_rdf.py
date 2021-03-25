@@ -2,11 +2,15 @@
 import numpy as np
 from opt_einsum import contract as einsum
 from warnings import warn
+from functools import partial
 # pyscf utilities
 from pyscf.df.grad.rhf import _int3c_wrapper as int3c_wrapper
 # pyxdh utilities
 from pyxdh.DerivOnce import DerivOnceDFSCF, DerivOnceDFMP2, GradSCF, GradMP2
 from pyxdh.Utilities import cached_property
+
+# additional
+einsum = partial(einsum, optimize="greedy")
 
 
 class GradDFSCF(DerivOnceDFSCF, GradSCF):
