@@ -7,7 +7,7 @@ from functools import partial
 # pyscf utilities
 from pyscf.df.grad.rhf import _int3c_wrapper as int3c_wrapper
 # pyxdh utilities
-from pyxdh.DerivTwice import DerivTwiceDFSCF, HessSCF
+from pyxdh.DerivTwice import DerivTwiceDFSCF, DerivTwiceDFMP2, HessSCF
 from pyxdh.Utilities import cached_property
 
 # additional
@@ -83,3 +83,10 @@ class HessDFSCF(DerivTwiceDFSCF, HessSCF):
             + einsum("ABμκP, νλP, κλ -> ABμν", self.Y_ao_2_jk, A.Y_ao_jk, D)
         )
         return j, k
+
+
+class HessDFMP2(DerivTwiceDFMP2, HessDFSCF):
+
+    def _get_E_2(self):
+        return HessDFSCF._get_E_2(self) + self._get_E_2_MP2_Contrib()
+

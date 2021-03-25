@@ -439,7 +439,7 @@ class DerivTwiceMP2(DerivTwiceSCF, ABC):
 
     # region Properties
 
-    @property
+    @cached_property
     def pdB_pdpA_eri0_iajb(self):
         A, B = self.A, self.B
         so, sv = self.so, self.sv

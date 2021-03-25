@@ -226,3 +226,54 @@ class DerivOnceDFMP2(DerivOnceMP2, DerivOnceDFSCF, ABC):
         W_I[sv, sv] = - 2 * einsum("iajc, ibP, jcP -> ab", T_iajb, Y_ia_ri, Y_ia_ri)
         W_I[sv, so] = - 4 * einsum("jakb, ijP, kbP -> ai", T_iajb, Y_mo_ri[so, so], Y_ia_ri)
         return W_I
+
+    @cached_property
+    def pdA_eri0_mo(self):
+        raise RuntimeError("eri0 derivative should not be called in DF routines!")
+
+    @cached_property
+    def pdA_Y_mo_1_ri(self):
+        return (
+            + self.Y_mo_1_ri
+            + einsum("Amp, mqP -> ApqP", self.U_1, self.Y_mo_ri)
+            + einsum("Amq, pmP -> ApqP", self.U_1, self.Y_mo_ri))
+
+    @cached_property
+    def pdA_t_iajb(self):
+        so, sv = self.so, self.sv
+        D_iajb = self.D_iajb
+        pdA_F_0_mo = self.pdA_F_0_mo
+        t_iajb = self.t_iajb
+        pdA_Y_ia_1_ri = self.pdA_Y_mo_1_ri[:, so, sv, :]
+        Y_ia_ri = self.Y_ia_ri
+        pdA_t_iajb = (
+            + einsum("AiaP, jbP -> Aiajb", pdA_Y_ia_1_ri, Y_ia_ri)
+            + einsum("iaP, AjbP -> Aiajb", Y_ia_ri, pdA_Y_ia_1_ri)
+            - einsum("Aki, kajb -> Aiajb", pdA_F_0_mo[:, so, so], t_iajb)
+            - einsum("Akj, iakb -> Aiajb", pdA_F_0_mo[:, so, so], t_iajb)
+            + einsum("Aca, icjb -> Aiajb", pdA_F_0_mo[:, sv, sv], t_iajb)
+            + einsum("Acb, iajc -> Aiajb", pdA_F_0_mo[:, sv, sv], t_iajb)
+        ) / D_iajb
+        return pdA_t_iajb
+
+    @cached_property
+    def pdA_W_I(self):
+        so, sv = self.so, self.sv
+        natm, nmo = self.natm, self.nmo
+        pdA_T_iajb, T_iajb = self.pdA_T_iajb, self.T_iajb
+        Y_ia_ri, Y_mo_ri = self.Y_ia_ri, self.Y_mo_ri
+        pdA_Y_mo_1_ri = self.pdA_Y_mo_1_ri
+        pdA_Y_ia_1_ri = pdA_Y_mo_1_ri[:, so, sv, :]
+
+        pdR_W_I = np.zeros((natm * 3, nmo, nmo))
+        pdR_W_I[:, so, so] -= 2 * einsum("Aiakb, jaP, kbP -> Aij", pdA_T_iajb, Y_ia_ri, Y_ia_ri)
+        pdR_W_I[:, sv, sv] -= 2 * einsum("Aiajc, ibP, jcP -> Aab", pdA_T_iajb, Y_ia_ri, Y_ia_ri)
+        pdR_W_I[:, sv, so] -= 4 * einsum("Ajakb, ijP, kbP -> Aai", pdA_T_iajb, Y_mo_ri[so, so], Y_ia_ri)
+        pdR_W_I[:, so, so] -= 2 * einsum("iakb, AjaP, kbP -> Aij", T_iajb, pdA_Y_ia_1_ri, Y_ia_ri)
+        pdR_W_I[:, so, so] -= 2 * einsum("iakb, jaP, AkbP -> Aij", T_iajb, Y_ia_ri, pdA_Y_ia_1_ri)
+        pdR_W_I[:, sv, sv] -= 2 * einsum("iajc, AibP, jcP -> Aab", T_iajb, pdA_Y_ia_1_ri, Y_ia_ri)
+        pdR_W_I[:, sv, sv] -= 2 * einsum("iajc, ibP, AjcP -> Aab", T_iajb, Y_ia_ri, pdA_Y_ia_1_ri)
+        pdR_W_I[:, sv, so] -= 4 * einsum("jakb, AijP, kbP -> Aai", T_iajb, pdA_Y_mo_1_ri[:, so, so], Y_ia_ri)
+        pdR_W_I[:, sv, so] -= 4 * einsum("jakb, ijP, AkbP -> Aai", T_iajb, Y_mo_ri[so, so], pdA_Y_ia_1_ri)
+
+        return pdR_W_I

@@ -15,6 +15,7 @@ from pyxdh.Utilities import timing, cached_property
 scf.hf.RHF.Hessian = lib.class_as_method(hessian.rhf.Hessian)
 dft.rks.RKS.Hessian = lib.class_as_method(hessian.rks.Hessian)
 
+
 # Cubic Inheritance: A1
 class DerivOnceSCF(ABC):
 
