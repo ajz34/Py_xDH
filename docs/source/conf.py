@@ -171,7 +171,7 @@ texinfo_documents = [
 
 nbsphinx_allow_errors = True
 nbsphinx_timeout = 720
-mathjax_path = "Mathjax/es5/tex-chtml-full.js"
+mathjax_path = "https://lf26-cdn-tos.bytecdntp.com/cdn/mathjax/3.2.0/es5/tex-chtml-full.js"
 
 bibtex_bibfiles = [
     "qcbasic/basic_gga.bib",
