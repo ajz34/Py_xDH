@@ -180,5 +180,5 @@ bibtex_bibfiles = [
     "qcbasic/basic_rhf.bib",
     "qcbasic/basic_b2plyp.bib",
     "qcbasic/basic_xyg3.bib",
-    "ref.bib",
+    # "ref.bib",
 ]

@@ -1,7 +1,5 @@
-pyscf>=1.7.1
-numpy!=1.16
+pyscf==2.5.0
 opt_einsum
-scipy
 jupyter
 sphinx
 nbsphinx

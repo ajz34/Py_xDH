@@ -2,7 +2,7 @@
 
 **This project is under going code refactorization. Document code is currently not updated. Unrestricted and RI implementation is on-going.**
 
-**程序正在进行重构。其所对应的文档目前还没有更新。开窍层与 RI 实现目前还有待完善。**
+**程序正在进行重构。其所对应的文档目前还没有更新。开壳层与 RI 实现目前还有待完善。**
 
 |         | Badges   |
 | :------ | :------- |
