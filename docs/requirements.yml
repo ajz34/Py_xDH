@@ -1,9 +1,9 @@
-numpy!=1.16
+numpy
 scipy
 jupyter
 matplotlib
 sphinx
 nbsphinx
-nbconvert!=5.4
+nbconvert
 sphinx_rtd_theme
 sphinxcontrib-bibtex
