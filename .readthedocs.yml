@@ -5,6 +5,7 @@ sphinx:
 
 submodules:
   include: all
+  recursive: true
 
 build:
   image: ubuntu-22.04
