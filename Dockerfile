@@ -21,6 +21,7 @@ RUN cp $PKG_DIR/.pyscf_conf.py ~/.pyscf_conf.py
 RUN pip --no-cache-dir install -r $PKG_DIR/requirements.txt
 
 ENV PYTHONPATH $PKG_DIR:$PYTHONPATH
+ENV OMP_NUM_THREADS=4
 
 EXPOSE 8888
 
