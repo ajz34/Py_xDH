@@ -15,7 +15,7 @@ WORKDIR $WRK_DIR
 
 RUN mkdir -p $PKG_DIR
 RUN git clone https://github.com/ajz34/Py_xDH.git $PKG_DIR
-RUN cd $PKG_DIR/ && git checkout --force origin/legacy
+# RUN cd $PKG_DIR/ && git checkout --force origin/legacy
 RUN cp $PKG_DIR/.pyscf_conf.py ~/.pyscf_conf.py
 
 RUN pip --no-cache-dir install -r $PKG_DIR/requirements.txt
