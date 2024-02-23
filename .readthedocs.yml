@@ -3,10 +3,6 @@ version: 2
 sphinx:
   configuration: docs/source/conf.py
 
-submodules:
-  include: all
-  recursive: true
-
 build:
   image: ubuntu-22.04
   apt_packages:
