@@ -4,7 +4,7 @@ FROM python:3.8-slim
 
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get -yq dist-upgrade && \
-    apt-get install -yq --no-install-recommends git && \
+    apt-get install -yq --no-install-recommends git gcc && \
     rm -rf /var/lib/apt/lists/*
 
 ENV WRK_DIR "/work"
@@ -19,21 +19,6 @@ RUN cd $PKG_DIR/ && git checkout --force origin/legacy
 RUN cp $PKG_DIR/.pyscf_conf.py ~/.pyscf_conf.py
 
 RUN pip --no-cache-dir install -r $PKG_DIR/requirements.txt
-RUN pip --no-cache-dir install -r $PKG_DIR/docs/requirements.yml
-RUN pip --no-cache-dir install jupyter_contrib_nbextensions
-RUN jupyter contrib nbextension install
-RUN for extension in \
-        nbextensions_configurator/config_menu/main \
-        hide_input/main \
-        scratchpad/main \
-        collapsible_headings/main \
-        toc2/main \
-        nbextensions_configurator/tree_tab/main \
-        codefolding/edit \
-        jupyter-js-widgets/extension; \
-    do jupyter nbextension enable $extension --sys-prefix; done
-RUN mkdir -p ~/.jupyter/custom && \
-    echo ".container { width:85%; }" > ~/.jupyter/custom/custom.css
 
 ENV PYTHONPATH $PKG_DIR:$PYTHONPATH
 

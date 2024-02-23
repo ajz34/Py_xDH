@@ -11,6 +11,7 @@ sphinx_rtd_theme
 sphinxcontrib-bibtex
 jupyter_contrib_nbextensions
 pandoc
+matplotlib
 docopt
 codecov
 pytest-cov
