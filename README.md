@@ -1,8 +1,8 @@
 # Python xDH Project
 
-**This project is under going code refactorization. Document code is currently not updated. Unrestricted and RI implementation is on-going.**
+**This project is under going code refactorization. Document code is currently not updated. Unrestricted and RI implementation is on-going. Also refers to unfinished [dh project](https://github.com/ajz34/pyscf-forge/tree/pre-0.2).**
 
-**程序正在进行重构。其所对应的文档目前还没有更新。开壳层与 RI 实现目前还有待完善。**
+**程序正在进行重构。其所对应的文档目前还没有更新。开壳层与 RI 实现目前还有待完善。同时参见尚未完成的 [dh 项目](https://github.com/ajz34/pyscf-forge/tree/pre-0.2)。**
 
 |         | Badges   |
 | :------ | :------- |
@@ -39,7 +39,7 @@ basis processing, DFT grid engine and CP-HF algorithm is based on python quantum
 
 ## Version Information
 
-Current version of pyxdh is 0.0.4. This version should work with pyscf==1.7.1.
+Current version of pyxdh is 0.0.7. This version should work with pyscf==1.7.5.
 
 Previous version 0.0.3 should work with pyscf==1.6.4.
 
@@ -133,10 +133,6 @@ print(- polar_xDH.E_2)
 
 ## Documentation
 
-**Note: Documentation remains to be updated! Only `pyxdh` code can be used currently.**
-
-**注意：文档部分仍有待完善！目前为止，`pyxdh` 库的代码确实是可以使用的，但一些文档的代码是有问题的。**
-
 Published web page: https://py-xdh.readthedocs.io/zh_CN/latest/
 
 Prerequisite knowledge of chapter 3, 4, 10 of *A New Dimension to Quantum Chemistry: Analytic Derivative Methods in
@@ -169,10 +165,19 @@ package in terminal successfully.
 
 ## `pyxdh` Package
 
-This is merely a demo package that implements derivative of some basic quantum chemistry methods.
-Currently it is not distrubuted to PyPI.
+This is merely a demo package that implements derivative of some basic quantum chemistry methods. Not for real-world problem computation, and not efficient at all.
 
-这个库目前只是一个短小的、包含基础量化方法梯度实现的库。它并没有发布到 PyPI 中。
+这个库目前只是一个短小的、包含基础量化方法梯度实现的库。它不适合用于实际生产环境的计算；它的效率及其糟糕。
+
+### Installation
+
+Currently, PyPI installation is available. Python version 3.8 should work.
+
+```bash
+pip install pyxdh
+```
+
+See also [docker image](#Docker-Image).
 
 ### Deficiencies and facilities
 
@@ -267,6 +272,9 @@ Simply follow the instructions from terminal should work.
 - Thanks labmates for valuable discussions and suggestions.
 - Thanks supervisor and teachers in lab for project support and server support.
 - Thanks parents for project support.
-- Currently, the author does not know any funding grants supporting this project. It should have some.
-  Project is almost personally driven at this stage.
 - Futher discussion is welcomed by raising issue or e-mail. Chinese is prefered; English is also okay.
+- Funding information: National Natural Science Foundation of China (Grant 21688102), the Science Challenge Project (Grant TZ2018004), and the National Key Research and Development Program of China (Grant 2018YFA0208600).
+
+This project is not going to be formally published, as it is more like documentation demo instead of program. This project is closely related to the following article:
+> Gu, Y.; Zhu, Z.; Xu, X. Second-Order Analytic Derivatives for XYG3 Type of Doubly Hybrid Density Functionals: Theory, Implementation, and Application to Harmonic and Anharmonic Vibrational Frequency Calculations. J. Chem. Theory Comput. 2021, 17 (8), 4860–4871. https://doi.org/10.1021/acs.jctc.1c00457.
+
