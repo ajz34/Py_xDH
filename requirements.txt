@@ -1,6 +1,6 @@
 pyscf==1.7.5
 h5py==3.0
-scipy==1.4.1
+scipy==1.11.1
 numpy==1.18
 opt_einsum
 jupyter
